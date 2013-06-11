@@ -146,19 +146,19 @@ class BaseController extends Controller{
 	/**
 	 * Untuk set signiture
 	 **/
-	public function setSigniture($object){
+	public function setSigniture($object, $title = 'Gatot Kaca Report Generator'){
 		if($object instanceof PHPExcel){
 			$object->getProperties()
-				->setCreator('Gatot Kaca ERP')
+				->setCreator('Gatot Kaca ERP Report Generator')
 				->setLastModifiedBy('Aden Kejawen Generator')
-				->setTitle('Attendance Report')
-				->setSubject('Attendance Report');
+				->setTitle($title)
+				->setSubject($title);
 		}else if($object instanceof TCPDF){
-			$object->SetCreator('Gatot Kaca ERP');
-			$object->SetAuthor('Gatot Kaca ERP');
-			$object->SetTitle('Gatot Kaca ERP PDF Generator');
-			$object->SetSubject('Gatot Kaca ERP PDF Generator');
-			$object->SetKeywords('Gatot Kaca ERP PDF Generator');
+			$object->SetCreator('Gatot Kaca ERP Report Generator');
+			$object->SetAuthor('Gatot Kaca ERP Report Generator');
+			$object->SetTitle($title);
+			$object->SetSubject($title);
+			$object->SetKeywords($title);
 			$object->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 			$object->setPrintHeader(false);
 			$object->AddPage();
