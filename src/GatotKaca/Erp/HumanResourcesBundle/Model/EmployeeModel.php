@@ -250,11 +250,12 @@ class EmployeeModel extends BaseModel{
 	}
 	
 	/**
-	 * Untuk mendapatkan data employee by Id
+	 * Untuk mendapatkan data employee by criteria
 	 * 
-	 * @param string id
+	 * @param string criteria
+	 * @param string value
 	 **/
-	public function getById($id){
+	public function getBy($criteria, $value){
 		$query	= $this->getEntityManager()
 				->createQueryBuilder()
 				->select("
@@ -326,7 +327,7 @@ class EmployeeModel extends BaseModel{
 				->leftJoin('GatotKacaErpHumanResourcesBundle:EmployeeEducation', 'ee', 'WITH', 'e.id = ee.employee')
 				->leftJoin('GatotKacaErpMainBundle:Education', 'ed', 'WITH', 'ee.education = ed.id')
 				->leftJoin('GatotKacaErpHumanResourcesBundle:EmployeeFamily', 'ef', 'WITH', 'e.id = ef.employee')
-				->where('e.id = :id')//Children
+				->where("e.{$criteria} = :{$criteria}")//Children
 				->groupBy("
 					e.id,
 					c.id,
@@ -374,9 +375,9 @@ class EmployeeModel extends BaseModel{
 				->addOrderBy('ed.level', 'ASC')
 				->addOrderBy('ef.relation', 'DESC')
 				->setMaxResults(1)
-				->setParameter('id', $id)
+				->setParameter($criteria, $value)
 				->getQuery();
-		$this->setModelLog("get employee with id {$id}");
+		$this->setModelLog("get employee {$criteria} {$value}");
 		return $query->getResult();
 	}
 

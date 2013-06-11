@@ -289,7 +289,7 @@ class EmployeeController extends AdminController{
 		$output	= array('success' => TRUE);
 		//Get model
 		$model	= $this->modelManager()->getEmployee();
-		$employee	= $model->getById($request->get('employee_id'));
+		$employee	= $model->getBy('id', $request->get('employee_id'));
 		if(count($employee)){
 			$output['data']	= $employee;
 		}
