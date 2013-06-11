@@ -1,5 +1,7 @@
 web/bundles/*
 src/GatotKaca/Erp/MainBundle/Resources/public/*
+src/GatotKaca/Erp/SetupBundle/*
+vendor/*
 app/bootstrap*
 app/cache/*
 app/logs/*
