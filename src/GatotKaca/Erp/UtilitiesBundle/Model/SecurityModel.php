@@ -281,28 +281,23 @@ class SecurityModel extends BaseModel{
 	 * @return boolean session stage
 	 **/
 	public function checkSession($agent){
-		$users	= $this->getEntityManager()
-				->createQueryBuilder()
-				->select('u.id')
+		$qb		= ->getEntityManager()->createQueryBuilder();
+		$users	= $qb->select('u.id')
 				->from('GatotKacaErpUtilitiesBundle:User', 'u')
 				->where('u.lastactivity <= :activity')
 				->setParameter('activity', new \DateTime('-1 hours'))
 				->getQuery()
 				->getResult();
 		foreach ($users as $user){
-			$this->getEntityManager()
-					->createQueryBuilder()
-					->update('GatotKacaErpUtilitiesBundle:User', 'u')
-					->set('u.online', 'false')
-					->where('u.id = :user')
-					->setParameter('user', $user['id'])
-					->getQuery()
-					->execute();
+			$qb->update('GatotKacaErpUtilitiesBundle:User', 'u')
+				->set('u.online', $qb->expr()->literal(FALSE))
+				->where('u.id = :user')
+				->setParameter('user', $user['id'])
+				->getQuery()
+				->execute();
 		}
 		$this->getEntityManager()->flush();
-		$last	= $this->getEntityManager()
-				->createQueryBuilder()
-				->select('u.lastactivity')
+		$last	= $qb->select('u.lastactivity')
 				->from('GatotKacaErpUtilitiesBundle:User', 'u')
 				->where('u.id = :agent')
 				->setParameter('agent', $agent)

@@ -71,7 +71,6 @@ class Helper{
 	public function getTimeDiff($start, $end){
 		try{
 			$diff	= $end->diff($start);
-			
 			$years		= $diff->y * 12 * $diff->days * 24 * 60 * 60;
 			$months		= $diff->m * $diff->days * 24 * 60 * 60;
 			$days		= $diff->d * 24 * 60 * 60;
