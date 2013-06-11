@@ -1,0 +1,1 @@
+Ext.define("Ext.rtl.util.Floating",{override:"Ext.util.Floating",constructor:function(){this.callParent(arguments);if(this.isLocalRtl()){this.el.setRtl(true)}}});

@@ -1,0 +1,14 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_pgsql
+    database_host: xxxxxxxx
+    database_port: xxxx
+    database_name: gatotkacaerp
+    database_user: xxxxxx
+    database_password: xxxxxx
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    locale: en
+    secret: ChangeIt

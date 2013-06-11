@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.model.Education",{extend:"Ext.data.Model",fields:[{name:"education_id",type:"string"},{name:"education_name",type:"string"},{name:"education_level",type:"number"},{name:"education_status",type:"boolean"}]});

@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.view.panels.Dashboard",{extend:"Ext.container.Container",alias:"widget.paneldashboard",id:"paneldashboard",initComponent:function(){Ext.apply(this,{title:"DASHBOARD",iconCls:"icon-house",layout:{type:"hbox",align:"stretch"},xtype:"container",border:false,frame:false,items:[]});this.callParent(arguments)}});

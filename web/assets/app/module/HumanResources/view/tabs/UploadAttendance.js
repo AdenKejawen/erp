@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.module.HumanResources.view.tabs.UploadAttendance",{extend:"GatotKacaErp.view.tabs.Base",alias:"widget.tabupload",id:"tabupload",requires:["GatotKacaErp.module.HumanResources.view.grids.UploadAttendance","GatotKacaErp.module.HumanResources.view.grids.AttendanceByEmployee"],items:[{xtype:"gridattendancebyemployee"},{xtype:"gridupload"}]});

@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.module.HumanResources.view.OverTimeByEmployee",{extend:"GatotKacaErp.view.Base",requires:["GatotKacaErp.module.HumanResources.view.grids.OverTimeByEmployee","GatotKacaErp.module.HumanResources.view.tabs.OverTimeByEmployee"],items:[{xtype:"gridovertimebyemployee",flex:1,margin:"0px 5px 0px 0px"},{xtype:"tabovertimebyemployee",flex:3}]});

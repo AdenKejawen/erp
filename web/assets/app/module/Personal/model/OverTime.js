@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.module.Personal.model.OverTime",{extend:"Ext.data.Model",fields:[{name:"overtime_id",type:"string"},{name:"overtime_date",type:"date",dateFormat:"d-m-Y"},{name:"overtime_fname",type:"string"},{name:"overtime_lname",type:"string"},{name:"overtime_isapprove",type:"boolean"},{name:"overtime_real",type:"number"}]});

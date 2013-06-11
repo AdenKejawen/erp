@@ -1,0 +1,63 @@
+gatot_kaca_setup:
+    resource: "@GatotKacaSetupBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+gatot_kaca_erp_personal:
+    resource: "@GatotKacaErpPersonalBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+vinoti_erp_material_requirement:
+    resource: "@GatotKacaErpMaterialRequirementBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+vinoti_erp_main:
+    resource: "@GatotKacaErpMainBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+vinoti_erp_warehouse:
+    resource: "@GatotKacaErpWarehouseBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+vinoti_erp_sales:
+    resource: "@GatotKacaErpSalesBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+vinoti_erp_project_management:
+    resource: "@GatotKacaErpProjectManagementBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+vinoti_erp_procurement:
+    resource: "@GatotKacaErpProcurementBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+vinoti_erp_human_resources:
+    resource: "@GatotKacaErpHumanResourcesBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+vinoti_erp_financial:
+    resource: "@GatotKacaErpFinancialBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+vinoti_erp_utilities:
+    resource: "@GatotKacaErpUtilitiesBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+# Internal routing configuration to handle ESI
+# ****** WARNING ******
+# This route should be enabled with caution as it can open a security vulnerability
+# see http://symfony.com/blog/security-release-symfony-2-0-20-and-2-1-5-released for more information
+# ****** WARNING ******
+#_internal:
+#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#    prefix:   /_internal

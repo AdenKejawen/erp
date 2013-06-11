@@ -1,0 +1,1 @@
+Ext.define("Ext.rtl.layout.container.Container",{override:"Ext.layout.container.Container",getRenderData:function(){var a=this.callParent();if(this.owner.getHierarchyState().rtl){a.targetCls=Ext.baseCSSPrefix+"rtl"}return a}});

@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.model.JobLevel",{extend:"Ext.data.Model",fields:[{name:"joblevel_id",type:"string"},{name:"joblevel_name",type:"string"},{name:"joblevel_level",type:"number"},{name:"joblevel_status",type:"boolean"}]});

@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.model.BloodType",{extend:"Ext.data.Model",fields:[{name:"bloodtype_id",type:"string"},{name:"bloodtype_name",type:"string"}]});

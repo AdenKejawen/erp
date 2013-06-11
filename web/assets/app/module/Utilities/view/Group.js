@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.module.Utilities.view.Group",{extend:"GatotKacaErp.view.Base",requires:["GatotKacaErp.module.Utilities.view.grids.Group","GatotKacaErp.module.Utilities.view.tabs.Group"],items:[{xtype:"gridgroup",flex:1,margin:"0px 5px 0px 0px"},{xtype:"tabgroup",flex:3}]});

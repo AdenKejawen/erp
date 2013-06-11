@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.model.Level",{extend:"Ext.data.Model",fields:[{name:"level_id",type:"number"},{name:"level_name",type:"string"}]});

@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.model.Language",{extend:"Ext.data.Model",fields:[{name:"language_id",type:"number"},{name:"language_name",type:"string"}]});

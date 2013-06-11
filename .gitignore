@@ -1,0 +1,9 @@
+web/bundles/*
+src/GatotKaca/Erp/MainBundle/Resources/public/*
+app/bootstrap*
+app/cache/*
+app/logs/*
+app/config/parameters.yml
+build/
+vendor
+composer.phar

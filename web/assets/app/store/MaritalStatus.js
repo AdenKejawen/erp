@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.store.MaritalStatus",{extend:"Ext.data.Store",model:"GatotKacaErp.model.MaritalStatus",data:[{maritalstatus_id:1,maritalstatus_name:"SINGLE"},{maritalstatus_id:2,maritalstatus_name:"MARRIED"},{maritalstatus_id:3,maritalstatus_name:"DIVORCED"}]});
