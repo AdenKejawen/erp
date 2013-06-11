@@ -281,7 +281,7 @@ class SecurityModel extends BaseModel{
 	 * @return boolean session stage
 	 **/
 	public function checkSession($agent){
-		$qb		= ->getEntityManager()->createQueryBuilder();
+		$qb		= $this->getEntityManager()->createQueryBuilder();
 		$users	= $qb->select('u.id')
 				->from('GatotKacaErpUtilitiesBundle:User', 'u')
 				->where('u.lastactivity <= :activity')
