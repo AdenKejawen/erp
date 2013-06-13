@@ -54,12 +54,12 @@ class OverTimeModel extends BaseModel{
 		$extra	.= $isSupervise !== 'FALSE' ? " AND e.supervisor = '{$this->getEmployee()->getId()}'" : " AND e.id = '{$this->getEmployee()->getId()}'";
 		$qb		= $this->getEntityManager()->createQueryBuilder();
 		$query	= $qb->select("
-					ot.id AS overtime_id,
-					TO_CHAR(ot.ot_date, 'DD-MM-YYYY') AS overtime_date,
-					e.fname AS overtime_fname,
-					e.lname AS overtime_lname,
-					ot.ot_real AS overtime_real,
-					ot.isapprove AS overtime_isapprove
+					ot.id AS ot_id,
+					TO_CHAR(ot.ot_date, 'DD-MM-YYYY') AS ot_date,
+					e.fname AS ot_fname,
+					e.lname AS ot_lname,
+					ot.ot_real AS ot_real,
+					ot.isapprove AS ot_isapprove
 				")
 				->from('GatotKacaErpHumanResourcesBundle:EmployeeOvertime', 'ot')
 				->leftJoin('GatotKacaErpHumanResourcesBundle:Employee', 'e', 'WITH', 'ot.employee = e.id')

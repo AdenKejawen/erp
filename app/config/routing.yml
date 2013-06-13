@@ -1,13 +1,3 @@
-gatot_kaca_setup:
-    resource: "@GatotKacaSetupBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-gatot_kaca_erp_personal:
-    resource: "@GatotKacaErpPersonalBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 vinoti_erp_material_requirement:
     resource: "@GatotKacaErpMaterialRequirementBundle/Controller/"
     type:     annotation

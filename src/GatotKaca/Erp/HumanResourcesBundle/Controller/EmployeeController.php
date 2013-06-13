@@ -20,6 +20,7 @@ use Imagine\Image\Box;
 class EmployeeController extends AdminController{
 	const MODULE	= 'panelemployee';
 	const SHIFTMENT	= 'panelworkshift';
+	const PERSONAL	= 'personalprofile';
 	const IS_XML_HTTP_REQUEST	= FALSE;
 	
 	/**
@@ -295,6 +296,30 @@ class EmployeeController extends AdminController{
 		$employee	= $model->getBy('id', $request->get('employee_id'));
 		if(count($employee)){
 			$output['data']	= $employee;
+		}
+		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
+		return new JsonResponse($output);
+	}
+
+	/**
+	 * @Route("/human_resources/employee/profile", name="GatotKacaErpHumanResourcesBundle_Employee_profile")
+	 */
+	public function viewAction(){
+		$session	= $this->getHelper()->getSession();
+		$request	= $this->getRequest();
+		$security	= $this->getSecurity();
+		$output		= array('success' => FALSE);
+		//Don't have authorization
+		if(!$security->isAllowed($session->get('group_id'), EmployeeController::PERSONAL, 'view')){
+			return new JsonResponse($output);
+		}
+		$output		= array('success' => TRUE);
+		//Get model
+		$model		= $this->modelManager()->getEmployee();
+		$profile	= $model->getBy('username', $session->get('user_id'));
+		if($total	= count($profile)){
+			$output['total']	= $total;
+			$output['data']		= $profile;
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);

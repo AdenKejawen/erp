@@ -22,6 +22,7 @@ use PHPExcel_Style_Alignment;
 class AttendanceController extends AdminController{
 	const MODULE	= 'panelattendancebyemployee';
 	const BYDATE	= 'panelattendancebydate';
+	const PERSONAL	= 'personalattendance';
 	const IS_POST_REQUEST		= FALSE;
 	const IS_XML_HTTP_REQUEST	= FALSE;
 	
@@ -107,7 +108,7 @@ class AttendanceController extends AdminController{
 		}
 		$output	= array('success' => FALSE);
 		//Don't have authorization
-		if(!$security->isAllowed($session->get('group_id'), AttendanceController::MODULE, 'view')){
+		if(!($security->isAllowed($session->get('group_id'), AttendanceController::MODULE, 'view') || $security->isAllowed($session->get('group_id'), AttendanceController::PERSONAL, 'view'))){
 			return new JsonResponse($output);
 		}
 		$output	= array('success' => TRUE);
@@ -176,7 +177,7 @@ class AttendanceController extends AdminController{
 		}
 		$output	= array('success' => FALSE);
 		//Don't have authorization
-		if(!$security->isAllowed($session->get('group_id'), AttendanceController::MODULE, 'view')){
+		if(!($security->isAllowed($session->get('group_id'), AttendanceController::MODULE, 'view') || $security->isAllowed($session->get('group_id'), AttendanceController::PERSONAL, 'view'))){
 			return new JsonResponse($output);
 		}
 		$output	= array('success' => TRUE);
@@ -201,7 +202,7 @@ class AttendanceController extends AdminController{
             return $this->redirect($this->generateUrl('GatotKacaErpMainBundle_Main_login'));
         }
 		//Don't have authorization
-		if(!$security->isAllowed($session->get('group_id'), AttendanceController::MODULE, 'view')){
+		if(!($security->isAllowed($session->get('group_id'), AttendanceController::MODULE, 'view') || $security->isAllowed($session->get('group_id'), AttendanceController::PERSONAL, 'view'))){
 			return new JsonResponse($output);
 		}
 		$eSess	= $this->modelManager()->getEmployee()->getBy('username', $session->get('user_id'));
@@ -231,7 +232,7 @@ class AttendanceController extends AdminController{
             return $this->redirect($this->generateUrl('GatotKacaErpMainBundle_Main_login'));
         }
 		//Don't have authorization
-		if(!$security->isAllowed($session->get('group_id'), AttendanceController::MODULE, 'view')){
+		if(!($security->isAllowed($session->get('group_id'), AttendanceController::MODULE, 'view') || $security->isAllowed($session->get('group_id'), AttendanceController::PERSONAL, 'view'))){
 			return new JsonResponse($output);
 		}
 		$eSess	= $this->modelManager()->getEmployee()->getBy('username', $session->get('user_id'));
@@ -298,7 +299,7 @@ class AttendanceController extends AdminController{
 			return $this->redirect($this->generateUrl('GatotKacaErpMainBundle_Main_login'));
 		}
 		//Don't have authorization
-		if(!$security->isAllowed($session->get('group_id'), AttendanceController::MODULE, 'view')){
+		if(!($security->isAllowed($session->get('group_id'), AttendanceController::MODULE, 'view') || $security->isAllowed($session->get('group_id'), AttendanceController::PERSONAL, 'view'))){
 			return new JsonResponse($output);
 		}
 		$eSess	= $this->modelManager()->getEmployee()->getBy('username', $session->get('user_id'));

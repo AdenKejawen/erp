@@ -20,6 +20,7 @@ use PHPExcel_Style_Alignment;
 class OverTimeController extends AdminController{
 	const MODULE	= 'panelovertimebyemployee';
 	const BYDATE	= 'panelovertimebydate';
+	const PERSONAL	= 'personalovertime';
 	const IS_POST_REQUEST		= FALSE;
 	const IS_XML_HTTP_REQUEST	= FALSE;
 
@@ -52,6 +53,35 @@ class OverTimeController extends AdminController{
 			'overtime'	=> $overtime,
 			'employee'	=> $employee
 		);
+	}
+
+	/**
+	 * @Route("/human_resources/overtime/getlist", name="GatotKacaErpHumanResourcesBundle_OverTime_getList")
+	 */
+	public function getListAction(){
+		$session	= $this->getHelper()->getSession();
+		$request	= $this->getRequest();
+		$security	= $this->getSecurity();
+		$output		= array('success' => FALSE);
+		//Don't have authorization
+		if(!$security->isAllowed($session->get('group_id'), OverTimeController::PERSONAL, 'view')){
+			return new JsonResponse($output);
+		}
+		$output		= array('success' => TRUE);
+		$keyword	= strtoupper($request->get('query', ''));
+		$status		= $request->get('status', TRUE);
+		//Get model
+		$model		= $this->modelManager()->getOverTime();
+		$overtime	= $model->getList($keyword, $request->get('from', ''), $request->get('to', ''), $request->get('supervise', 'FALSE'), $request->get('approve', 'all'));
+		if($total	= count($overtime)){
+			$output['total']	= $total;
+			$output['data']	= $overtime;
+		}else{
+			$output['total']	= $total;
+			$output['data']	= array();
+		}
+		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
+		return new JsonResponse($output);
 	}
 
 	/**
@@ -138,16 +168,16 @@ class OverTimeController extends AdminController{
 		}
 		$output	= array('success' => FALSE);
 		//Don't have authorization
-		if(!$security->isAllowed($session->get('group_id'), OverTimeController::MODULE, 'modif')){
+		if(!($security->isAllowed($session->get('group_id'), OverTimeController::MODULE, 'view') || $security->isAllowed($session->get('group_id'), OverTimeController::PERSONAL, 'view'))){
 			return new JsonResponse($output);
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getOverTime();
-		$aData	= $model->getBy('id', $request->get('ot_id'), NULL, NULL, array(1));
-		if($total	= count($aData)){
+		$model	= $this->modelManager()->getOverTime();
+		$data	= $model->getBy('id', $request->get('ot_id'), NULL, NULL, array(0, 1, 2));
+		if($total	= count($data)){
 			$output['total']	= $total;
-			$output['data']	= $aData;
+			$output['data']	= $data;
 		}else{
 			$output['total']	= $total;
 			$output['data']	= array();
@@ -166,7 +196,7 @@ class OverTimeController extends AdminController{
 		$security	= $this->getSecurity();
 		$output	= array('success' => FALSE);
 		//Don't have authorization
-		if(!$security->isAllowed($session->get('group_id'), OverTimeController::MODULE, 'modif')){
+		if(!($security->isAllowed($session->get('group_id'), OverTimeController::MODULE, 'modif') || $security->isAllowed($session->get('group_id'), OverTimeController::PERSONAL, 'modif'))){
 			return new JsonResponse($output);
 		}
 		$input		= json_decode($request->get('overtime', ''));
