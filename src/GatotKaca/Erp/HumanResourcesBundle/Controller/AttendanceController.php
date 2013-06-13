@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/HumanResourcesBundle/Controller/AttendanceController.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\HumanResourcesBundle\Controller;
@@ -25,7 +25,7 @@ class AttendanceController extends AdminController{
 	const PERSONAL	= 'personalattendance';
 	const IS_POST_REQUEST		= FALSE;
 	const IS_XML_HTTP_REQUEST	= FALSE;
-	
+
 	/**
 	 * Export Helper
 	 **/
@@ -42,7 +42,7 @@ class AttendanceController extends AdminController{
 			)
 		);
 	}
-	
+
 	/**
 	 * Model Helper
 	 **/
@@ -56,14 +56,14 @@ class AttendanceController extends AdminController{
 			'employee'		=> $employee
 		);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/attendance", name="GatotKacaErpHumanResourcesBundle_Attendance_index")
 	 **/
 	public function indexAction(){
 		return $this->goHome();
 	}
-	
+
 	/**
 	 * @Route("/human_resources/attendance/save", name="GatotKacaErpHumanResourcesBundle_Attendance_save")
 	 */
@@ -92,10 +92,10 @@ class AttendanceController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/attendance/getbyemployee", name="GatotKacaErpHumanResourcesBundle_Attendance_getByEmployee")
-	 * 
+	 *
 	 * Get Attendance List by Employee
 	 **/
 	public function getByEmployeeAction(){
@@ -128,7 +128,7 @@ class AttendanceController extends AdminController{
 
 	/**
 	 * @Route("/human_resources/attendance/getbydate", name="GatotKacaErpHumanResourcesBundle_Attendance_getByDate")
-	 * 
+	 *
 	 * Get Today Attendance
 	 **/
 	public function getByDateAction(){
@@ -161,7 +161,7 @@ class AttendanceController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/attendance/preview", name="GatotKacaErpHumanResourcesBundle_Attendance_preview")
 	 *
@@ -188,7 +188,7 @@ class AttendanceController extends AdminController{
 		$output['data']	= $this->exportHelper($id, $from->format('d M Y'), $to->format('d M Y'));
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/attendance/export/jpg/{from}/{to}/{id}", name="GatotKacaErpHumanResourcesBundle_Attendance_exportJpg", defaults={"id" = null})
 	 *
@@ -285,7 +285,7 @@ class AttendanceController extends AdminController{
     	}
     	$pdf->Output($id.$from->format('_d_m_Y').$to->format('_d_m_Y').'.pdf', 'D');
 	}
-	
+
 	/**
 	 * @Route("/human_resources/attendance/export/excel/{from}/{to}/{id}", name="GatotKacaErpHumanResourcesBundle_Attendance_exportExcel", defaults={"id" = null})
 	 *
@@ -365,7 +365,7 @@ class AttendanceController extends AdminController{
 		$response->sendHeaders();
 		$this->generateExcel($excel, 'Excel5');
 	}
-	
+
 	/**
 	 * @Route("/human_resources/attendance/upload", name="GatotKacaErpHumanResourcesBundle_Attendance_upload")
 	 *
@@ -404,11 +404,11 @@ class AttendanceController extends AdminController{
 		$data		= $reader->getData();
 		//Fetch data
 		$model		= $this->modelManager()->getAttendance();
-		$output['status']	= $model->saveFromMechine($data, $date);;
+		$output['status']	= $model->saveFromMechine($data, $date);
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new Response(json_encode($output));
 	}
-	
+
 	/**
 	 * @Route("/human_resources/attendance/getunprocces", name="GatotKacaErpHumanResourcesBundle_Attendance_getUnProccess")
 	 *
@@ -444,7 +444,7 @@ class AttendanceController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/attendance/procces", name="GatotKacaErpHumanResourcesBundle_Attendance_proccess")
 	 *
@@ -474,7 +474,7 @@ class AttendanceController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/attendance/viewdetail", name="GatotKacaErpHumanResourcesBundle_Attendance_getDetail")
 	 *
@@ -504,7 +504,7 @@ class AttendanceController extends AdminController{
 			$output['total']	= $total;
 			$output['data']	= array();
 		}
-		
+
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
