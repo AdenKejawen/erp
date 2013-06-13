@@ -1,7 +1,6 @@
  Pending:
- ☐ Report Absensi Karyawan @HighPriority
  ☐ Membuat Cuti @HighPriority
- ☐ Membuat halaman profile karyawan @LowPriority
+ ☐ Add Gaji @Karyawan @HighPriority
  ☐ Support Setup Fingerprint Connectivity @LowPriority
  ☐ Add Workday By Hour Based @Company @LowPriority
  ☐ Membuat penghitung lembur untuk bu dina @Lemburan
@@ -12,6 +11,9 @@
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Add Default Group @Setting @LowPriority @done (13-06-12 16:13)
+ ✔ Report Absensi Karyawan @HighPriority @done (13-06-12 06:57)
+ ✔ Membuat halaman profile karyawan @LowPriority @done (13-06-11 23:04)
  ✔ Report Profile Karyawan @HighPriority @done (13-06-11 17:04)
  ✔ Memperbaiki Reporting @HighPriority @done (13-06-11 11:36)
  ✔ Membuat Menu Hapus Untuk Profil Employee @HighPriority @done (13-06-07 14:45)

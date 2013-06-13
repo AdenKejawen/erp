@@ -69,12 +69,18 @@ class RoleModel extends BaseModel{
 	 * @return integer total
 	 **/
 	public function countTotalGroup($keyword, $limit){
+		$extra	= '';
+		if($this->getStatus()){
+			$extra	= "AND g.status = TRUE";
+		}else if($this->getStatus() === FALSE){
+			$extra	= "AND g.status = FALSE";
+		}
 		$qb	= $this->getEntityManager()->createQueryBuilder();
 		$qb->select('
 				g.id AS group_id
 			');
 		$qb->from('GatotKacaErpUtilitiesBundle:UserGroup', 'g');
-		$qb->where('g.name LIKE :name');
+		$qb->where("g.name LIKE :name {$extra}");
 		$qb->setParameter('name', "%{$keyword}%");
 		if($keyword != ''){
 			$qb->setFirstResult(0);

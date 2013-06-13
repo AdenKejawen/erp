@@ -77,7 +77,6 @@ class Helper{
 			$hours		= $diff->h * 60 * 60;
 			$minutes	= $diff->i * 60;
 			$seconds	= $diff->s;
-			
 			return $years + $months + $days + $hours + $minutes + $seconds;
 		}catch (\Exception $e){
 			return FALSE;

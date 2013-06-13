@@ -36,10 +36,14 @@ class AttendanceModel extends BaseModel{
 	 * @param date from
 	 * @param date to
 	 **/
-	public function getBy($criteria, $value, $from = NULL, $to = NULL){
+	public function getBy($criteria, $value, $from = '', $to = ''){
 		$extra	= '';
-		if($from !== NULL){
+		if($from !== NULL && $from != ''){
 			$extra	.= " AND a.att_date BETWEEN '{$from}' AND '{$to}'";
+		}else if($from === NULL){
+			$date	= new \DateTime();
+			$days	= cal_days_in_month(CAL_GREGORIAN, $date->format('m'), $date->format('Y'));
+			$extra	.= " AND a.att_date BETWEEN '{$date->format('Y-m-')}1 00:00:00' AND '{$date->format('Y-m-')}{$days} 23:59:59'";
 		}
 		$query	= $this->getEntityManager()
 				->createQueryBuilder()

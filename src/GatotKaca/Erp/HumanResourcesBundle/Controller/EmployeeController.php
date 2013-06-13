@@ -66,13 +66,15 @@ class EmployeeController extends AdminController{
 		$path		= $this->get('kernel')->getRootDir().'/../web/photos';
 		$input		= (object)$request->request->all();
 		$name		= NULL;
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'modif')){
+			$output['msg']	= "You don't have authorize to do this action.";
 			return new JsonResponse($output);
 		}
 		if($_FILES['employee_profile']['name'] !== ""){
 			if($_FILES['employee_profile']['size'] === 0){
+				$output['msg']	= "Maximum image size is 2 MB.";
 				return new Response(json_encode($output));
 			}
 			$name	= "{$input->employee_code}.{$upload->guessExtension()}";
@@ -80,6 +82,7 @@ class EmployeeController extends AdminController{
 			//Not Allowed File
 			$mimes	= array('image/png', 'image/jpeg');
 			if(!in_array($upload->getMimeType(), $mimes)){
+				$output['msg']	= "Not allowed extension.";
 				return new Response(json_encode($output));
 			}
 			//Do upload

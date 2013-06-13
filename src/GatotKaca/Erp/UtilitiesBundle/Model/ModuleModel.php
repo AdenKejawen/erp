@@ -76,12 +76,18 @@ class ModuleModel extends BaseModel{
 	 * @return integer total
 	 **/
 	public function countTotal($keyword, $limit){
+		$extra	= '';
+		if($this->getStatus()){
+			$extra	= "AND m.status = TRUE";
+		}else if($this->getStatus() === FALSE){
+			$extra	= "AND m.status = FALSE";
+		}
 		$qb	= $this->getEntityManager()->createQueryBuilder();
 		$qb->select('
 				m.id AS module_id
 			');
 		$qb->from('GatotKacaErpUtilitiesBundle:Module', 'm');
-		$qb->where('m.name LIKE :name');
+		$qb->where("m.name LIKE :name {$extra}");
 		$qb->setParameter('name', "%{$keyword}%");
 		if($keyword != ''){
 			$qb->setFirstResult(0);

@@ -69,12 +69,18 @@ class UserModel extends BaseModel{
 	 * @return integer total
 	 **/
 	public function countTotal($keyword, $limit){
+		$extra	= '';
+		if($this->getStatus()){
+			$extra	= "AND u.status = TRUE";
+		}else if($this->getStatus() === FALSE){
+			$extra	= "AND u.status = FALSE";
+		}
 		$qb	= $this->getEntityManager()->createQueryBuilder();
 		$qb->select('
 				u.id AS user_id
 			');
 		$qb->from('GatotKacaErpUtilitiesBundle:User', 'u');
-		$qb->where('u.name LIKE :name');
+		$qb->where("u.name LIKE :name {$extra}");
 		$qb->setParameter('name', "%{$keyword}%");
 		if($keyword != ''){
 			$qb->setFirstResult(0);
