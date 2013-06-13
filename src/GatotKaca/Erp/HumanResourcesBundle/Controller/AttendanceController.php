@@ -14,8 +14,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use GatotKaca\Erp\MainBundle\Helper\Csv\Reader AS CsvReader;
 use GatotKaca\Erp\MainBundle\Controller\AdminController;
+use PHPExcel_Cell;
 use PHPExcel_Cell_DataType;
 use PHPExcel_Style_Alignment;
 
@@ -400,8 +400,25 @@ class AttendanceController extends AdminController{
 		}
 		//Do upload
 		$upload->move($path, $name);
-		$reader		= new CsvReader("{$path}/{$name}");
-		$data		= $reader->getData();
+		$reader		= $this->getExcelReader('CSV')
+					->setDelimiter(',')
+					->setEnclosure('"')
+					->setLineEnding("\n")
+		        	->setSheetIndex(0)
+		    		->load("{$path}/{$name}");
+		$reader		= $reader->setActiveSheetIndex(0);
+	    $highestRow = $reader->getHighestRow();
+	    $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($reader->getHighestColumn());
+	    $data		= array();
+	    //Read from file
+	    for($row = 2; $row <= $highestRow; ++$row){//Exclude first row
+	    	$file_data	= array();
+	        for($col = 0; $col <= $highestColumnIndex; ++$col){
+	            $value	= $reader->getCellByColumnAndRow($col, $row)->getValue();
+	            $file_data[$col]	= trim($value);
+	        }
+	        $data[]	= $file_data;
+	    }
 		//Fetch data
 		$model		= $this->modelManager()->getAttendance();
 		$output['status']	= $model->saveFromMechine($data, $date);
