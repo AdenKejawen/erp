@@ -244,6 +244,7 @@ class CompanyModel extends BaseModel{
 				->from('GatotKacaErpMainBundle:Company', 'c')
 				->where('c.id = :company AND c.isfixed = TRUE')
 				->setParameter('company', $company)
+				->setMaxResults(1)
 				->getQuery()
 				->getOneOrNullResult();
 		return $query;

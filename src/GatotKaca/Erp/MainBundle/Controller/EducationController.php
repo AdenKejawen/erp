@@ -62,7 +62,7 @@ class EducationController extends AdminController{
 		$model	= $this->modelManager()->getEducation();
 		if($success	= $model->delete($request->get('id', ''))){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Job Level has been delete.';
+			$output['msg']	= 'Education has been delete.';
 		}else{
 			$output['msg']	= "Operation failed. ".$model->getMessage();
 		}

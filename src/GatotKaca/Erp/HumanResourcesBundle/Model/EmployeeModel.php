@@ -135,6 +135,7 @@ class EmployeeModel extends BaseModel{
 				->from($bundle, 'u')
 				->where("u.{$criteria} = :{$key}")
 				->setParameter($key, $value)
+				->setMaxResults(1)
 				->getQuery()
 				->getOneOrNullResult();
 		if($exist){//apakah ditemukan ? return TRUE : return FALSE

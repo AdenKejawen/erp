@@ -62,7 +62,7 @@ class LanguageController extends AdminController{
 		$model	= $this->modelManager()->getLanguage();
 		if($success	= $model->delete($request->get('id', ''))){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Job Level has been delete.';
+			$output['msg']	= 'Language has been delete.';
 		}else{
 			$output['msg']	= "Operation failed. ".$model->getMessage();
 		}

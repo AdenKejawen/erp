@@ -60,6 +60,7 @@ class SettingModel extends BaseModel{
 				->from('GatotKacaErpUtilitiesBundle:Setting', 's')
 				->where('s.param = :key')
 				->setParameter('key', strtoupper($key))
+				->setMaxResults(1)
 				->getQuery()
 				->getOneOrNullResult();
 		return $query['value'];

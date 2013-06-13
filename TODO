@@ -7,10 +7,10 @@
  ☐ Membuat Job Description Per Jabatan @LowPriority
  ☐ Membuat Mutasi Karyawan @LowPriority
  ☐ Membuat Installer via DataFixtures @LowPriority
- ☐ Membuat Module Religion @LowPriority
-
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Add Filter Workshift @HighPriority @done (13-06-13 21:21)
+ ✔ Membuat Module Religion @LowPriority @done (13-06-13 15:29)
  ✔ Add Default Group @Setting @LowPriority @done (13-06-12 16:13)
  ✔ Report Absensi Karyawan @HighPriority @done (13-06-12 06:57)
  ✔ Membuat halaman profile karyawan @LowPriority @done (13-06-11 23:04)

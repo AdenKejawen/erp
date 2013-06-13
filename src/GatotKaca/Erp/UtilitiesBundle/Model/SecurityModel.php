@@ -37,8 +37,10 @@ class SecurityModel extends BaseModel{
 				->createQueryBuilder()
 				->select('u.salt AS salt')
 				->from('GatotKacaErpUtilitiesBundle:User', 'u')
-				->where('u.name = :username AND u.status = TRUE')
+				->innerJoin('GatotKacaErpUtilitiesBundle:UserGroup', 'g', 'WITH', 'u.group = g.id')
+				->where('u.name = :username AND u.status = TRUE AND g.status = TRUE')
 				->setParameter('username', $username)
+				->setMaxResults(1)
 				->getQuery()
 				->getOneOrNullResult();
 		if($salt){//Username ditemukan ? return $salt : return FALSE
@@ -73,6 +75,7 @@ class SecurityModel extends BaseModel{
 					->where('u.name = :username AND u.pass = :password')
 			        ->setParameter('username', $username)
 			        ->setParameter('password', $this->getHelper()->hashPassword($password, $salt))
+			        ->setMaxResults(1)
 					->getQuery()
 					->getOneOrNullResult();
 			if($auth){//auth user?
@@ -117,6 +120,7 @@ class SecurityModel extends BaseModel{
 				->from('GatotKacaErpUtilitiesBundle:User', 'u')
 				->where('u.id = :id')
 				->setParameter('id', $id)
+				->setMaxResults(1)
 				->getQuery()
 				->getOneOrNullResult();
 		return $query['online'];
@@ -150,6 +154,7 @@ class SecurityModel extends BaseModel{
 				")
 				->setParameter('group', $group)
 				->setParameter('module', $module)
+				->setMaxResults(1)
 				->getQuery()
 				->getOneOrNullResult();
 		if($query){

@@ -24,7 +24,7 @@ class Religion{
 	
 	/**
 	 * @ORM\Id
-	 * @ORM\Column(type = "string", length = 2)
+	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
 	

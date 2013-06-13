@@ -221,6 +221,7 @@ class AttendanceModel extends BaseModel{
 						MAX(a.att_date) AS end_date
 					')
 					->from('GatotKacaErpHumanResourcesBundle:AttendanceFromMechine', 'a')
+					->setMaxResults(1)
 					->getQuery()
 					->getOneOrNullResult();
 		if($date === NULL){
@@ -246,6 +247,7 @@ class AttendanceModel extends BaseModel{
 							->where('a.att_date = :date AND a.employee = :employee')
 							->setParameter('date', $date)
 							->setParameter('employee', $val->getCode())
+							->setMaxResults(1)
 							->getQuery()
 							->getOneOrNullResult();
 					$officehour	= $this->getShiftByEmployee($val->getId());
@@ -258,6 +260,7 @@ class AttendanceModel extends BaseModel{
 								->where('a.att_date = :date AND e.id = :employee')
 								->setParameter('date', $date)
 								->setParameter('employee', $val->getId())
+								->setMaxResults(1)
 								->getQuery()
 								->getOneOrNullResult();
 					$attendance	= new Attendance();
@@ -391,6 +394,7 @@ class AttendanceModel extends BaseModel{
 						->innerJoin('GatotKacaErpHumanResourcesBundle:Employee', 'e', 'WITH', 'o.id = e.shift')
 						->where('e.id = :employee')
 						->setParameter('employee', $id)
+						->setMaxResults(1)
 						->getQuery()
 						->getOneOrNullResult();
 		}else{
@@ -409,6 +413,7 @@ class AttendanceModel extends BaseModel{
 							->where('e.id = :employee AND es.shift_date = :date')
 							->setParameter('employee', $id)
 							->setParameter('date', $date)
+							->setMaxResults(1)
 							->getQuery()
 							->getOneOrNullResult();
 			}
