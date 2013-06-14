@@ -5,6 +5,7 @@ vendor/*
 app/bootstrap*
 app/cache/*
 app/logs/*
+docs/*
 app/config/parameters.yml
 build/
 vendor
