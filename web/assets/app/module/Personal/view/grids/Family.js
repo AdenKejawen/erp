@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.module.Personal.view.grids.Family",{extend:"GatotKacaErp.module.HumanResources.view.grids.Family",alias:"widget.gridprfamily",id:"gridprfamily",title:"Families",store:"GatotKacaErp.module.Personal.store.Family"});

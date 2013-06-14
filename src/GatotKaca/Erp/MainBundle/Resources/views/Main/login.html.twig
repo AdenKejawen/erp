@@ -1,0 +1,94 @@
+{% spaceless %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+    <head>
+        <title>{% block title %}.:: VINOTI LIVING ENTERPRISE RESOURCES PLANNING ::.{% endblock %}</title>
+        <meta Content-Type="text/html" charset="UTF-8" />
+        <link rel="shortcut icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/admin.png') }}" />
+        
+        <script type="text/javascript">
+        var BASE_URL	= '{{ path('GatotKacaErpMainBundle_Main_index') }}';
+        var SECRET_KEY	= '{{ secret }}';
+        var ROOTDIR		= 'assets/';
+        </script>
+        
+        <style type="text/css">
+            #loading-mask {
+                position	: absolute;
+                top			: 0;
+                left		: 0;
+                width		: 100%;
+                height		: 100%;
+                background	: #000000;
+                z-index		: 1;
+            }
+            #loading {
+                position	: absolute;
+                top		: 40%;
+                left            : 45%;
+                z-index         : 2;
+            }
+            #loading span {
+                background	: url('assets/img/loading.gif') no-repeat left center;
+                padding		: 5px 30px;
+                display		: block;
+                color		: #444444;
+            }
+        </style>
+        <!--[if gte IE 9]>
+            <style type="text/css">
+              #appHeader-body{
+                 filter: none;
+              }
+            </style>
+          <![endif]-->
+    </head>
+    <body>
+        <div id="loading-mask"></div>
+        <div id="loading">
+            <span id="loading-message">Please Wait. Loading Stylesheet</span>
+        </div>
+        <!--Message untuk loading stylesheet-->
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/extjs/resources/css/ext-all.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/extjs/ux/css/CheckHeader.css') }}" />
+        <script type="text/javascript">
+            document.getElementById('loading-message').innerHTML = 'Please Wait. Loading Kernel Engine';
+        </script>
+        <!--Message untuk loading core api-->
+        <script type="text/javascript" src="{{ asset('assets/extjs/ext-all-debug.js') }}"></script>
+        <script type="text/javascript">
+            document.getElementById('loading-message').innerHTML = 'Please Wait. Initialing UI Component';
+        </script>
+        <!--Message untuk loading app core-->
+        <!--Application Core-->
+        <script type="text/javascript" src="{{ asset('assets/app/login.js') }}"></script>
+        
+        <script type="text/javascript">
+            document.getElementById('loading-message').innerHTML = 'Please Wait. Configuring Application';
+        </script>
+        <script type="text/javascript">
+        //Disable right click
+        function clickIE4(){
+            if (event.button==2){
+                return false;
+            }
+        }
+        function clickNS4(e){
+            if (document.layers||document.getElementById&&!document.all){
+                if (e.which==2||e.which==3){
+                    return false;
+                }
+            }
+        }
+        if (document.layers){
+            document.captureEvents(Event.MOUSEDOWN);
+            document.onmousedown=clickNS4;
+        }else if (document.all&&!document.getElementById){
+            document.onmousedown=clickIE4;
+        }
+        document.oncontextmenu=new Function("return false;");
+        </script>
+    </body>
+</html>
+{% endspaceless %}

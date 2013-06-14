@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.module.GeneralSetup.view.tabs.District",{extend:"GatotKacaErp.view.tabs.Base",alias:"widget.tabdistrict",id:"tabdistrict",requires:["GatotKacaErp.module.GeneralSetup.view.forms.District"],items:[{xtype:"formdistrict"}]});

@@ -1,0 +1,62 @@
+ Pending:
+ ☐ Change Workshift Flow @HighPriority
+ ☐ Membuat Mutasi Karyawan @HighPriority
+ ☐ Change Password Personal @HighPriority
+ ☐ Membuat Cuti @HighPriority
+ ☐ Add Gaji @Karyawan @HighPriority
+ ☐ Support Setup Fingerprint Connectivity @LowPriority
+ ☐ Add Workday By Hour Based @Company @LowPriority
+ ☐ Membuat penghitung lembur untuk bu dina @Lemburan
+ ☐ Membuat Job Description Per Jabatan @LowPriority
+ ☐ Membuat Installer via DataFixtures @LowPriority
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Archive:
+ ✔ Add Filter Workshift @HighPriority @done (13-06-13 21:21)
+ ✔ Membuat Module Religion @LowPriority @done (13-06-13 15:29)
+ ✔ Add Default Group @Setting @LowPriority @done (13-06-12 16:13)
+ ✔ Report Absensi Karyawan @HighPriority @done (13-06-12 06:57)
+ ✔ Membuat halaman profile karyawan @LowPriority @done (13-06-11 23:04)
+ ✔ Report Profile Karyawan @HighPriority @done (13-06-11 17:04)
+ ✔ Memperbaiki Reporting @HighPriority @done (13-06-11 11:36)
+ ✔ Membuat Menu Hapus Untuk Profil Employee @HighPriority @done (13-06-07 14:45)
+ ✔ Employee Organization @HighPriority @done (13-06-07 11:22)
+ ✔ Membuat Laporan Lembur untuk HRD @HighPriority @ByDate @done (13-06-07 00:37)
+ ✔ Employee Language @HighPriority @done (13-06-06 18:59)
+ ✔ Mengganti seluruh logging @MaiBundle @done (13-06-06 13:45)
+ ✔ Buat Master Country, Region, District, dan Language @HighPriority @done (13-06-05 17:07)
+ ✔ Profile Employee Tambah Number of Children n Last Education @HighPriority @done (13-06-04 22:11)
+ ✔ Membuat Report Lembur dan Total Lembur @HighPriority @done (13-06-04 14:57)
+ ✔ Membuat Filter Lembur @HighPriority @ByEmployee @done (13-06-04 09:51)
+ ✔ Membuat form lembur manual @HighPriority @done (13-06-03 00:16)
+ ✔ Membuat report attendance untuk karyawan @Lemburan @done (13-06-03 00:04)
+ ✔ Membuat menu supervisi lembur @HighPriority @done (13-05-30 15:50)
+ ✔ Support Manual Lembur @HighPriority @done (13-05-30 10:53)
+ ✔ Lembur kurang dari minimal attendance periode maka akan dinonaktifkan @HighPriority @done (13-05-29 23:14)
+ ✔ Buat Laporan Karyawan yang Tidak Masuk @HighPriority @done (13-05-29 17:30)
+ ✔ Lemburan 1 Jam Pertama tidak sampai 1 jam, tidak dianggap @Setting @done (13-05-29 08:52)
+ ✔ Susun Ulang Module Human Resources - Personal Masuk Ke Human Resources @HighPriority @done (13-05-28 23:50)
+ ✔ Hitung Lembur masih error @HighPriority @done (13-05-28 23:49)
+ ✔ BOD bisa isi berdasarkan Negera, Provinsi, Kabupaten @Model @TidakBisaKarenaRelasi @done (13-05-28 11:06)
+ ✔ Rubah di Experience @JobTitle jadi Textfield @done (13-05-28 10:12)
+ ✔ Membuat Setup Periode Absen @Setting @done (13-05-25 19:29)
+ ✔ Membuat Lemburan @Setting @done (13-05-25 19:29)
+ ✔ Buat Setting Untuk Jam Istirahat Lembur @HighPriority @done (13-05-25 16:39)
+ ✔ Ganti combo box Overtime Form @Lemburan @HighPriority @done (13-05-24 21:00)
+ ✔ Cek apakah tanggal overtime = holiday @Lemburan @HighPriority @done (13-05-24 17:37)
+ ✔ BIkin modul karyawan yang tidak absen @Sumi @done (13-05-22 22:51)
+ ✔ Disable kembali hire date @Sumi @done (13-05-22 15:21)
+ ✔ Menonaktifkan jabatan dan supervisor @Sumi @done (13-05-22 15:21)
+ ✔ Membuat Store Worksheet Value Diparse Ke Form @HighPriority @done (13-05-20 17:11)
+ ✔ Membuat Menu Worksheet @HighPriority @done (13-05-20 17:11)
+ ✔ Perbaiki algoritma attendance setup @done (13-05-19 12:11)
+ ✔ Membuat Menu Delete Untuk Setiap Module @ContextMenu #DeleteMenu @done (13-05-18 13:23)
+ ✔ Membuat Controller khusus untuk Export Data @done (13-05-17 22:17)
+ ✔ Mindahin JobByLevel ke Root Store @HighPriority @done (13-05-14 15:32)
+ ✔ Membuat M`enu Delete Education @done (13-05-13 21:17)
+ ✔ Membuat Menu Delete Job Status @done (13-05-13 21:08)
+ ✔ Membuat Menu Delete Job Title @done (13-05-13 20:59)
+ ✔ Membuat Menu Delete Office Hour @done (13-05-13 20:59)
+ ✔ Membuat Lexer untuk syntax setting @done (13-05-13 20:58)
+ ✔ Delete Menu Company @done (13-05-12 21:15)
+ ✔ Delete Menu Department @done (13-05-12 21:15)
+ ✔ Delete Menu Job Level @done (13-05-13 06:02)

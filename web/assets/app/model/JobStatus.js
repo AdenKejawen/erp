@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.model.JobStatus",{extend:"Ext.data.Model",fields:[{name:"jobstatus_id",type:"string"},{name:"jobstatus_name",type:"string"},{name:"jobstatus_ispermanent",type:"boolean"},{name:"jobstatus_status",type:"boolean"}]});

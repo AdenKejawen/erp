@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.store.Department",{extend:"Ext.data.Store",model:"GatotKacaErp.model.Department",autoLoad:false,autoSync:false,proxy:{type:"ajax",api:{read:BASE_URL+"department/getbycompany"},actionMethods:{read:"POST"},reader:{type:"json",root:"data",successProperty:"success"},writer:{type:"json",writeAllFields:true,root:"data",encode:true}}});

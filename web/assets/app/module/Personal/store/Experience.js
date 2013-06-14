@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.module.Personal.store.Experience",{extend:"GatotKacaErp.module.HumanResources.store.Experience"});

@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.module.Personal.view.grids.Experience",{extend:"GatotKacaErp.module.HumanResources.view.grids.Experience",alias:"widget.gridprexperience",id:"gridprexperience",title:"Experiences",store:"GatotKacaErp.module.Personal.store.Experience"});

@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.model.TreeStore",{extend:"Ext.data.Model",fields:[{name:"id",type:"string"},{name:"text",type:"string"},{name:"iconCls",type:"string"},{name:"cls",type:"string"},{name:"selector",type:"string"},{name:"leaf",type:"boolean"}]});

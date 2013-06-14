@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.module.Personal.view.tabs.OverTime",{extend:"GatotKacaErp.view.tabs.Base",alias:"widget.tabprovertime",id:"tabprovertime",requires:["GatotKacaErp.module.Personal.view.forms.OverTime"],items:[{xtype:"formprovertime"}]});

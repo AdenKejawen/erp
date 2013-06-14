@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.model.Day",{extend:"Ext.data.Model",fields:[{name:"day_id",type:"number"},{name:"day_name",type:"string"}]});

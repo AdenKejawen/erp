@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.module.Personal.view.grids.Organitation",{extend:"GatotKacaErp.module.HumanResources.view.grids.Organitation",alias:"widget.gridprorganitation",id:"gridprorganitation",title:"Organitations",store:"GatotKacaErp.module.Personal.store.Organitation"});

@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.module.Utilities.view.tabs.Module",{extend:"GatotKacaErp.view.tabs.Base",alias:"widget.tabmodule",id:"tabmodule",requires:["GatotKacaErp.module.Utilities.view.forms.Module"],items:[{xtype:"formmodule"}]});

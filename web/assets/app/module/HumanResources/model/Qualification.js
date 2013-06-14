@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.module.HumanResources.model.Qualification",{extend:"Ext.data.Model",fields:[{name:"education_id",type:"string"},{name:"education_level",type:"string"},{name:"education_specialist",type:"string"},{name:"education_lname",type:"string"},{name:"education_name",type:"string"},{name:"education_start",type:"string"},{name:"education_end",type:"string"}]});

@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.store.Reason",{extend:"Ext.data.Store",model:"GatotKacaErp.model.Reason",data:[{reason_id:"IN",reason_name:"IN"},{reason_id:"PERMIT",reason_name:"PERMIT"},{reason_id:"SICK",reason_name:"SICK"},{reason_id:"SKIP",reason_name:"SKIP"},{reason_id:"OFF",reason_name:"OFF"}]});
