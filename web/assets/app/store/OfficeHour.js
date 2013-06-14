@@ -1,1 +1,0 @@
-Ext.define("GatotKacaErp.store.OfficeHour",{extend:"Ext.data.Store",model:"GatotKacaErp.model.OfficeHour",autoLoad:false,autoSync:false,proxy:{type:"ajax",api:{read:BASE_URL+"officehour/getlist"},actionMethods:{read:"POST"},reader:{type:"json",root:"data",successProperty:"success"},writer:{type:"json",writeAllFields:true,root:"data",encode:true}}});

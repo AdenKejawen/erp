@@ -1,1 +1,0 @@
-Ext.define("GatotKacaErp.module.HumanResources.view.grids.AttendanceByEmployee",{extend:"GatotKacaErp.module.HumanResources.view.grids.EmployeeBase",store:"GatotKacaErp.module.HumanResources.store.AttendanceByEmployee",alias:"widget.gridattendancebyemployee",id:"gridattendancebyemployee"});

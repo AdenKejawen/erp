@@ -1,1 +1,0 @@
-Ext.define("GatotKacaErp.module.HumanResources.view.Employee",{extend:"GatotKacaErp.view.Base",requires:["GatotKacaErp.module.HumanResources.view.grids.Employee","GatotKacaErp.module.HumanResources.view.tabs.Employee"],items:[{xtype:"gridemployee",flex:1,margin:"0px 5px 0px 0px"},{xtype:"tabemployee",flex:3}]});

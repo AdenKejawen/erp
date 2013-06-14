@@ -1,1 +1,0 @@
-Ext.define("GatotKacaErp.model.Family",{extend:"Ext.data.Model",fields:[{name:"family_id",type:"number"},{name:"family_name",type:"string"}]});

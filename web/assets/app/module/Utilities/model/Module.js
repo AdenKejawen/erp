@@ -1,1 +1,0 @@
-Ext.define("GatotKacaErp.module.Utilities.model.Module",{extend:"Ext.data.Model",fields:[{name:"module_id",type:"string"},{name:"module_name",type:"string"},{name:"module_parent",type:"string"},{name:"module_status",type:"boolean"}]});

@@ -1,1 +1,0 @@
-Ext.define("Ext.layout.component.Tab",{extend:"Ext.layout.component.Button",alias:"layout.tab",beginLayout:function(c){var b=this,a=b.owner.closable;if(b.lastClosable!==a){b.lastClosable=a;b.clearTargetCache()}b.callParent(arguments)}});

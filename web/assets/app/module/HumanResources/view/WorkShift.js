@@ -1,1 +1,0 @@
-Ext.define("GatotKacaErp.module.HumanResources.view.WorkShift",{extend:"GatotKacaErp.view.Base",requires:["GatotKacaErp.module.HumanResources.view.grids.WorkShift","GatotKacaErp.module.HumanResources.view.tabs.WorkShift"],items:[{xtype:"gridworkshift",flex:1,margin:"0px 5px 0px 0px"},{xtype:"tabworkshift",flex:3}]});

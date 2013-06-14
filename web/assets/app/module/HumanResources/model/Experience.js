@@ -1,1 +1,0 @@
-Ext.define("GatotKacaErp.module.HumanResources.model.Experience",{extend:"Ext.data.Model",fields:[{name:"experience_id",type:"string"},{name:"experience_company",type:"string"},{name:"experience_reason",type:"string"},{name:"experience_start",type:"date",dateFormat:"d-m-Y"},{name:"experience_end",type:"date",dateFormat:"d-m-Y"},{name:"experience_jobtitle",type:"string"}]});

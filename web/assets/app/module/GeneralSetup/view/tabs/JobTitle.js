@@ -1,1 +1,0 @@
-Ext.define("GatotKacaErp.module.GeneralSetup.view.tabs.JobTitle",{extend:"GatotKacaErp.view.tabs.Base",alias:"widget.tabjobtitle",id:"tabjobtitle",requires:["GatotKacaErp.module.GeneralSetup.view.forms.JobTitle"],items:[{xtype:"formjobtitle"}]});

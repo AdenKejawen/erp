@@ -1,1 +1,0 @@
-Ext.define("GatotKacaErp.module.HumanResources.model.Language",{extend:"Ext.data.Model",fields:[{name:"language_id",type:"string"},{name:"language_lid",type:"string"},{name:"language_lname",type:"string"},{name:"language_spoken",type:"number"},{name:"language_writen",type:"number"}]});

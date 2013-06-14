@@ -1,1 +1,0 @@
-Ext.define("GatotKacaErp.store.Minute",{extend:"Ext.data.Store",model:"GatotKacaErp.model.Time",data:createTime(60)});

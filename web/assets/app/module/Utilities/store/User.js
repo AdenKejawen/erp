@@ -1,1 +1,0 @@
-Ext.define("GatotKacaErp.module.Utilities.store.User",{extend:"GatotKacaErp.store.Base",model:"GatotKacaErp.module.Utilities.model.User",proxy:{type:"ajax",api:{read:BASE_URL+"utilities/user/getlist"},actionMethods:{read:"POST"},reader:{type:"json",root:"data",successProperty:"success"},writer:{type:"json",writeAllFields:true,root:"data",encode:true}}});

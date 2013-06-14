@@ -1,1 +1,0 @@
-Ext.define("GatotKacaErp.module.Personal.view.OverTime",{extend:"GatotKacaErp.view.Base",requires:["GatotKacaErp.module.Personal.view.grids.OverTime","GatotKacaErp.module.Personal.view.tabs.OverTime"],items:[{xtype:"gridprovertime",flex:1,margin:"0px 5px 0px 0px"},{xtype:"tabprovertime",flex:3}]});

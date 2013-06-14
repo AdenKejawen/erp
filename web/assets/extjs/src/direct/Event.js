@@ -1,1 +1,0 @@
-Ext.define("Ext.direct.Event",{alias:"direct.event",requires:["Ext.direct.Manager"],status:true,constructor:function(a){Ext.apply(this,a)},getData:function(){return this.data}});

@@ -1,1 +1,0 @@
-Ext.define("GatotKacaErp.module.GeneralSetup.store.Division",{extend:"GatotKacaErp.store.Base",model:"GatotKacaErp.model.Department",proxy:{type:"ajax",api:{read:BASE_URL+"department/getbycompany"},actionMethods:{read:"POST"},reader:{type:"json",root:"data",successProperty:"success",totalProperty:"total"},writer:{type:"json",writeAllFields:true,root:"data",encode:true}}});

@@ -1,1 +1,0 @@
-Ext.define("GatotKacaErp.module.HumanResources.view.tabs.OverTimeByEmployee",{extend:"GatotKacaErp.view.tabs.Base",alias:"widget.tabovertimebyemployee",id:"tabovertimebyemployee",requires:["GatotKacaErp.module.HumanResources.view.forms.OverTimeByEmployee"],items:[{xtype:"formovertimebyemployee"}]});

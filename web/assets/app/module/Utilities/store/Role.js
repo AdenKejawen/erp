@@ -1,1 +1,0 @@
-Ext.define("GatotKacaErp.module.Utilities.store.Role",{extend:"GatotKacaErp.module.Utilities.store.Group"});

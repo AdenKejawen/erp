@@ -1,1 +1,0 @@
-Ext.define("GatotKacaErp.module.Utilities.view.grids.Group",{extend:"GatotKacaErp.module.Utilities.view.grids.GroupBase",alias:"widget.gridgroup",id:"gridgroup",store:"GatotKacaErp.module.Utilities.store.Group"});

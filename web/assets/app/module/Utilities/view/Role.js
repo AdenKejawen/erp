@@ -1,1 +1,0 @@
-Ext.define("GatotKacaErp.module.Utilities.view.Role",{extend:"GatotKacaErp.view.Base",requires:["GatotKacaErp.module.Utilities.view.grids.Role","GatotKacaErp.module.Utilities.view.tabs.Role"],items:[{xtype:"gridusergroup",flex:1,margin:"0px 5px 0px 0px"},{xtype:"tabrole",flex:3}]});
