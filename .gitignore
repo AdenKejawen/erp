@@ -12,5 +12,3 @@ composer.phar
 *.*~
 *.txt
 *.csv
-*.json
-*.lock
