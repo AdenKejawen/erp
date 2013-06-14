@@ -9,3 +9,8 @@ app/config/parameters.yml
 build/
 vendor
 composer.phar
+*.*~
+*.txt
+*.csv
+*.json
+*.lock
