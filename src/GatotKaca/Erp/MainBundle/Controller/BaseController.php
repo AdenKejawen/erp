@@ -1,9 +1,9 @@
 <?php
 /**
- * @filenames: GatotKaca/Erp/MainBundle/Controller/BaseController.php
- * Author     : Muhammad Surya Ikhsanudin
- * License    : public
- * Email      : mutofiyah@gmail.com
+ * @filenames	: GatotKaca/Erp/MainBundle/Controller/BaseController.php
+ * Author		: Muhammad Surya Ikhsanudin
+ * License		: Protected
+ * Email		: mutofiyah@gmail.com
  *
  * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
@@ -24,7 +24,7 @@ class BaseController extends Controller{
 	private $excel;
 	private $reader;
 	private $setting;
-	private $pdfSeparator	= 21;
+	private $pdfSeparator    = 21;
 
 	/**
 	 * Redirect to url
@@ -103,7 +103,7 @@ class BaseController extends Controller{
 	 **/
 	public function getJpgGenerator(){
 		if(!$this->image){
-			$this->image	= $this->get('knp_snappy.image');
+			$this->image= $this->get('knp_snappy.image');
 		}
 		return $this->image;
 	}
@@ -115,7 +115,7 @@ class BaseController extends Controller{
 	 **/
 	public function getExcelWriter(){
 		if(!$this->excel){
-			$this->excel	= new PHPExcel();
+			$this->excel= new PHPExcel();
 		}
 		return $this->excel;
 	}

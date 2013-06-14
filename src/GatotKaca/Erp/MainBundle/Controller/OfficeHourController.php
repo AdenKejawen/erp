@@ -1,9 +1,9 @@
 <?php
 /**
- * @filenames: GatotKaca/Erp/MainBundle/Controller/OfficeHourController.php
- * Author     : Muhammad Surya Ikhsanudin
- * License    : Protected
- * Email      : mutofiyah@gmail.com
+ * @filenames	: GatotKaca/Erp/MainBundle/Controller/OfficeHourController.php
+ * Author		: Muhammad Surya Ikhsanudin
+ * License		: Protected
+ * Email		: mutofiyah@gmail.com
  *
  * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
@@ -14,11 +14,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use GatotKaca\Erp\MainBundle\Helper\Csv\Reader AS CsvReader;
 use GatotKaca\Erp\MainBundle\Controller\AdminController;
 
 class OfficeHourController extends AdminController{
-	const MODULE	= 'panelofficehour';
+	const MODULE= 'panelofficehour';
 
 	/**
 	 * @Route("/officehour", name="GatotKacaErpMainBundle_OfficeHour_index")
@@ -36,19 +35,19 @@ class OfficeHourController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), OfficeHourController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
-		$input		= json_decode($request->get('officehour'));
+		$input	= json_decode($request->get('officehour'));
 		//Get model
-		$model		= $this->getModelManager()->getOfficeHour();
+		$model	= $this->getModelManager()->getOfficeHour();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Office Hour has been saved.';
+			$output['msg']		= 'Office Hour has been saved.';
 		}else{
-			$output['msg']	= $model->getMessage().'. Office Hour has not been saved.';
+			$output['msg']		= $model->getMessage().'. Office Hour has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -61,26 +60,26 @@ class OfficeHourController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), OfficeHourController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
 		$output	= array('success' => TRUE);
-		$keyword	= strtoupper($request->get('query', ''));
+		$keyword= strtoupper($request->get('query', ''));
 		$start	= abs($request->get('start'));
 		$limit	= abs($request->get('limit'));
-		$status		= $request->get('status', TRUE);
+		$status	= $request->get('status', TRUE);
 		//Get model
-		$model		= $this->getModelManager()->getOfficeHour();
+		$model	= $this->getModelManager()->getOfficeHour();
 		$model->setStatus(($status === 'all') ? NULL : $status);
 		$officeHour	= $model->getList($keyword, $start, $limit);
-		if($total	= count($officeHour)){
-			$output['total']	= $model->getTotal($keyword, $limit);
-			$output['data']		= $officeHour;
+		if($total = count($officeHour)){
+			$output['total']= $model->getTotal($keyword, $limit);
+			$output['data']	= $officeHour;
 		}else{
-			$output['total']	= $total;
-			$output['data']		= array();
+			$output['total']= $total;
+			$output['data']	= array();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -93,7 +92,7 @@ class OfficeHourController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), OfficeHourController::MODULE, 'view')){
 			return new JsonResponse($output);
@@ -116,18 +115,18 @@ class OfficeHourController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE, 'msg' => 'Authorization failed.');
+		$output		= array('success' => FALSE, 'msg' => 'Authorization failed.');
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), OfficeHourController::MODULE, 'delete')){
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model		= $this->getModelManager()->getOfficeHour();
+		$model	= $this->getModelManager()->getOfficeHour();
 		if($success	= $model->delete($request->get('id', ''))){
 			$output['success']	= TRUE;
-			$output['msg']	= 'OfficeHour has been delete.';
+			$output['msg']		= 'OfficeHour has been delete.';
 		}else{
-			$output['msg']	= "Operation failed. ".$model->getMessage();
+			$output['msg']		= "Operation failed. ".$model->getMessage();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);

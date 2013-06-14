@@ -1,9 +1,9 @@
 <?php
 /**
- * @filenames: GatotKaca/Erp/MainBundle/Controller/LanguageController.php
- * Author     : Muhammad Surya Ikhsanudin
- * License    : Protected
- * Email      : mutofiyah@gmail.com
+ * @filenames	: GatotKaca/Erp/MainBundle/Controller/LanguageController.php
+ * Author		: Muhammad Surya Ikhsanudin
+ * License		: Protected
+ * Email		: mutofiyah@gmail.com
  *
  * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use GatotKaca\Erp\MainBundle\Controller\AdminController;
 
 class LanguageController extends AdminController{
-	const MODULE	= 'panellanguage';
+	const MODULE= 'panellanguage';
 	/**
 	 * @Route("/language", name="GatotKacaErpMainBundle_Language_index")
 	 */
@@ -30,14 +30,14 @@ class LanguageController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), LanguageController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
-		$output	= array('success' => TRUE);
+		$output		= array('success' => TRUE);
 		//Get model
-		$model	= $this->getModelManager()->getLanguage();
+		$model		= $this->getModelManager()->getLanguage();
 		$language	= $model->getById($request->get('language_id'));
 		if(count($language)){
 			$output['data']	= $language;
@@ -53,7 +53,7 @@ class LanguageController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE, 'msg' => 'Authorization failed.');
+		$output		= array('success' => FALSE, 'msg' => 'Authorization failed.');
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), LanguageController::MODULE, 'delete')){
 			return new JsonResponse($output);
@@ -62,9 +62,9 @@ class LanguageController extends AdminController{
 		$model	= $this->getModelManager()->getLanguage();
 		if($success	= $model->delete($request->get('id', ''))){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Language has been delete.';
+			$output['msg']		= 'Language has been delete.';
 		}else{
-			$output['msg']	= "Operation failed. ".$model->getMessage();
+			$output['msg']		= "Operation failed. ".$model->getMessage();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -77,13 +77,13 @@ class LanguageController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), LanguageController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
 		$output	= array('success' => TRUE);
-		$keyword	= strtoupper($request->get('query', ''));
+		$keyword= strtoupper($request->get('query', ''));
 		$start	= abs($request->get('start'));
 		$limit	= abs($request->get('limit'));
 		$status	= $request->get('status', TRUE);
@@ -91,11 +91,11 @@ class LanguageController extends AdminController{
 		$model	= $this->getModelManager()->getLanguage();
 		$model->setStatus(($status === 'all') ? NULL : $status);
 		$language	= $model->getList($keyword, $start, $limit);
-		if($total	= count($language)){
-			$output['total']	= $model->countTotal($keyword, $limit);
+		if($total = count($language)){
+			$output['total']= $model->countTotal($keyword, $limit);
 			$output['data']	= $language;
 		}else{
-			$output['total']	= $total;
+			$output['total']= $total;
 			$output['data']	= array();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
@@ -109,22 +109,21 @@ class LanguageController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), LanguageController::MODULE, 'modif')){
 			return new JsonResponse($output);
 		}
-		$input		= json_decode($request->get('language', ''));
+		$input	= json_decode($request->get('language', ''));
 		//Get model
 		$model	= $this->getModelManager()->getLanguage();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Language has been saved.';
+			$output['msg']		= 'Language has been saved.';
 		}else{
-			$output['msg']	= $model->getMessage().'. Language has not been saved.';
+			$output['msg']		= $model->getMessage().'. Language has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
-
 		return new JsonResponse($output);
 	}
 }

@@ -1,9 +1,9 @@
 <?php
 /**
- * @filenames: GatotKaca/Erp/HumanResourcesBundle/Controller/AttendanceController.php
- * Author     : Muhammad Surya Ikhsanudin
- * License    : Protected
- * Email      : mutofiyah@gmail.com
+ * @filenames	: GatotKaca/Erp/HumanResourcesBundle/Controller/AttendanceController.php
+ * Author		: Muhammad Surya Ikhsanudin
+ * License		: Protected
+ * Email		: mutofiyah@gmail.com
  *
  * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
@@ -35,10 +35,10 @@ class AttendanceController extends AdminController{
 		return $this->renderView(
 			'GatotKacaErpHumanResourcesBundle:Attendance:print.html.twig',
 			array(
-				'attendance'	=> $data['attendance'],
-				'employee'		=> $data['employee'],
-				'from'			=> $from,
-				'to'			=> $to
+				'attendance'=> $data['attendance'],
+				'employee'	=> $data['employee'],
+				'from'		=> $from,
+				'to'		=> $to
 			)
 		);
 	}
@@ -52,8 +52,8 @@ class AttendanceController extends AdminController{
 		$employee	= $this->getModelManager()->getEmployee()->getBy('id', $employeeId);
 		$this->getSecurity()->logging($this->getRequest()->getClientIp(), $this->getHelper()->getSession()->get('user_id'), $this->getRequest()->get('_route'), $model->getAction(), $model->getModelLog());
 		return array(
-			'attendance'	=> $attendance,
-			'employee'		=> $employee
+			'attendance'=> $attendance,
+			'employee'	=> $employee
 		);
 	}
 
@@ -75,19 +75,19 @@ class AttendanceController extends AdminController{
 		if(!$this->validRequest($request)){
 			return $this->goHome();
 		}
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'modif')){
 			return new JsonResponse($output);
 		}
 		$input	= json_decode($request->get('attendance'));
 		//Get model
-		$model		= $this->getModelManager()->getAttendance();
+		$model	= $this->getModelManager()->getAttendance();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Attendance has been saved.';
+			$output['msg']		= 'Attendance has been saved.';
 		}else{
-			$output['msg']	= $model->getMessage().'. Attendance has not been saved.';
+			$output['msg']		= $model->getMessage().'. Attendance has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -106,21 +106,21 @@ class AttendanceController extends AdminController{
 		if(!$this->validRequest($request)){
 			return $this->goHome();
 		}
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!($security->isAllowed($session->get('group_id'), AttendanceController::MODULE, 'view') || $security->isAllowed($session->get('group_id'), AttendanceController::PERSONAL, 'view'))){
 			return new JsonResponse($output);
 		}
-		$output	= array('success' => TRUE);
+		$output		= array('success' => TRUE);
 		//Get model
 		$model		= $this->getModelManager()->getAttendance();
 		$attendance	= $model->getBy('employee', $request->get('employee_id', $this->getModelManager()->getEmployee()->getBy('username', $session->get('user_id'))), $request->get('from', NULL), $request->get('to', NULL));
-		if($total	= count($attendance)){
-			$output['total']	= $total;
-			$output['data']		= $attendance;
+		if($total = count($attendance)){
+			$output['total']= $total;
+			$output['data']	= $attendance;
 		}else{
-			$output['total']	= $total;
-			$output['data']		= array();
+			$output['total']= $total;
+			$output['data']	= array();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -139,24 +139,24 @@ class AttendanceController extends AdminController{
 		if(!$this->validRequest($request)){
 			return $this->goHome();
 		}
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), AttendanceController::BYDATE, 'view')){
 			return new JsonResponse($output);
 		}
-		$output	= array('success' => TRUE);
-		$from	= $request->get('from', '');
-		$to		= $request->get('to', '');
-		$absence= $request->get('absence', 'true');
+		$output		= array('success' => TRUE);
+		$from		= $request->get('from', '');
+		$to			= $request->get('to', '');
+		$absence	= $request->get('absence', 'true');
 		//Get model
 		$model		= $this->getModelManager()->getAttendance();
 		$attendance	= $model->getByDate($from, $to, $absence);
-		if($total	= count($attendance)){
-			$output['total']	= $total;
-			$output['data']		= $attendance;
+		if($total = count($attendance)){
+			$output['total']= $total;
+			$output['data']	= $attendance;
 		}else{
-			$output['total']	= $total;
-			$output['data']		= array();
+			$output['total']= $total;
+			$output['data']	= array();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -175,7 +175,7 @@ class AttendanceController extends AdminController{
 		if(!$this->validRequest($request)){
 			return $this->goHome();
 		}
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!($security->isAllowed($session->get('group_id'), AttendanceController::MODULE, 'view') || $security->isAllowed($session->get('group_id'), AttendanceController::PERSONAL, 'view'))){
 			return new JsonResponse($output);
@@ -213,8 +213,8 @@ class AttendanceController extends AdminController{
 		    $this->getJpgGenerator()->getOutputFromHtml($this->exportHelper($id, $from->format('d M Y'), $to->format('d M Y'))),
 		    200,
 		    array(
-		        'Content-Type'          => 'application/jpg',
-		        'Content-Disposition'   => 'attachment; filename = "'.$id.$from->format('_d_m_Y').$to->format('_d_m_Y').'.jpg"'
+		        'Content-Type'			=> 'application/jpg',
+		        'Content-Disposition'	=> 'attachment; filename = "'.$id.$from->format('_d_m_Y').$to->format('_d_m_Y').'.jpg"'
 		    )
 		);
 	}
@@ -243,7 +243,7 @@ class AttendanceController extends AdminController{
 		$pdf	= $this->getPdfGenerator();
 		$this->setSigniture($pdf);
 		$partition	= 17;
-		$kolom  = $this->getPerPartition($partition);
+		$kolom		= $this->getPerPartition($partition);
 		$pdf->setFont('Arial', 'B', 13);
 		$pdf->Cell($kolom * $partition, 7, "Attendance Detail From {$from->format('d M Y')} To {$to->format('d M Y')}", 0, FALSE, 'C', 0, '', 0, FALSE, 'C', 'C');
     	$pdf->Ln(17);
@@ -391,7 +391,7 @@ class AttendanceController extends AdminController{
 		if($_FILES['att_data']['size'] === 0){
 			return new Response(json_encode($output));
 		}
-		$name		= "Attendance_".$date."_".date('Y_m_d_H_i_s').".{$upload->guessExtension()}";
+		$name	= "Attendance_".$date."_".date('Y_m_d_H_i_s').".{$upload->guessExtension()}";
 		$output['filename']	= $name;
 		//Not Allowed File
 		$mimes	= array('application/vnd.ms-excel','text/plain','text/csv','text/tsv');
@@ -400,28 +400,28 @@ class AttendanceController extends AdminController{
 		}
 		//Do upload
 		$upload->move($path, $name);
-		$reader		= $this->getExcelReader('CSV')
-					->setDelimiter(',')
-					->setEnclosure('"')
-					->setLineEnding("\n")
-		        	->setSheetIndex(0)
-		    		->load("{$path}/{$name}");
-		$reader		= $reader->setActiveSheetIndex(0);
+		$reader	= $this->getExcelReader('CSV')
+				->setDelimiter(',')
+				->setEnclosure('"')
+				->setLineEnding("\n")
+	        	->setSheetIndex(0)
+	    		->load("{$path}/{$name}");
+		$reader	= $reader->setActiveSheetIndex(0);
 	    $highestRow = $reader->getHighestRow();
 	    $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($reader->getHighestColumn());
-	    $data		= array();
+	    $data	= array();
 	    //Read from file
 	    for($row = 2; $row <= $highestRow; ++$row){//Exclude first row
 	    	$file_data	= array();
 	        for($col = 0; $col <= $highestColumnIndex; ++$col){
 	            $value	= $reader->getCellByColumnAndRow($col, $row)->getValue();
-	            $file_data[$col]	= trim($value);
+	            $file_data[$col]= trim($value);
 	        }
 	        $data[]	= $file_data;
 	    }
 		//Fetch data
-		$model		= $this->getModelManager()->getAttendance();
-		$output['status']	= $model->saveFromMechine($data, $date);;
+		$model	= $this->getModelManager()->getAttendance();
+		$output['status']	= $model->saveFromMechine($data, $date);
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new Response(json_encode($output));
 	}
@@ -445,17 +445,17 @@ class AttendanceController extends AdminController{
 			return new JsonResponse($output);
 		}
 		$output	= array('success' => TRUE);
-		$keyword	= strtoupper($request->get('query', ''));
+		$keyword= strtoupper($request->get('query', ''));
 		$start	= abs($request->get('start'));
 		$limit	= abs($request->get('limit'));
 		//Get model
-		$model		= $this->getModelManager()->getAttendance();
+		$model	= $this->getModelManager()->getAttendance();
 		$aData	= $model->getFromMechine($start, $limit);
-		if($total	= count($aData)){
-			$output['total']	= $model->countTotalFromMechine();
+		if($total = count($aData)){
+			$output['total']= $model->countTotalFromMechine();
 			$output['data']	= $aData;
 		}else{
-			$output['total']	= $total;
+			$output['total']= $total;
 			$output['data']	= array();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
@@ -481,12 +481,12 @@ class AttendanceController extends AdminController{
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model		= $this->getModelManager()->getAttendance();
+		$model	= $this->getModelManager()->getAttendance();
 		if($success	= $model->procces()){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Attendance has been proccessed.';
+			$output['msg']		= 'Attendance has been proccessed.';
 		}else{
-			$output['msg']	= $model->getMessage();
+			$output['msg']		= $model->getMessage();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -512,16 +512,15 @@ class AttendanceController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model		= $this->getModelManager()->getAttendance();
+		$model	= $this->getModelManager()->getAttendance();
 		$aData	= $model->getBy('id', $request->get('att_id'));
-		if($total	= count($aData)){
-			$output['total']	= $total;
+		if($total = count($aData)){
+			$output['total']= $total;
 			$output['data']	= $aData;
 		}else{
-			$output['total']	= $total;
+			$output['total']= $total;
 			$output['data']	= array();
 		}
-
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}

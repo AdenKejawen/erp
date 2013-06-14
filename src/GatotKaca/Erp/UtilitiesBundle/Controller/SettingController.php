@@ -1,11 +1,11 @@
 <?php
 /**
- * @filenames: GatotKaca/Erp/UtilitiesBundle/Controller/SettingController.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * @filenames	: GatotKaca/Erp/UtilitiesBundle/Controller/SettingController.php
+ * Author		: Muhammad Surya Ikhsanudin
+ * License		: Protected
+ * Email		: mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\UtilitiesBundle\Controller;
@@ -15,14 +15,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use GatotKaca\Erp\MainBundle\Controller\AdminController;
 
 class SettingController extends AdminController{
-	const MODULE	= 'panelparameter';
+	const MODULE= 'panelparameter';
 	/**
 	 * @Route("/utilities/setting", name="GatotKacaErpUtilitiesBundle_Setting_index")
 	 */
 	public function indexAction(){
 		return $this->goHome();
 	}
-	
+
 	/**
 	 * @Route("/utilities/setting/getlist", name="GatotKacaErpUtilitiesBundle_Setting_getList")
 	 */
@@ -38,8 +38,8 @@ class SettingController extends AdminController{
 		$output	= array('success' => TRUE);
 		//Get model
 		$model	= $this->getSetting();
-		$setting	= $model->getAll();
-		$output['total']	= count($setting);
+		$setting= $model->getAll();
+		$output['total']= count($setting);
 		$output['data']	= $setting;
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -57,17 +57,17 @@ class SettingController extends AdminController{
 		if(!$security->isAllowed($session->get('group_id'), SettingController::MODULE, 'modif')){
 			return new JsonResponse($output);
 		}
-		$input		= json_decode($request->get('setting', ''));
+		$input	= json_decode($request->get('setting', ''));
 		//Get model
 		$model	= $this->getSetting();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Worksheet Setting has been saved.';
+			$output['msg']		= 'Worksheet Setting has been saved.';
 		}else{
-			$output['msg']	= $model->getMessage().'. Worksheet Setting has not been saved.';
+			$output['msg']		= $model->getMessage().'. Worksheet Setting has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
-	
+
 		return new JsonResponse($output);
 	}
 }

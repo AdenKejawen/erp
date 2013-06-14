@@ -1,9 +1,9 @@
 <?php
 /**
- * @filenames: GatotKaca/Erp/UtilitiesBundle/Controller/RoleController.php
- * Author     : Muhammad Surya Ikhsanudin
- * License    : Protected
- * Email      : mutofiyah@gmail.com
+ * @filenames	: GatotKaca/Erp/UtilitiesBundle/Controller/RoleController.php
+ * Author		: Muhammad Surya Ikhsanudin
+ * License		: Protected
+ * Email		: mutofiyah@gmail.com
  *
  * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
@@ -15,8 +15,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use GatotKaca\Erp\MainBundle\Controller\AdminController;
 
 class RoleController extends AdminController{
-	const MODULE	= 'panelrole';
-	const GROUP		= 'panelgroup';
+	const MODULE= 'panelrole';
+	const GROUP	= 'panelgroup';
 
 	/**
 	 * @Route("/utilities/role", name="GatotKacaErpUtilitiesBundle_Role_index")
@@ -46,11 +46,11 @@ class RoleController extends AdminController{
 		$model->setStatus(($status === 'all') ? NULL : $status);
 		$role	= $model->getListByGroup($request->get('group_id', ''));
 		if($total	= count($role)){
-			$output['total']	= $total;
-			$output['data']		= $role;
+			$output['total']= $total;
+			$output['data']	= $role;
 		}else{
-			$output['total']	= $total;
-			$output['data']		= array();
+			$output['total']= $total;
+			$output['data']	= array();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -70,21 +70,21 @@ class RoleController extends AdminController{
 		if(!$security->isAllowed($session->get('group_id'), RoleController::GROUP, 'view')){
 			return new JsonResponse($output);
 		}
-		$output		= array('success' => TRUE);
-		$keyword	= strtoupper($request->get('query', ''));
-		$start		= abs($request->get('start'));
-		$limit		= abs($request->get('limit'));
-		$status		= $request->get('status', TRUE);
+		$output	= array('success' => TRUE);
+		$keyword= strtoupper($request->get('query', ''));
+		$start	= abs($request->get('start'));
+		$limit	= abs($request->get('limit'));
+		$status	= $request->get('status', TRUE);
 		//Get model
 		$model	= $this->getModelManager()->getRole();
 		$model->setStatus(($status === 'all') ? NULL : $status);
 		$user	= $model->getGroupList($keyword, $start, $limit);
-		if($total	= count($user)){
-			$output['total']	= $model->countTotalGroup($keyword, $limit);
-			$output['data']		= $user;
+		if($total = count($user)){
+			$output['total']= $model->countTotalGroup($keyword, $limit);
+			$output['data']	= $user;
 		}else{
-			$output['total']	= $total;
-			$output['data']		= array();
+			$output['total']= $total;
+			$output['data']	= array();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -153,9 +153,9 @@ class RoleController extends AdminController{
 		$input	= json_decode($request->get('role'));
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Role has been modified.';
+			$output['msg']		= 'Role has been modified.';
 		}else{
-			$output['msg']	= $model->getMessage().'. Role has not been modified.';
+			$output['msg']		= $model->getMessage().'. Role has not been modified.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -178,9 +178,9 @@ class RoleController extends AdminController{
 		$input	= json_decode($request->get('group'));
 		if($success	= $model->saveGroup($input)){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Group has been saved.';
+			$output['msg']		= 'Group has been saved.';
 		}else{
-			$output['msg']	= $model->getMessage().'. Group has not been modified.';
+			$output['msg']		= $model->getMessage().'. Group has not been modified.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);

@@ -1,9 +1,9 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Entity/District.php
- * Author     : Muhammad Surya Ikhsanudin
- * License    : Protected
- * Email      : mutofiyah@gmail.com
+ * Author    : Muhammad Surya Ikhsanudin
+ * License   : Protected
+ * Email     : mutofiyah@gmail.com
  *
  * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
@@ -72,14 +72,14 @@ class Religion{
     public function setId($id)
     {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return string 
+     * @return string
      */
     public function getId()
     {
@@ -95,14 +95,14 @@ class Religion{
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -118,14 +118,14 @@ class Religion{
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -141,14 +141,14 @@ class Religion{
     public function setCreatedby($createdby)
     {
         $this->createdby = $createdby;
-    
+
         return $this;
     }
 
     /**
      * Get createdby
      *
-     * @return string 
+     * @return string
      */
     public function getCreatedby()
     {
@@ -164,14 +164,14 @@ class Religion{
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-    
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -187,14 +187,14 @@ class Religion{
     public function setUpdatedby($updatedby)
     {
         $this->updatedby = $updatedby;
-    
+
         return $this;
     }
 
     /**
      * Get updatedby
      *
-     * @return string 
+     * @return string
      */
     public function getUpdatedby()
     {
@@ -210,7 +210,7 @@ class Religion{
     public function addEmployee(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee)
     {
         $this->employee[] = $employee;
-    
+
         return $this;
     }
 
@@ -227,7 +227,7 @@ class Religion{
     /**
      * Get employee
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getEmployee()
     {

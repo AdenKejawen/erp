@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/HumanResourcesBundle/Controller/IndexController.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author    : Muhammad Surya Ikhsanudin
+ * License   : Protected
+ * Email     : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\HumanResourcesBundle\Controller;

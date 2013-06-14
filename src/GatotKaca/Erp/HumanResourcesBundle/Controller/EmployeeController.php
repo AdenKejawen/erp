@@ -1,9 +1,9 @@
 <?php
 /**
- * @filenames: GatotKaca/Erp/HumanResources/Controller/EmployeeController.php
- * Author     : Muhammad Surya Ikhsanudin
- * License    : Protected
- * Email      : mutofiyah@gmail.com
+ * @filenames	: GatotKaca/Erp/HumanResources/Controller/EmployeeController.php
+ * Author		: Muhammad Surya Ikhsanudin
+ * License		: Protected
+ * Email		: mutofiyah@gmail.com
  *
  * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
@@ -18,7 +18,7 @@ use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
 
 class EmployeeController extends AdminController{
-	const MODULE	= 'panelemployee';
+	const MODULE    = 'panelemployee';
 	const SHIFTMENT	= 'panelworkshift';
 	const PERSONAL	= 'personalprofile';
 	const IS_XML_HTTP_REQUEST	= FALSE;
@@ -39,11 +39,11 @@ class EmployeeController extends AdminController{
 		$model	= $this->getModelManager()->getEmployee();
 		$model->setStatus(($status === 'all') ? NULL : $status);
 		$employee	= $model->getList($keyword, $start, $limit, $isfixed);
-		if($total	= count($employee)){
-			$output['total']	= $model->countTotal($keyword, $limit, $isfixed);
+		if($total = count($employee)){
+			$output['total']= $model->countTotal($keyword, $limit, $isfixed);
 			$output['data']	= $employee;
 		}else{
-			$output['total']	= $total;
+			$output['total']= $total;
 			$output['data']	= array();
 		}
 		return $output;
@@ -95,9 +95,9 @@ class EmployeeController extends AdminController{
 		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->save($input, $name)){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Employee has been saved.';
+			$output['msg']		= 'Employee has been saved.';
 		}else{
-			$output['msg']	= $model->getMessage().'. Employee has not been saved.';
+			$output['msg']		= $model->getMessage().'. Employee has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new Response(json_encode($output));
@@ -110,7 +110,7 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::SHIFTMENT, 'modif')){
 			return new JsonResponse($output);
@@ -120,9 +120,9 @@ class EmployeeController extends AdminController{
 		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->saveShiftment($input)){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Shiftment has been saved.';
+			$output['msg']		= 'Shiftment has been saved.';
 		}else{
-			$output['msg']	= $model->getMessage().'. Shiftment has not been saved.';
+			$output['msg']		= $model->getMessage().'. Shiftment has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -135,7 +135,7 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'modif')){
 			return new JsonResponse($output);
@@ -145,9 +145,9 @@ class EmployeeController extends AdminController{
 		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->saveEducation($input)){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Education has been saved.';
+			$output['msg']		= 'Education has been saved.';
 		}else{
-			$output['msg']	= $model->getMessage().'. Education has not been saved.';
+			$output['msg']		= $model->getMessage().'. Education has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -160,7 +160,7 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'modif')){
 			return new JsonResponse($output);
@@ -170,9 +170,9 @@ class EmployeeController extends AdminController{
 		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->saveFamily($input)){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Family has been saved.';
+			$output['msg']		= 'Family has been saved.';
 		}else{
-			$output['msg']	= $model->getMessage().'. Family has not been saved.';
+			$output['msg']		= $model->getMessage().'. Family has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -185,7 +185,7 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'modif')){
 			return new JsonResponse($output);
@@ -195,9 +195,9 @@ class EmployeeController extends AdminController{
 		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->saveExperience($input)){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Experience has been saved.';
+			$output['msg']		= 'Experience has been saved.';
 		}else{
-			$output['msg']	= $model->getMessage().'. Experience has not been saved.';
+			$output['msg']		= $model->getMessage().'. Experience has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -210,7 +210,7 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'modif')){
 			return new JsonResponse($output);
@@ -220,9 +220,9 @@ class EmployeeController extends AdminController{
 		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->saveTraining($input)){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Training has been saved.';
+			$output['msg']		= 'Training has been saved.';
 		}else{
-			$output['msg']	= $model->getMessage().'. Training has not been saved.';
+			$output['msg']		= $model->getMessage().'. Training has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -235,7 +235,7 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'modif')){
 			return new JsonResponse($output);
@@ -245,9 +245,9 @@ class EmployeeController extends AdminController{
 		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->saveLanguage($input)){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Language has been saved.';
+			$output['msg']		= 'Language has been saved.';
 		}else{
-			$output['msg']	= $model->getMessage().'. Language has not been saved.';
+			$output['msg']		= $model->getMessage().'. Language has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -260,7 +260,7 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'modif')){
 			return new JsonResponse($output);
@@ -270,9 +270,9 @@ class EmployeeController extends AdminController{
 		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->saveOrganitation($input)){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Organitation has been saved.';
+			$output['msg']		= 'Organitation has been saved.';
 		}else{
-			$output['msg']	= $model->getMessage().'. Organitation has not been saved.';
+			$output['msg']		= $model->getMessage().'. Organitation has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -285,14 +285,14 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
-		$output	= array('success' => TRUE);
+		$output		= array('success' => TRUE);
 		//Get model
-		$model	= $this->getModelManager()->getEmployee();
+		$model		= $this->getModelManager()->getEmployee();
 		$employee	= $model->getBy('id', $request->get('employee_id'));
 		if(count($employee)){
 			$output['data']	= $employee;
@@ -313,13 +313,13 @@ class EmployeeController extends AdminController{
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::PERSONAL, 'view')){
 			return new JsonResponse($output);
 		}
-		$output		= array('success' => TRUE);
+		$output	= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getEmployee();
-		$profile	= $model->getBy('username', $session->get('user_id'));
-		if($total	= count($profile)){
-			$output['total']	= $total;
-			$output['data']		= $profile;
+		$model	= $this->modelManager()->getEmployee();
+		$profile= $model->getBy('username', $session->get('user_id'));
+		if($total = count($profile)){
+			$output['total']= $total;
+			$output['data']	= $profile;
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -332,14 +332,14 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
-		$output	= array('success' => TRUE);
+		$output		= array('success' => TRUE);
 		//Get model
-		$model	= $this->getModelManager()->getEmployee();
+		$model		= $this->getModelManager()->getEmployee();
 		$employee	= $model->getByJobLevel($request->get('jobtitle_id'));
 		if(count($employee)){
 			$output['data']	= $employee;
@@ -355,14 +355,14 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
-		$output	= array('success' => TRUE);
+		$output		= array('success' => TRUE);
 		//Get model
-		$model	= $this->getModelManager()->getEmployee();
+		$model		= $this->getModelManager()->getEmployee();
 		$shiftment	= $model->getShiftmentBy('id',$request->get('shift_id'));
 		if(count($shiftment)){
 			$output['data']	= $shiftment;
@@ -378,13 +378,13 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
 		$output	= array('success' => TRUE);
-		$keyword	= strtoupper($request->get('query', ''));
+		$keyword= strtoupper($request->get('query', ''));
 		$start	= abs($request->get('start'));
 		$limit	= abs($request->get('limit'));
 		$status	= $request->get('status', TRUE);
@@ -403,13 +403,13 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::SHIFTMENT, 'view')){
 			return new JsonResponse($output);
 		}
 		$output	= array('success' => TRUE);
-		$keyword	= strtoupper($request->get('query', ''));
+		$keyword= strtoupper($request->get('query', ''));
 		$start	= abs($request->get('start'));
 		$limit	= abs($request->get('limit'));
 		$status	= $request->get('status', TRUE);
@@ -428,14 +428,14 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::SHIFTMENT, 'view')){
 			return new JsonResponse($output);
 		}
-		$output	= array('success' => TRUE);
+		$output		= array('success' => TRUE);
 		//Get model
-		$model	= $this->getModelManager()->getEmployee();
+		$model		= $this->getModelManager()->getEmployee();
 		$shiftment	= $model->getShiftmentBy('employee', $request->get('employee_id'));
 		if(count($shiftment)){
 			$output['data']	= $shiftment;
@@ -451,14 +451,14 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
-		$output	= array('success' => TRUE);
+		$output		= array('success' => TRUE);
 		//Get model
-		$model	= $this->getModelManager()->getEmployee();
+		$model		= $this->getModelManager()->getEmployee();
 		$education	= $model->getEducationBy('employee', $request->get('employee_id'));
 		if(count($education)){
 			$output['data']	= $education;
@@ -474,7 +474,7 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'view')){
 			return new JsonResponse($output);
@@ -497,7 +497,7 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'view')){
 			return new JsonResponse($output);
@@ -525,9 +525,9 @@ class EmployeeController extends AdminController{
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
-		$output	= array('success' => TRUE);
+		$output		= array('success' => TRUE);
 		//Get model
-		$model	= $this->getModelManager()->getEmployee();
+		$model		= $this->getModelManager()->getEmployee();
 		$training	= $model->getTrainingBy('employee', $request->get('employee_id'));
 		if(count($training)){
 			$output['data']	= $training;
@@ -548,7 +548,7 @@ class EmployeeController extends AdminController{
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
-		$output	= array('success' => TRUE);
+		$output		= array('success' => TRUE);
 		//Get model
 		$model		= $this->getModelManager()->getEmployee();
 		$language	= $model->getLanguageBy('employee', $request->get('employee_id'));
@@ -573,7 +573,7 @@ class EmployeeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model			= $this->getModelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		$organitation	= $model->getOrganitationBy('employee', $request->get('employee_id'));
 		if(count($organitation)){
 			$output['data']	= $organitation;
@@ -612,14 +612,14 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
-		$output	= array('success' => TRUE);
+		$output		= array('success' => TRUE);
 		//Get model
-		$model	= $this->getModelManager()->getEmployee();
+		$model		= $this->getModelManager()->getEmployee();
 		$shiftment	= $model->getEducationBy('id', $request->get('education_id'));
 		if(count($shiftment)){
 			$output['data']	= $shiftment;
@@ -635,7 +635,7 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'view')){
 			return new JsonResponse($output);
@@ -658,14 +658,14 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
-		$output	= array('success' => TRUE);
+		$output		= array('success' => TRUE);
 		//Get model
-		$model	= $this->getModelManager()->getEmployee();
+		$model		= $this->getModelManager()->getEmployee();
 		$experience	= $model->getExperienceBy('id', $request->get('experience_id'));
 		if(count($experience)){
 			$output['data']	= $experience;
@@ -681,14 +681,14 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
-		$output	= array('success' => TRUE);
+		$output		= array('success' => TRUE);
 		//Get model
-		$model	= $this->getModelManager()->getEmployee();
+		$model		= $this->getModelManager()->getEmployee();
 		$training	= $model->getTrainingBy('id', $request->get('training_id'));
 		if(count($training)){
 			$output['data']	= $training;
@@ -704,14 +704,14 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
-		$output	= array('success' => TRUE);
+		$output		= array('success' => TRUE);
 		//Get model
-		$model	= $this->getModelManager()->getEmployee();
+		$model		= $this->getModelManager()->getEmployee();
 		$language	= $model->getLanguageBy('id', $request->get('language_id'));
 		if(count($language)){
 			$output['data']	= $language;
@@ -727,7 +727,7 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'view')){
 			return new JsonResponse($output);
@@ -750,7 +750,7 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE, 'msg' => 'Authorization failed.');
+		$output		= array('success' => FALSE, 'msg' => 'Authorization failed.');
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'delete')){
 			return new JsonResponse($output);
@@ -759,9 +759,9 @@ class EmployeeController extends AdminController{
 		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->deleteExperience($request->get('id', ''))){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Experience has been delete.';
+			$output['msg']		= 'Experience has been delete.';
 		}else{
-			$output['msg']	= "Operation failed. ".$model->getMessage();
+			$output['msg']		= "Operation failed. ".$model->getMessage();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -774,7 +774,7 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE, 'msg' => 'Authorization failed.');
+		$output		= array('success' => FALSE, 'msg' => 'Authorization failed.');
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'delete')){
 			return new JsonResponse($output);
@@ -783,9 +783,9 @@ class EmployeeController extends AdminController{
 		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->deleteFamily($request->get('id', ''))){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Family has been delete.';
+			$output['msg']		= 'Family has been delete.';
 		}else{
-			$output['msg']	= "Operation failed. ".$model->getMessage();
+			$output['msg']		= "Operation failed. ".$model->getMessage();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -798,7 +798,7 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE, 'msg' => 'Authorization failed.');
+		$output		= array('success' => FALSE, 'msg' => 'Authorization failed.');
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'delete')){
 			return new JsonResponse($output);
@@ -807,9 +807,9 @@ class EmployeeController extends AdminController{
 		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->deleteLanguage($request->get('id', ''))){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Language has been delete.';
+			$output['msg']		= 'Language has been delete.';
 		}else{
-			$output['msg']	= "Operation failed. ".$model->getMessage();
+			$output['msg']		= "Operation failed. ".$model->getMessage();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -822,7 +822,7 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE, 'msg' => 'Authorization failed.');
+		$output		= array('success' => FALSE, 'msg' => 'Authorization failed.');
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'delete')){
 			return new JsonResponse($output);
@@ -831,9 +831,9 @@ class EmployeeController extends AdminController{
 		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->deleteOrganitation($request->get('id', ''))){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Organitation has been delete.';
+			$output['msg']		= 'Organitation has been delete.';
 		}else{
-			$output['msg']	= "Operation failed. ".$model->getMessage();
+			$output['msg']		= "Operation failed. ".$model->getMessage();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -846,7 +846,7 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE, 'msg' => 'Authorization failed.');
+		$output		= array('success' => FALSE, 'msg' => 'Authorization failed.');
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'delete')){
 			return new JsonResponse($output);
@@ -855,9 +855,9 @@ class EmployeeController extends AdminController{
 		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->deleteEducation($request->get('id', ''))){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Education has been delete.';
+			$output['msg']		= 'Education has been delete.';
 		}else{
-			$output['msg']	= "Operation failed. ".$model->getMessage();
+			$output['msg']		= "Operation failed. ".$model->getMessage();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -870,7 +870,7 @@ class EmployeeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE, 'msg' => 'Authorization failed.');
+		$output		= array('success' => FALSE, 'msg' => 'Authorization failed.');
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'delete')){
 			return new JsonResponse($output);
@@ -879,9 +879,9 @@ class EmployeeController extends AdminController{
 		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->deleteTraining($request->get('id', ''))){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Training has been delete.';
+			$output['msg']		= 'Training has been delete.';
 		}else{
-			$output['msg']	= "Operation failed. ".$model->getMessage();
+			$output['msg']		= "Operation failed. ".$model->getMessage();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);

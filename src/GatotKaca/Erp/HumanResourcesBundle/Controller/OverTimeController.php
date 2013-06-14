@@ -1,9 +1,9 @@
 <?php
 /**
- * @filenames: GatotKaca/Erp/HumanResourcesBundle/Controller/OverTimeController.php
- * Author     : Muhammad Surya Ikhsanudin
- * License    : Protected
- * Email      : mutofiyah@gmail.com
+ * @filenames	: GatotKaca/Erp/HumanResourcesBundle/Controller/OverTimeController.php
+ * Author		: Muhammad Surya Ikhsanudin
+ * License		: Protected
+ * Email		: mutofiyah@gmail.com
  *
  * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
@@ -18,7 +18,7 @@ use PHPExcel_Cell_DataType;
 use PHPExcel_Style_Alignment;
 
 class OverTimeController extends AdminController{
-	const MODULE	= 'panelovertimebyemployee';
+	const MODULE    = 'panelovertimebyemployee';
 	const BYDATE	= 'panelovertimebydate';
 	const PERSONAL	= 'personalovertime';
 	const IS_POST_REQUEST		= FALSE;
@@ -74,10 +74,10 @@ class OverTimeController extends AdminController{
 		$model		= $this->getModelManager()->getOverTime();
 		$overtime	= $model->getList($keyword, $request->get('from', ''), $request->get('to', ''), $request->get('supervise', 'FALSE'), $request->get('approve', 'all'));
 		if($total	= count($overtime)){
-			$output['total']	= $total;
+			$output['total']= $total;
 			$output['data']	= $overtime;
 		}else{
-			$output['total']	= $total;
+			$output['total']= $total;
 			$output['data']	= array();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
@@ -97,21 +97,21 @@ class OverTimeController extends AdminController{
 		if(!$this->validRequest($request)){
 			return $this->goHome();
 		}
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), OverTimeController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
-		$output	= array('success' => TRUE);
+		$output		= array('success' => TRUE);
 		//Get model
 		$model		= $this->getModelManager()->getOverTime();
 		$overtime	= $model->getBy('employee', $request->get('employee_id', ''), $request->get('from', ''), $request->get('to', ''), array(1));
-		if($total	= count($overtime)){
-			$output['total']	= $total;
-			$output['data']		= $overtime;
+		if($total = count($overtime)){
+			$output['total']= $total;
+			$output['data']	= $overtime;
 		}else{
-			$output['total']	= $total;
-			$output['data']		= array();
+			$output['total']= $total;
+			$output['data']	= array();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -130,24 +130,24 @@ class OverTimeController extends AdminController{
 		if(!$this->validRequest($request)){
 			return $this->goHome();
 		}
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), OverTimeController::BYDATE, 'view')){
 			return new JsonResponse($output);
 		}
-		$output	= array('success' => TRUE);
-		$from	= $request->get('from', '');
-		$to		= $request->get('to', '');
-		$absence= $request->get('absence', 'true');
+		$output		= array('success' => TRUE);
+		$from		= $request->get('from', '');
+		$to			= $request->get('to', '');
+		$absence	= $request->get('absence', 'true');
 		//Get model
 		$model		= $this->getModelManager()->getOverTime();
 		$overtime	= $model->getByDate($from, $to, $absence);
-		if($total	= count($overtime)){
-			$output['total']	= $total;
-			$output['data']		= $overtime;
+		if($total = count($overtime)){
+			$output['total']= $total;
+			$output['data']	= $overtime;
 		}else{
-			$output['total']	= $total;
-			$output['data']		= array();
+			$output['total']= $total;
+			$output['data']	= array();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -166,7 +166,7 @@ class OverTimeController extends AdminController{
 		if(!$this->validRequest($request)){
 			return $this->goHome();
 		}
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!($security->isAllowed($session->get('group_id'), OverTimeController::MODULE, 'view') || $security->isAllowed($session->get('group_id'), OverTimeController::PERSONAL, 'view'))){
 			return new JsonResponse($output);
@@ -175,14 +175,13 @@ class OverTimeController extends AdminController{
 		//Get model
 		$model	= $this->getModelManager()->getOverTime();
 		$data	= $model->getBy('id', $request->get('ot_id'), NULL, NULL, array(0, 1, 2));
-		if($total	= count($aData)){
-			$output['total']	= $total;
+		if($total = count($aData)){
+			$output['total']= $total;
 			$output['data']	= $data;
 		}else{
-			$output['total']	= $total;
+			$output['total']= $total;
 			$output['data']	= array();
 		}
-
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
@@ -194,22 +193,21 @@ class OverTimeController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!($security->isAllowed($session->get('group_id'), OverTimeController::MODULE, 'modif') || $security->isAllowed($session->get('group_id'), OverTimeController::PERSONAL, 'modif'))){
 			return new JsonResponse($output);
 		}
-		$input		= json_decode($request->get('overtime', ''));
+		$input	= json_decode($request->get('overtime', ''));
 		//Get model
-		$model		= $this->getModelManager()->getOverTime();
+		$model	= $this->getModelManager()->getOverTime();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Over time has been saved.';
+			$output['msg']		= 'Over time has been saved.';
 		}else{
-			$output['msg']	= $model->getMessage().'. Over time has not been saved.';
+			$output['msg']		= $model->getMessage().'. Over time has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
-
 		return new JsonResponse($output);
 	}
 
@@ -226,15 +224,15 @@ class OverTimeController extends AdminController{
 		if(!$this->validRequest($request)){
 			return $this->goHome();
 		}
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), OverTimeController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
-		$output	= array('success' => TRUE);
-		$employeeId	= $request->get('employee_id', '');
-		$from		= new \DateTime($request->get('from', ''));
-		$to			= new \DateTime($request->get('to', ''));
+		$output			= array('success' => TRUE);
+		$employeeId		= $request->get('employee_id', '');
+		$from			= new \DateTime($request->get('from', ''));
+		$to				= new \DateTime($request->get('to', ''));
 		$output['data']	= $this->exportHelper($employeeId, $from->format('d M Y'), $to->format('d M Y'));
 		return new JsonResponse($output);
 	}
@@ -255,14 +253,14 @@ class OverTimeController extends AdminController{
 		if(!$security->isAllowed($session->get('group_id'), OverTimeController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
-		$from		= new \DateTime($from);
-		$to			= new \DateTime($to);
+		$from	= new \DateTime($from);
+		$to		= new \DateTime($to);
 		return new Response(
 		    $this->getJpgGenerator()->getOutputFromHtml($this->exportHelper($id, $from->format('d M Y'), $to->format('d M Y'))),
 		    200,
 		    array(
-		        'Content-Type'          => 'application/jpg',
-		        'Content-Disposition'   => 'attachment; filename = "'.$id.$from->format('_d_m_Y').$to->format('_d_m_Y').'.jpg"'
+		        'Content-Type'			=> 'application/jpg',
+		        'Content-Disposition'	=> 'attachment; filename = "'.$id.$from->format('_d_m_Y').$to->format('_d_m_Y').'.jpg"'
 		    )
 		);
 	}
@@ -289,7 +287,7 @@ class OverTimeController extends AdminController{
 		$pdf	= $this->getPdfGenerator();
 		$this->setSigniture($pdf);
 		$partition	= 17;
-		$kolom  = $this->getPerPartition($partition);
+		$kolom		= $this->getPerPartition($partition);
 		$pdf->setFont('Arial', 'B', 13);
 		$pdf->Cell($kolom * $partition, 7, "OverTime Detail From {$from->format('d M Y')} To {$to->format('d M Y')}", 0, FALSE, 'C', 0, '', 0, FALSE, 'C', 'C');
     	$pdf->Ln(17);

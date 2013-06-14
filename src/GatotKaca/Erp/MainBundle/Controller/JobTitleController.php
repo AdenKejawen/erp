@@ -1,9 +1,9 @@
 <?php
 /**
- * @filenames: GatotKaca/Erp/MainBundle/Controller/JobTitleController.php
- * Author     : Muhammad Surya Ikhsanudin
- * License    : Protected
- * Email      : mutofiyah@gmail.com
+ * @filenames	: GatotKaca/Erp/MainBundle/Controller/JobTitleController.php
+ * Author		: Muhammad Surya Ikhsanudin
+ * License		: Protected
+ * Email		: mutofiyah@gmail.com
  *
  * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use GatotKaca\Erp\MainBundle\Controller\AdminController;
 
 class JobTitleController extends AdminController{
-	const MODULE	= 'paneljobtitle';
+	const MODULE= 'paneljobtitle';
 	/**
 	 * @Route("/jobtitle", name="GatotKacaErpMainBundle_JobTitle_index")
 	 */
@@ -30,12 +30,12 @@ class JobTitleController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), JobTitleController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
-		$output	= array('success' => TRUE);
+		$output		= array('success' => TRUE);
 		//Get model
 		$model		= $this->getModelManager()->getJobTitle();
 		$jobtitle	= $model->getBy('id', $request->get('jobtitle_id'));
@@ -53,12 +53,12 @@ class JobTitleController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), JobTitleController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
-		$output	= array('success' => TRUE);
+		$output		= array('success' => TRUE);
 		//Get model
 		$model		= $this->getModelManager()->getJobTitle();
 		$jobtitle	= $model->getBy('level', $request->get('level'));
@@ -76,18 +76,18 @@ class JobTitleController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE, 'msg' => 'Authorization failed.');
+		$output		= array('success' => FALSE, 'msg' => 'Authorization failed.');
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), JobTitleController::MODULE, 'delete')){
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model		= $this->getModelManager()->getJobTitle();
+		$model	= $this->getModelManager()->getJobTitle();
 		if($success	= $model->delete($request->get('id', ''))){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Job Title has been delete.';
+			$output['msg']		= 'Job Title has been delete.';
 		}else{
-			$output['msg']	= "Operation failed. ".$model->getMessage();
+			$output['msg']		= "Operation failed. ".$model->getMessage();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -100,25 +100,25 @@ class JobTitleController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), JobTitleController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
 		$output	= array('success' => TRUE);
-		$keyword	= strtoupper($request->get('query', ''));
+		$keyword= strtoupper($request->get('query', ''));
 		$start	= abs($request->get('start'));
 		$limit	= abs($request->get('limit'));
 		$status	= $request->get('status', TRUE);
 		//Get model
-		$model		= $this->getModelManager()->getJobTitle();
+		$model	= $this->getModelManager()->getJobTitle();
 		$model->setStatus(($status === 'all') ? NULL : $status);
 		$jobtitle	= $model->getList($keyword, $start, $limit);
-		if($total	= count($jobtitle)){
-			$output['total']	= $model->countTotal($keyword, $limit);
+		if($total = count($jobtitle)){
+			$output['total']= $model->countTotal($keyword, $limit);
 			$output['data']	= $jobtitle;
 		}else{
-			$output['total']	= $total;
+			$output['total']= $total;
 			$output['data']	= array();
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
@@ -132,14 +132,14 @@ class JobTitleController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE);
+		$output		= array('success' => FALSE);
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), JobTitleController::MODULE, 'modif')){
 			return new JsonResponse($output);
 		}
-		$input		= json_decode($request->get('jobtitle', ''));
+		$input	= json_decode($request->get('jobtitle', ''));
 		//Get model
-		$model		= $this->getModelManager()->getJobTitle();
+		$model	= $this->getModelManager()->getJobTitle();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Job Title has been saved.';
@@ -147,7 +147,6 @@ class JobTitleController extends AdminController{
 			$output['msg']	= $model->getMessage().'. Job Title has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
-
 		return new JsonResponse($output);
 	}
 }
