@@ -416,7 +416,15 @@ class EmployeeModel extends BaseModel{
 	 * @param string $value
 	 * @return array $result
 	 **/
-	public function getShiftmentBy($criteria, $value){
+	public function getShiftmentBy($criteria, $value, $from = '', $to = ''){
+		$extra	= '';
+		if($from !== NULL && $from != ''){
+			$extra	.= " AND es.shift_date BETWEEN '{$from}' AND '{$to}'";
+		}else if($from === NULL){
+			$date	= new \DateTime();
+			$days	= cal_days_in_month(CAL_GREGORIAN, $date->format('m'), $date->format('Y'));
+			$extra	.= " AND es.shift_date BETWEEN '{$date->format('Y-m-')}1 00:00:00' AND '{$date->format('Y-m-')}{$days} 23:59:59'";
+		}
 		$query	= $this->getEntityManager()
 				->createQueryBuilder()
 				->select("
@@ -428,7 +436,7 @@ class EmployeeModel extends BaseModel{
 				")
 				->from('GatotKacaErpHumanResourcesBundle:EmployeeShiftment', 'es')
 				->innerJoin('GatotKacaErpMainBundle:OfficeHour', 'oh', 'WITH', 'es.officehour = oh.id')
-				->where("es.{$criteria} = :{$criteria}")
+				->where("es.{$criteria} = :{$criteria}{$extra}")
 				->orderBy('es.shift_date', 'ASC')
 				->setParameter($criteria, $value)
 				->getQuery();
@@ -641,28 +649,33 @@ class EmployeeModel extends BaseModel{
 	 * @param mixed $input
 	 **/
 	public function saveShiftment($input){
-		$shifment	= new EmployeeShiftment();
-		if(isset($input->shift_id) && $input->shift_id != ''){
-			$shifment	= $this->getEntityManager()->getRepository('GatotKacaErpHumanResourcesBundle:EmployeeShiftment')->find($input->shift_id);
-			$this->setAction("modify");
-		}else{
-			$shifment->setId($this->getHelper()->getUniqueId());
-			$this->setAction("create");
+		$this->setAction("create");
+		$from		= strtotime($input->shift_from);
+		$to			= strtotime($input->shift_to);
+		$employee	= $this->getEntityManager()->getReference('GatotKacaErpHumanResourcesBundle:Employee', $input->employee_id);
+		for($i = $from; $i <= $to; $i = strtotime('+1 day', $i)){
+			$shiftment	= new EmployeeShiftment();
+			$date		= new \DateTime(date('Y-m-d', $i));
+			if($exist = $this->getEntityManager()->getRepository('GatotKacaErpHumanResourcesBundle:EmployeeShiftment')->findOneBy(array('shift_date' => $date, 'employee' => $employee))){
+				$shiftment	= $exist;
+			}else{
+				$shiftment->setId($this->getHelper()->getUniqueId());
+			}
+			$shiftment->setShiftDate($date);
+			$shiftment->setEmployee($employee);
+			$shiftment->setOfficehour($this->getEntityManager()->getReference('GatotKacaErpMainBundle:OfficeHour', $input->shift_ohid));
+			//Simpan shiftment
+			$this->setEntityLog($shiftment);
+			$this->getEntityManager()->persist($shiftment);
 		}
-		$shifment->setShiftDate(new \DateTime($input->shift_date));
-		$shifment->setEmployee($this->getEntityManager()->getReference('GatotKacaErpHumanResourcesBundle:Employee', $input->employee_id));
-		$shifment->setOfficehour($this->getEntityManager()->getReference('GatotKacaErpMainBundle:OfficeHour', $input->shift_ohid));
-		//Simpan shiftment
-		$this->setEntityLog($shifment);
 		$connection	= $this->getEntityManager()->getConnection();
 		$connection->beginTransaction();
 		try {
-			$this->getEntityManager()->persist($shifment);
 			$this->getEntityManager()->flush();
-			$this->getEntityManager()->lock($shifment, LockMode::PESSIMISTIC_READ);
+			$this->getEntityManager()->lock($shiftment, LockMode::PESSIMISTIC_READ);
 			$connection->commit();
-			$this->setModelLog("saving employee shiftment with id {$shifment->getId()}");
-			return $shifment->getId();
+			$this->setModelLog("saving employee shiftment with id {$shiftment->getId()}");
+			return $shiftment->getId();
 		}catch(\Exception $e) {
 			$connection->rollback();
 			$this->getEntityManager()->close();

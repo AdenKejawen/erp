@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Model/ReligionModel.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 
@@ -27,10 +27,10 @@ class AttendanceModel extends BaseModel{
 	public function __construct(\Doctrine\ORM\EntityManager $entityManager, \GatotKaca\Erp\MainBundle\Helper\Helper $helper){
 		parent::__construct($entityManager, $helper);
 	}
-	
+
 	/**
 	 * Untuk mendapatkan list Attendance berdasarkan criteria
-	 * 
+	 *
 	 * @param string criteria
 	 * @param string value
 	 * @param date from
@@ -75,7 +75,7 @@ class AttendanceModel extends BaseModel{
 
 	/**
 	 * Untuk mendapatkan list Attendance berdasarkan Date
-	 * 
+	 *
 	 * @param date dateStart
 	 * @param date dateEnd
 	 * @param int start
@@ -117,10 +117,10 @@ class AttendanceModel extends BaseModel{
 		$this->setModelLog("get attendance from {$dateStart->format('d-m-Y')} to {$dateEnd->format('d-m-Y')}");
 		return $query->getResult();
 	}
-	
+
 	/**
 	 * Untuk menyimpan data attendance sementara
-	 * 
+	 *
 	 * @param mixed data
 	 * @param date date
 	 **/
@@ -163,10 +163,10 @@ class AttendanceModel extends BaseModel{
 			return FALSE;
 		}
 	}
-	
+
 	/**
 	 * Untuk mendapatkan list attendance from mechine
-	 * 
+	 *
 	 * @param integer start
 	 * @param integer limit
 	 **/
@@ -186,10 +186,10 @@ class AttendanceModel extends BaseModel{
 		$this->setModelLog("get attendance from mechine from {$start} to {$limit}");
 		return $query->getResult();
 	}
-	
+
 	/**
 	 * Untuk mendapatkan total list attendance from mechine
-	 * 
+	 *
 	 * @param date $from
 	 * @param date $to
 	 **/
@@ -203,10 +203,10 @@ class AttendanceModel extends BaseModel{
 				->getQuery();
 		return count($query->getResult());
 	}
-	
+
 	/**
 	 * Memproses semua attendance from mechine berdasarkan tanggal
-	 * 
+	 *
 	 * @param date $from
 	 * @param date $to
 	 * @return boolean
@@ -215,15 +215,15 @@ class AttendanceModel extends BaseModel{
 		$this->setAction('create');
 		$employee	= $this->getEntityManager()->getRepository('GatotKacaErpHumanResourcesBundle:Employee')->findAll();
 		$date		= $this->getEntityManager()
-					->createQueryBuilder()
-					->select('
-						MIN(a.att_date) AS start_date,
-						MAX(a.att_date) AS end_date
-					')
-					->from('GatotKacaErpHumanResourcesBundle:AttendanceFromMechine', 'a')
-					->setMaxResults(1)
-					->getQuery()
-					->getOneOrNullResult();
+			->createQueryBuilder()
+			->select('
+				MIN(a.att_date) AS start_date,
+				MAX(a.att_date) AS end_date
+			')
+			->from('GatotKacaErpHumanResourcesBundle:AttendanceFromMechine', 'a')
+			->setMaxResults(1)
+			->getQuery()
+			->getOneOrNullResult();
 		if($date === NULL){
 			return FALSE;
 		}
@@ -237,32 +237,32 @@ class AttendanceModel extends BaseModel{
 				foreach ($employee as $key => $val){//Ini sungguh diluar dugaanku, tolong buat PL/SQL untuk ini
 					$date	= date('Y-m-d', $i);
 					$time	= $this->getEntityManager()
-							->createQueryBuilder()
-							->select('
-								MIN(a.time) AS timein,
-								MAX(a.time) AS timeout,
-								MAX(a.time) - MIN(a.time) AS jamkerja
-							')
-							->from('GatotKacaErpHumanResourcesBundle:AttendanceFromMechine', 'a')
-							->where('a.att_date = :date AND a.employee = :employee')
-							->setParameter('date', $date)
-							->setParameter('employee', $val->getCode())
-							->setMaxResults(1)
-							->getQuery()
-							->getOneOrNullResult();
+						->createQueryBuilder()
+						->select('
+							MIN(a.time) AS timein,
+							MAX(a.time) AS timeout,
+							MAX(a.time) - MIN(a.time) AS jamkerja
+						')
+						->from('GatotKacaErpHumanResourcesBundle:AttendanceFromMechine', 'a')
+						->where('a.att_date = :date AND a.employee = :employee')
+						->setParameter('date', $date)
+						->setParameter('employee', $val->getCode())
+						->setMaxResults(1)
+						->getQuery()
+						->getOneOrNullResult();
 					$officehour	= $this->getShiftByEmployee($val->getId());
 					//Check isExistAttendance
 					$isExist	= $this->getEntityManager()
-								->createQueryBuilder()
-								->select('a.id')
-								->from('GatotKacaErpHumanResourcesBundle:Attendance', 'a')
-								->join('GatotKacaErpHumanResourcesBundle:Employee', 'e', 'WITH', 'a.employee = e.id')
-								->where('a.att_date = :date AND e.id = :employee')
-								->setParameter('date', $date)
-								->setParameter('employee', $val->getId())
-								->setMaxResults(1)
-								->getQuery()
-								->getOneOrNullResult();
+						->createQueryBuilder()
+						->select('a.id')
+						->from('GatotKacaErpHumanResourcesBundle:Attendance', 'a')
+						->join('GatotKacaErpHumanResourcesBundle:Employee', 'e', 'WITH', 'a.employee = e.id')
+						->where('a.att_date = :date AND e.id = :employee')
+						->setParameter('date', $date)
+						->setParameter('employee', $val->getId())
+						->setMaxResults(1)
+						->getQuery()
+						->getOneOrNullResult();
 					$attendance	= new Attendance();
 					if($isExist){
 						$attendance	= $this->getEntityManager()->getRepository('GatotKacaErpHumanResourcesBundle:Attendance')->find($isExist['id']);
@@ -317,7 +317,7 @@ class AttendanceModel extends BaseModel{
 			return FALSE;
 		}
 	}
-	
+
 	/**
 	 * Untuk menyimpan data attendance
 	 *
@@ -360,70 +360,70 @@ class AttendanceModel extends BaseModel{
 			return FALSE;
 		}
 	}
-	
+
 	/**
 	 * Untuk mengambil data shift karyawan berdasarkan id
-	 * 
+	 *
 	 * @param string id
 	 * @param DateTime date
-	 * 
+	 *
 	 * @return mixed shiftment
 	 **/
 	private function getShiftByEmployee($id, $date = NULL){
 		$officehour	= NULL;
 		/**
-		 * Is fixed schedule? 
+		 * Is fixed schedule?
 		 **/
-		$shift		= $this->getEntityManager()->createQueryBuilder()
-					->select('e.isfixed')
-					->from('GatotKacaErpHumanResourcesBundle:Employee', 'e')
-					->where('e.id = :employee')
-					->setParameter('employee', $id)
-					->getQuery()
-					->getOneOrNullResult();
+		$shift	= $this->getEntityManager()->createQueryBuilder()
+				->select('e.isfixed')
+				->from('GatotKacaErpHumanResourcesBundle:Employee', 'e')
+				->where('e.id = :employee')
+				->setParameter('employee', $id)
+				->getQuery()
+				->getOneOrNullResult();
 		if($shift['isfixed']){
 			$officehour	= $this->getEntityManager()
-						->createQueryBuilder()
-						->select("
-							e.id,
-							TO_CHAR(o.time_in, 'HH24:MI:SS') AS timein,
-							TO_CHAR(o.time_out, 'HH24:MI:SS') AS timeout,
-							o.time_out - o.time_in AS jamkerja
-						")
-						->from('GatotKacaErpMainBundle:OfficeHour', 'o')
-						->innerJoin('GatotKacaErpHumanResourcesBundle:Employee', 'e', 'WITH', 'o.id = e.shift')
-						->where('e.id = :employee')
-						->setParameter('employee', $id)
-						->setMaxResults(1)
-						->getQuery()
-						->getOneOrNullResult();
+				->createQueryBuilder()
+				->select("
+					e.id,
+					TO_CHAR(o.time_in, 'HH24:MI:SS') AS timein,
+					TO_CHAR(o.time_out, 'HH24:MI:SS') AS timeout,
+					o.time_out - o.time_in AS jamkerja
+				")
+				->from('GatotKacaErpMainBundle:OfficeHour', 'o')
+				->innerJoin('GatotKacaErpHumanResourcesBundle:Employee', 'e', 'WITH', 'o.id = e.shift')
+				->where('e.id = :employee')
+				->setParameter('employee', $id)
+				->setMaxResults(1)
+				->getQuery()
+				->getOneOrNullResult();
 		}else{
 			if($date !== NULL){
 				$officehour	= $this->getEntityManager()
-							->createQueryBuilder()
-							->select("
-								e.id,
-								TO_CHAR(o.time_in, 'HH24:MI:SS') AS timein,
-								TO_CHAR(o.time_out, 'HH24:MI:SS') AS timeout,
-								o.time_out - o.time_in AS jamkerja
-							")
-							->from('GatotKacaErpMainBundle:EmployeeShiftment', 'es')
-							->innerJoin('GatotKacaErpMainBundle:OfficeHour', 'o', 'WITH', 'es.officehour = o.id')
-							->innerJoin('GatotKacaErpHumanResourcesBundle:Employee', 'e', 'WITH', 'es.employee = e.id')
-							->where('e.id = :employee AND es.shift_date = :date')
-							->setParameter('employee', $id)
-							->setParameter('date', $date)
-							->setMaxResults(1)
-							->getQuery()
-							->getOneOrNullResult();
+					->createQueryBuilder()
+					->select("
+						e.id,
+						TO_CHAR(o.time_in, 'HH24:MI:SS') AS timein,
+						TO_CHAR(o.time_out, 'HH24:MI:SS') AS timeout,
+						o.time_out - o.time_in AS jamkerja
+					")
+					->from('GatotKacaErpMainBundle:EmployeeShiftment', 'es')
+					->innerJoin('GatotKacaErpMainBundle:OfficeHour', 'o', 'WITH', 'es.officehour = o.id')
+					->innerJoin('GatotKacaErpHumanResourcesBundle:Employee', 'e', 'WITH', 'es.employee = e.id')
+					->where('e.id = :employee AND es.shift_date = :date')
+					->setParameter('employee', $id)
+					->setParameter('date', $date)
+					->setMaxResults(1)
+					->getQuery()
+					->getOneOrNullResult();
 			}
 		}
 		return $officehour;
 	}
-	
+
 	/**
 	 * Untuk menghitung loyalitas dan keterlambatan
-	 * 
+	 *
 	 * @param DateTime $timeIn
 	 * @param DateTime $timeOut
 	 * @param DateTime $absenIn

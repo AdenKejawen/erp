@@ -315,7 +315,7 @@ class EmployeeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		$profile= $model->getBy('username', $session->get('user_id'));
 		if($total = count($profile)){
 			$output['total']= $total;
@@ -343,29 +343,6 @@ class EmployeeController extends AdminController{
 		$employee	= $model->getByJobLevel($request->get('jobtitle_id'));
 		if(count($employee)){
 			$output['data']	= $employee;
-		}
-		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
-		return new JsonResponse($output);
-	}
-
-	/**
-	 * @Route("/human_resources/employee/shiftmentdetail", name="GatotKacaErpHumanResourcesBundle_Employee_getShiftmentById")
-	 */
-	public function getShiftmentByIdAction(){
-		$session	= $this->getHelper()->getSession();
-		$request	= $this->getRequest();
-		$security	= $this->getSecurity();
-		$output		= array('success' => FALSE);
-		//Don't have authorization
-		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'view')){
-			return new JsonResponse($output);
-		}
-		$output		= array('success' => TRUE);
-		//Get model
-		$model		= $this->getModelManager()->getEmployee();
-		$shiftment	= $model->getShiftmentBy('id',$request->get('shift_id'));
-		if(count($shiftment)){
-			$output['data']	= $shiftment;
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
@@ -436,7 +413,7 @@ class EmployeeController extends AdminController{
 		$output		= array('success' => TRUE);
 		//Get model
 		$model		= $this->getModelManager()->getEmployee();
-		$shiftment	= $model->getShiftmentBy('employee', $request->get('employee_id'));
+		$shiftment	= $model->getShiftmentBy('employee', $request->get('employee_id'), $request->get('from', NULL), $request->get('to', NULL));
 		if(count($shiftment)){
 			$output['data']	= $shiftment;
 		}
