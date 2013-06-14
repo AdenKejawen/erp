@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Controller/OfficeHourController.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\MainBundle\Controller;
@@ -19,17 +19,17 @@ use GatotKaca\Erp\MainBundle\Controller\AdminController;
 
 class OfficeHourController extends AdminController{
 	const MODULE	= 'panelofficehour';
-	
+
 	/**
 	 * @Route("/officehour", name="GatotKacaErpMainBundle_OfficeHour_index")
 	 **/
 	public function indexAction(){
 		return $this->goHome();
 	}
-	
+
 	/**
 	 * @Route("/officehour/save", name="GatotKacaErpMainBundle_OfficeHour_save")
-	 * 
+	 *
 	 * Save OfficeHour
 	 **/
 	public function saveAction(){
@@ -43,7 +43,7 @@ class OfficeHourController extends AdminController{
 		}
 		$input		= json_decode($request->get('officehour'));
 		//Get model
-		$model		= $this->modelManager()->getOfficeHour();
+		$model		= $this->getModelManager()->getOfficeHour();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Office Hour has been saved.';
@@ -53,7 +53,7 @@ class OfficeHourController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/officehour/getlist", name="GatotKacaErpMainBundle_OfficeHour_getList")
 	 **/
@@ -72,7 +72,7 @@ class OfficeHourController extends AdminController{
 		$limit	= abs($request->get('limit'));
 		$status		= $request->get('status', TRUE);
 		//Get model
-		$model		= $this->modelManager()->getOfficeHour();
+		$model		= $this->getModelManager()->getOfficeHour();
 		$model->setStatus(($status === 'all') ? NULL : $status);
 		$officeHour	= $model->getList($keyword, $start, $limit);
 		if($total	= count($officeHour)){
@@ -85,7 +85,7 @@ class OfficeHourController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/officehour/getbyid", name="GatotKacaErpMainBundle_OfficeHour_getById")
 	 */
@@ -100,7 +100,7 @@ class OfficeHourController extends AdminController{
 		}
 		$output		= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getOfficeHour();
+		$model		= $this->getModelManager()->getOfficeHour();
 		$officeHour	= $model->getById($request->get('officehour_id'));
 		if(count($officeHour)){
 			$output['data']	= $officeHour;
@@ -119,10 +119,10 @@ class OfficeHourController extends AdminController{
 		$output	= array('success' => FALSE, 'msg' => 'Authorization failed.');
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), OfficeHourController::MODULE, 'delete')){
-			return new JsonResponse($output);	
+			return new JsonResponse($output);
 		}
 		//Get model
-		$model		= $this->modelManager()->getOfficeHour();
+		$model		= $this->getModelManager()->getOfficeHour();
 		if($success	= $model->delete($request->get('id', ''))){
 			$output['success']	= TRUE;
 			$output['msg']	= 'OfficeHour has been delete.';

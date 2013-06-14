@@ -47,9 +47,9 @@ class AttendanceController extends AdminController{
 	 * Model Helper
 	 **/
 	private function modelHelper($employeeId, $from, $to){
-		$model		= $this->modelManager()->getAttendance();
+		$model		= $this->getModelManager()->getAttendance();
 		$attendance	= $model->getBy('employee', $employeeId, $from, $to);
-		$employee	= $this->modelManager()->getEmployee()->getBy('id', $employeeId);
+		$employee	= $this->getModelManager()->getEmployee()->getBy('id', $employeeId);
 		$this->getSecurity()->logging($this->getRequest()->getClientIp(), $this->getHelper()->getSession()->get('user_id'), $this->getRequest()->get('_route'), $model->getAction(), $model->getModelLog());
 		return array(
 			'attendance'	=> $attendance,
@@ -82,7 +82,7 @@ class AttendanceController extends AdminController{
 		}
 		$input	= json_decode($request->get('attendance'));
 		//Get model
-		$model		= $this->modelManager()->getAttendance();
+		$model		= $this->getModelManager()->getAttendance();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Attendance has been saved.';
@@ -113,8 +113,8 @@ class AttendanceController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getAttendance();
-		$attendance	= $model->getBy('employee', $request->get('employee_id', $this->modelManager()->getEmployee()->getBy('username', $session->get('user_id'))), $request->get('from', NULL), $request->get('to', NULL));
+		$model		= $this->getModelManager()->getAttendance();
+		$attendance	= $model->getBy('employee', $request->get('employee_id', $this->getModelManager()->getEmployee()->getBy('username', $session->get('user_id'))), $request->get('from', NULL), $request->get('to', NULL));
 		if($total	= count($attendance)){
 			$output['total']	= $total;
 			$output['data']		= $attendance;
@@ -149,7 +149,7 @@ class AttendanceController extends AdminController{
 		$to		= $request->get('to', '');
 		$absence= $request->get('absence', 'true');
 		//Get model
-		$model		= $this->modelManager()->getAttendance();
+		$model		= $this->getModelManager()->getAttendance();
 		$attendance	= $model->getByDate($from, $to, $absence);
 		if($total	= count($attendance)){
 			$output['total']	= $total;
@@ -181,7 +181,7 @@ class AttendanceController extends AdminController{
 			return new JsonResponse($output);
 		}
 		$output	= array('success' => TRUE);
-		$eSess	= $this->modelManager()->getEmployee()->getBy('username', $session->get('user_id'));
+		$eSess	= $this->getModelManager()->getEmployee()->getBy('username', $session->get('user_id'));
 		$id		= $request->get('employee_id', $eSess[0]['employee_id']);
 		$from	= new \DateTime($request->get('from', ''));
 		$to		= new \DateTime($request->get('to', ''));
@@ -205,7 +205,7 @@ class AttendanceController extends AdminController{
 		if(!($security->isAllowed($session->get('group_id'), AttendanceController::MODULE, 'view') || $security->isAllowed($session->get('group_id'), AttendanceController::PERSONAL, 'view'))){
 			return new JsonResponse($output);
 		}
-		$eSess	= $this->modelManager()->getEmployee()->getBy('username', $session->get('user_id'));
+		$eSess	= $this->getModelManager()->getEmployee()->getBy('username', $session->get('user_id'));
 		$id		= $id === NULL ? $eSess[0]['employee_id'] : $id;
 		$from	= new \DateTime($from);
 		$to		= new \DateTime($to);
@@ -235,7 +235,7 @@ class AttendanceController extends AdminController{
 		if(!($security->isAllowed($session->get('group_id'), AttendanceController::MODULE, 'view') || $security->isAllowed($session->get('group_id'), AttendanceController::PERSONAL, 'view'))){
 			return new JsonResponse($output);
 		}
-		$eSess	= $this->modelManager()->getEmployee()->getBy('username', $session->get('user_id'));
+		$eSess	= $this->getModelManager()->getEmployee()->getBy('username', $session->get('user_id'));
 		$id		= $id === NULL ? $eSess[0]['employee_id'] : $id;
 		$from	= new \DateTime($from);
 		$to		= new \DateTime($to);
@@ -302,7 +302,7 @@ class AttendanceController extends AdminController{
 		if(!($security->isAllowed($session->get('group_id'), AttendanceController::MODULE, 'view') || $security->isAllowed($session->get('group_id'), AttendanceController::PERSONAL, 'view'))){
 			return new JsonResponse($output);
 		}
-		$eSess	= $this->modelManager()->getEmployee()->getBy('username', $session->get('user_id'));
+		$eSess	= $this->getModelManager()->getEmployee()->getBy('username', $session->get('user_id'));
 		$id		= $id === NULL ? $eSess[0]['employee_id'] : $id;
 		$from	= new \DateTime($from);
 		$to		= new \DateTime($to);
@@ -420,8 +420,13 @@ class AttendanceController extends AdminController{
 	        $data[]	= $file_data;
 	    }
 		//Fetch data
+<<<<<<< HEAD
 		$model		= $this->modelManager()->getAttendance();
 		$output['status']	= $model->saveFromMechine($data, $date);
+=======
+		$model		= $this->getModelManager()->getAttendance();
+		$output['status']	= $model->saveFromMechine($data, $date);;
+>>>>>>> stable
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new Response(json_encode($output));
 	}
@@ -449,7 +454,7 @@ class AttendanceController extends AdminController{
 		$start	= abs($request->get('start'));
 		$limit	= abs($request->get('limit'));
 		//Get model
-		$model		= $this->modelManager()->getAttendance();
+		$model		= $this->getModelManager()->getAttendance();
 		$aData	= $model->getFromMechine($start, $limit);
 		if($total	= count($aData)){
 			$output['total']	= $model->countTotalFromMechine();
@@ -481,7 +486,7 @@ class AttendanceController extends AdminController{
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model		= $this->modelManager()->getAttendance();
+		$model		= $this->getModelManager()->getAttendance();
 		if($success	= $model->procces()){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Attendance has been proccessed.';
@@ -512,7 +517,7 @@ class AttendanceController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getAttendance();
+		$model		= $this->getModelManager()->getAttendance();
 		$aData	= $model->getBy('id', $request->get('att_id'));
 		if($total	= count($aData)){
 			$output['total']	= $total;

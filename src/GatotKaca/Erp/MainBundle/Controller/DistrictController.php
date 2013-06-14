@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Controller/DistrictController.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\MainBundle\Controller;
@@ -22,7 +22,7 @@ class DistrictController extends AdminController{
 	public function indexAction(){
 		return $this->goHome();
 	}
-	
+
 	/**
 	 * @Route("/district/getbyid", name="GatotKacaErpMainBundle_District_getById")
 	 */
@@ -37,7 +37,7 @@ class DistrictController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getDistrict();
+		$model		= $this->getModelManager()->getDistrict();
 		$district	= $model->getBy('id', $request->get('district_id'));
 		if($total	= count($district)){
 			$output['data']		= $district;
@@ -46,7 +46,7 @@ class DistrictController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/district/getbyprovince", name="GatotKacaErpMainBundle_District_getByProvince")
 	 */
@@ -61,7 +61,7 @@ class DistrictController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getDistrict();
+		$model		= $this->getModelManager()->getDistrict();
 		$district	= $model->getBy('province', $request->get('province_id'));
 		if($total	= count($district)){
 			$output['data']		= $district;
@@ -81,7 +81,7 @@ class DistrictController extends AdminController{
 		$output	= array();
 		$keyword	= strtoupper($request->get('query', ''));
 		//Get model
-		$model		= $this->modelManager()->getDistrict();
+		$model		= $this->getModelManager()->getDistrict();
 		$district	= $model->getBy('name', $keyword, 'like');
 		if($total	= count($district)){
 			$output['data']		= $district;
@@ -108,7 +108,7 @@ class DistrictController extends AdminController{
 		$start	= abs($request->get('start'));
 		$limit	= abs($request->get('limit'));
 		//Get model
-		$model		= $this->modelManager()->getDistrict();
+		$model		= $this->getModelManager()->getDistrict();
 		$district	= $model->getList($keyword, $start, $limit);
 		if($total	= count($district)){
 			$output['total']	= $model->countTotal($keyword, $limit);
@@ -135,7 +135,7 @@ class DistrictController extends AdminController{
 		}
 		$input		= json_decode($request->get('district', ''));
 		//Get model
-		$model		= $this->modelManager()->getDistrict();
+		$model		= $this->getModelManager()->getDistrict();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'District has been saved.';
@@ -159,7 +159,7 @@ class DistrictController extends AdminController{
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model	= $this->modelManager()->getDistrict();
+		$model	= $this->getModelManager()->getDistrict();
 		if($success	= $model->delete($request->get('id', ''))){
 			$output['success']	= TRUE;
 			$output['msg']	= 'District has been delete.';

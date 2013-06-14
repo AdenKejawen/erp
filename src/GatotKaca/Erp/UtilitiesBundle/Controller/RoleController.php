@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/UtilitiesBundle/Controller/RoleController.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\UtilitiesBundle\Controller;
@@ -17,17 +17,17 @@ use GatotKaca\Erp\MainBundle\Controller\AdminController;
 class RoleController extends AdminController{
 	const MODULE	= 'panelrole';
 	const GROUP		= 'panelgroup';
-	
+
 	/**
 	 * @Route("/utilities/role", name="GatotKacaErpUtilitiesBundle_Role_index")
 	 **/
 	public function indexAction(){
 		return $this->goHome();
 	}
-	
+
 	/**
 	 * @Route("/utilities/role/getlist", name="GatotKacaErpUtilitiesBundle_Role_getList")
-	 * 
+	 *
 	 * Get Role List by Group
 	 **/
 	public function getListAction(){
@@ -42,7 +42,7 @@ class RoleController extends AdminController{
 		$output	= array('success' => TRUE);
 		//Get model
 		$status	= $request->get('status', TRUE);
-		$model	= $this->modelManager()->getRole();
+		$model	= $this->getModelManager()->getRole();
 		$model->setStatus(($status === 'all') ? NULL : $status);
 		$role	= $model->getListByGroup($request->get('group_id', ''));
 		if($total	= count($role)){
@@ -55,7 +55,7 @@ class RoleController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/utilities/role/getgroup", name="GatotKacaErpUtilitiesBundle_Role_getGroup")
 	 *
@@ -76,7 +76,7 @@ class RoleController extends AdminController{
 		$limit		= abs($request->get('limit'));
 		$status		= $request->get('status', TRUE);
 		//Get model
-		$model	= $this->modelManager()->getRole();
+		$model	= $this->getModelManager()->getRole();
 		$model->setStatus(($status === 'all') ? NULL : $status);
 		$user	= $model->getGroupList($keyword, $start, $limit);
 		if($total	= count($user)){
@@ -89,7 +89,7 @@ class RoleController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/utilities/role/getgroupbyid", name="GatotKacaErpUtilitiesBundle_Role_getGroupById")
 	 */
@@ -104,7 +104,7 @@ class RoleController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model	= $this->modelManager()->getRole();
+		$model	= $this->getModelManager()->getRole();
 		$role	= $model->getGroup($request->get('group_id'));
 		if(count($role)){
 			$output['data']	= $role;
@@ -112,7 +112,7 @@ class RoleController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/utilities/role/getbyid", name="GatotKacaErpUtilitiesBundle_Role_getById")
 	 */
@@ -127,7 +127,7 @@ class RoleController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model	= $this->modelManager()->getRole();
+		$model	= $this->getModelManager()->getRole();
 		$role	= $model->getById($request->get('role_id'));
 		if(count($role)){
 			$output['data']	= $role;
@@ -135,7 +135,7 @@ class RoleController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/utilities/role/update", name="GatotKacaErpUtilitiesBundle_Role_update")
 	 */
@@ -149,7 +149,7 @@ class RoleController extends AdminController{
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model	= $this->modelManager()->getRole();
+		$model	= $this->getModelManager()->getRole();
 		$input	= json_decode($request->get('role'));
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
@@ -160,7 +160,7 @@ class RoleController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/utilities/role/savegroup", name="GatotKacaErpUtilitiesBundle_Role_saveGroup")
 	 */
@@ -174,7 +174,7 @@ class RoleController extends AdminController{
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model	= $this->modelManager()->getRole();
+		$model	= $this->getModelManager()->getRole();
 		$input	= json_decode($request->get('group'));
 		if($success	= $model->saveGroup($input)){
 			$output['success']	= TRUE;

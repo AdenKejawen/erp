@@ -64,7 +64,7 @@ class BaseController extends Controller{
 	 *
 	 * @return mixed modelManager
 	 **/
-	public function modelManager(){
+	public function getModelManager(){
 		if(!$this->modelManager){
 			$this->modelManager	= $this->get('kejawen.model.manager');
 		}
@@ -120,6 +120,7 @@ class BaseController extends Controller{
 		return $this->excel;
 	}
 
+<<<<<<< HEAD
 	/**
 	 * Untuk mendapatkan object reader
 	 *
@@ -132,6 +133,8 @@ class BaseController extends Controller{
 		return $this->reader;
 	}
 
+=======
+>>>>>>> stable
 	/**
 	 * Untuk mengenerate excel
 	 *

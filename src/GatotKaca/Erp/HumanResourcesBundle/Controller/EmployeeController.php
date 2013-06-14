@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/HumanResources/Controller/EmployeeController.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\HumanResourcesBundle\Controller;
@@ -22,7 +22,7 @@ class EmployeeController extends AdminController{
 	const SHIFTMENT	= 'panelworkshift';
 	const PERSONAL	= 'personalprofile';
 	const IS_XML_HTTP_REQUEST	= FALSE;
-	
+
 	/**
 	 * Get List Employee Helper
 	 *
@@ -36,7 +36,7 @@ class EmployeeController extends AdminController{
 	 **/
 	private function getList($keyword, $start, $limit, $status = TRUE, $isfixed = TRUE){
 		$output	= array();
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		$model->setStatus(($status === 'all') ? NULL : $status);
 		$employee	= $model->getList($keyword, $start, $limit, $isfixed);
 		if($total	= count($employee)){
@@ -48,14 +48,14 @@ class EmployeeController extends AdminController{
 		}
 		return $output;
 	}
-	
+
 	/**
 	 * @Route("/human_resources/employee", name="GatotKacaErpHumanResourcesBundle_Employee_index")
 	 */
 	public function indexAction(){
 		return $this->goHome();
 	}
-	
+
 	/**
 	 * @Route("/human_resources/employee/save", name="GatotKacaErpHumanResourcesBundle_Employee_save")
 	 */
@@ -92,7 +92,7 @@ class EmployeeController extends AdminController{
 			$image->open($source)->resize(new Box(250, 275))->save($source);
 		}
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->save($input, $name)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Employee has been saved.';
@@ -102,7 +102,7 @@ class EmployeeController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new Response(json_encode($output));
 	}
-	
+
 	/**
 	 * @Route("/human_resources/employee/saveshiftment", name="GatotKacaErpHumanResourcesBundle_Employee_saveShiftment")
 	 */
@@ -117,7 +117,7 @@ class EmployeeController extends AdminController{
 		}
 		$input	= json_decode($request->get('shiftment'));
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->saveShiftment($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Shiftment has been saved.';
@@ -127,7 +127,7 @@ class EmployeeController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/employee/saveeducation", name="GatotKacaErpHumanResourcesBundle_Employee_saveEducation")
 	 */
@@ -142,7 +142,7 @@ class EmployeeController extends AdminController{
 		}
 		$input	= json_decode($request->get('education'));
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->saveEducation($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Education has been saved.';
@@ -152,7 +152,7 @@ class EmployeeController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/employee/savefamily", name="GatotKacaErpHumanResourcesBundle_Employee_saveFamily")
 	 */
@@ -167,7 +167,7 @@ class EmployeeController extends AdminController{
 		}
 		$input	= json_decode($request->get('family'));
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->saveFamily($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Family has been saved.';
@@ -192,7 +192,7 @@ class EmployeeController extends AdminController{
 		}
 		$input	= json_decode($request->get('experience'));
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->saveExperience($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Experience has been saved.';
@@ -217,7 +217,7 @@ class EmployeeController extends AdminController{
 		}
 		$input	= json_decode($request->get('training'));
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->saveTraining($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Training has been saved.';
@@ -242,7 +242,7 @@ class EmployeeController extends AdminController{
 		}
 		$input	= json_decode($request->get('language'));
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->saveLanguage($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Language has been saved.';
@@ -267,7 +267,7 @@ class EmployeeController extends AdminController{
 		}
 		$input	= json_decode($request->get('organitation'));
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->saveOrganitation($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Organitation has been saved.';
@@ -277,7 +277,7 @@ class EmployeeController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/employee/getbyid", name="GatotKacaErpHumanResourcesBundle_Employee_getById")
 	 */
@@ -292,7 +292,7 @@ class EmployeeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		$employee	= $model->getBy('id', $request->get('employee_id'));
 		if(count($employee)){
 			$output['data']	= $employee;
@@ -339,7 +339,7 @@ class EmployeeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		$employee	= $model->getByJobLevel($request->get('jobtitle_id'));
 		if(count($employee)){
 			$output['data']	= $employee;
@@ -347,7 +347,7 @@ class EmployeeController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/employee/shiftmentdetail", name="GatotKacaErpHumanResourcesBundle_Employee_getShiftmentById")
 	 */
@@ -362,7 +362,7 @@ class EmployeeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		$shiftment	= $model->getShiftmentBy('id',$request->get('shift_id'));
 		if(count($shiftment)){
 			$output['data']	= $shiftment;
@@ -370,7 +370,7 @@ class EmployeeController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/employee/getlist", name="GatotKacaErpHumanResourcesBundle_Employee_getList")
 	 */
@@ -389,13 +389,13 @@ class EmployeeController extends AdminController{
 		$limit	= abs($request->get('limit'));
 		$status	= $request->get('status', TRUE);
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		$data	= $this->getList($keyword, $start, $limit, $status);
 		$output	= array_merge($output, $data);
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/employee/getshiftable", name="GatotKacaErpHumanResourcesBundle_Employee_getShiftable")
 	 */
@@ -414,13 +414,13 @@ class EmployeeController extends AdminController{
 		$limit	= abs($request->get('limit'));
 		$status	= $request->get('status', TRUE);
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		$data	= $this->getList($keyword, $start, $limit, $status, FALSE);
 		$output	= array_merge($output, $data);
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/employee/getshiftment", name="GatotKacaErpHumanResourcesBundle_Employee_getShifment")
 	 */
@@ -435,7 +435,7 @@ class EmployeeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		$shiftment	= $model->getShiftmentBy('employee', $request->get('employee_id'));
 		if(count($shiftment)){
 			$output['data']	= $shiftment;
@@ -443,7 +443,7 @@ class EmployeeController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/employee/geteducation", name="GatotKacaErpHumanResourcesBundle_Employee_getEducation")
 	 */
@@ -458,7 +458,7 @@ class EmployeeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		$education	= $model->getEducationBy('employee', $request->get('employee_id'));
 		if(count($education)){
 			$output['data']	= $education;
@@ -466,7 +466,7 @@ class EmployeeController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/employee/getfamily", name="GatotKacaErpHumanResourcesBundle_Employee_getFamily")
 	 */
@@ -481,7 +481,7 @@ class EmployeeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		$family	= $model->getFamilyBy('employee', $request->get('employee_id'));
 		if(count($family)){
 			$output['data']	= $family;
@@ -504,7 +504,7 @@ class EmployeeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		$experience	= $model->getExperienceBy('employee', $request->get('employee_id'));
 		if(count($experience)){
 			$output['data']	= $experience;
@@ -527,7 +527,7 @@ class EmployeeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		$training	= $model->getTrainingBy('employee', $request->get('employee_id'));
 		if(count($training)){
 			$output['data']	= $training;
@@ -550,7 +550,7 @@ class EmployeeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getEmployee();
+		$model		= $this->getModelManager()->getEmployee();
 		$language	= $model->getLanguageBy('employee', $request->get('employee_id'));
 		if(count($language)){
 			$output['data']	= $language;
@@ -573,7 +573,7 @@ class EmployeeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model			= $this->modelManager()->getEmployee();
+		$model			= $this->getModelManager()->getEmployee();
 		$organitation	= $model->getOrganitationBy('employee', $request->get('employee_id'));
 		if(count($organitation)){
 			$output['data']	= $organitation;
@@ -581,7 +581,7 @@ class EmployeeController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/employee/geteducationbyid", name="GatotKacaErpHumanResourcesBundle_Employee_getEducationById")
 	 */
@@ -596,7 +596,7 @@ class EmployeeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		$shiftment	= $model->getEducationBy('id', $request->get('education_id'));
 		if(count($shiftment)){
 			$output['data']	= $shiftment;
@@ -604,7 +604,7 @@ class EmployeeController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/employee/getfamilybyid", name="GatotKacaErpHumanResourcesBundle_Employee_getFamilyById")
 	 */
@@ -619,7 +619,7 @@ class EmployeeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		$family	= $model->getFamilyBy('id', $request->get('family_id'));
 		if(count($family)){
 			$output['data']	= $family;
@@ -642,7 +642,7 @@ class EmployeeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		$experience	= $model->getExperienceBy('id', $request->get('experience_id'));
 		if(count($experience)){
 			$output['data']	= $experience;
@@ -665,7 +665,7 @@ class EmployeeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		$training	= $model->getTrainingBy('id', $request->get('training_id'));
 		if(count($training)){
 			$output['data']	= $training;
@@ -688,7 +688,7 @@ class EmployeeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		$language	= $model->getLanguageBy('id', $request->get('language_id'));
 		if(count($language)){
 			$output['data']	= $language;
@@ -711,7 +711,7 @@ class EmployeeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		$organitation	= $model->getOrganitationBy('id', $request->get('organitation_id'));
 		if(count($organitation)){
 			$output['data']	= $organitation;
@@ -733,7 +733,7 @@ class EmployeeController extends AdminController{
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->deleteExperience($request->get('id', ''))){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Experience has been delete.';
@@ -757,7 +757,7 @@ class EmployeeController extends AdminController{
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->deleteFamily($request->get('id', ''))){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Family has been delete.';
@@ -781,7 +781,7 @@ class EmployeeController extends AdminController{
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->deleteLanguage($request->get('id', ''))){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Language has been delete.';
@@ -805,7 +805,7 @@ class EmployeeController extends AdminController{
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->deleteOrganitation($request->get('id', ''))){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Organitation has been delete.';
@@ -829,7 +829,7 @@ class EmployeeController extends AdminController{
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->deleteEducation($request->get('id', ''))){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Education has been delete.';
@@ -853,7 +853,7 @@ class EmployeeController extends AdminController{
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model	= $this->modelManager()->getEmployee();
+		$model	= $this->getModelManager()->getEmployee();
 		if($success	= $model->deleteTraining($request->get('id', ''))){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Training has been delete.';

@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Controller/LanguageController.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\MainBundle\Controller;
@@ -22,7 +22,7 @@ class LanguageController extends AdminController{
 	public function indexAction(){
 		return $this->goHome();
 	}
-	
+
 	/**
 	 * @Route("/language/getbyid", name="GatotKacaErpMainBundle_Language_getById")
 	 */
@@ -37,7 +37,7 @@ class LanguageController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model	= $this->modelManager()->getLanguage();
+		$model	= $this->getModelManager()->getLanguage();
 		$language	= $model->getById($request->get('language_id'));
 		if(count($language)){
 			$output['data']	= $language;
@@ -59,7 +59,7 @@ class LanguageController extends AdminController{
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model	= $this->modelManager()->getLanguage();
+		$model	= $this->getModelManager()->getLanguage();
 		if($success	= $model->delete($request->get('id', ''))){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Language has been delete.';
@@ -69,7 +69,7 @@ class LanguageController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/language/getlist", name="GatotKacaErpMainBundle_Language_getList")
 	 */
@@ -88,7 +88,7 @@ class LanguageController extends AdminController{
 		$limit	= abs($request->get('limit'));
 		$status	= $request->get('status', TRUE);
 		//Get model
-		$model	= $this->modelManager()->getLanguage();
+		$model	= $this->getModelManager()->getLanguage();
 		$model->setStatus(($status === 'all') ? NULL : $status);
 		$language	= $model->getList($keyword, $start, $limit);
 		if($total	= count($language)){
@@ -101,7 +101,7 @@ class LanguageController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/language/save", name="GatotKacaErpMainBundle_Language_save")
 	 */
@@ -116,7 +116,7 @@ class LanguageController extends AdminController{
 		}
 		$input		= json_decode($request->get('language', ''));
 		//Get model
-		$model	= $this->modelManager()->getLanguage();
+		$model	= $this->getModelManager()->getLanguage();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Language has been saved.';
@@ -124,7 +124,7 @@ class LanguageController extends AdminController{
 			$output['msg']	= $model->getMessage().'. Language has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
-	
+
 		return new JsonResponse($output);
 	}
 }
