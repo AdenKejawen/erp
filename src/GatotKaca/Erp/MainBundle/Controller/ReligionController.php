@@ -90,7 +90,6 @@ class ReligionController extends AdminController{
 		}
 		$input		= json_decode($request->get('religion', ''));
 		//Get model
-<<<<<<< HEAD
 		$model		= $this->modelManager()->getReligion();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
@@ -99,7 +98,7 @@ class ReligionController extends AdminController{
 			$output['msg']	= $model->getMessage().'. Religion has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
-	
+
 		return new JsonResponse($output);
 	}
 
@@ -110,24 +109,18 @@ class ReligionController extends AdminController{
 		$session	= $this->getHelper()->getSession();
 		$request	= $this->getRequest();
 		$security	= $this->getSecurity();
-		$output	= array('success' => FALSE, 'msg' => 'Authorization failed.');
+		$output		= array('success' => FALSE, 'msg' => 'Authorization failed.');
 		//Don't have authorization
 		if(!$security->isAllowed($session->get('group_id'), ReligionController::MODULE, 'delete')){
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model	= $this->modelManager()->getReligion();
+		$model		= $this->getModelManager()->getReligion();
 		if($success	= $model->delete($request->get('id', ''))){
 			$output['success']	= TRUE;
-			$output['msg']	= 'Job Level has been delete.';
+			$output['msg']	= 'Religion has been delete.';
 		}else{
 			$output['msg']	= "Operation failed. ".$model->getMessage();
-=======
-		$model		= $this->getModelManager()->getReligion();
-		$religion	= $model->getList($request->get('country_id'));
-		if($total	= count($religion)){
-			$output	= $religion;
->>>>>>> stable
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);

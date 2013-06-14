@@ -173,15 +173,9 @@ class OverTimeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-<<<<<<< HEAD
-		$model	= $this->modelManager()->getOverTime();
+		$model	= $this->getModelManager()->getOverTime();
 		$data	= $model->getBy('id', $request->get('ot_id'), NULL, NULL, array(0, 1, 2));
-		if($total	= count($data)){
-=======
-		$model		= $this->getModelManager()->getOverTime();
-		$aData	= $model->getBy('id', $request->get('ot_id'), NULL, NULL, array(1));
 		if($total	= count($aData)){
->>>>>>> stable
 			$output['total']	= $total;
 			$output['data']	= $data;
 		}else{

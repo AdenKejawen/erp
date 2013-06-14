@@ -420,13 +420,8 @@ class AttendanceController extends AdminController{
 	        $data[]	= $file_data;
 	    }
 		//Fetch data
-<<<<<<< HEAD
-		$model		= $this->modelManager()->getAttendance();
-		$output['status']	= $model->saveFromMechine($data, $date);
-=======
 		$model		= $this->getModelManager()->getAttendance();
 		$output['status']	= $model->saveFromMechine($data, $date);;
->>>>>>> stable
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new Response(json_encode($output));
 	}
