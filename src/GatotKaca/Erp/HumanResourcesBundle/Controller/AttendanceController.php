@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/HumanResourcesBundle/Controller/AttendanceController.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\HumanResourcesBundle\Controller;
@@ -24,7 +24,7 @@ class AttendanceController extends AdminController{
 	const BYDATE	= 'panelattendancebydate';
 	const IS_POST_REQUEST		= FALSE;
 	const IS_XML_HTTP_REQUEST	= FALSE;
-	
+
 	/**
 	 * Export Helper
 	 **/
@@ -41,28 +41,28 @@ class AttendanceController extends AdminController{
 			)
 		);
 	}
-	
+
 	/**
 	 * Model Helper
 	 **/
 	private function modelHelper($employeeId, $from, $to){
-		$model		= $this->modelManager()->getAttendance();
+		$model		= $this->getModelManager()->getAttendance();
 		$attendance	= $model->getBy('employee', $employeeId, $from, $to);
-		$employee	= $this->modelManager()->getEmployee()->getBy('id', $employeeId);
+		$employee	= $this->getModelManager()->getEmployee()->getBy('id', $employeeId);
 		$this->getSecurity()->logging($this->getRequest()->getClientIp(), $this->getHelper()->getSession()->get('user_id'), $this->getRequest()->get('_route'), $model->getAction(), $model->getModelLog());
 		return array(
 			'attendance'	=> $attendance,
 			'employee'		=> $employee
 		);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/attendance", name="GatotKacaErpHumanResourcesBundle_Attendance_index")
 	 **/
 	public function indexAction(){
 		return $this->goHome();
 	}
-	
+
 	/**
 	 * @Route("/human_resources/attendance/save", name="GatotKacaErpHumanResourcesBundle_Attendance_save")
 	 */
@@ -81,7 +81,7 @@ class AttendanceController extends AdminController{
 		}
 		$input	= json_decode($request->get('attendance'));
 		//Get model
-		$model		= $this->modelManager()->getAttendance();
+		$model		= $this->getModelManager()->getAttendance();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Attendance has been saved.';
@@ -91,10 +91,10 @@ class AttendanceController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/attendance/getbyemployee", name="GatotKacaErpHumanResourcesBundle_Attendance_getByEmployee")
-	 * 
+	 *
 	 * Get Attendance List by Employee
 	 **/
 	public function getByEmployeeAction(){
@@ -112,8 +112,8 @@ class AttendanceController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getAttendance();
-		$attendance	= $model->getBy('employee', $request->get('employee_id', $this->modelManager()->getEmployee()->getBy('username', $session->get('user_id'))), $request->get('from', NULL), $request->get('to', NULL));
+		$model		= $this->getModelManager()->getAttendance();
+		$attendance	= $model->getBy('employee', $request->get('employee_id', $this->getModelManager()->getEmployee()->getBy('username', $session->get('user_id'))), $request->get('from', NULL), $request->get('to', NULL));
 		if($total	= count($attendance)){
 			$output['total']	= $total;
 			$output['data']		= $attendance;
@@ -127,7 +127,7 @@ class AttendanceController extends AdminController{
 
 	/**
 	 * @Route("/human_resources/attendance/getbydate", name="GatotKacaErpHumanResourcesBundle_Attendance_getByDate")
-	 * 
+	 *
 	 * Get Today Attendance
 	 **/
 	public function getByDateAction(){
@@ -148,7 +148,7 @@ class AttendanceController extends AdminController{
 		$to		= $request->get('to', '');
 		$absence= $request->get('absence', 'true');
 		//Get model
-		$model		= $this->modelManager()->getAttendance();
+		$model		= $this->getModelManager()->getAttendance();
 		$attendance	= $model->getByDate($from, $to, $absence);
 		if($total	= count($attendance)){
 			$output['total']	= $total;
@@ -160,7 +160,7 @@ class AttendanceController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/attendance/preview", name="GatotKacaErpHumanResourcesBundle_Attendance_preview")
 	 *
@@ -180,14 +180,14 @@ class AttendanceController extends AdminController{
 			return new JsonResponse($output);
 		}
 		$output	= array('success' => TRUE);
-		$eSess	= $this->modelManager()->getEmployee()->getBy('username', $session->get('user_id'));
+		$eSess	= $this->getModelManager()->getEmployee()->getBy('username', $session->get('user_id'));
 		$id		= $request->get('employee_id', $eSess[0]['employee_id']);
 		$from	= new \DateTime($request->get('from', ''));
 		$to		= new \DateTime($request->get('to', ''));
 		$output['data']	= $this->exportHelper($id, $from->format('d M Y'), $to->format('d M Y'));
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/attendance/export/jpg/{from}/{to}/{id}", name="GatotKacaErpHumanResourcesBundle_Attendance_exportJpg", defaults={"id" = null})
 	 *
@@ -204,7 +204,7 @@ class AttendanceController extends AdminController{
 		if(!$security->isAllowed($session->get('group_id'), AttendanceController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
-		$eSess	= $this->modelManager()->getEmployee()->getBy('username', $session->get('user_id'));
+		$eSess	= $this->getModelManager()->getEmployee()->getBy('username', $session->get('user_id'));
 		$id		= $id === NULL ? $eSess[0]['employee_id'] : $id;
 		$from	= new \DateTime($from);
 		$to		= new \DateTime($to);
@@ -234,7 +234,7 @@ class AttendanceController extends AdminController{
 		if(!$security->isAllowed($session->get('group_id'), AttendanceController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
-		$eSess	= $this->modelManager()->getEmployee()->getBy('username', $session->get('user_id'));
+		$eSess	= $this->getModelManager()->getEmployee()->getBy('username', $session->get('user_id'));
 		$id		= $id === NULL ? $eSess[0]['employee_id'] : $id;
 		$from	= new \DateTime($from);
 		$to		= new \DateTime($to);
@@ -284,7 +284,7 @@ class AttendanceController extends AdminController{
     	}
     	$pdf->Output($id.$from->format('_d_m_Y').$to->format('_d_m_Y').'.pdf', 'D');
 	}
-	
+
 	/**
 	 * @Route("/human_resources/attendance/export/excel/{from}/{to}/{id}", name="GatotKacaErpHumanResourcesBundle_Attendance_exportExcel", defaults={"id" = null})
 	 *
@@ -301,7 +301,7 @@ class AttendanceController extends AdminController{
 		if(!$security->isAllowed($session->get('group_id'), AttendanceController::MODULE, 'view')){
 			return new JsonResponse($output);
 		}
-		$eSess	= $this->modelManager()->getEmployee()->getBy('username', $session->get('user_id'));
+		$eSess	= $this->getModelManager()->getEmployee()->getBy('username', $session->get('user_id'));
 		$id		= $id === NULL ? $eSess[0]['employee_id'] : $id;
 		$from	= new \DateTime($from);
 		$to		= new \DateTime($to);
@@ -364,7 +364,7 @@ class AttendanceController extends AdminController{
 		$response->sendHeaders();
 		$this->generateExcel($excel, 'Excel5');
 	}
-	
+
 	/**
 	 * @Route("/human_resources/attendance/upload", name="GatotKacaErpHumanResourcesBundle_Attendance_upload")
 	 *
@@ -402,12 +402,12 @@ class AttendanceController extends AdminController{
 		$reader		= new CsvReader("{$path}/{$name}");
 		$data		= $reader->getData();
 		//Fetch data
-		$model		= $this->modelManager()->getAttendance();
+		$model		= $this->getModelManager()->getAttendance();
 		$output['status']	= $model->saveFromMechine($data, $date);;
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new Response(json_encode($output));
 	}
-	
+
 	/**
 	 * @Route("/human_resources/attendance/getunprocces", name="GatotKacaErpHumanResourcesBundle_Attendance_getUnProccess")
 	 *
@@ -431,7 +431,7 @@ class AttendanceController extends AdminController{
 		$start	= abs($request->get('start'));
 		$limit	= abs($request->get('limit'));
 		//Get model
-		$model		= $this->modelManager()->getAttendance();
+		$model		= $this->getModelManager()->getAttendance();
 		$aData	= $model->getFromMechine($start, $limit);
 		if($total	= count($aData)){
 			$output['total']	= $model->countTotalFromMechine();
@@ -443,7 +443,7 @@ class AttendanceController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/attendance/procces", name="GatotKacaErpHumanResourcesBundle_Attendance_proccess")
 	 *
@@ -463,7 +463,7 @@ class AttendanceController extends AdminController{
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model		= $this->modelManager()->getAttendance();
+		$model		= $this->getModelManager()->getAttendance();
 		if($success	= $model->procces()){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Attendance has been proccessed.';
@@ -473,7 +473,7 @@ class AttendanceController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/attendance/viewdetail", name="GatotKacaErpHumanResourcesBundle_Attendance_getDetail")
 	 *
@@ -494,7 +494,7 @@ class AttendanceController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getAttendance();
+		$model		= $this->getModelManager()->getAttendance();
 		$aData	= $model->getBy('id', $request->get('att_id'));
 		if($total	= count($aData)){
 			$output['total']	= $total;
@@ -503,7 +503,7 @@ class AttendanceController extends AdminController{
 			$output['total']	= $total;
 			$output['data']	= array();
 		}
-		
+
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}

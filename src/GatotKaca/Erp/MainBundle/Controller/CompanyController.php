@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Controller/CompanyController.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\MainBundle\Controller;
@@ -23,7 +23,7 @@ class CompanyController extends AdminController{
 	public function indexAction(){
 		return $this->goHome();
 	}
-	
+
 	/**
 	 * @Route("/company/getbyid", name="GatotKacaErpMainBundle_Company_getById")
 	 */
@@ -38,7 +38,7 @@ class CompanyController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getCompany();
+		$model		= $this->getModelManager()->getCompany();
 		$company	= $model->getById($request->get('company_id'));
 		if(count($company)){
 			$output['data']	= $company;
@@ -60,7 +60,7 @@ class CompanyController extends AdminController{
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model	= $this->modelManager()->getCompany();
+		$model	= $this->getModelManager()->getCompany();
 		if($success	= $model->delete($request->get('id', ''))){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Company has been delete.';
@@ -70,7 +70,7 @@ class CompanyController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/company/getlist", name="GatotKacaErpMainBundle_Company_getList")
 	 */
@@ -89,7 +89,7 @@ class CompanyController extends AdminController{
 		$limit	= abs($request->get('limit'));
 		$status	= $request->get('status', TRUE);
 		//Get model
-		$model		= $this->modelManager()->getCompany();
+		$model		= $this->getModelManager()->getCompany();
 		$model->setStatus(($status === 'all') ? NULL : $status);
 		$company	= $model->getList($keyword, $start, $limit);
 		if($total	= count($company)){
@@ -102,7 +102,7 @@ class CompanyController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/company/save", name="GatotKacaErpMainBundle_Company_save")
 	 */
@@ -118,7 +118,7 @@ class CompanyController extends AdminController{
 		$input		= json_decode($request->get('company', ''));
 		$division	= json_decode($request->get('division', ''));
 		//Get model
-		$model		= $this->modelManager()->getCompany();
+		$model		= $this->getModelManager()->getCompany();
 		if($success	= $model->save($input, $division)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Company has been saved.';

@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Controller/EducationController.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\MainBundle\Controller;
@@ -22,7 +22,7 @@ class EducationController extends AdminController{
 	public function indexAction(){
 		return $this->goHome();
 	}
-	
+
 	/**
 	 * @Route("/education/getbyid", name="GatotKacaErpMainBundle_Education_getById")
 	 */
@@ -37,7 +37,7 @@ class EducationController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model	= $this->modelManager()->getEducation();
+		$model	= $this->getModelManager()->getEducation();
 		$education	= $model->getById($request->get('education_id'));
 		if(count($education)){
 			$output['data']	= $education;
@@ -59,7 +59,7 @@ class EducationController extends AdminController{
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model	= $this->modelManager()->getEducation();
+		$model	= $this->getModelManager()->getEducation();
 		if($success	= $model->delete($request->get('id', ''))){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Job Level has been delete.';
@@ -69,7 +69,7 @@ class EducationController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/education/getlist", name="GatotKacaErpMainBundle_Education_getList")
 	 */
@@ -88,7 +88,7 @@ class EducationController extends AdminController{
 		$limit	= abs($request->get('limit'));
 		$status	= $request->get('status', TRUE);
 		//Get model
-		$model	= $this->modelManager()->getEducation();
+		$model	= $this->getModelManager()->getEducation();
 		$model->setStatus(($status === 'all') ? NULL : $status);
 		$education	= $model->getList($keyword, $start, $limit);
 		if($total	= count($education)){
@@ -101,7 +101,7 @@ class EducationController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/education/save", name="GatotKacaErpMainBundle_Education_save")
 	 */
@@ -116,7 +116,7 @@ class EducationController extends AdminController{
 		}
 		$input		= json_decode($request->get('education', ''));
 		//Get model
-		$model	= $this->modelManager()->getEducation();
+		$model	= $this->getModelManager()->getEducation();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Education has been saved.';
@@ -124,7 +124,7 @@ class EducationController extends AdminController{
 			$output['msg']	= $model->getMessage().'. Education has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
-	
+
 		return new JsonResponse($output);
 	}
 }

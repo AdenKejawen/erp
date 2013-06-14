@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/UtilitiesBundle/Controller/ModuleController.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\UtilitiesBundle\Controller;
@@ -16,14 +16,14 @@ use GatotKaca\Erp\MainBundle\Controller\AdminController;
 
 class ModuleController extends AdminController{
 	const MODULE	= 'paneluser';
-	
+
 	/**
 	 * @Route("/utilities/module", name="GatotKacaErpUtilitiesBundle_Module_index")
 	 */
 	public function indexAction(){
 		return $this->goHome();
 	}
-	
+
 	/**
 	 * @Route("/utilities/module/getlist", name="GatotKacaErpUtilitiesBundle_Module_getList")
 	 */
@@ -43,7 +43,7 @@ class ModuleController extends AdminController{
 		$limit		= abs($request->get('limit'));
 		$status		= $request->get('status', TRUE);
 		//Get model
-		$model	= $this->modelManager()->getModule();
+		$model	= $this->getModelManager()->getModule();
 		$model->setStatus(($status === 'all') ? NULL : $status);
 		$module	= $model->getList($keyword, $start, $limit);
 		if($total	= count($module)){
@@ -56,7 +56,7 @@ class ModuleController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/utilities/module/getbyid", name="GatotKacaErpUtilitiesBundle_Module_getById")
 	 */
@@ -71,7 +71,7 @@ class ModuleController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model	= $this->modelManager()->getModule();
+		$model	= $this->getModelManager()->getModule();
 		$module	= $model->getById($request->get('module_id'));
 		if(count($module)){
 			$output['data']	= $module;
@@ -79,7 +79,7 @@ class ModuleController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/utilities/module/save", name="GatotKacaErpMainBundle_Module_save")
 	 */
@@ -94,7 +94,7 @@ class ModuleController extends AdminController{
 		}
 		$input	= json_decode($request->get('module'));
 		//Get model
-		$model	= $this->modelManager()->getModule();
+		$model	= $this->getModelManager()->getModule();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Module has been saved.';

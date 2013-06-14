@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Controller/JobStatusController.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\MainBundle\Controller;
@@ -22,7 +22,7 @@ class JobStatusController extends AdminController{
 	public function indexAction(){
 		return $this->goHome();
 	}
-	
+
 	/**
 	 * @Route("/jobstatus/getbyid", name="GatotKacaErpMainBundle_JobStatus_getById")
 	 */
@@ -37,7 +37,7 @@ class JobStatusController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getJobStatus();
+		$model		= $this->getModelManager()->getJobStatus();
 		$jobstatus	= $model->getById($request->get('jobstatus_id'));
 		if(count($jobstatus)){
 			$output['data']	= $jobstatus;
@@ -59,7 +59,7 @@ class JobStatusController extends AdminController{
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model		= $this->modelManager()->getJobStatus();
+		$model		= $this->getModelManager()->getJobStatus();
 		if($success	= $model->delete($request->get('id', ''))){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Job Status has been delete.';
@@ -69,7 +69,7 @@ class JobStatusController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/jobstatus/getlist", name="GatotKacaErpMainBundle_JobStatus_getList")
 	 */
@@ -88,7 +88,7 @@ class JobStatusController extends AdminController{
 		$limit	= abs($request->get('limit'));
 		$status	= $request->get('status', TRUE);
 		//Get model
-		$model		= $this->modelManager()->getJobStatus();
+		$model		= $this->getModelManager()->getJobStatus();
 		$model->setStatus(($status === 'all') ? NULL : $status);
 		$jobstatus	= $model->getList($keyword, $start, $limit);
 		if($total	= count($jobstatus)){
@@ -101,7 +101,7 @@ class JobStatusController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/jobstatus/save", name="GatotKacaErpMainBundle_JobStatus_save")
 	 */
@@ -116,7 +116,7 @@ class JobStatusController extends AdminController{
 		}
 		$input		= json_decode($request->get('jobstatus', ''));
 		//Get model
-		$model		= $this->modelManager()->getJobStatus();
+		$model		= $this->getModelManager()->getJobStatus();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Job Status has been saved.';
@@ -124,7 +124,7 @@ class JobStatusController extends AdminController{
 			$output['msg']	= $model->getMessage().'. Job Status has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
-	
+
 		return new JsonResponse($output);
 	}
 }

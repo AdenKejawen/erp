@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Model/ReligionModel.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 
@@ -33,7 +33,7 @@ class OverTimeModel extends BaseModel{
 
 	/**
 	 * Untuk mendapatkan list overtime berdasarkan limit
-	 * 
+	 *
 	 * @param string $keyword
 	 * @param integer $from
 	 * @param integer $to
@@ -69,10 +69,10 @@ class OverTimeModel extends BaseModel{
 		$this->setModelLog("get overtime from {$from->format('Y-m-d')} to {$to->format('Y-m-d')}");
 		return $query->getResult();
 	}
-	
+
 	/**
 	 * Untuk mendapatkan list Over Time berdasarkan criteria
-	 * 
+	 *
 	 * @param string criteria
 	 * @param string value
 	 * @param date from
@@ -112,7 +112,7 @@ class OverTimeModel extends BaseModel{
 
 	/**
 	 * Untuk mendapatkan list Overtime berdasarkan Date
-	 * 
+	 *
 	 * @param date dateStart
 	 * @param date dateEnd
 	 * @param int start
@@ -179,7 +179,7 @@ class OverTimeModel extends BaseModel{
 		$otEnd		= new \DateTime(date('Y-m-d').' '.$input->ot_end_h.':'.$input->ot_end_m.':00');
 		$date		= new \DateTime($input->ot_date);
 		$overtime	= new EmployeeOvertime();
-		$company	= $this->getHelper()->modelManager($this->getEntityManager())->getCompany();
+		$company	= $this->getHelper()->getModelManager()($this->getEntityManager())->getCompany();
 		$isholiday	= $company->isWorkday($date->format('N'), $employee->getCompany()->getId());
 		$otReal		= $this->calculate($otStart, $otEnd, $isholiday);
 		if(isset($input->ot_id) && $input->ot_id != ''){
@@ -231,7 +231,7 @@ class OverTimeModel extends BaseModel{
 
 	private function calculate($otStart, $otEnd, $isholiday = FALSE){
 		$isholiday	= $isholiday ? 'holiday' : 'workday';
-		$setting	= $this->getHelper()->modelManager($this->getEntityManager())->getSetting();
+		$setting	= $this->getHelper()->getModelManager()($this->getEntityManager())->getSetting();
 		//Get Overtime before rounded
 		$breakTime	= $setting->get('ot_breaktime_value');
 		$otReal		= intval($this->getHelper()->getTimeDiff($otStart, $otEnd) / 60);
@@ -256,7 +256,7 @@ class OverTimeModel extends BaseModel{
 
 	private function setExpire(){
 		//Get Attendance Start
-		$setting	= $this->getHelper()->modelManager($this->getEntityManager())->getSetting();
+		$setting	= $this->getHelper()->getModelManager()($this->getEntityManager())->getSetting();
 		$date	= $setting->calculate($setting->getMathNotation('att_start_date'));
 		$month	= $setting->calculate($setting->getMathNotation('att_start_month'));
 		$date	= new \DateTime(date('Y').'-'.$month.'-'.$date);

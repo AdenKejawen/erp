@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Controller/ProvinceController.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\MainBundle\Controller;
@@ -22,7 +22,7 @@ class ProvinceController extends AdminController{
 	public function indexAction(){
 		return $this->goHome();
 	}
-	
+
 	/**
 	 * @Route("/province/getbycountry", name="GatotKacaErpMainBundle_Province_getByCountry")
 	 */
@@ -37,7 +37,7 @@ class ProvinceController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getProvince();
+		$model		= $this->getModelManager()->getProvince();
 		$province	= $model->getBy('country', $request->get('country_id'));
 		if($total	= count($province)){
 			$output	= $province;
@@ -63,7 +63,7 @@ class ProvinceController extends AdminController{
 		$start	= abs($request->get('start'));
 		$limit	= abs($request->get('limit'));
 		//Get model
-		$model		= $this->modelManager()->getProvince();
+		$model		= $this->getModelManager()->getProvince();
 		$province	= $model->getList($keyword, $start, $limit);
 		if($total	= count($province)){
 			$output['total']	= $model->countTotal($keyword, $limit);
@@ -90,7 +90,7 @@ class ProvinceController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getProvince();
+		$model		= $this->getModelManager()->getProvince();
 		$province	= $model->getBy('id', $request->get('province_id'));
 		if(count($province)){
 			$output['data']	= $province;
@@ -113,7 +113,7 @@ class ProvinceController extends AdminController{
 		}
 		$input		= json_decode($request->get('province', ''));
 		//Get model
-		$model		= $this->modelManager()->getProvince();
+		$model		= $this->getModelManager()->getProvince();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Province has been saved.';
@@ -137,7 +137,7 @@ class ProvinceController extends AdminController{
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model	= $this->modelManager()->getProvince();
+		$model	= $this->getModelManager()->getProvince();
 		if($success	= $model->delete($request->get('id', ''))){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Province has been delete.';

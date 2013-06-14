@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/Personal/Controller/OverTimeController.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\PersonalBundle\Controller;
@@ -34,7 +34,7 @@ class OverTimeController extends AdminController{
 		$keyword	= strtoupper($request->get('query', ''));
 		$status		= $request->get('status', TRUE);
 		//Get model
-		$model		= $this->modelManager()->getOverTime();
+		$model		= $this->getModelManager()->getOverTime();
 		$model->setStatus(($status === 'all') ? NULL : $status);
 		$overtime	= $model->getList($keyword, $request->get('from', ''), $request->get('to', ''), $request->get('supervise', 'FALSE'), $request->get('approve', 'all'));
 		if($total	= count($overtime)){
@@ -62,7 +62,7 @@ class OverTimeController extends AdminController{
 		}
 		$input		= json_decode($request->get('overtime', ''));
 		//Get model
-		$model		= $this->modelManager()->getOverTime();
+		$model		= $this->getModelManager()->getOverTime();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Over time has been saved.';
@@ -70,7 +70,7 @@ class OverTimeController extends AdminController{
 			$output['msg']	= $model->getMessage().'. Over time has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
-	
+
 		return new JsonResponse($output);
 	}
 
@@ -88,7 +88,7 @@ class OverTimeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getOverTime();
+		$model		= $this->getModelManager()->getOverTime();
 		$overtime	= $model->getBy('id', $request->get('overtime_id'), NULL, NULL, array(0, 1, 2));
 		if(count($overtime)){
 			$output['data']	= $overtime;

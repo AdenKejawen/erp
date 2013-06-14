@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Controller/JobLevelController.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\MainBundle\Controller;
@@ -22,7 +22,7 @@ class JobLevelController extends AdminController{
 	public function indexAction(){
 		return $this->goHome();
 	}
-	
+
 	/**
 	 * @Route("/joblevel/getbyid", name="GatotKacaErpMainBundle_JobLevel_getById")
 	 */
@@ -37,7 +37,7 @@ class JobLevelController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getJobLevel();
+		$model		= $this->getModelManager()->getJobLevel();
 		$joblevel	= $model->getById($request->get('joblevel_id'));
 		if(count($joblevel)){
 			$output['data']	= $joblevel;
@@ -59,7 +59,7 @@ class JobLevelController extends AdminController{
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model		= $this->modelManager()->getJobLevel();
+		$model		= $this->getModelManager()->getJobLevel();
 		if($success	= $model->delete($request->get('id', ''))){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Job Level has been delete.';
@@ -69,7 +69,7 @@ class JobLevelController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/joblevel/getlist", name="GatotKacaErpMainBundle_JobLevel_getList")
 	 */
@@ -88,7 +88,7 @@ class JobLevelController extends AdminController{
 		$limit	= abs($request->get('limit'));
 		$status	= $request->get('status', TRUE);
 		//Get model
-		$model		= $this->modelManager()->getJobLevel();
+		$model		= $this->getModelManager()->getJobLevel();
 		$model->setStatus(($status === 'all') ? NULL : $status);
 		$joblevel	= $model->getList($keyword, $start, $limit);
 		if($total	= count($joblevel)){
@@ -101,7 +101,7 @@ class JobLevelController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/joblevel/save", name="GatotKacaErpMainBundle_JobLevel_save")
 	 */
@@ -116,7 +116,7 @@ class JobLevelController extends AdminController{
 		}
 		$input		= json_decode($request->get('joblevel', ''));
 		//Get model
-		$model		= $this->modelManager()->getJobLevel();
+		$model		= $this->getModelManager()->getJobLevel();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Job Level has been saved.';
@@ -124,7 +124,7 @@ class JobLevelController extends AdminController{
 			$output['msg']	= $model->getMessage().'. Job Level has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
-	
+
 		return new JsonResponse($output);
 	}
 }

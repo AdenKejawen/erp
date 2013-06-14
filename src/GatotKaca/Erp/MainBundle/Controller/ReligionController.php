@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Controller/ReligionController.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\MainBundle\Controller;
@@ -21,7 +21,7 @@ class ReligionController extends AdminController{
 	public function indexAction(){
 		return $this->goHome();
 	}
-	
+
 	/**
 	 * @Route("/religion/getlist", name="GatotKacaErpMainBundle_Religion_getList")
 	 */
@@ -31,7 +31,7 @@ class ReligionController extends AdminController{
 		$security	= $this->getSecurity();
 		$output		= array();
 		//Get model
-		$model		= $this->modelManager()->getReligion();
+		$model		= $this->getModelManager()->getReligion();
 		$religion	= $model->getList($request->get('country_id'));
 		if($total	= count($religion)){
 			$output	= $religion;

@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Helper/Helper.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\MainBundle\Helper;
@@ -19,26 +19,26 @@ class Helper{
 
 	/**
 	 * Untuk mengenerate Id
-	 * 
+	 *
 	 * @return string generated id
 	 **/
 	public function getUniqueId(){
 		return sha1(uniqid('', TRUE));
 	}
-	
+
 	/**
 	 * Untuk mengenerate Salt Password
-	 * 
+	 *
 	 * @param string username
 	 * @return string salt
 	 **/
 	public function getSalt($username){
 		return sha1($username.$this->getUniqueId());
 	}
-	
+
 	/**
 	 * Untuk mengenerate Password
-	 * 
+	 *
 	 * @param string password
 	 * @param string salt
 	 * @return string encoded password
@@ -46,26 +46,26 @@ class Helper{
 	public function hashPassword($password, $salt){
 		return sha1($password.$salt);
 	}
-	
+
 	/**
 	 * Untuk mendapatkan session
-	 * 
+	 *
 	 * @return session
 	 **/
 	public function getSession(){
 		if(!$this->session){
 			$this->session	= new Session();
 		}
-		
+
 		return $this->session;
 	}
-	
+
 	/**
 	 * Untuk menghitung perbedaan waktu
-	 * 
+	 *
 	 * @param datetime start
 	 * @param datetime end
-	 * 
+	 *
 	 * @return integer different in minutes
 	 **/
 	public function getTimeDiff($start, $end){
@@ -85,10 +85,10 @@ class Helper{
 
 	/**
 	 * Untuk mendapatkan model manager
-	 * 
+	 *
 	 * @return model manager
 	 **/
-	public function modelManager(\Doctrine\ORM\EntityManager $entityManager){
+	public function getModelManager(\Doctrine\ORM\EntityManager $entityManager){
 		if(!$this->modelManager){
 			$this->modelManager	= new ModelManager($entityManager, $this);
 		}

@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Controller/JobTitleController.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\MainBundle\Controller;
@@ -22,7 +22,7 @@ class JobTitleController extends AdminController{
 	public function indexAction(){
 		return $this->goHome();
 	}
-	
+
 	/**
 	 * @Route("/jobtitle/getbyid", name="GatotKacaErpMainBundle_JobTitle_getById")
 	 */
@@ -37,7 +37,7 @@ class JobTitleController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getJobTitle();
+		$model		= $this->getModelManager()->getJobTitle();
 		$jobtitle	= $model->getBy('id', $request->get('jobtitle_id'));
 		if(count($jobtitle)){
 			$output['data']	= $jobtitle;
@@ -45,7 +45,7 @@ class JobTitleController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/jobtitle/getbylevel", name="GatotKacaErpMainBundle_JobTitle_getByLevel")
 	 */
@@ -60,7 +60,7 @@ class JobTitleController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getJobTitle();
+		$model		= $this->getModelManager()->getJobTitle();
 		$jobtitle	= $model->getBy('level', $request->get('level'));
 		if(count($jobtitle)){
 			$output['data']	= $jobtitle;
@@ -82,7 +82,7 @@ class JobTitleController extends AdminController{
 			return new JsonResponse($output);
 		}
 		//Get model
-		$model		= $this->modelManager()->getJobTitle();
+		$model		= $this->getModelManager()->getJobTitle();
 		if($success	= $model->delete($request->get('id', ''))){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Job Title has been delete.';
@@ -92,7 +92,7 @@ class JobTitleController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/jobtitle/getlist", name="GatotKacaErpMainBundle_JobTitle_getList")
 	 */
@@ -111,7 +111,7 @@ class JobTitleController extends AdminController{
 		$limit	= abs($request->get('limit'));
 		$status	= $request->get('status', TRUE);
 		//Get model
-		$model		= $this->modelManager()->getJobTitle();
+		$model		= $this->getModelManager()->getJobTitle();
 		$model->setStatus(($status === 'all') ? NULL : $status);
 		$jobtitle	= $model->getList($keyword, $start, $limit);
 		if($total	= count($jobtitle)){
@@ -124,7 +124,7 @@ class JobTitleController extends AdminController{
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/jobtitle/save", name="GatotKacaErpMainBundle_JobTitle_save")
 	 */
@@ -139,7 +139,7 @@ class JobTitleController extends AdminController{
 		}
 		$input		= json_decode($request->get('jobtitle', ''));
 		//Get model
-		$model		= $this->modelManager()->getJobTitle();
+		$model		= $this->getModelManager()->getJobTitle();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Job Title has been saved.';
@@ -147,7 +147,7 @@ class JobTitleController extends AdminController{
 			$output['msg']	= $model->getMessage().'. Job Title has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
-	
+
 		return new JsonResponse($output);
 	}
 }

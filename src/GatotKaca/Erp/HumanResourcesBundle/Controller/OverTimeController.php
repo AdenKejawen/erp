@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/HumanResourcesBundle/Controller/OverTimeController.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\HumanResourcesBundle\Controller;
@@ -39,14 +39,14 @@ class OverTimeController extends AdminController{
 			)
 		);
 	}
-	
+
 	/**
 	 * Model Helper
 	 **/
 	private function modelHelper($employeeId, $from, $to){
-		$model		= $this->modelManager()->getOverTime();
+		$model		= $this->getModelManager()->getOverTime();
 		$overtime	= $model->getBy('employee', $employeeId, $from, $to, array(1));
-		$employee	= $this->modelManager()->getEmployee()->getById($employeeId);
+		$employee	= $this->getModelManager()->getEmployee()->getById($employeeId);
 		$this->getSecurity()->logging($this->getRequest()->getClientIp(), $this->getHelper()->getSession()->get('user_id'), $this->getRequest()->get('_route'), $model->getAction(), $model->getModelLog());
 		return array(
 			'overtime'	=> $overtime,
@@ -56,7 +56,7 @@ class OverTimeController extends AdminController{
 
 	/**
 	 * @Route("/human_resources/overtime/getbyemployee", name="GatotKacaErpHumanResourcesBundle_OverTime_getByEmployee")
-	 * 
+	 *
 	 * Get Over Time List by Employee
 	 **/
 	public function getByEmployeeAction(){
@@ -74,7 +74,7 @@ class OverTimeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getOverTime();
+		$model		= $this->getModelManager()->getOverTime();
 		$overtime	= $model->getBy('employee', $request->get('employee_id', ''), $request->get('from', ''), $request->get('to', ''), array(1));
 		if($total	= count($overtime)){
 			$output['total']	= $total;
@@ -89,7 +89,7 @@ class OverTimeController extends AdminController{
 
 	/**
 	 * @Route("/human_resources/overtime/getbydate", name="GatotKacaErpHumanResourcesBundle_OverTime_getByDate")
-	 * 
+	 *
 	 * Get Today OverTime
 	 **/
 	public function getByDateAction(){
@@ -110,7 +110,7 @@ class OverTimeController extends AdminController{
 		$to		= $request->get('to', '');
 		$absence= $request->get('absence', 'true');
 		//Get model
-		$model		= $this->modelManager()->getOverTime();
+		$model		= $this->getModelManager()->getOverTime();
 		$overtime	= $model->getByDate($from, $to, $absence);
 		if($total	= count($overtime)){
 			$output['total']	= $total;
@@ -143,7 +143,7 @@ class OverTimeController extends AdminController{
 		}
 		$output	= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getOverTime();
+		$model		= $this->getModelManager()->getOverTime();
 		$aData	= $model->getBy('id', $request->get('ot_id'), NULL, NULL, array(1));
 		if($total	= count($aData)){
 			$output['total']	= $total;
@@ -152,7 +152,7 @@ class OverTimeController extends AdminController{
 			$output['total']	= $total;
 			$output['data']	= array();
 		}
-		
+
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
 		return new JsonResponse($output);
 	}
@@ -171,7 +171,7 @@ class OverTimeController extends AdminController{
 		}
 		$input		= json_decode($request->get('overtime', ''));
 		//Get model
-		$model		= $this->modelManager()->getOverTime();
+		$model		= $this->getModelManager()->getOverTime();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Over time has been saved.';
@@ -179,7 +179,7 @@ class OverTimeController extends AdminController{
 			$output['msg']	= $model->getMessage().'. Over time has not been saved.';
 		}
 		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
-	
+
 		return new JsonResponse($output);
 	}
 
@@ -208,7 +208,7 @@ class OverTimeController extends AdminController{
 		$output['data']	= $this->exportHelper($employeeId, $from->format('d M Y'), $to->format('d M Y'));
 		return new JsonResponse($output);
 	}
-	
+
 	/**
 	 * @Route("/human_resources/overtime/export/jpg/{id}/{from}/{to}", name="GatotKacaErpHumanResourcesBundle_OverTime_exportJpg")
 	 *
@@ -301,7 +301,7 @@ class OverTimeController extends AdminController{
     	$pdf->Cell($kolom * 8, 7, $total, 1, FALSE, 'L', 0, '', 0, FALSE, 'C', 'C');
     	$pdf->Output($id.$from->format('_d_m_Y').$to->format('_d_m_Y').'.pdf', 'D');
 	}
-	
+
 	/**
 	 * @Route("/human_resources/overtime/export/excel/{id}/{from}/{to}", name="GatotKacaErpHumanResourcesBundle_OverTime_exportExcel")
 	 *

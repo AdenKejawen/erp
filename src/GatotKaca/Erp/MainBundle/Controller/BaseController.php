@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Controller/BaseController.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : public 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : public
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 namespace GatotKaca\Erp\MainBundle\Controller;
@@ -24,7 +24,7 @@ class BaseController extends Controller{
 	private $excel;
 	private $setting;
 	private $pdfSeparator	= 21;
-	
+
 	/**
 	 * Redirect to url
 	 *
@@ -33,7 +33,7 @@ class BaseController extends Controller{
 	public function goHome(){
 		return $this->redirect($this->generateUrl('GatotKacaErpMainBundle_Main_index'));
 	}
-	
+
 	/**
 	 * Untuk mendapatkan object Helper
 	 *
@@ -45,7 +45,7 @@ class BaseController extends Controller{
 		}
 		return $this->helper;
 	}
-	
+
 	/**
 	 * Untuk mendapatkan object SecurityModel
 	 *
@@ -63,7 +63,7 @@ class BaseController extends Controller{
 	 *
 	 * @return mixed modelManager
 	 **/
-	public function modelManager(){
+	public function getModelManager(){
 		if(!$this->modelManager){
 			$this->modelManager	= $this->get('kejawen.model.manager');
 		}
@@ -81,11 +81,11 @@ class BaseController extends Controller{
 		}
 		return $this->setting;
 	}
-	
+
 
 	/**
 	 * Untuk mendapatkan object TCPDF
-	 * 
+	 *
 	 * @return mixed pdf
 	 **/
 	public function getPdfGenerator(){
@@ -106,7 +106,7 @@ class BaseController extends Controller{
 		}
 		return $this->image;
 	}
-	
+
 	/**
 	 * Untuk mendapatkan object PHPExcel
 	 *
@@ -118,7 +118,7 @@ class BaseController extends Controller{
 		}
 		return $this->excel;
 	}
-	
+
 	/**
 	 * Untuk mengenerate excel
 	 *
@@ -168,7 +168,7 @@ class BaseController extends Controller{
 
 	/**
 	 * Set pdf separator
-	 * 
+	 *
 	 * @param int $separator
 	 **/
 	public function setSeparator($separator){
@@ -177,7 +177,7 @@ class BaseController extends Controller{
 
 	/**
 	 * Untuk mendapatkan panjang per bagian pada pdf
-	 * 
+	 *
 	 * @param int $partition
 	 * @return int
 	 **/
