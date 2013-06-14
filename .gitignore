@@ -10,6 +10,8 @@ app/config/parameters.yml
 build/
 vendor
 composer.phar
+app/Resources/tools/yuicompressor.jar
+app/yui.sh
 *.*~
 *.txt
 *.csv
