@@ -179,7 +179,7 @@ class OverTimeModel extends BaseModel{
 		$otEnd		= new \DateTime(date('Y-m-d').' '.$input->ot_end_h.':'.$input->ot_end_m.':00');
 		$date		= new \DateTime($input->ot_date);
 		$overtime	= new EmployeeOvertime();
-		$company	= $this->getHelper()->getModelManager()($this->getEntityManager())->getCompany();
+		$company	= $this->getHelper()->getModelManager($this->getEntityManager())->getCompany();
 		$isholiday	= $company->isWorkday($date->format('N'), $employee->getCompany()->getId());
 		$otReal		= $this->calculate($otStart, $otEnd, $isholiday);
 		if(isset($input->ot_id) && $input->ot_id != ''){
@@ -231,7 +231,7 @@ class OverTimeModel extends BaseModel{
 
 	private function calculate($otStart, $otEnd, $isholiday = FALSE){
 		$isholiday	= $isholiday ? 'holiday' : 'workday';
-		$setting	= $this->getHelper()->getModelManager()($this->getEntityManager())->getSetting();
+		$setting	= $this->getHelper()->getModelManager($this->getEntityManager())->getSetting();
 		//Get Overtime before rounded
 		$breakTime	= $setting->get('ot_breaktime_value');
 		$otReal		= intval($this->getHelper()->getTimeDiff($otStart, $otEnd) / 60);
@@ -256,7 +256,7 @@ class OverTimeModel extends BaseModel{
 
 	private function setExpire(){
 		//Get Attendance Start
-		$setting	= $this->getHelper()->getModelManager()($this->getEntityManager())->getSetting();
+		$setting	= $this->getHelper()->getModelManager($this->getEntityManager())->getSetting();
 		$date	= $setting->calculate($setting->getMathNotation('att_start_date'));
 		$month	= $setting->calculate($setting->getMathNotation('att_start_month'));
 		$date	= new \DateTime(date('Y').'-'.$month.'-'.$date);

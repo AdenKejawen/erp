@@ -1,13 +1,13 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Entity/JobTitle.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
+ *
  * Relation Mapping :
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
  * - GatotKaca\Erp\MainBundle\Entity\JobLevel
@@ -22,7 +22,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name = "sys_jobtitle")
  **/
 class JobTitle{
-	
+
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type = "string", length = 40)
@@ -33,54 +33,64 @@ class JobTitle{
 	 * @ORM\OneToMany(targetEntity="JobTitle", mappedBy="parent")
 	 **/
 	protected $child;
-	
+
 	/**
 	 * @ORM\ManyToOne(targetEntity="JobTitle", inversedBy="child")
 	 * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
 	 */
 	protected $parent;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 77, nullable = true)
 	 **/
 	protected $name;
-	
+
 	/**
 	 * @ORM\Column(type = "boolean", nullable = true)
 	 **/
 	protected $status;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $updatedby;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="JobLevel", inversedBy="level")
+	 * @ORM\ManyToOne(targetEntity="JobLevel", inversedBy="jobtitle")
 	 * @ORM\JoinColumn(name="sys_joblevel_id", referencedColumnName="id")
 	 */
 	protected $level;
-	
+
 	/**
 	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="jobtitle")
 	 **/
 	protected $employee;
-	
+
+    /**
+     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Career", mappedBy="old_jobtitle")
+     **/
+    protected $career_old_jobtitle;
+
+    /**
+     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Career", mappedBy="new_jobtitle")
+     **/
+    protected $career_new_jobtitle;
+
 	public function __construct(){
 		$this->status	= TRUE;
 		$this->created	= new \DateTime();
@@ -358,5 +368,71 @@ class JobTitle{
     public function getEmployee()
     {
         return $this->employee;
+    }
+
+    /**
+     * Add career_old_jobtitle
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldJobtitle
+     * @return JobTitle
+     */
+    public function addCareerOldJobtitle(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldJobtitle)
+    {
+        $this->career_old_jobtitle[] = $careerOldJobtitle;
+    
+        return $this;
+    }
+
+    /**
+     * Remove career_old_jobtitle
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldJobtitle
+     */
+    public function removeCareerOldJobtitle(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldJobtitle)
+    {
+        $this->career_old_jobtitle->removeElement($careerOldJobtitle);
+    }
+
+    /**
+     * Get career_old_jobtitle
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCareerOldJobtitle()
+    {
+        return $this->career_old_jobtitle;
+    }
+
+    /**
+     * Add career_new_jobtitle
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewJobtitle
+     * @return JobTitle
+     */
+    public function addCareerNewJobtitle(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewJobtitle)
+    {
+        $this->career_new_jobtitle[] = $careerNewJobtitle;
+    
+        return $this;
+    }
+
+    /**
+     * Remove career_new_jobtitle
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewJobtitle
+     */
+    public function removeCareerNewJobtitle(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewJobtitle)
+    {
+        $this->career_new_jobtitle->removeElement($careerNewJobtitle);
+    }
+
+    /**
+     * Get career_new_jobtitle
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCareerNewJobtitle()
+    {
+        return $this->career_new_jobtitle;
     }
 }

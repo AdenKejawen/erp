@@ -1,13 +1,13 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Entity/Company.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
+ *
  * Relation Mapping : GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
  **/
 
@@ -20,29 +20,29 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name = "sys_company")
  **/
 class Company{
-	
+
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
 	 * @ORM\OneToMany(targetEntity="Company", mappedBy="parent")
 	 **/
 	protected $child;
-	
+
 	/**
 	 * @ORM\ManyToOne(targetEntity="Company", inversedBy="child")
 	 * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
 	 */
 	protected $parent;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 7, unique = true, nullable = true)
 	 **/
 	protected $code;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 77, nullable = true)
 	 **/
@@ -67,37 +67,47 @@ class Company{
      * @ORM\Column(type = "boolean", nullable = true)
      **/
     protected $status;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $updatedby;
-	
+
 	/**
 	 * @ORM\OneToMany(targetEntity="CompanyDepartment", mappedBy="company")
 	 **/
 	protected $department;
-	
+
 	/**
 	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="company")
 	 **/
 	protected $employee;
-	
+
+    /**
+     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Career", mappedBy="old_company")
+     **/
+    protected $career_old_company;
+
+    /**
+     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Career", mappedBy="new_company")
+     **/
+    protected $career_new_company;
+
 	public function __construct(){
 		$this->status	= TRUE;
         $this->isfixed  = TRUE;
@@ -478,5 +488,71 @@ class Company{
     public function getEmployee()
     {
         return $this->employee;
+    }
+
+    /**
+     * Add career_old_company
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldCompany
+     * @return Company
+     */
+    public function addCareerOldCompany(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldCompany)
+    {
+        $this->career_old_company[] = $careerOldCompany;
+    
+        return $this;
+    }
+
+    /**
+     * Remove career_old_company
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldCompany
+     */
+    public function removeCareerOldCompany(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldCompany)
+    {
+        $this->career_old_company->removeElement($careerOldCompany);
+    }
+
+    /**
+     * Get career_old_company
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCareerOldCompany()
+    {
+        return $this->career_old_company;
+    }
+
+    /**
+     * Add career_new_company
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewCompany
+     * @return Company
+     */
+    public function addCareerNewCompany(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewCompany)
+    {
+        $this->career_new_company[] = $careerNewCompany;
+    
+        return $this;
+    }
+
+    /**
+     * Remove career_new_company
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewCompany
+     */
+    public function removeCareerNewCompany(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewCompany)
+    {
+        $this->career_new_company->removeElement($careerNewCompany);
+    }
+
+    /**
+     * Get career_new_company
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCareerNewCompany()
+    {
+        return $this->career_new_company;
     }
 }

@@ -1,13 +1,13 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Entity/Education.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
+ *
  * Relation Mapping :
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeFamily
@@ -22,18 +22,18 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name = "sys_education")
  **/
 class Education{
-	
+
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
 	 * @ORM\Column(type = "integer", length = 2, unique = true, nullable = true)
 	 **/
 	protected $level;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 17, nullable = true)
 	 **/
@@ -43,37 +43,37 @@ class Education{
      * @ORM\Column(type = "boolean")
      **/
     protected $status;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $updatedby;
-	
+
 	/**
 	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation", mappedBy="education")
 	 **/
-	protected $employee;
-	
+	protected $employee_education;
+
 	/**
 	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeFamily", mappedBy="education")
 	 **/
 	protected $family;
-	
+
 	public function __construct(){
 		$this->status	= TRUE;
 		$this->created	= new \DateTime();
@@ -150,29 +150,6 @@ class Education{
     }
 
     /**
-     * Set created
-     *
-     * @param \DateTime $created
-     * @return Education
-     */
-    public function setCreated($created)
-    {
-        $this->created = $created;
-    
-        return $this;
-    }
-
-    /**
-     * Get created
-     *
-     * @return \DateTime 
-     */
-    public function getCreated()
-    {
-        return $this->created;
-    }
-
-    /**
      * Set status
      *
      * @param boolean $status
@@ -193,6 +170,29 @@ class Education{
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     * @return Education
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime 
+     */
+    public function getCreated()
+    {
+        return $this->created;
     }
 
     /**
@@ -265,36 +265,36 @@ class Education{
     }
 
     /**
-     * Add employee
+     * Add employee_education
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation $employee
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation $employeeEducation
      * @return Education
      */
-    public function addEmployee(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation $employee)
+    public function addEmployeeEducation(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation $employeeEducation)
     {
-        $this->employee[] = $employee;
+        $this->employee_education[] = $employeeEducation;
     
         return $this;
     }
 
     /**
-     * Remove employee
+     * Remove employee_education
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation $employee
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation $employeeEducation
      */
-    public function removeEmployee(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation $employee)
+    public function removeEmployeeEducation(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation $employeeEducation)
     {
-        $this->employee->removeElement($employee);
+        $this->employee_education->removeElement($employeeEducation);
     }
 
     /**
-     * Get employee
+     * Get employee_education
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getEmployee()
+    public function getEmployeeEducation()
     {
-        return $this->employee;
+        return $this->employee_education;
     }
 
     /**

@@ -583,6 +583,29 @@ class EmployeeController extends AdminController{
 	}
 
 	/**
+	 * @Route("/human_resources/employee/getcareer", name="GatotKacaErpHumanResourcesBundle_Employee_getCareer")
+	 */
+	public function getCareerAction(){
+		$session	= $this->getHelper()->getSession();
+		$request	= $this->getRequest();
+		$security	= $this->getSecurity();
+		$output		= array('success' => FALSE);
+		//Don't have authorization
+		if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'view')){
+			return new JsonResponse($output);
+		}
+		$output	= array('success' => TRUE);
+		//Get model
+		$model	= $this->getModelManager()->getEmployee();
+		$career	= $model->getCareerBy('employee', $request->get('employee_id'));
+		if(count($career)){
+			$output['data']	= $career;
+		}
+		$security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
+		return new JsonResponse($output);
+	}
+
+	/**
 	 * @Route("/human_resources/employee/geteducationbyid", name="GatotKacaErpHumanResourcesBundle_Employee_getEducationById")
 	 */
 	public function getEducationByIdAction(){

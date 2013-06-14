@@ -1,13 +1,13 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/UtilitiesBundle/UserGroup.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
+ *
  * Relation Mapping :
  * - GatotKaca\Erp\UtilitiesBundle\Entity\User
  * - GatotKaca\Erp\UtilitiesBundle\Entity\Role
@@ -21,18 +21,18 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name = "utl_group")
  **/
 class UserGroup{
-	
+
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 27, nullable = true)
 	 **/
 	protected $name;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 77, nullable = true)
 	 **/
@@ -42,37 +42,37 @@ class UserGroup{
 	 * @ORM\Column(type = "boolean", nullable = true)
 	 **/
 	protected $status;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $updatedby;
-	
+
 	/**
 	* @ORM\OneToMany(targetEntity="User", mappedBy="group")
 	**/
 	protected $user;
-	
+
 	/**
 	* @ORM\OneToMany(targetEntity="Role", mappedBy="group")
 	**/
 	protected $role;
-	
+
 	public function __construct(){
 		$this->status	= TRUE;
 		$this->created	= new \DateTime();

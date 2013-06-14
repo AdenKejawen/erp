@@ -1,13 +1,13 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/HumanResourcesBundle/Entity/Attendance.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
+ *
  * Relation Mapping :
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
  * - GatotKaca\Erp\MainBundle\Entity\OfficeHour
@@ -22,58 +22,58 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name = "trs_employee_attendance")
  **/
 class Attendance{
-	
+
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", inversedBy="employee")
+	 * @ORM\ManyToOne(targetEntity="Employee", inversedBy="attendance")
 	 * @ORM\JoinColumn(name="mtr_employee_id", referencedColumnName="id")
 	 **/
 	protected $employee;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\OfficeHour", inversedBy="shift")
+	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\OfficeHour", inversedBy="attendance")
 	 * @ORM\JoinColumn(name="sys_officehour_id", referencedColumnName="id")
 	 **/
 	protected $shift;
-	
+
 	/**
 	 * @ORM\Column(type = "date", nullable = true)
 	 **/
 	protected $att_date;
-	
+
 	/**
 	 * @ORM\Column(type = "time", nullable = true)
 	 **/
 	protected $time_in;
-	
+
 	/**
 	 * @ORM\Column(type = "time", nullable = true)
 	 **/
 	protected $time_out;
-	
+
 	/**
 	 * @ORM\Column(type = "time", nullable = true)
 	 **/
 	protected $late;
-	
+
 	/**
 	 * @ORM\Column(type = "time", nullable = true)
 	 **/
 	protected $loyal;
-	
+
 	/**
 	 * @ORM\Column(type = "boolean", nullable = true)
 	 **/
 	protected $ismiss;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 7, nullable = true)
-	 * 
+	 *
 	 * - PERMIT
 	 * - SICK
 	 * - SKIP
@@ -81,32 +81,32 @@ class Attendance{
 	 * - OFF
 	 **/
 	protected $miss;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 255, nullable = true)
 	 **/
 	protected $description;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $updatedby;
-	
+
 	public function __construct(){
 		$datetime		= new \DateTime(date('Y-m-d H:i:s', strtotime(date('Y-m-d').' 00:00:00')));
 		$this->ismiss	= FALSE;

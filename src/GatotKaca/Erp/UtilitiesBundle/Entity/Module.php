@@ -1,99 +1,99 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/UtilitiesBundle/Entity/Module.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
+ *
  * Mapping Relation :
  * - GatotKaca\Erp\UtilitiesBundle\Entity\Role
  **/
- 
+
 namespace GatotKaca\Erp\UtilitiesBundle\Entity;
- 
+
 use Doctrine\ORM\Mapping as ORM;
- 
+
 /**
  * @ORM\Entity
  * @ORM\Table(name = "utl_module")
  **/
 class Module{
- 	
+
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
 	 * @ORM\OneToMany(targetEntity="Module", mappedBy="parent")
 	 **/
 	protected $child;
- 	
+
 	/**
      * @ORM\ManyToOne(targetEntity="Module", inversedBy="child")
      * @ORM\JoinColumn(name="parent", referencedColumnName="id")
      */
  	protected $parent;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 27, nullable = true)
 	 **/
 	protected $name;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 27, nullable = true)
 	 **/
 	protected $selector;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 75, nullable = true)
 	 **/
 	protected $icon;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 255, nullable = true)
 	 **/
 	protected $url;
-	
+
 	/**
 	 * @ORM\Column(type = "integer", nullable = true)
 	 **/
 	protected $menu_order;
-    
+
 	/**
 	 * @ORM\Column(type = "boolean", nullable = true)
 	 **/
 	protected $status;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $updatedby;
-	
+
 	/**
 	* @ORM\OneToMany(targetEntity="Role", mappedBy="module")
 	**/
 	protected $role;
-	
+
 	public function __construct(){
 		$this->selector   = 'root';
 		$this->url        = 'root';

@@ -1,13 +1,13 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Entity/JobStatus.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
+ *
  * Relation Mapping :
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
  **/
@@ -21,53 +21,53 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name = "sys_jobstatus")
  **/
 class JobStatus{
-	
+
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 77, nullable = true)
 	 **/
 	protected $name;
-	
+
 	/**
 	 * @ORM\Column(type = "boolean", nullable = true)
 	 **/
 	protected $ispermanent;
-	
+
 	/**
 	 * @ORM\Column(type = "boolean", nullable = true)
 	 **/
 	protected $status;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $updatedby;
-	
+
 	/**
 	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="jobstatus")
 	 **/
 	protected $employee;
-	
+
 	public function __construct(){
 		$this->ispermanent	= TRUE;
 		$this->status		= TRUE;

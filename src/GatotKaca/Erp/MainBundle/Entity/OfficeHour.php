@@ -1,13 +1,13 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Entity/OfficeHour.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
+ *
  * Relation Mapping :
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Attendance
@@ -23,68 +23,68 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name = "sys_officehour")
  **/
 class OfficeHour{
-	
+
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40, nullable = true)
 	 */
 	protected $name;
-	
+
 	/**
 	 * @ORM\Column(type = "time", nullable = true)
 	 **/
 	protected $time_in;
-	
+
 	/**
 	 * @ORM\Column(type = "time", nullable = true)
 	 **/
 	protected $time_out;
-	
+
 	/**
 	 * @ORM\Column(type = "boolean", nullable = true)
 	 **/
 	protected $status;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $updatedby;
-	
+
 	/**
 	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="shift")
 	 **/
 	protected $employee;
-	
+
 	/**
 	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Attendance", mappedBy="shift")
 	 **/
 	protected $attendance;
-	
+
 	/**
 	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeShiftment", mappedBy="officehour")
 	 **/
 	protected $shiftment;
-	
+
 	public function __construct(){
 		$this->created		= new \DateTime();
 		$this->updated		= new \DateTime();

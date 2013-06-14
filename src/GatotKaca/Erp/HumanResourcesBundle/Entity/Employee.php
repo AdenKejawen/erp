@@ -1,14 +1,14 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/HumanResourcesBundle/Entity/Employee.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
- * Relation Mapping : 
+ *
+ * Relation Mapping :
  * - GatotKaca\Erp\MainBundle\Entity\Department
  * - GatotKaca\Erp\UtilitiesBundle\Entity\User
  * - GatotKaca\Erp\MainBundle\Entity\District
@@ -19,6 +19,10 @@
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Attendance
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeFamily
+ * - GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeTraining
+ * - GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeLanguage
+ * - GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeOvertime
+ * - GatotKaca\Erp\HumanResourcesBundle\Entity\Career
  **/
 
 namespace GatotKaca\Erp\HumanResourcesBundle\Entity;
@@ -30,33 +34,33 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name = "mtr_employee")
  **/
 class Employee{
-	
+
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Company", inversedBy="company")
+	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Company", inversedBy="employee")
 	 * @ORM\JoinColumn(name="sys_company_id", referencedColumnName="id")
 	 **/
 	protected $company;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Department", inversedBy="department")
+	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Department", inversedBy="employee")
 	 * @ORM\JoinColumn(name="sys_department_id", referencedColumnName="id")
 	 **/
 	protected $department;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\JobTitle", inversedBy="jobtitle")
+	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\JobTitle", inversedBy="employee")
 	 * @ORM\JoinColumn(name="sys_jobtitle_id", referencedColumnName="id")
 	 **/
 	protected $jobtitle;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\JobStatus", inversedBy="jobstatus")
+	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\JobStatus", inversedBy="employee")
 	 * @ORM\JoinColumn(name="sys_jobstatus_id", referencedColumnName="id")
 	 **/
 	protected $jobstatus;
@@ -65,13 +69,13 @@ class Employee{
      * @ORM\OneToMany(targetEntity="Employee", mappedBy="supervisor")
      **/
     protected $child;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Employee", inversedBy="child")
      * @ORM\JoinColumn(name="supervisor", referencedColumnName="id")
      */
     protected $supervisor;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 17, unique = true, nullable = true)
 	 **/
@@ -81,66 +85,66 @@ class Employee{
      * @ORM\Column(type = "string", length = 255, nullable = true)
      **/
     protected $photo;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 27, unique = true, nullable = true)
 	 **/
 	protected $idcard;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 33, nullable = true)
 	 **/
 	protected $fname;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 33, nullable = true)
 	 **/
 	protected $lname;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\UtilitiesBundle\Entity\User", inversedBy="username")
+	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\UtilitiesBundle\Entity\User", inversedBy="employee")
 	 * @ORM\JoinColumn(name="utl_user_id", referencedColumnName="id")
 	 **/
 	protected $username;
-	
+
 	/**
 	 * @ORM\Column(type = "integer", length = 1, nullable = true)
-	 * 
+	 *
 	 * - 1 = male
 	 * - 2 = female
 	 **/
 	protected $gender;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\District", inversedBy="bod_place")
+	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\District", inversedBy="employee_bod_place")
 	 * @ORM\JoinColumn(name="bod_place", referencedColumnName="id")
 	 **/
 	protected $bod_place;
-	
+
 	/**
 	 * @ORM\Column(type = "date", nullable = true)
 	 **/
 	protected $bod;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 255, nullable = true)
 	 **/
 	protected $address;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\District", inversedBy="district_address")
+	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\District", inversedBy="employee")
 	 * @ORM\JoinColumn(name="district", referencedColumnName="id")
 	 **/
 	protected $district_address;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Province", inversedBy="province_address")
+	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Province", inversedBy="employee")
 	 * @ORM\JoinColumn(name="province", referencedColumnName="id")
 	 **/
 	protected $province_address;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Country", inversedBy="country")
+	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Country", inversedBy="employee_country")
 	 * @ORM\JoinColumn(name="country", referencedColumnName="id")
 	 **/
 	protected $country;
@@ -164,59 +168,59 @@ class Employee{
      * @ORM\Column(type = "string", length = 255, nullable = true)
      **/
     protected $mailaddress;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Country", inversedBy="citizen")
+	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Country", inversedBy="employee_citizen")
 	 * @ORM\JoinColumn(name="citizen", referencedColumnName="id")
 	 **/
 	protected $citizen;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 2, nullable = true)
 	 **/
 	protected $blood_type;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Religion", inversedBy="religion")
+	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Religion", inversedBy="employee")
 	 * @ORM\JoinColumn(name="religion", referencedColumnName="id")
 	 **/
 	protected $religion;
-	
+
 	/**
 	 * @ORM\Column(type = "integer", length = 1, nullable = true)
-	 * 
+	 *
 	 * - 1 = single
 	 * - 2 = married
 	 * - 3 = divorced
 	 **/
 	protected $marital_status;
-	
+
 	/**
 	 * @ORM\Column(type = "date", nullable = true)
 	 **/
 	protected $hire;
-	
+
 	/**
 	 * @ORM\Column(type = "date", nullable = true)
 	 **/
 	protected $expire;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 27, nullable = true)
 	 **/
 	protected $tax;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 27, nullable = true)
 	 **/
 	protected $bank;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\OfficeHour", inversedBy="shift")
+	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\OfficeHour", inversedBy="employee")
 	 * @ORM\JoinColumn(name="sys_officehour_id", referencedColumnName="id")
 	 **/
 	protected $shift;
-	
+
 	/**
 	 * @ORM\Column(type = "boolean", nullable = true)
 	 **/
@@ -231,67 +235,97 @@ class Employee{
      * @ORM\Column(type = "boolean", nullable = true)
      **/
     protected $ismanualovertime;
-	
+
 	/**
 	 * @ORM\Column(type = "boolean", nullable = true)
 	 **/
 	protected $status;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $updatedby;
-	
+
 	/**
-	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Attendance", mappedBy="employee")
+	 * @ORM\OneToMany(targetEntity="Attendance", mappedBy="employee")
 	 **/
 	protected $attendance;
-	
+
 	/**
-	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation", mappedBy="employee")
+	 * @ORM\OneToMany(targetEntity="EmployeeEducation", mappedBy="employee")
 	 **/
 	protected $education;
-	
-	/**
-	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeFamily", mappedBy="employee")
-	 **/
-	protected $family;
-	
-	/**
-	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeTraining", mappedBy="employee")
-	 **/
-	protected $training;
 
     /**
-     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeLanguage", mappedBy="employee")
+     * @ORM\OneToMany(targetEntity="EmployeeExperience", mappedBy="employee")
+     **/
+    protected $experience;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="EmployeeFamily", mappedBy="employee")
+	 **/
+	protected $family;
+
+    /**
+     * @ORM\OneToMany(targetEntity="EmployeeLanguage", mappedBy="employee")
      **/
     protected $language;
 
     /**
-     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeOvertime", mappedBy="employee")
+     * @ORM\OneToMany(targetEntity="EmployeeOrganitation", mappedBy="employee")
+     **/
+    protected $organitation;
+
+    /**
+     * @ORM\OneToMany(targetEntity="EmployeeOvertime", mappedBy="employee")
      **/
     protected $overtime;
 
     /**
-     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeOvertime", mappedBy="approvedby")
+     * @ORM\OneToMany(targetEntity="EmployeeOvertime", mappedBy="approvedby")
      **/
-    protected $approvedby;
-	
+    protected $overtime_approvedby;
+
+    /**
+     * @ORM\OneToMany(targetEntity="EmployeeShiftment", mappedBy="employee")
+     **/
+    protected $shiftment;
+
+    /**
+     * @ORM\OneToMany(targetEntity="EmployeeTraining", mappedBy="employee")
+     **/
+    protected $training;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Career", mappedBy="employee")
+     **/
+    protected $career;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Career", mappedBy="old_supervisor")
+     **/
+    protected $career_old_supervisor;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Career", mappedBy="new_supervisor")
+     **/
+    protected $career_new_supervisor;
+
 	public function __construct(){
 		$this->status     = TRUE;
 		$this->isfixed    = TRUE;
@@ -760,6 +794,52 @@ class Employee{
     public function getIsfixed()
     {
         return $this->isfixed;
+    }
+
+    /**
+     * Set isovertime
+     *
+     * @param boolean $isovertime
+     * @return Employee
+     */
+    public function setIsovertime($isovertime)
+    {
+        $this->isovertime = $isovertime;
+    
+        return $this;
+    }
+
+    /**
+     * Get isovertime
+     *
+     * @return boolean 
+     */
+    public function getIsovertime()
+    {
+        return $this->isovertime;
+    }
+
+    /**
+     * Set ismanualovertime
+     *
+     * @param boolean $ismanualovertime
+     * @return Employee
+     */
+    public function setIsmanualovertime($ismanualovertime)
+    {
+        $this->ismanualovertime = $ismanualovertime;
+    
+        return $this;
+    }
+
+    /**
+     * Get ismanualovertime
+     *
+     * @return boolean 
+     */
+    public function getIsmanualovertime()
+    {
+        return $this->ismanualovertime;
     }
 
     /**
@@ -1276,6 +1356,39 @@ class Employee{
     }
 
     /**
+     * Add experience
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeExperience $experience
+     * @return Employee
+     */
+    public function addExperience(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeExperience $experience)
+    {
+        $this->experience[] = $experience;
+    
+        return $this;
+    }
+
+    /**
+     * Remove experience
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeExperience $experience
+     */
+    public function removeExperience(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeExperience $experience)
+    {
+        $this->experience->removeElement($experience);
+    }
+
+    /**
+     * Get experience
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getExperience()
+    {
+        return $this->experience;
+    }
+
+    /**
      * Add family
      *
      * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeFamily $family
@@ -1309,36 +1422,69 @@ class Employee{
     }
 
     /**
-     * Add training
+     * Add language
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeTraining $training
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeLanguage $language
      * @return Employee
      */
-    public function addTraining(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeTraining $training)
+    public function addLanguage(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeLanguage $language)
     {
-        $this->training[] = $training;
+        $this->language[] = $language;
     
         return $this;
     }
 
     /**
-     * Remove training
+     * Remove language
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeTraining $training
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeLanguage $language
      */
-    public function removeTraining(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeTraining $training)
+    public function removeLanguage(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeLanguage $language)
     {
-        $this->training->removeElement($training);
+        $this->language->removeElement($language);
     }
 
     /**
-     * Get training
+     * Get language
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getTraining()
+    public function getLanguage()
     {
-        return $this->training;
+        return $this->language;
+    }
+
+    /**
+     * Add organitation
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeOrganitation $organitation
+     * @return Employee
+     */
+    public function addOrganitation(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeOrganitation $organitation)
+    {
+        $this->organitation[] = $organitation;
+    
+        return $this;
+    }
+
+    /**
+     * Remove organitation
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeOrganitation $organitation
+     */
+    public function removeOrganitation(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeOrganitation $organitation)
+    {
+        $this->organitation->removeElement($organitation);
+    }
+
+    /**
+     * Get organitation
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOrganitation()
+    {
+        return $this->organitation;
     }
 
     /**
@@ -1375,114 +1521,200 @@ class Employee{
     }
 
     /**
-     * Add approvedby
+     * Add overtime_approvedby
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeOvertime $approvedby
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeOvertime $overtimeApprovedby
      * @return Employee
      */
-    public function addApprovedby(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeOvertime $approvedby)
+    public function addOvertimeApprovedby(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeOvertime $overtimeApprovedby)
     {
-        $this->approvedby[] = $approvedby;
+        $this->overtime_approvedby[] = $overtimeApprovedby;
     
         return $this;
     }
 
     /**
-     * Remove approvedby
+     * Remove overtime_approvedby
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeOvertime $approvedby
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeOvertime $overtimeApprovedby
      */
-    public function removeApprovedby(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeOvertime $approvedby)
+    public function removeOvertimeApprovedby(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeOvertime $overtimeApprovedby)
     {
-        $this->approvedby->removeElement($approvedby);
+        $this->overtime_approvedby->removeElement($overtimeApprovedby);
     }
 
     /**
-     * Get approvedby
+     * Get overtime_approvedby
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getApprovedby()
+    public function getOvertimeApprovedby()
     {
-        return $this->approvedby;
+        return $this->overtime_approvedby;
     }
 
     /**
-     * Set isovertime
+     * Add shiftment
      *
-     * @param boolean $isovertime
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeShiftment $shiftment
      * @return Employee
      */
-    public function setIsovertime($isovertime)
+    public function addShiftment(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeShiftment $shiftment)
     {
-        $this->isovertime = $isovertime;
+        $this->shiftment[] = $shiftment;
     
         return $this;
     }
 
     /**
-     * Get isovertime
+     * Remove shiftment
      *
-     * @return boolean 
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeShiftment $shiftment
      */
-    public function getIsovertime()
+    public function removeShiftment(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeShiftment $shiftment)
     {
-        return $this->isovertime;
+        $this->shiftment->removeElement($shiftment);
     }
 
     /**
-     * Set ismanualovertime
-     *
-     * @param boolean $ismanualovertime
-     * @return Employee
-     */
-    public function setIsmanualovertime($ismanualovertime)
-    {
-        $this->ismanualovertime = $ismanualovertime;
-    
-        return $this;
-    }
-
-    /**
-     * Get ismanualovertime
-     *
-     * @return boolean 
-     */
-    public function getIsmanualovertime()
-    {
-        return $this->ismanualovertime;
-    }
-
-    /**
-     * Add language
-     *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeLanguage $language
-     * @return Employee
-     */
-    public function addLanguage(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeLanguage $language)
-    {
-        $this->language[] = $language;
-    
-        return $this;
-    }
-
-    /**
-     * Remove language
-     *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeLanguage $language
-     */
-    public function removeLanguage(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeLanguage $language)
-    {
-        $this->language->removeElement($language);
-    }
-
-    /**
-     * Get language
+     * Get shiftment
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getLanguage()
+    public function getShiftment()
     {
-        return $this->language;
+        return $this->shiftment;
+    }
+
+    /**
+     * Add training
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeTraining $training
+     * @return Employee
+     */
+    public function addTraining(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeTraining $training)
+    {
+        $this->training[] = $training;
+    
+        return $this;
+    }
+
+    /**
+     * Remove training
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeTraining $training
+     */
+    public function removeTraining(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeTraining $training)
+    {
+        $this->training->removeElement($training);
+    }
+
+    /**
+     * Get training
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTraining()
+    {
+        return $this->training;
+    }
+
+    /**
+     * Add career
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $career
+     * @return Employee
+     */
+    public function addCareer(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $career)
+    {
+        $this->career[] = $career;
+    
+        return $this;
+    }
+
+    /**
+     * Remove career
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $career
+     */
+    public function removeCareer(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $career)
+    {
+        $this->career->removeElement($career);
+    }
+
+    /**
+     * Get career
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCareer()
+    {
+        return $this->career;
+    }
+
+    /**
+     * Add career_old_supervisor
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldSupervisor
+     * @return Employee
+     */
+    public function addCareerOldSupervisor(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldSupervisor)
+    {
+        $this->career_old_supervisor[] = $careerOldSupervisor;
+    
+        return $this;
+    }
+
+    /**
+     * Remove career_old_supervisor
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldSupervisor
+     */
+    public function removeCareerOldSupervisor(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldSupervisor)
+    {
+        $this->career_old_supervisor->removeElement($careerOldSupervisor);
+    }
+
+    /**
+     * Get career_old_supervisor
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCareerOldSupervisor()
+    {
+        return $this->career_old_supervisor;
+    }
+
+    /**
+     * Add career_new_supervisor
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewSupervisor
+     * @return Employee
+     */
+    public function addCareerNewSupervisor(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewSupervisor)
+    {
+        $this->career_new_supervisor[] = $careerNewSupervisor;
+    
+        return $this;
+    }
+
+    /**
+     * Remove career_new_supervisor
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewSupervisor
+     */
+    public function removeCareerNewSupervisor(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewSupervisor)
+    {
+        $this->career_new_supervisor->removeElement($careerNewSupervisor);
+    }
+
+    /**
+     * Get career_new_supervisor
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCareerNewSupervisor()
+    {
+        return $this->career_new_supervisor;
     }
 }

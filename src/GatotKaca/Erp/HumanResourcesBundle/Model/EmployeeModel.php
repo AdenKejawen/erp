@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/HumanResourcesBundle/Model/EmployeeModel.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 
@@ -33,10 +33,10 @@ class EmployeeModel extends BaseModel{
 	public function __construct(\Doctrine\ORM\EntityManager $entityManager, \GatotKaca\Erp\MainBundle\Helper\Helper $helper){
 		parent::__construct($entityManager, $helper);
 	}
-	
+
 	/**
 	 * Untuk mendapatkan list employee berdasarkan limit
-	 * 
+	 *
 	 * @param integer $start
 	 * @param integer $limit
 	 * @return array result
@@ -60,9 +60,8 @@ class EmployeeModel extends BaseModel{
 					e.lname AS employee_lname
 				')
 				->from('GatotKacaErpHumanResourcesBundle:Employee', 'e')
-				->where("(e.fname LIKE :fname OR e.lname LIKE :lname) {$extra}")
-				->setParameter('fname', "%{$keyword}%")
-				->setParameter('lname', "%{$keyword}%")
+				->where("(e.fname LIKE :name OR e.lname LIKE :name) {$extra}")
+				->setParameter('name', "%{$keyword}%")
 				->orderBy('e.fname', 'ASC')
 				->setFirstResult($start)
 				->setMaxResults($limit)
@@ -70,10 +69,10 @@ class EmployeeModel extends BaseModel{
 		$this->setModelLog("get employee from {$start} to {$limit}");
 		return $query->getResult();
 	}
-	
+
 	/**
 	 * Untuk mendapatkan total employee
-	 * 
+	 *
 	 * @param string $keyword
 	 * @param integer $limit
 	 * @return integer $total
@@ -102,10 +101,10 @@ class EmployeeModel extends BaseModel{
 		$query	= $qb->getQuery();
 		return count($query->getResult());
 	}
-	
+
 	/**
 	 * Untuk mendapatkan group employee
-	 * 
+	 *
 	 * @return object group
 	 **/
 	private function getGroup(){
@@ -113,10 +112,10 @@ class EmployeeModel extends BaseModel{
 					->getRepository('GatotKacaErpUtilitiesBundle:UserGroup')
 					->findOneBy(array('name' => 'EMPLOYEE'));
 	}
-	
+
 	/**
 	 * Untuk mengecek employee yang terdaftar
-	 * 
+	 *
 	 * @param string username
 	 * @return boolean
 	 **/
@@ -144,10 +143,10 @@ class EmployeeModel extends BaseModel{
 			return FALSE;
 		}
 	}
-	
+
 	/**
 	 * Untuk menyimpan data employee ke database
-	 * 
+	 *
 	 * @param mixed input
 	 **/
 	public function save($input, $profile){
@@ -230,7 +229,7 @@ class EmployeeModel extends BaseModel{
 		$employee->setBank($input->employee_bank);
 		//Simpan karyawan
 		$this->setEntityLog($employee);
-		$connection	= $this->getEntityManager()->getConnection(); 
+		$connection	= $this->getEntityManager()->getConnection();
 		$connection->beginTransaction();
 		try {
 			$this->getEntityManager()->persist($user);
@@ -249,10 +248,10 @@ class EmployeeModel extends BaseModel{
 			return FALSE;
 		}
 	}
-	
+
 	/**
 	 * Untuk mendapatkan data employee by criteria
-	 * 
+	 *
 	 * @param string criteria
 	 * @param string value
 	 **/
@@ -384,7 +383,7 @@ class EmployeeModel extends BaseModel{
 
 	/**
 	 * Untuk mendapatkan employee berdasarkan job level
-	 * 
+	 *
 	 * @param integer $start
 	 * @param integer $limit
 	 * @return array result
@@ -409,7 +408,7 @@ class EmployeeModel extends BaseModel{
 		$this->setModelLog("get employee with jobtitle {$jobtitle}");
 		return $query->getResult();
 	}
-	
+
 	/**
 	 * Untuk mendapatkan shiftment berdasarkan criteria dan value
 	 *
@@ -422,20 +421,21 @@ class EmployeeModel extends BaseModel{
 				->createQueryBuilder()
 				->select("
 					es.id AS shift_id,
-					TO_CHAR(s.shift_date, 'DD-MM-YYYY') AS shift_date,
+					TO_CHAR(es.shift_date, 'DD-MM-YYYY') AS shift_date,
 					oh.id AS shift_ohid,
 					TO_CHAR(oh.time_in, 'HH24:MI:SS') AS shift_ohin,
 					TO_CHAR(oh.time_out, 'HH24:MI:SS') AS shift_ohout
 				")
 				->from('GatotKacaErpHumanResourcesBundle:EmployeeShiftment', 'es')
+				->innerJoin('GatotKacaErpMainBundle:OfficeHour', 'oh', 'WITH', 'es.officehour = oh.id')
 				->where("es.{$criteria} = :{$criteria}")
-				->orderBy('s.shift_date', 'ASC')
+				->orderBy('es.shift_date', 'ASC')
 				->setParameter($criteria, $value)
 				->getQuery();
 		$this->setModelLog("get shiftment with {$criteria} {$value}");
 		return $query->getResult();
 	}
-	
+
 	/**
 	 * Untuk mendapatkan education berdasarkan criteria dan value
 	 *
@@ -467,7 +467,7 @@ class EmployeeModel extends BaseModel{
 		$this->setModelLog("get education with {$criteria} {$value}");
 		return $query->getResult();
 	}
-	
+
 	/**
 	 * Untuk mendapatkan family berdasarkan criteria dan value
 	 *
@@ -607,7 +607,34 @@ class EmployeeModel extends BaseModel{
 		$this->setModelLog("get organitation with {$criteria} {$value}");
 		return $query->getResult();
 	}
-	
+
+	/**
+	 * Untuk mendapatkan career berdasarkan criteria dan value
+	 *
+	 * @param string $criteria
+	 * @param string $value
+	 * @return array $result
+	 **/
+	public function getCareerBy($criteria, $value){
+		$query	= $this->getEntityManager()
+				->createQueryBuilder()
+				->select("
+					ec.id AS career_id,
+					TO_CHAR(ec.career_start, 'DD-MM-YYYY') AS career_start,
+					TO_CHAR(ec.career_end, 'DD-MM-YYYY') AS career_end,
+					ec.categories AS career_categories,
+					ec.position AS career_position,
+					ec.name AS career_name
+				")
+				->from('GatotKacaErpHumanResourcesBundle:Career', 'ec')
+				->where("ec.{$criteria} = :{$criteria}")
+				->orderBy('ec.name', 'DESC')
+				->setParameter($criteria, $value)
+				->getQuery();
+		$this->setModelLog("get career with {$criteria} {$value}");
+		return $query->getResult();
+	}
+
 	/**
 	 * Untuk menyimpan data shiftment
 	 *
@@ -624,7 +651,7 @@ class EmployeeModel extends BaseModel{
 		}
 		$shifment->setShiftDate(new \DateTime($input->shift_date));
 		$shifment->setEmployee($this->getEntityManager()->getReference('GatotKacaErpHumanResourcesBundle:Employee', $input->employee_id));
-		$shifment->setOfficehour($this->getEntityManager()->getReference('GatotKacaErpMainBundle:OfficeHour', $input->shift_ohour));
+		$shifment->setOfficehour($this->getEntityManager()->getReference('GatotKacaErpMainBundle:OfficeHour', $input->shift_ohid));
 		//Simpan shiftment
 		$this->setEntityLog($shifment);
 		$connection	= $this->getEntityManager()->getConnection();
@@ -644,7 +671,7 @@ class EmployeeModel extends BaseModel{
 			return FALSE;
 		}
 	}
-	
+
 	/**
 	 * Untuk menyimpan data education
 	 *
@@ -685,7 +712,7 @@ class EmployeeModel extends BaseModel{
 			return FALSE;
 		}
 	}
-	
+
 	/**
 	 * Untuk menyimpan data family
 	 *
@@ -863,7 +890,7 @@ class EmployeeModel extends BaseModel{
 			$this->setAction("create");
 		}
 		$org->setEmployee($this->getEntityManager()->getReference('GatotKacaErpHumanResourcesBundle:Employee', $input->employee_id));
-		$org->setName($input->org_name);
+		$org->setName(strtoupper($input->org_name));
 		$org->setCategories($input->org_categories);
 		$org->setPosition($input->org_position);
 		$org->setOrgStart(new \DateTime($input->org_start));

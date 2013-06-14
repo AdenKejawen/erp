@@ -1,14 +1,14 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Entity/Country.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
- * Relation Mapping : 
+ *
+ * Relation Mapping :
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
  * - GatotKaca\Erp\MainBundle\Entity\Province
  **/
@@ -22,63 +22,63 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name = "sys_country")
  **/
 class Country{
-	
+
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 3, nullable = true)
 	 **/
 	protected $code;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 99, nullable = true)
 	 **/
 	protected $name;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 5, nullable = true)
 	 **/
 	protected $phonecode;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $updatedby;
-	
+
 	/**
 	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="citizen")
 	 **/
-	protected $employeeCitizen;
-	
+	protected $employee_citizen;
+
 	/**
 	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="country")
 	 **/
-	protected $employeeCountry;
-	
+	protected $employee_country;
+
 	/**
 	 * @ORM\OneToMany(targetEntity="Province", mappedBy="country")
 	 **/
 	protected $province;
-	
+
 	public function __construct(){
 		$this->created	= new \DateTime();
 		$this->updated	= new \DateTime();
@@ -269,69 +269,69 @@ class Country{
     }
 
     /**
-     * Add employeeCitizen
+     * Add employee_citizen
      *
      * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeCitizen
      * @return Country
      */
     public function addEmployeeCitizen(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeCitizen)
     {
-        $this->employeeCitizen[] = $employeeCitizen;
+        $this->employee_citizen[] = $employeeCitizen;
     
         return $this;
     }
 
     /**
-     * Remove employeeCitizen
+     * Remove employee_citizen
      *
      * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeCitizen
      */
     public function removeEmployeeCitizen(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeCitizen)
     {
-        $this->employeeCitizen->removeElement($employeeCitizen);
+        $this->employee_citizen->removeElement($employeeCitizen);
     }
 
     /**
-     * Get employeeCitizen
+     * Get employee_citizen
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
     public function getEmployeeCitizen()
     {
-        return $this->employeeCitizen;
+        return $this->employee_citizen;
     }
 
     /**
-     * Add employeeCountry
+     * Add employee_country
      *
      * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeCountry
      * @return Country
      */
     public function addEmployeeCountry(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeCountry)
     {
-        $this->employeeCountry[] = $employeeCountry;
+        $this->employee_country[] = $employeeCountry;
     
         return $this;
     }
 
     /**
-     * Remove employeeCountry
+     * Remove employee_country
      *
      * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeCountry
      */
     public function removeEmployeeCountry(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeCountry)
     {
-        $this->employeeCountry->removeElement($employeeCountry);
+        $this->employee_country->removeElement($employeeCountry);
     }
 
     /**
-     * Get employeeCountry
+     * Get employee_country
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
     public function getEmployeeCountry()
     {
-        return $this->employeeCountry;
+        return $this->employee_country;
     }
 
     /**

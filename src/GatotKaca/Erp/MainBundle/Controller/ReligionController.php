@@ -40,7 +40,7 @@ class ReligionController extends AdminController{
 		$start	= abs($request->get('start'));
 		$limit	= abs($request->get('limit'));
 		//Get model
-		$model		= $this->modelManager()->getReligion();
+		$model		= $this->getModelManager()->getReligion();
 		$jobstatus	= $model->getList($keyword, $start, $limit);
 		if($total	= count($jobstatus)){
 			$output['total']= $model->countTotal($keyword, $limit);
@@ -67,7 +67,7 @@ class ReligionController extends AdminController{
 		}
 		$output		= array('success' => TRUE);
 		//Get model
-		$model		= $this->modelManager()->getReligion();
+		$model		= $this->getModelManager()->getReligion();
 		$religion	= $model->getById($request->get('religion_id'));
 		if(count($religion)){
 			$output['data']	= $religion;
@@ -90,7 +90,7 @@ class ReligionController extends AdminController{
 		}
 		$input		= json_decode($request->get('religion', ''));
 		//Get model
-		$model		= $this->modelManager()->getReligion();
+		$model		= $this->getModelManager()->getReligion();
 		if($success	= $model->save($input)){
 			$output['success']	= TRUE;
 			$output['msg']	= 'Religion has been saved.';

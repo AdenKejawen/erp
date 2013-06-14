@@ -1,20 +1,20 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/UtilitiesBundle/Entity/Module.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
+ *
  * Relation Mapping :
  * - GatotKaca\Erp\UtilitiesBundle\Entity\UserGroup
  * - GatotKaca\Erp\UtilitiesBundle\Entity\Module
  **/
- 
+
 namespace GatotKaca\Erp\UtilitiesBundle\Entity;
- 
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,60 +22,60 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name = "utl_role")
  */
 class Role{
- 	
+
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="UserGroup", inversedBy="group")
+	 * @ORM\ManyToOne(targetEntity="UserGroup", inversedBy="role")
 	 * @ORM\JoinColumn(name="utl_group_id", referencedColumnName="id")
 	 **/
 	protected $group;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="Module", inversedBy="module")
+	 * @ORM\ManyToOne(targetEntity="Module", inversedBy="role")
 	 * @ORM\JoinColumn(name="utl_module_id", referencedColumnName="id")
 	 **/
 	protected $module;
-	
+
 	/**
 	 * @ORM\Column(type = "boolean", nullable = true)
 	 **/
 	protected $view;
-	
+
 	/**
 	 * @ORM\Column(type = "boolean", nullable = true)
 	 **/
 	protected $modif;
-	
+
 	/**
 	 * @ORM\Column(type = "boolean", nullable = true)
 	 **/
 	protected $delete;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $updatedby;
-	
+
 	public function __construct(){
 		$this->view	      = FALSE;
 		$this->modif      = FALSE;

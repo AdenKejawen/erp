@@ -1,11 +1,11 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Model/DepartmentModel.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
  **/
 
@@ -25,10 +25,10 @@ class DepartmentModel extends BaseModel{
 	public function __construct(\Doctrine\ORM\EntityManager $entityManager, \GatotKaca\Erp\MainBundle\Helper\Helper $helper){
 		parent::__construct($entityManager, $helper);
 	}
-	
+
 	/**
 	 * Untuk mendapatkan list department by criteria
-	 * 
+	 *
 	 * @param string $criteria
 	 * @param string $value
 	 * @return array result
@@ -63,7 +63,7 @@ class DepartmentModel extends BaseModel{
 		$this->setModelLog("get departement with {$criteria} {$value}");
 		return $query->getResult();
 	}
-	
+
 	/**
 	 * Untuk mendapatkan list department berdasarkan limit
 	 *
@@ -90,7 +90,7 @@ class DepartmentModel extends BaseModel{
 				')
 				->from('GatotKacaErpMainBundle:Department', 'd')
 				->leftJoin('GatotKacaErpMainBundle:Department', 'p', 'WITH', 'p.id = d.parent')
-				->where("d.name LIKE :name {$extra}")
+				->where("d.name LIKE :name OR d.code LIKE :name {$extra}")
 				->setParameter('name', "%{$keyword}%")
 				->orderBy('d.name', 'ASC')
 				->setFirstResult($start)
@@ -99,7 +99,7 @@ class DepartmentModel extends BaseModel{
 		$this->setModelLog("get department from {$start} to {$limit}");
 		return $query->getResult();
 	}
-	
+
 	/**
 	 * Untuk mendapatkan total department
 	 *
@@ -128,7 +128,7 @@ class DepartmentModel extends BaseModel{
 		$query	= $qb->getQuery();
 		return count($query->getResult());
 	}
-	
+
 	/**
 	 * Untuk menyimpan data department
 	 *

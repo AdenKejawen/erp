@@ -1,13 +1,13 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/HumanResourcesBundle/Entity/EmployeeOvertime.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
+ *
  * Relation Mapping :
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
  **/
@@ -26,9 +26,9 @@ class EmployeeOvertime{
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", inversedBy="employee")
+	 * @ORM\ManyToOne(targetEntity="Employee", inversedBy="overtime")
 	 * @ORM\JoinColumn(name="mtr_employee_id", referencedColumnName="id")
 	 **/
 	protected $employee;
@@ -74,14 +74,14 @@ class EmployeeOvertime{
      * Overtime dalam menit
      **/
     protected $ot_real;
-	
+
     /**
      * @ORM\Column(type = "datetime", nullable = true)
      **/
     protected $approved;
-    
+
     /**
-     * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", inversedBy="approvedby")
+     * @ORM\ManyToOne(targetEntity="Employee", inversedBy="overtime_approvedby")
      * @ORM\JoinColumn(name="approvedby", referencedColumnName="id")
      **/
     protected $approvedby;
@@ -90,22 +90,22 @@ class EmployeeOvertime{
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $updatedby;
-	
+
 	public function __construct(){
         $this->created      = new \DateTime();
         $this->updated      = new \DateTime();
@@ -254,7 +254,7 @@ class EmployeeOvertime{
     /**
      * Set isapprove
      *
-     * @param boolean $isapprove
+     * @param integer $isapprove
      * @return EmployeeOvertime
      */
     public function setIsapprove($isapprove)
@@ -267,7 +267,7 @@ class EmployeeOvertime{
     /**
      * Get isapprove
      *
-     * @return boolean 
+     * @return integer 
      */
     public function getIsapprove()
     {
@@ -275,9 +275,32 @@ class EmployeeOvertime{
     }
 
     /**
+     * Set isexpire
+     *
+     * @param boolean $isexpire
+     * @return EmployeeOvertime
+     */
+    public function setIsexpire($isexpire)
+    {
+        $this->isexpire = $isexpire;
+    
+        return $this;
+    }
+
+    /**
+     * Get isexpire
+     *
+     * @return boolean 
+     */
+    public function getIsexpire()
+    {
+        return $this->isexpire;
+    }
+
+    /**
      * Set ot_real
      *
-     * @param integer $otReal
+     * @param float $otReal
      * @return EmployeeOvertime
      */
     public function setOtReal($otReal)
@@ -290,7 +313,7 @@ class EmployeeOvertime{
     /**
      * Get ot_real
      *
-     * @return integer 
+     * @return float 
      */
     public function getOtReal()
     {
@@ -456,28 +479,5 @@ class EmployeeOvertime{
     public function getApprovedby()
     {
         return $this->approvedby;
-    }
-
-    /**
-     * Set isexpire
-     *
-     * @param boolean $isexpire
-     * @return EmployeeOvertime
-     */
-    public function setIsexpire($isexpire)
-    {
-        $this->isexpire = $isexpire;
-    
-        return $this;
-    }
-
-    /**
-     * Get isexpire
-     *
-     * @return boolean 
-     */
-    public function getIsexpire()
-    {
-        return $this->isexpire;
     }
 }

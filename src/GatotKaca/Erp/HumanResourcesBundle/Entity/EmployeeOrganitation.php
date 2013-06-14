@@ -1,13 +1,13 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/HumanResourcesBundle/Entity/EmployeeOrganitation.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
+ *
  * Relation Mapping :
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
  **/
@@ -26,9 +26,9 @@ class EmployeeOrganitation{
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", inversedBy="employee")
+	 * @ORM\ManyToOne(targetEntity="Employee", inversedBy="organitation")
 	 * @ORM\JoinColumn(name="mtr_employee_id", referencedColumnName="id")
 	 **/
 	protected $employee;
@@ -37,7 +37,7 @@ class EmployeeOrganitation{
      * @ORM\Column(type = "date", nullable = true)
      **/
     protected $org_start;
-    
+
     /**
      * @ORM\Column(type = "date", nullable = true)
      **/
@@ -62,17 +62,17 @@ class EmployeeOrganitation{
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/

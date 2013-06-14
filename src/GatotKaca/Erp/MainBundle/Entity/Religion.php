@@ -1,14 +1,14 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Entity/District.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
- * Relation Mapping : 
+ *
+ * Relation Mapping :
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
  **/
 
@@ -21,43 +21,43 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name = "sys_religion")
  **/
 class Religion{
-	
+
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 33, nullable = true)
 	 **/
 	protected $name;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $updatedby;
-	
+
 	/**
 	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="religion")
 	 **/
 	protected $employee;
-	
+
 	public function __construct(){
 		$this->created	= new \DateTime();
 		$this->updated	= new \DateTime();

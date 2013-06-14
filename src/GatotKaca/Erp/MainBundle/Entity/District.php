@@ -1,14 +1,14 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Entity/District.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
- * Relation Mapping : 
+ *
+ * Relation Mapping :
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
  * - GatotKaca\Erp\MainBundle\Entity\Province
  **/
@@ -22,24 +22,24 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name = "sys_district")
  **/
 class District{
-	
+
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="Province", inversedBy="province")
+	 * @ORM\ManyToOne(targetEntity="Province", inversedBy="district")
 	 * @ORM\JoinColumn(name="sys_province_id", referencedColumnName="id")
 	 **/
 	protected $province;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 7, nullable = true)
 	 **/
 	protected $code;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 77, nullable = true)
 	 **/
@@ -49,37 +49,42 @@ class District{
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $updatedby;
-	
+
 	/**
 	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="district_address")
 	 **/
 	protected $employee;
-	
+
+    /**
+     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="bod_place")
+     **/
+    protected $employee_bod_place;
+
 	/**
 	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation", mappedBy="district")
 	 **/
-	protected $education;
-	
+	protected $employee_education;
+
 	/**
 	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeTraining", mappedBy="district")
 	 **/
 	protected $training;
-	
+
 	public function __construct(){
 		$this->created	= new \DateTime();
 		$this->updated	= new \DateTime();
@@ -94,14 +99,14 @@ class District{
     public function setId($id)
     {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return string 
+     * @return string
      */
     public function getId()
     {
@@ -117,14 +122,14 @@ class District{
     public function setCode($code)
     {
         $this->code = $code;
-    
+
         return $this;
     }
 
     /**
      * Get code
      *
-     * @return string 
+     * @return string
      */
     public function getCode()
     {
@@ -140,14 +145,14 @@ class District{
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -163,14 +168,14 @@ class District{
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -186,14 +191,14 @@ class District{
     public function setCreatedby($createdby)
     {
         $this->createdby = $createdby;
-    
+
         return $this;
     }
 
     /**
      * Get createdby
      *
-     * @return string 
+     * @return string
      */
     public function getCreatedby()
     {
@@ -209,14 +214,14 @@ class District{
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-    
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -232,14 +237,14 @@ class District{
     public function setUpdatedby($updatedby)
     {
         $this->updatedby = $updatedby;
-    
+
         return $this;
     }
 
     /**
      * Get updatedby
      *
-     * @return string 
+     * @return string
      */
     public function getUpdatedby()
     {
@@ -255,14 +260,14 @@ class District{
     public function setProvince(\GatotKaca\Erp\MainBundle\Entity\Province $province = null)
     {
         $this->province = $province;
-    
+
         return $this;
     }
 
     /**
      * Get province
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\Province 
+     * @return \GatotKaca\Erp\MainBundle\Entity\Province
      */
     public function getProvince()
     {
@@ -278,7 +283,7 @@ class District{
     public function addEmployee(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee)
     {
         $this->employee[] = $employee;
-    
+
         return $this;
     }
 
@@ -295,7 +300,7 @@ class District{
     /**
      * Get employee
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getEmployee()
     {
@@ -303,36 +308,69 @@ class District{
     }
 
     /**
-     * Add education
+     * Add employee_bod_place
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation $education
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeBodPlace
      * @return District
      */
-    public function addEducation(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation $education)
+    public function addEmployeeBodPlace(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeBodPlace)
     {
-        $this->education[] = $education;
-    
+        $this->employee_bod_place[] = $employeeBodPlace;
+
         return $this;
     }
 
     /**
-     * Remove education
+     * Remove employee_bod_place
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation $education
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeBodPlace
      */
-    public function removeEducation(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation $education)
+    public function removeEmployeeBodPlace(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeBodPlace)
     {
-        $this->education->removeElement($education);
+        $this->employee_bod_place->removeElement($employeeBodPlace);
     }
 
     /**
-     * Get education
+     * Get employee_bod_place
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEducation()
+    public function getEmployeeBodPlace()
     {
-        return $this->education;
+        return $this->employee_bod_place;
+    }
+
+    /**
+     * Add employee_education
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation $employeeEducation
+     * @return District
+     */
+    public function addEmployeeEducation(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation $employeeEducation)
+    {
+        $this->employee_education[] = $employeeEducation;
+
+        return $this;
+    }
+
+    /**
+     * Remove employee_education
+     *
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation $employeeEducation
+     */
+    public function removeEmployeeEducation(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation $employeeEducation)
+    {
+        $this->employee_education->removeElement($employeeEducation);
+    }
+
+    /**
+     * Get employee_education
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEmployeeEducation()
+    {
+        return $this->employee_education;
     }
 
     /**
@@ -344,7 +382,7 @@ class District{
     public function addTraining(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeTraining $training)
     {
         $this->training[] = $training;
-    
+
         return $this;
     }
 
@@ -361,7 +399,7 @@ class District{
     /**
      * Get training
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTraining()
     {

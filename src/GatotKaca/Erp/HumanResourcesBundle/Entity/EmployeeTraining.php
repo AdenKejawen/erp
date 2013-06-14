@@ -1,13 +1,13 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/HumanResourcesBundle/Entity/EmployeeTraining.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
+ *
  * Relation Mapping :
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
  **/
@@ -26,64 +26,64 @@ class EmployeeTraining{
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", inversedBy="employee")
+	 * @ORM\ManyToOne(targetEntity="Employee", inversedBy="training")
 	 * @ORM\JoinColumn(name="mtr_employee_id", referencedColumnName="id")
 	 **/
 	protected $employee;
-	
+
 	/**
      * @ORM\Column(type = "string", length = 77, nullable = true)
 	 **/
 	protected $skill;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 77, nullable = true)
 	 **/
 	protected $name;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 77, nullable = true)
 	 **/
 	protected $institute;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\District", inversedBy="district")
+	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\District", inversedBy="training")
 	 * @ORM\JoinColumn(name="sys_district_id", referencedColumnName="id")
 	 **/
 	protected $district;
-	
+
 	/**
 	 * @ORM\Column(type = "date", nullable = true)
 	 **/
 	protected $training_start;
-	
+
 	/**
 	 * @ORM\Column(type = "date", nullable = true)
 	 **/
 	protected $training_end;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $updatedby;
-	
+
 	public function __construct(){
 		$this->created	= new \DateTime();
 		$this->updated	= new \DateTime();

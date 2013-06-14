@@ -1,13 +1,13 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/UtilitiesBundle/Entity/Logging.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
+ *
  * Relation Mapping : ~
  **/
 
@@ -20,43 +20,43 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name = "utl_log")
  **/
 class Logging{
-	
+
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 17, nullable = true)
 	 **/
 	protected $agent;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40, nullable = true)
 	 **/
 	protected $user_id;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 255, nullable = true)
 	 **/
 	protected $route;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 7, nullable = true)
 	 **/
 	protected $type;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 255, nullable = true)
 	 **/
 	protected $value;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	public function __construct(){
 		/**
 		 * Log Type

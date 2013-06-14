@@ -71,7 +71,7 @@ class OverTimeController extends AdminController{
 		$keyword	= strtoupper($request->get('query', ''));
 		$status		= $request->get('status', TRUE);
 		//Get model
-		$model		= $this->modelManager()->getOverTime();
+		$model		= $this->getModelManager()->getOverTime();
 		$overtime	= $model->getList($keyword, $request->get('from', ''), $request->get('to', ''), $request->get('supervise', 'FALSE'), $request->get('approve', 'all'));
 		if($total	= count($overtime)){
 			$output['total']	= $total;

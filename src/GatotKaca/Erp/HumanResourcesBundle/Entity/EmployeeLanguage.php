@@ -1,13 +1,13 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/HumanResourcesBundle/Entity/EmployeeLanguage.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
+ *
  * Relation Mapping :
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
  **/
@@ -26,15 +26,15 @@ class EmployeeLanguage{
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", inversedBy="employee")
+	 * @ORM\ManyToOne(targetEntity="Employee", inversedBy="language")
 	 * @ORM\JoinColumn(name="mtr_employee_id", referencedColumnName="id")
 	 **/
 	protected $employee;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Language", inversedBy="language")
+	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Language", inversedBy="employee")
 	 * @ORM\JoinColumn(name="sys_language_id", referencedColumnName="id")
 	 **/
 	protected $language;
@@ -43,7 +43,7 @@ class EmployeeLanguage{
      * 1 = EXCELLENT
      * 2 = GOOD
      * 3 = FAIR
-     * 
+     *
      * @ORM\Column(type = "integer", nullable = true)
      **/
     protected $spoken;
@@ -52,7 +52,7 @@ class EmployeeLanguage{
      * 1 = EXCELLENT
      * 2 = GOOD
      * 3 = FAIR
-     * 
+     *
      * @ORM\Column(type = "integer", nullable = true)
      **/
     protected $writen;
@@ -61,17 +61,17 @@ class EmployeeLanguage{
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/

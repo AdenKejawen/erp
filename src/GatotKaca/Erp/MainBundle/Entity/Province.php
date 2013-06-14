@@ -1,14 +1,14 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Entity/Province.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
- * Relation Mapping : 
+ *
+ * Relation Mapping :
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
  * - GatotKaca\Erp\MainBundle\Entity\Country
  **/
@@ -22,24 +22,24 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name = "sys_province")
  **/
 class Province{
-	
+
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="Country", inversedBy="country")
+	 * @ORM\ManyToOne(targetEntity="Country", inversedBy="province")
 	 * @ORM\JoinColumn(name="sys_country_id", referencedColumnName="id")
 	 **/
 	protected $country;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 33, nullable = true)
 	 **/
 	protected $code;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 77, nullable = true)
 	 **/
@@ -49,32 +49,32 @@ class Province{
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $updatedby;
-	
+
 	/**
 	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="province_address")
 	 **/
 	protected $employee;
-	
+
 	/**
 	 * @ORM\OneToMany(targetEntity="District", mappedBy="province")
 	 **/
 	protected $district;
-	
+
 	public function __construct(){
 		$this->created	= new \DateTime();
 		$this->updated	= new \DateTime();

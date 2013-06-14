@@ -1,13 +1,13 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/UtilitiesBundle/Entity/User.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
+ *
  * Relation Mapping :
  * - GatotKaca\Erp\UtilitiesBundle\Entity\UserGroup
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
@@ -21,87 +21,87 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name = "utl_user")
  **/
 class User{
-	
+
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
 	 * @ORM\OneToMany(targetEntity="User", mappedBy="parent")
 	 **/
 	protected $child;
- 	
+
 	/**
 	 * Untuk supervisi
-	 * 
+	 *
      * @ORM\ManyToOne(targetEntity="User", inversedBy="child")
      * @ORM\JoinColumn(name="parent", referencedColumnName="id")
      */
  	protected $parent;
- 	
+
  	/**
- 	 * @ORM\ManyToOne(targetEntity="UserGroup", inversedBy="group")
+ 	 * @ORM\ManyToOne(targetEntity="UserGroup", inversedBy="user")
  	 * @ORM\JoinColumn(name="utl_group_id", referencedColumnName="id")
  	 **/
  	protected $group;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 17, nullable = true)
 	 **/
 	protected $name;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40, nullable = true)
 	 **/
 	protected $salt;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40, nullable = true)
 	 **/
 	protected $pass;
-	
+
 	/**
 	 * @ORM\Column(type = "boolean", nullable = true)
 	 **/
 	protected $status;
-	
+
 	/**
 	 * @ORM\Column(type = "boolean", nullable = true)
 	 **/
 	protected $online;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime", nullable = true)
 	 **/
 	protected $lastactivity;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $updatedby;
-	
+
 	/**
 	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="username")
 	 **/
 	protected $employee;
-	
+
 	public function __construct(){
 		$this->lastactivity   = new \DateTime();
 		$this->created        = new \DateTime();
@@ -203,9 +203,9 @@ class User{
     }
 
     /**
-     * Set success
+     * Set status
      *
-     * @param boolean $success
+     * @param boolean $status
      * @return User
      */
     public function setStatus($status)
@@ -216,7 +216,7 @@ class User{
     }
 
     /**
-     * Get success
+     * Get status
      *
      * @return boolean 
      */

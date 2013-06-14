@@ -22,10 +22,10 @@ class CompanyModel extends BaseModel{
 	public function __construct(\Doctrine\ORM\EntityManager $entityManager, \GatotKaca\Erp\MainBundle\Helper\Helper $helper){
 		parent::__construct($entityManager, $helper);
 	}
-	
+
 	/**
 	 * Untuk mendapatkan list company berdasarkan limit
-	 * 
+	 *
 	 * @param integer $start
 	 * @param integer $limit
 	 * @return array result
@@ -58,7 +58,7 @@ class CompanyModel extends BaseModel{
 		$this->setModelLog("get company from {$start} to {$limit}");
 		return $query->getResult();
 	}
-	
+
 	/**
 	 * Untuk mendapatkan total company
 	 *
@@ -87,7 +87,7 @@ class CompanyModel extends BaseModel{
 		$query	= $qb->getQuery();
 		return count($query->getResult());
 	}
-	
+
 	/**
 	 * Untuk mendapatkan data company by Id
 	 *
@@ -114,7 +114,7 @@ class CompanyModel extends BaseModel{
 		$this->setModelLog("get company with id {$id}");
 		return $query->getResult();
 	}
-	
+
 	/**
 	 * Untuk menyimpan data company
 	 *
@@ -159,6 +159,7 @@ class CompanyModel extends BaseModel{
 		$connection->beginTransaction();
 		try {
 			//Assign all department to company
+			$division	= NULL;
 			if($this->getAction() === 'CREATE'){
 				$departments	= $this->getEntityManager()->getRepository('GatotKacaErpMainBundle:Department')->findAll();
 				foreach ($departments as $department){
@@ -182,7 +183,6 @@ class CompanyModel extends BaseModel{
 					$this->getEntityManager()->persist($division);
 				}
 			}
-			$this->setEntityLog($division);
 			$this->getEntityManager()->persist($company);
 			$this->getEntityManager()->flush();
 			$this->getEntityManager()->lock($company, LockMode::PESSIMISTIC_READ);

@@ -1,14 +1,14 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Entity/Department.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
- * Relation Mapping : 
+ *
+ * Relation Mapping :
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
  * - GatotKaca\Erp\MainBundle\Entity\CompanyDepartment
  * - GatotKaca\Erp\MainBundle\Entity\OfficeHour
@@ -23,34 +23,34 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name = "sys_department")
  **/
 class Department{
-	
+
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
 	* @ORM\OneToMany(targetEntity="CompanyDepartment", mappedBy="department")
 	**/
 	protected $company;
-	
+
 	/**
 	 * @ORM\OneToMany(targetEntity="Department", mappedBy="parent")
 	 **/
 	protected $child;
-	
+
 	/**
 	 * @ORM\ManyToOne(targetEntity="Department", inversedBy="child")
 	 * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
 	 */
 	protected $parent;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 7, unique = true, nullable = true)
 	 **/
 	protected $code;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 77, nullable = true)
 	 **/
@@ -60,37 +60,32 @@ class Department{
 	 * @ORM\Column(type = "boolean", nullable = true)
 	 **/
 	protected $status;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $updatedby;
-	
+
 	/**
 	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="department")
 	 **/
 	protected $employee;
-	
-	/**
-	 * @ORM\OneToMany(targetEntity="OfficeHour", mappedBy="department")
-	 **/
-	protected $officeHour;
-	
+
 	public function __construct(){
 		$this->status	= TRUE;
 		$this->created	= new \DateTime();
@@ -401,38 +396,5 @@ class Department{
     public function getEmployee()
     {
         return $this->employee;
-    }
-
-    /**
-     * Add officeHour
-     *
-     * @param \GatotKaca\Erp\MainBundle\Entity\OfficeHour $officeHour
-     * @return Department
-     */
-    public function addOfficeHour(\GatotKaca\Erp\MainBundle\Entity\OfficeHour $officeHour)
-    {
-        $this->officeHour[] = $officeHour;
-    
-        return $this;
-    }
-
-    /**
-     * Remove officeHour
-     *
-     * @param \GatotKaca\Erp\MainBundle\Entity\OfficeHour $officeHour
-     */
-    public function removeOfficeHour(\GatotKaca\Erp\MainBundle\Entity\OfficeHour $officeHour)
-    {
-        $this->officeHour->removeElement($officeHour);
-    }
-
-    /**
-     * Get officeHour
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getOfficeHour()
-    {
-        return $this->officeHour;
     }
 }

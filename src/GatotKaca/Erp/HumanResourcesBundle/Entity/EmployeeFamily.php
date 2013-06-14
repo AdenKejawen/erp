@@ -1,13 +1,13 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/HumanResourcesBundle/Entity/EmployeeFamily.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
+ *
  * Relation Mapping :
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Family
@@ -27,69 +27,69 @@ class EmployeeFamily{
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", inversedBy="employee")
+	 * @ORM\ManyToOne(targetEntity="Employee", inversedBy="family")
 	 * @ORM\JoinColumn(name="mtr_employee_id", referencedColumnName="id")
 	 **/
 	protected $employee;
-	
+
 	/**
 	 * 1 = PARENT
 	 * 2 = SPOUSE
 	 * 3 = SIBLING
 	 * 4 = CHILDREN
-	 * 
+	 *
 	 * @ORM\Column(type = "integer", nullable = true)
 	 **/
 	protected $relation;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 27, nullable = true)
 	 **/
 	protected $fname;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 27, nullable = true)
 	 **/
 	protected $lname;
-	
+
 	/**
 	 * @ORM\Column(type = "date", nullable = true)
 	 **/
 	protected $born;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Education", inversedBy="education")
+	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Education", inversedBy="family")
 	 * @ORM\JoinColumn(name="sys_education_id", referencedColumnName="id")
 	 **/
 	protected $education;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 77, nullable = true)
 	 **/
 	protected $institute;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $updatedby;
-	
+
 	public function __construct(){
 		$this->institute  = '';
 		$this->created    = new \DateTime();
@@ -122,7 +122,7 @@ class EmployeeFamily{
     /**
      * Set relation
      *
-     * @param string $relation
+     * @param integer $relation
      * @return EmployeeFamily
      */
     public function setRelation($relation)
@@ -135,7 +135,7 @@ class EmployeeFamily{
     /**
      * Get relation
      *
-     * @return string 
+     * @return integer 
      */
     public function getRelation()
     {

@@ -1,20 +1,20 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/MainBundle/Entity/CompanyDepartment.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
+ *
  * Relation Mapping :
  * - GatotKaca\Erp\MainBundle\Entity\Company
  * - GatotKaca\Erp\MainBundle\Entity\Department
  **/
- 
+
 namespace GatotKaca\Erp\MainBundle\Entity;
- 
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,50 +22,50 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name = "sys_division")
  */
 class CompanyDepartment{
- 	
+
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $id;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="Company", inversedBy="company")
+	 * @ORM\ManyToOne(targetEntity="Company", inversedBy="department")
 	 * @ORM\JoinColumn(name="sys_company_id", referencedColumnName="id")
 	 **/
 	protected $company;
-	
+
 	/**
-	 * @ORM\ManyToOne(targetEntity="Department", inversedBy="department")
+	 * @ORM\ManyToOne(targetEntity="Department", inversedBy="company")
 	 * @ORM\JoinColumn(name="sys_department_id", referencedColumnName="id")
 	 **/
 	protected $department;
-	
+
 	/**
 	 * @ORM\Column(type = "boolean", nullable = true)
 	 **/
 	protected $status;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $created;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $createdby;
-	
+
 	/**
 	 * @ORM\Column(type = "datetime")
 	 **/
 	protected $updated;
-	
+
 	/**
 	 * @ORM\Column(type = "string", length = 40)
 	 **/
 	protected $updatedby;
-	
+
 	public function __construct(){
 		$this->status	= FALSE;
 		$this->created	= new \DateTime();
