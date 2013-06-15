@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.module.HumanResources.view.tabs.Career",{extend:"GatotKacaErp.view.tabs.Base",alias:"widget.tabcareer",id:"tabcareer",requires:["GatotKacaErp.module.HumanResources.view.forms.Career"],items:[{xtype:"formcareer"}]});

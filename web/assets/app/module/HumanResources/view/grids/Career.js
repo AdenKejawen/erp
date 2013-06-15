@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.module.HumanResources.view.grids.Career",{extend:"GatotKacaErp.module.HumanResources.view.grids.EmployeeBase",store:"GatotKacaErp.module.HumanResources.store.Career",alias:"widget.gridcareer",id:"gridcareer"});
