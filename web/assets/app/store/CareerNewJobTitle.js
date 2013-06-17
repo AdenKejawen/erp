@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.store.CareerNewJobTitle",{extend:"GatotKacaErp.store.JobTitle",});
