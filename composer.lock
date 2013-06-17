@@ -700,12 +700,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kriswallsmith/assetic.git",
-                "reference": "dfcbf3d19bafa0f00549bc10dba0ca19c8b3185b"
+                "reference": "0e18168c45df6500617ad8739f122fdf917a9293"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/dfcbf3d19bafa0f00549bc10dba0ca19c8b3185b",
-                "reference": "dfcbf3d19bafa0f00549bc10dba0ca19c8b3185b",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/0e18168c45df6500617ad8739f122fdf917a9293",
+                "reference": "0e18168c45df6500617ad8739f122fdf917a9293",
                 "shasum": ""
             },
             "require": {
@@ -763,7 +763,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2013-06-06 22:11:45"
+            "time": "2013-06-13 16:56:43"
         },
         {
             "name": "monolog/monolog",

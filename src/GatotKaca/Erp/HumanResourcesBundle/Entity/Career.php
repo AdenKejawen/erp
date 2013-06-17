@@ -1,9 +1,9 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/HumanResourcesBundle/Entity/Career.php
- * Author     : Muhammad Surya Ikhsanudin
- * License    : Protected
- * Email      : mutofiyah@gmail.com
+ * Author    : Muhammad Surya Ikhsanudin
+ * License   : Protected
+ * Email     : mutofiyah@gmail.com
  *
  * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
@@ -101,7 +101,6 @@ class Career{
     protected $updatedby;
 
     public function __construct(){
-        $this->institute  = '';
         $this->created    = new \DateTime();
         $this->updated    = new \DateTime();
     }
@@ -115,14 +114,14 @@ class Career{
     public function setId($id)
     {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return string 
+     * @return string
      */
     public function getId()
     {
@@ -138,14 +137,14 @@ class Career{
     public function setRefno($refno)
     {
         $this->refno = $refno;
-    
+
         return $this;
     }
 
     /**
      * Get refno
      *
-     * @return string 
+     * @return string
      */
     public function getRefno()
     {
@@ -161,14 +160,14 @@ class Career{
     public function setPromote($promote)
     {
         $this->promote = $promote;
-    
+
         return $this;
     }
 
     /**
      * Get promote
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getPromote()
     {
@@ -184,14 +183,14 @@ class Career{
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -207,14 +206,14 @@ class Career{
     public function setCreatedby($createdby)
     {
         $this->createdby = $createdby;
-    
+
         return $this;
     }
 
     /**
      * Get createdby
      *
-     * @return string 
+     * @return string
      */
     public function getCreatedby()
     {
@@ -230,14 +229,14 @@ class Career{
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-    
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -253,14 +252,14 @@ class Career{
     public function setUpdatedby($updatedby)
     {
         $this->updatedby = $updatedby;
-    
+
         return $this;
     }
 
     /**
      * Get updatedby
      *
-     * @return string 
+     * @return string
      */
     public function getUpdatedby()
     {
@@ -276,14 +275,14 @@ class Career{
     public function setEmployee(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee = null)
     {
         $this->employee = $employee;
-    
+
         return $this;
     }
 
     /**
      * Get employee
      *
-     * @return \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee 
+     * @return \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
      */
     public function getEmployee()
     {
@@ -299,14 +298,14 @@ class Career{
     public function setOldCompany(\GatotKaca\Erp\MainBundle\Entity\Company $oldCompany = null)
     {
         $this->old_company = $oldCompany;
-    
+
         return $this;
     }
 
     /**
      * Get old_company
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\Company 
+     * @return \GatotKaca\Erp\MainBundle\Entity\Company
      */
     public function getOldCompany()
     {
@@ -322,14 +321,14 @@ class Career{
     public function setNewCompany(\GatotKaca\Erp\MainBundle\Entity\Company $newCompany = null)
     {
         $this->new_company = $newCompany;
-    
+
         return $this;
     }
 
     /**
      * Get new_company
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\Company 
+     * @return \GatotKaca\Erp\MainBundle\Entity\Company
      */
     public function getNewCompany()
     {
@@ -345,14 +344,14 @@ class Career{
     public function setOldJobtitle(\GatotKaca\Erp\MainBundle\Entity\JobTitle $oldJobtitle = null)
     {
         $this->old_jobtitle = $oldJobtitle;
-    
+
         return $this;
     }
 
     /**
      * Get old_jobtitle
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\JobTitle 
+     * @return \GatotKaca\Erp\MainBundle\Entity\JobTitle
      */
     public function getOldJobtitle()
     {
@@ -368,14 +367,14 @@ class Career{
     public function setNewJobtitle(\GatotKaca\Erp\MainBundle\Entity\JobTitle $newJobtitle = null)
     {
         $this->new_jobtitle = $newJobtitle;
-    
+
         return $this;
     }
 
     /**
      * Get new_jobtitle
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\JobTitle 
+     * @return \GatotKaca\Erp\MainBundle\Entity\JobTitle
      */
     public function getNewJobtitle()
     {
@@ -391,14 +390,14 @@ class Career{
     public function setOldSupervisor(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $oldSupervisor = null)
     {
         $this->old_supervisor = $oldSupervisor;
-    
+
         return $this;
     }
 
     /**
      * Get old_supervisor
      *
-     * @return \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee 
+     * @return \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
      */
     public function getOldSupervisor()
     {
@@ -414,14 +413,14 @@ class Career{
     public function setNewSupervisor(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $newSupervisor = null)
     {
         $this->new_supervisor = $newSupervisor;
-    
+
         return $this;
     }
 
     /**
      * Get new_supervisor
      *
-     * @return \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee 
+     * @return \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
      */
     public function getNewSupervisor()
     {

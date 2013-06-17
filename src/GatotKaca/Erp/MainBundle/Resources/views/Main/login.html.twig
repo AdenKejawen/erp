@@ -5,34 +5,34 @@
         <title>{% block title %}.:: VINOTI LIVING ENTERPRISE RESOURCES PLANNING ::.{% endblock %}</title>
         <meta Content-Type="text/html" charset="UTF-8" />
         <link rel="shortcut icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/admin.png') }}" />
-        
+
         <script type="text/javascript">
-        var BASE_URL	= '{{ path('GatotKacaErpMainBundle_Main_index') }}';
-        var SECRET_KEY	= '{{ secret }}';
-        var ROOTDIR		= 'assets/';
+        var BASE_URL    = '{{ path('GatotKacaErpMainBundle_Main_index') }}';
+        var SECRET_KEY  = '{{ secret }}';
+        var ROOTDIR     = 'assets/';
         </script>
-        
+
         <style type="text/css">
             #loading-mask {
-                position	: absolute;
-                top			: 0;
-                left		: 0;
-                width		: 100%;
-                height		: 100%;
-                background	: #000000;
-                z-index		: 1;
+                position    : absolute;
+                top         : 0;
+                left        : 0;
+                width       : 100%;
+                height      : 100%;
+                background  : #000000;
+                z-index     : 1;
             }
             #loading {
-                position	: absolute;
-                top		: 40%;
+                position    : absolute;
+                top     : 40%;
                 left            : 45%;
                 z-index         : 2;
             }
             #loading span {
-                background	: url('assets/img/loading.gif') no-repeat left center;
-                padding		: 5px 30px;
-                display		: block;
-                color		: #444444;
+                background  : url('assets/img/loading.gif') no-repeat left center;
+                padding     : 5px 30px;
+                display     : block;
+                color       : #444444;
             }
         </style>
         <!--[if gte IE 9]>
@@ -63,7 +63,7 @@
         <!--Message untuk loading app core-->
         <!--Application Core-->
         <script type="text/javascript" src="{{ asset('assets/app/login.js') }}"></script>
-        
+
         <script type="text/javascript">
             document.getElementById('loading-message').innerHTML = 'Please Wait. Configuring Application';
         </script>
