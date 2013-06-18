@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.module.Utilities.view.Setting",{extend:"GatotKacaErp.view.Base",requires:["GatotKacaErp.module.Utilities.view.tabs.Setting"],bodyStyle:"padding : 5px; background : transparent",layout:{type:"fit"},items:[{xtype:"tabsetting"}]});

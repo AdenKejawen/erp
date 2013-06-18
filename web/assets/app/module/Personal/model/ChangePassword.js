@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.module.Personal.model.ChangePassword",{extend:"Ext.data.Model",fields:[{name:"password_id",type:"string"},{name:"password_name",type:"string"}]});

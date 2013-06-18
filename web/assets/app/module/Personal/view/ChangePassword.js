@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.module.Personal.view.ChangePassword",{extend:"Ext.panel.Panel",bodyStyle:"padding : 5px; background : transparent",layout:"fit",border:false,closable:true,autoDestroy:false,plain:true,enableTabScroll:true,defaults:{autoScroll:true},requires:["GatotKacaErp.module.Personal.view.forms.ChangePassword"],items:[{xtype:"formchangepassword"}]});

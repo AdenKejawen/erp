@@ -1,0 +1,1 @@
+Ext.define("GatotKacaErp.module.Utilities.view.tabs.Setting",{extend:"GatotKacaErp.view.tabs.Base",alias:"widget.tabsetting",id:"tabsetting",requires:["GatotKacaErp.module.Utilities.view.forms.Attandance","GatotKacaErp.module.Utilities.view.forms.Application"],items:[{xtype:"formsetupapplication"},{xtype:"formsetupattendance"}]});
