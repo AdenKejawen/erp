@@ -35,35 +35,35 @@ use Doctrine\ORM\Mapping as ORM;
  **/
 class Employee{
 
-	/**
-	 * @ORM\Id
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $id;
+    /**
+     * @ORM\Id
+     * @ORM\Column(type = "string", length = 40)
+     **/
+    protected $id;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Company", inversedBy="employee")
-	 * @ORM\JoinColumn(name="sys_company_id", referencedColumnName="id")
-	 **/
-	protected $company;
+    /**
+     * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Company", inversedBy="employee")
+     * @ORM\JoinColumn(name="sys_company_id", referencedColumnName="id")
+     **/
+    protected $company;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Department", inversedBy="employee")
-	 * @ORM\JoinColumn(name="sys_department_id", referencedColumnName="id")
-	 **/
-	protected $department;
+    /**
+     * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Department", inversedBy="employee")
+     * @ORM\JoinColumn(name="sys_department_id", referencedColumnName="id")
+     **/
+    protected $department;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\JobTitle", inversedBy="employee")
-	 * @ORM\JoinColumn(name="sys_jobtitle_id", referencedColumnName="id")
-	 **/
-	protected $jobtitle;
+    /**
+     * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\JobTitle", inversedBy="employee")
+     * @ORM\JoinColumn(name="sys_jobtitle_id", referencedColumnName="id")
+     **/
+    protected $jobtitle;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\JobStatus", inversedBy="employee")
-	 * @ORM\JoinColumn(name="sys_jobstatus_id", referencedColumnName="id")
-	 **/
-	protected $jobstatus;
+    /**
+     * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\JobStatus", inversedBy="employee")
+     * @ORM\JoinColumn(name="sys_jobstatus_id", referencedColumnName="id")
+     **/
+    protected $jobstatus;
 
     /**
      * @ORM\OneToMany(targetEntity="Employee", mappedBy="supervisor")
@@ -76,78 +76,78 @@ class Employee{
      */
     protected $supervisor;
 
-	/**
-	 * @ORM\Column(type = "string", length = 17, unique = true, nullable = true)
-	 **/
-	protected $code;
+    /**
+     * @ORM\Column(type = "string", length = 17, unique = true, nullable = true)
+     **/
+    protected $code;
 
     /**
      * @ORM\Column(type = "string", length = 255, nullable = true)
      **/
     protected $photo;
 
-	/**
-	 * @ORM\Column(type = "string", length = 27, unique = true, nullable = true)
-	 **/
-	protected $idcard;
+    /**
+     * @ORM\Column(type = "string", length = 27, unique = true, nullable = true)
+     **/
+    protected $idcard;
 
-	/**
-	 * @ORM\Column(type = "string", length = 33, nullable = true)
-	 **/
-	protected $fname;
+    /**
+     * @ORM\Column(type = "string", length = 33, nullable = true)
+     **/
+    protected $fname;
 
-	/**
-	 * @ORM\Column(type = "string", length = 33, nullable = true)
-	 **/
-	protected $lname;
+    /**
+     * @ORM\Column(type = "string", length = 33, nullable = true)
+     **/
+    protected $lname;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\UtilitiesBundle\Entity\User", inversedBy="employee")
-	 * @ORM\JoinColumn(name="utl_user_id", referencedColumnName="id")
-	 **/
-	protected $username;
+    /**
+     * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\UtilitiesBundle\Entity\User", inversedBy="employee")
+     * @ORM\JoinColumn(name="utl_user_id", referencedColumnName="id")
+     **/
+    protected $username;
 
-	/**
-	 * @ORM\Column(type = "integer", length = 1, nullable = true)
-	 *
-	 * - 1 = male
-	 * - 2 = female
-	 **/
-	protected $gender;
+    /**
+     * @ORM\Column(type = "integer", length = 1, nullable = true)
+     *
+     * - 1 = male
+     * - 2 = female
+     **/
+    protected $gender;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\District", inversedBy="employee_bod_place")
-	 * @ORM\JoinColumn(name="bod_place", referencedColumnName="id")
-	 **/
-	protected $bod_place;
+    /**
+     * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\District", inversedBy="employee_bod_place")
+     * @ORM\JoinColumn(name="bod_place", referencedColumnName="id")
+     **/
+    protected $bod_place;
 
-	/**
-	 * @ORM\Column(type = "date", nullable = true)
-	 **/
-	protected $bod;
+    /**
+     * @ORM\Column(type = "date", nullable = true)
+     **/
+    protected $bod;
 
-	/**
-	 * @ORM\Column(type = "string", length = 255, nullable = true)
-	 **/
-	protected $address;
+    /**
+     * @ORM\Column(type = "string", length = 255, nullable = true)
+     **/
+    protected $address;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\District", inversedBy="employee")
-	 * @ORM\JoinColumn(name="district", referencedColumnName="id")
-	 **/
-	protected $district_address;
+    /**
+     * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\District", inversedBy="employee")
+     * @ORM\JoinColumn(name="district", referencedColumnName="id")
+     **/
+    protected $district_address;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Province", inversedBy="employee")
-	 * @ORM\JoinColumn(name="province", referencedColumnName="id")
-	 **/
-	protected $province_address;
+    /**
+     * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Province", inversedBy="employee")
+     * @ORM\JoinColumn(name="province", referencedColumnName="id")
+     **/
+    protected $province_address;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Country", inversedBy="employee_country")
-	 * @ORM\JoinColumn(name="country", referencedColumnName="id")
-	 **/
-	protected $country;
+    /**
+     * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Country", inversedBy="employee_country")
+     * @ORM\JoinColumn(name="country", referencedColumnName="id")
+     **/
+    protected $country;
 
     /**
      * @ORM\Column(type = "string", length = 7, nullable = true)
@@ -169,62 +169,62 @@ class Employee{
      **/
     protected $mailaddress;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Country", inversedBy="employee_citizen")
-	 * @ORM\JoinColumn(name="citizen", referencedColumnName="id")
-	 **/
-	protected $citizen;
+    /**
+     * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Country", inversedBy="employee_citizen")
+     * @ORM\JoinColumn(name="citizen", referencedColumnName="id")
+     **/
+    protected $citizen;
 
-	/**
-	 * @ORM\Column(type = "string", length = 2, nullable = true)
-	 **/
-	protected $blood_type;
+    /**
+     * @ORM\Column(type = "string", length = 2, nullable = true)
+     **/
+    protected $blood_type;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Religion", inversedBy="employee")
-	 * @ORM\JoinColumn(name="religion", referencedColumnName="id")
-	 **/
-	protected $religion;
+    /**
+     * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Religion", inversedBy="employee")
+     * @ORM\JoinColumn(name="religion", referencedColumnName="id")
+     **/
+    protected $religion;
 
-	/**
-	 * @ORM\Column(type = "integer", length = 1, nullable = true)
-	 *
-	 * - 1 = single
-	 * - 2 = married
-	 * - 3 = divorced
-	 **/
-	protected $marital_status;
+    /**
+     * @ORM\Column(type = "integer", length = 1, nullable = true)
+     *
+     * - 1 = single
+     * - 2 = married
+     * - 3 = divorced
+     **/
+    protected $marital_status;
 
-	/**
-	 * @ORM\Column(type = "date", nullable = true)
-	 **/
-	protected $hire;
+    /**
+     * @ORM\Column(type = "date", nullable = true)
+     **/
+    protected $hire;
 
-	/**
-	 * @ORM\Column(type = "date", nullable = true)
-	 **/
-	protected $expire;
+    /**
+     * @ORM\Column(type = "date", nullable = true)
+     **/
+    protected $expire;
 
-	/**
-	 * @ORM\Column(type = "string", length = 27, nullable = true)
-	 **/
-	protected $tax;
+    /**
+     * @ORM\Column(type = "string", length = 27, nullable = true)
+     **/
+    protected $tax;
 
-	/**
-	 * @ORM\Column(type = "string", length = 27, nullable = true)
-	 **/
-	protected $bank;
+    /**
+     * @ORM\Column(type = "string", length = 27, nullable = true)
+     **/
+    protected $bank;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\OfficeHour", inversedBy="employee")
-	 * @ORM\JoinColumn(name="sys_officehour_id", referencedColumnName="id")
-	 **/
-	protected $shift;
+    /**
+     * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\OfficeHour", inversedBy="employee")
+     * @ORM\JoinColumn(name="sys_officehour_id", referencedColumnName="id")
+     **/
+    protected $shift;
 
-	/**
-	 * @ORM\Column(type = "boolean", nullable = true)
-	 **/
-	protected $isfixed;
+    /**
+     * @ORM\Column(type = "boolean", nullable = true)
+     **/
+    protected $isfixed;
 
     /**
      * @ORM\Column(type = "boolean", nullable = true)
@@ -236,50 +236,50 @@ class Employee{
      **/
     protected $ismanualovertime;
 
-	/**
-	 * @ORM\Column(type = "boolean", nullable = true)
-	 **/
-	protected $status;
+    /**
+     * @ORM\Column(type = "boolean", nullable = true)
+     **/
+    protected $status;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $created;
+    /**
+     * @ORM\Column(type = "datetime")
+     **/
+    protected $created;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $createdby;
+    /**
+     * @ORM\Column(type = "string", length = 40)
+     **/
+    protected $createdby;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $updated;
+    /**
+     * @ORM\Column(type = "datetime")
+     **/
+    protected $updated;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $updatedby;
+    /**
+     * @ORM\Column(type = "string", length = 40)
+     **/
+    protected $updatedby;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="Attendance", mappedBy="employee")
-	 **/
-	protected $attendance;
+    /**
+     * @ORM\OneToMany(targetEntity="Attendance", mappedBy="employee")
+     **/
+    protected $attendance;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="EmployeeEducation", mappedBy="employee")
-	 **/
-	protected $education;
+    /**
+     * @ORM\OneToMany(targetEntity="EmployeeEducation", mappedBy="employee")
+     **/
+    protected $education;
 
     /**
      * @ORM\OneToMany(targetEntity="EmployeeExperience", mappedBy="employee")
      **/
     protected $experience;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="EmployeeFamily", mappedBy="employee")
-	 **/
-	protected $family;
+    /**
+     * @ORM\OneToMany(targetEntity="EmployeeFamily", mappedBy="employee")
+     **/
+    protected $family;
 
     /**
      * @ORM\OneToMany(targetEntity="EmployeeLanguage", mappedBy="employee")
@@ -302,7 +302,7 @@ class Employee{
     protected $overtime_approvedby;
 
     /**
-     * @ORM\OneToMany(targetEntity="EmployeeShiftment", mappedBy="employee")
+     * @ORM\OneToMany(targetEntity="Shiftment", mappedBy="employee")
      **/
     protected $shiftment;
 
@@ -326,15 +326,15 @@ class Employee{
      **/
     protected $career_new_supervisor;
 
-	public function __construct(){
-		$this->status     = TRUE;
-		$this->isfixed    = TRUE;
+    public function __construct(){
+        $this->status     = TRUE;
+        $this->isfixed    = TRUE;
         $this->isovertime = FALSE;
         $this->ismanualovertime = FALSE;
-		$this->expire     = new \DateTime('1970-01-01');
-		$this->created    = new \DateTime();
-		$this->updated    = new \DateTime();
-	}
+        $this->expire     = new \DateTime('1970-01-01');
+        $this->created    = new \DateTime();
+        $this->updated    = new \DateTime();
+    }
 
     /**
      * Set id
@@ -345,14 +345,14 @@ class Employee{
     public function setId($id)
     {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return string 
+     * @return string
      */
     public function getId()
     {
@@ -368,14 +368,14 @@ class Employee{
     public function setCode($code)
     {
         $this->code = $code;
-    
+
         return $this;
     }
 
     /**
      * Get code
      *
-     * @return string 
+     * @return string
      */
     public function getCode()
     {
@@ -391,14 +391,14 @@ class Employee{
     public function setPhoto($photo)
     {
         $this->photo = $photo;
-    
+
         return $this;
     }
 
     /**
      * Get photo
      *
-     * @return string 
+     * @return string
      */
     public function getPhoto()
     {
@@ -414,14 +414,14 @@ class Employee{
     public function setIdcard($idcard)
     {
         $this->idcard = $idcard;
-    
+
         return $this;
     }
 
     /**
      * Get idcard
      *
-     * @return string 
+     * @return string
      */
     public function getIdcard()
     {
@@ -437,14 +437,14 @@ class Employee{
     public function setFname($fname)
     {
         $this->fname = $fname;
-    
+
         return $this;
     }
 
     /**
      * Get fname
      *
-     * @return string 
+     * @return string
      */
     public function getFname()
     {
@@ -460,14 +460,14 @@ class Employee{
     public function setLname($lname)
     {
         $this->lname = $lname;
-    
+
         return $this;
     }
 
     /**
      * Get lname
      *
-     * @return string 
+     * @return string
      */
     public function getLname()
     {
@@ -483,14 +483,14 @@ class Employee{
     public function setGender($gender)
     {
         $this->gender = $gender;
-    
+
         return $this;
     }
 
     /**
      * Get gender
      *
-     * @return integer 
+     * @return integer
      */
     public function getGender()
     {
@@ -506,14 +506,14 @@ class Employee{
     public function setBod($bod)
     {
         $this->bod = $bod;
-    
+
         return $this;
     }
 
     /**
      * Get bod
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getBod()
     {
@@ -529,14 +529,14 @@ class Employee{
     public function setAddress($address)
     {
         $this->address = $address;
-    
+
         return $this;
     }
 
     /**
      * Get address
      *
-     * @return string 
+     * @return string
      */
     public function getAddress()
     {
@@ -552,14 +552,14 @@ class Employee{
     public function setPostalcode($postalcode)
     {
         $this->postalcode = $postalcode;
-    
+
         return $this;
     }
 
     /**
      * Get postalcode
      *
-     * @return string 
+     * @return string
      */
     public function getPostalcode()
     {
@@ -575,14 +575,14 @@ class Employee{
     public function setPhone($phone)
     {
         $this->phone = $phone;
-    
+
         return $this;
     }
 
     /**
      * Get phone
      *
-     * @return string 
+     * @return string
      */
     public function getPhone()
     {
@@ -598,14 +598,14 @@ class Employee{
     public function setEmail($email)
     {
         $this->email = $email;
-    
+
         return $this;
     }
 
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -621,14 +621,14 @@ class Employee{
     public function setMailaddress($mailaddress)
     {
         $this->mailaddress = $mailaddress;
-    
+
         return $this;
     }
 
     /**
      * Get mailaddress
      *
-     * @return string 
+     * @return string
      */
     public function getMailaddress()
     {
@@ -644,14 +644,14 @@ class Employee{
     public function setBloodType($bloodType)
     {
         $this->blood_type = $bloodType;
-    
+
         return $this;
     }
 
     /**
      * Get blood_type
      *
-     * @return string 
+     * @return string
      */
     public function getBloodType()
     {
@@ -667,14 +667,14 @@ class Employee{
     public function setMaritalStatus($maritalStatus)
     {
         $this->marital_status = $maritalStatus;
-    
+
         return $this;
     }
 
     /**
      * Get marital_status
      *
-     * @return integer 
+     * @return integer
      */
     public function getMaritalStatus()
     {
@@ -690,14 +690,14 @@ class Employee{
     public function setHire($hire)
     {
         $this->hire = $hire;
-    
+
         return $this;
     }
 
     /**
      * Get hire
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getHire()
     {
@@ -713,14 +713,14 @@ class Employee{
     public function setExpire($expire)
     {
         $this->expire = $expire;
-    
+
         return $this;
     }
 
     /**
      * Get expire
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getExpire()
     {
@@ -736,14 +736,14 @@ class Employee{
     public function setTax($tax)
     {
         $this->tax = $tax;
-    
+
         return $this;
     }
 
     /**
      * Get tax
      *
-     * @return string 
+     * @return string
      */
     public function getTax()
     {
@@ -759,14 +759,14 @@ class Employee{
     public function setBank($bank)
     {
         $this->bank = $bank;
-    
+
         return $this;
     }
 
     /**
      * Get bank
      *
-     * @return string 
+     * @return string
      */
     public function getBank()
     {
@@ -782,14 +782,14 @@ class Employee{
     public function setIsfixed($isfixed)
     {
         $this->isfixed = $isfixed;
-    
+
         return $this;
     }
 
     /**
      * Get isfixed
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsfixed()
     {
@@ -805,14 +805,14 @@ class Employee{
     public function setIsovertime($isovertime)
     {
         $this->isovertime = $isovertime;
-    
+
         return $this;
     }
 
     /**
      * Get isovertime
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsovertime()
     {
@@ -828,14 +828,14 @@ class Employee{
     public function setIsmanualovertime($ismanualovertime)
     {
         $this->ismanualovertime = $ismanualovertime;
-    
+
         return $this;
     }
 
     /**
      * Get ismanualovertime
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsmanualovertime()
     {
@@ -851,14 +851,14 @@ class Employee{
     public function setStatus($status)
     {
         $this->status = $status;
-    
+
         return $this;
     }
 
     /**
      * Get status
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getStatus()
     {
@@ -874,14 +874,14 @@ class Employee{
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -897,14 +897,14 @@ class Employee{
     public function setCreatedby($createdby)
     {
         $this->createdby = $createdby;
-    
+
         return $this;
     }
 
     /**
      * Get createdby
      *
-     * @return string 
+     * @return string
      */
     public function getCreatedby()
     {
@@ -920,14 +920,14 @@ class Employee{
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-    
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -943,14 +943,14 @@ class Employee{
     public function setUpdatedby($updatedby)
     {
         $this->updatedby = $updatedby;
-    
+
         return $this;
     }
 
     /**
      * Get updatedby
      *
-     * @return string 
+     * @return string
      */
     public function getUpdatedby()
     {
@@ -966,14 +966,14 @@ class Employee{
     public function setCompany(\GatotKaca\Erp\MainBundle\Entity\Company $company = null)
     {
         $this->company = $company;
-    
+
         return $this;
     }
 
     /**
      * Get company
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\Company 
+     * @return \GatotKaca\Erp\MainBundle\Entity\Company
      */
     public function getCompany()
     {
@@ -989,14 +989,14 @@ class Employee{
     public function setDepartment(\GatotKaca\Erp\MainBundle\Entity\Department $department = null)
     {
         $this->department = $department;
-    
+
         return $this;
     }
 
     /**
      * Get department
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\Department 
+     * @return \GatotKaca\Erp\MainBundle\Entity\Department
      */
     public function getDepartment()
     {
@@ -1012,14 +1012,14 @@ class Employee{
     public function setJobtitle(\GatotKaca\Erp\MainBundle\Entity\JobTitle $jobtitle = null)
     {
         $this->jobtitle = $jobtitle;
-    
+
         return $this;
     }
 
     /**
      * Get jobtitle
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\JobTitle 
+     * @return \GatotKaca\Erp\MainBundle\Entity\JobTitle
      */
     public function getJobtitle()
     {
@@ -1035,14 +1035,14 @@ class Employee{
     public function setJobstatus(\GatotKaca\Erp\MainBundle\Entity\JobStatus $jobstatus = null)
     {
         $this->jobstatus = $jobstatus;
-    
+
         return $this;
     }
 
     /**
      * Get jobstatus
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\JobStatus 
+     * @return \GatotKaca\Erp\MainBundle\Entity\JobStatus
      */
     public function getJobstatus()
     {
@@ -1058,7 +1058,7 @@ class Employee{
     public function addChild(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $child)
     {
         $this->child[] = $child;
-    
+
         return $this;
     }
 
@@ -1075,7 +1075,7 @@ class Employee{
     /**
      * Get child
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getChild()
     {
@@ -1091,14 +1091,14 @@ class Employee{
     public function setSupervisor(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $supervisor = null)
     {
         $this->supervisor = $supervisor;
-    
+
         return $this;
     }
 
     /**
      * Get supervisor
      *
-     * @return \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee 
+     * @return \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
      */
     public function getSupervisor()
     {
@@ -1114,14 +1114,14 @@ class Employee{
     public function setUsername(\GatotKaca\Erp\UtilitiesBundle\Entity\User $username = null)
     {
         $this->username = $username;
-    
+
         return $this;
     }
 
     /**
      * Get username
      *
-     * @return \GatotKaca\Erp\UtilitiesBundle\Entity\User 
+     * @return \GatotKaca\Erp\UtilitiesBundle\Entity\User
      */
     public function getUsername()
     {
@@ -1137,14 +1137,14 @@ class Employee{
     public function setBodPlace(\GatotKaca\Erp\MainBundle\Entity\District $bodPlace = null)
     {
         $this->bod_place = $bodPlace;
-    
+
         return $this;
     }
 
     /**
      * Get bod_place
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\District 
+     * @return \GatotKaca\Erp\MainBundle\Entity\District
      */
     public function getBodPlace()
     {
@@ -1160,14 +1160,14 @@ class Employee{
     public function setDistrictAddress(\GatotKaca\Erp\MainBundle\Entity\District $districtAddress = null)
     {
         $this->district_address = $districtAddress;
-    
+
         return $this;
     }
 
     /**
      * Get district_address
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\District 
+     * @return \GatotKaca\Erp\MainBundle\Entity\District
      */
     public function getDistrictAddress()
     {
@@ -1183,14 +1183,14 @@ class Employee{
     public function setProvinceAddress(\GatotKaca\Erp\MainBundle\Entity\Province $provinceAddress = null)
     {
         $this->province_address = $provinceAddress;
-    
+
         return $this;
     }
 
     /**
      * Get province_address
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\Province 
+     * @return \GatotKaca\Erp\MainBundle\Entity\Province
      */
     public function getProvinceAddress()
     {
@@ -1206,14 +1206,14 @@ class Employee{
     public function setCountry(\GatotKaca\Erp\MainBundle\Entity\Country $country = null)
     {
         $this->country = $country;
-    
+
         return $this;
     }
 
     /**
      * Get country
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\Country 
+     * @return \GatotKaca\Erp\MainBundle\Entity\Country
      */
     public function getCountry()
     {
@@ -1229,14 +1229,14 @@ class Employee{
     public function setCitizen(\GatotKaca\Erp\MainBundle\Entity\Country $citizen = null)
     {
         $this->citizen = $citizen;
-    
+
         return $this;
     }
 
     /**
      * Get citizen
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\Country 
+     * @return \GatotKaca\Erp\MainBundle\Entity\Country
      */
     public function getCitizen()
     {
@@ -1252,14 +1252,14 @@ class Employee{
     public function setReligion(\GatotKaca\Erp\MainBundle\Entity\Religion $religion = null)
     {
         $this->religion = $religion;
-    
+
         return $this;
     }
 
     /**
      * Get religion
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\Religion 
+     * @return \GatotKaca\Erp\MainBundle\Entity\Religion
      */
     public function getReligion()
     {
@@ -1275,14 +1275,14 @@ class Employee{
     public function setShift(\GatotKaca\Erp\MainBundle\Entity\OfficeHour $shift = null)
     {
         $this->shift = $shift;
-    
+
         return $this;
     }
 
     /**
      * Get shift
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\OfficeHour 
+     * @return \GatotKaca\Erp\MainBundle\Entity\OfficeHour
      */
     public function getShift()
     {
@@ -1298,7 +1298,7 @@ class Employee{
     public function addAttendance(\GatotKaca\Erp\HumanResourcesBundle\Entity\Attendance $attendance)
     {
         $this->attendance[] = $attendance;
-    
+
         return $this;
     }
 
@@ -1315,7 +1315,7 @@ class Employee{
     /**
      * Get attendance
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getAttendance()
     {
@@ -1331,7 +1331,7 @@ class Employee{
     public function addEducation(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation $education)
     {
         $this->education[] = $education;
-    
+
         return $this;
     }
 
@@ -1348,7 +1348,7 @@ class Employee{
     /**
      * Get education
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getEducation()
     {
@@ -1364,7 +1364,7 @@ class Employee{
     public function addExperience(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeExperience $experience)
     {
         $this->experience[] = $experience;
-    
+
         return $this;
     }
 
@@ -1381,7 +1381,7 @@ class Employee{
     /**
      * Get experience
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getExperience()
     {
@@ -1397,7 +1397,7 @@ class Employee{
     public function addFamily(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeFamily $family)
     {
         $this->family[] = $family;
-    
+
         return $this;
     }
 
@@ -1414,7 +1414,7 @@ class Employee{
     /**
      * Get family
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFamily()
     {
@@ -1430,7 +1430,7 @@ class Employee{
     public function addLanguage(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeLanguage $language)
     {
         $this->language[] = $language;
-    
+
         return $this;
     }
 
@@ -1447,7 +1447,7 @@ class Employee{
     /**
      * Get language
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getLanguage()
     {
@@ -1463,7 +1463,7 @@ class Employee{
     public function addOrganitation(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeOrganitation $organitation)
     {
         $this->organitation[] = $organitation;
-    
+
         return $this;
     }
 
@@ -1480,7 +1480,7 @@ class Employee{
     /**
      * Get organitation
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getOrganitation()
     {
@@ -1496,7 +1496,7 @@ class Employee{
     public function addOvertime(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeOvertime $overtime)
     {
         $this->overtime[] = $overtime;
-    
+
         return $this;
     }
 
@@ -1513,7 +1513,7 @@ class Employee{
     /**
      * Get overtime
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getOvertime()
     {
@@ -1529,7 +1529,7 @@ class Employee{
     public function addOvertimeApprovedby(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeOvertime $overtimeApprovedby)
     {
         $this->overtime_approvedby[] = $overtimeApprovedby;
-    
+
         return $this;
     }
 
@@ -1546,7 +1546,7 @@ class Employee{
     /**
      * Get overtime_approvedby
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getOvertimeApprovedby()
     {
@@ -1556,22 +1556,22 @@ class Employee{
     /**
      * Add shiftment
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeShiftment $shiftment
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Shiftment $shiftment
      * @return Employee
      */
-    public function addShiftment(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeShiftment $shiftment)
+    public function addShiftment(\GatotKaca\Erp\HumanResourcesBundle\Entity\Shiftment $shiftment)
     {
         $this->shiftment[] = $shiftment;
-    
+
         return $this;
     }
 
     /**
      * Remove shiftment
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeShiftment $shiftment
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Shiftment $shiftment
      */
-    public function removeShiftment(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeShiftment $shiftment)
+    public function removeShiftment(\GatotKaca\Erp\HumanResourcesBundle\Entity\Shiftment $shiftment)
     {
         $this->shiftment->removeElement($shiftment);
     }
@@ -1579,7 +1579,7 @@ class Employee{
     /**
      * Get shiftment
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getShiftment()
     {
@@ -1595,7 +1595,7 @@ class Employee{
     public function addTraining(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeTraining $training)
     {
         $this->training[] = $training;
-    
+
         return $this;
     }
 
@@ -1612,7 +1612,7 @@ class Employee{
     /**
      * Get training
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTraining()
     {
@@ -1628,7 +1628,7 @@ class Employee{
     public function addCareer(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $career)
     {
         $this->career[] = $career;
-    
+
         return $this;
     }
 
@@ -1645,7 +1645,7 @@ class Employee{
     /**
      * Get career
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCareer()
     {
@@ -1661,7 +1661,7 @@ class Employee{
     public function addCareerOldSupervisor(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldSupervisor)
     {
         $this->career_old_supervisor[] = $careerOldSupervisor;
-    
+
         return $this;
     }
 
@@ -1678,7 +1678,7 @@ class Employee{
     /**
      * Get career_old_supervisor
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCareerOldSupervisor()
     {
@@ -1694,7 +1694,7 @@ class Employee{
     public function addCareerNewSupervisor(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewSupervisor)
     {
         $this->career_new_supervisor[] = $careerNewSupervisor;
-    
+
         return $this;
     }
 
@@ -1711,7 +1711,7 @@ class Employee{
     /**
      * Get career_new_supervisor
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCareerNewSupervisor()
     {

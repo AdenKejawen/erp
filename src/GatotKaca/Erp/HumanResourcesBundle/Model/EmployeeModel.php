@@ -15,7 +15,7 @@ use Doctrine\DBAL\LockMode;
 use GatotKaca\Erp\UtilitiesBundle\Entity\User;
 use GatotKaca\Erp\MainBundle\Model\BaseModel;
 use GatotKaca\Erp\HumanResourcesBundle\Entity\Employee;
-use GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeShiftment;
+use GatotKaca\Erp\HumanResourcesBundle\Entity\Shiftment;
 use GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation;
 use GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeFamily;
 use GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeExperience;
@@ -120,8 +120,8 @@ class EmployeeModel extends BaseModel{
      **/
     private function getGroup(){
         return $this->getEntityManager()
-                    ->getRepository('GatotKacaErpUtilitiesBundle:UserGroup')
-                    ->findOneBy(array('name' => 'EMPLOYEE'));
+                ->getRepository('GatotKacaErpUtilitiesBundle:UserGroup')
+                ->find($this->getHelper()->getModelManager($this->getEntityManager())->getSetting()->get('default_group'));
     }
 
     /**
@@ -285,17 +285,19 @@ class EmployeeModel extends BaseModel{
                     e.email AS employee_email,
                     sp.id AS employee_supervisor,
                     e.mailaddress AS employee_mailaddress,
-                    TO_CHAR(e.hire, 'DD-MM-YYYY') AS employee_start,
+                    TO_CHAR(e.hire, '{$this->getHelper()->getSession()->get('date_format_text')}') AS employee_start,
                     jt.id AS employee_jobtitle,
+                    jt.name AS employee_jobtitlename,
                     js.id AS employee_jobstatus,
                     js.ispermanent AS employee_ispermenent,
                     jl.level AS employee_level,
-                    TO_CHAR(e.expire, 'DD-MM-YYYY') AS employee_end,
+                    TO_CHAR(e.expire, '{$this->getHelper()->getSession()->get('date_format_text')}') AS employee_end,
                     u.name AS employee_username,
                     e.gender AS employee_gender,
                     cz.id AS employee_citizen,
+                    cz.name AS employee_citizenname,
                     bp.id AS employee_bodplace,
-                    TO_CHAR(e.bod, 'DD-MM-YYYY') AS employee_bod,
+                    TO_CHAR(e.bod, '{$this->getHelper()->getSession()->get('date_format_text')}') AS employee_bod,
                     r.id AS employee_religion,
                     e.marital_status AS employee_maritalstatus,
                     e.blood_type AS employee_bloodtype,
@@ -303,6 +305,7 @@ class EmployeeModel extends BaseModel{
                     da.id AS employee_daddress,
                     pa.id AS employee_paddress,
                     ca.id AS employee_country,
+                    ca.name AS employee_countryname,
                     e.tax AS employee_tax,
                     e.bank AS employee_bank,
                     oh.id AS employee_ohour,
@@ -440,12 +443,12 @@ class EmployeeModel extends BaseModel{
                 ->createQueryBuilder()
                 ->select("
                     es.id AS shift_id,
-                    TO_CHAR(es.shift_date, 'DD-MM-YYYY') AS shift_date,
+                    TO_CHAR(es.shift_date, '{$this->getHelper()->getSession()->get('date_format_text')}') AS shift_date,
                     oh.id AS shift_ohid,
                     TO_CHAR(oh.time_in, 'HH24:MI:SS') AS shift_ohin,
                     TO_CHAR(oh.time_out, 'HH24:MI:SS') AS shift_ohout
                 ")
-                ->from('GatotKacaErpHumanResourcesBundle:EmployeeShiftment', 'es')
+                ->from('GatotKacaErpHumanResourcesBundle:Shiftment', 'es')
                 ->innerJoin('GatotKacaErpMainBundle:OfficeHour', 'oh', 'WITH', 'es.officehour = oh.id')
                 ->where("es.{$criteria} = :{$criteria}{$extra}")
                 ->orderBy('es.shift_date', 'ASC')
@@ -502,7 +505,7 @@ class EmployeeModel extends BaseModel{
                     ef.relation AS family_level,
                     ef.fname AS family_fname,
                     ef.lname AS family_lname,
-                    TO_CHAR(ef.born, 'DD-MM-YYYY') AS family_born,
+                    TO_CHAR(ef.born, '{$this->getHelper()->getSession()->get('date_format_text')}') AS family_born,
                     e.id AS family_education,
                     e.name AS family_eduname,
                     ef.institute AS family_institute
@@ -531,8 +534,8 @@ class EmployeeModel extends BaseModel{
                     et.id AS training_id,
                     et.name AS training_name,
                     d.name AS training_district,
-                    TO_CHAR(et.training_start, 'DD-MM-YYYY') AS training_start,
-                    TO_CHAR(et.training_end, 'DD-MM-YYYY') AS training_end,
+                    TO_CHAR(et.training_start, '{$this->getHelper()->getSession()->get('date_format_text')}') AS training_start,
+                    TO_CHAR(et.training_end, '{$this->getHelper()->getSession()->get('date_format_text')}') AS training_end,
                     et.skill AS training_skill,
                     et.institute AS training_institute
                 ")
@@ -560,8 +563,8 @@ class EmployeeModel extends BaseModel{
                     ee.id AS experience_id,
                     ee.company AS experience_company,
                     ee.reason AS experience_reason,
-                    TO_CHAR(ee.exp_start, 'DD-MM-YYYY') AS experience_start,
-                    TO_CHAR(ee.exp_end, 'DD-MM-YYYY') AS experience_end,
+                    TO_CHAR(ee.exp_start, '{$this->getHelper()->getSession()->get('date_format_text')}') AS experience_start,
+                    TO_CHAR(ee.exp_end, '{$this->getHelper()->getSession()->get('date_format_text')}') AS experience_end,
                     ee.jobtitle AS experience_jobtitle
                 ")
                 ->from('GatotKacaErpHumanResourcesBundle:EmployeeExperience', 'ee')
@@ -612,8 +615,8 @@ class EmployeeModel extends BaseModel{
                 ->createQueryBuilder()
                 ->select("
                     eo.id AS org_id,
-                    TO_CHAR(eo.org_start, 'DD-MM-YYYY') AS org_start,
-                    TO_CHAR(eo.org_end, 'DD-MM-YYYY') AS org_end,
+                    TO_CHAR(eo.org_start, '{$this->getHelper()->getSession()->get('date_format_text')}') AS org_start,
+                    TO_CHAR(eo.org_end, '{$this->getHelper()->getSession()->get('date_format_text')}') AS org_end,
                     eo.categories AS org_categories,
                     eo.position AS org_position,
                     eo.name AS org_name
@@ -639,7 +642,7 @@ class EmployeeModel extends BaseModel{
                 ->createQueryBuilder()
                 ->select("
                     ec.id AS career_id,
-                    TO_CHAR(ec.promote, 'DD-MM-YYYY') AS career_date,
+                    TO_CHAR(ec.promote, '{$this->getHelper()->getSession()->get('date_format_text')}') AS career_date,
                     ec.refno AS career_refno,
                     co.id AS employee_companyid,
                     co.name AS employee_companyname,
@@ -682,9 +685,9 @@ class EmployeeModel extends BaseModel{
         $to         = strtotime($input->shift_to);
         $employee   = $this->getEntityManager()->getReference('GatotKacaErpHumanResourcesBundle:Employee', $input->employee_id);
         for($i = $from; $i <= $to; $i = strtotime('+1 day', $i)){
-            $shiftment  = new EmployeeShiftment();
+            $shiftment  = new Shiftment();
             $date       = new \DateTime(date('Y-m-d', $i));
-            if($exist = $this->getEntityManager()->getRepository('GatotKacaErpHumanResourcesBundle:EmployeeShiftment')->findOneBy(array('shift_date' => $date, 'employee' => $employee))){
+            if($exist = $this->getEntityManager()->getRepository('GatotKacaErpHumanResourcesBundle:Shiftment')->findOneBy(array('shift_date' => $date, 'employee' => $employee))){
                 $shiftment  = $exist;
             }else{
                 $shiftment->setId($this->getHelper()->getUniqueId());
@@ -1019,7 +1022,7 @@ class EmployeeModel extends BaseModel{
             $this->getEntityManager()->remove($experience);
             $this->getEntityManager()->flush();
             $connection->commit();
-            $this->setModelLog("deleting experience with id {$experience->getId()}");
+            $this->setModelLog("deleting experience with id {$experience->getName()}");
             return TRUE;
         }catch(\Exception $e) {
             $connection->rollback();
@@ -1042,7 +1045,7 @@ class EmployeeModel extends BaseModel{
             $this->getEntityManager()->remove($family);
             $this->getEntityManager()->flush();
             $connection->commit();
-            $this->setModelLog("deleting family with id {$family->getId()}");
+            $this->setModelLog("deleting family with id {$family->getName()}");
             return TRUE;
         }catch(\Exception $e) {
             $connection->rollback();
@@ -1065,7 +1068,7 @@ class EmployeeModel extends BaseModel{
             $this->getEntityManager()->remove($language);
             $this->getEntityManager()->flush();
             $connection->commit();
-            $this->setModelLog("deleting language with id {$language->getId()}");
+            $this->setModelLog("deleting language with id {$language->getName()}");
             return TRUE;
         }catch(\Exception $e) {
             $connection->rollback();
@@ -1088,7 +1091,7 @@ class EmployeeModel extends BaseModel{
             $this->getEntityManager()->remove($organitation);
             $this->getEntityManager()->flush();
             $connection->commit();
-            $this->setModelLog("deleting organitation with id {$organitation->getId()}");
+            $this->setModelLog("deleting organitation with id {$organitation->getName()}");
             return TRUE;
         }catch(\Exception $e) {
             $connection->rollback();
@@ -1111,7 +1114,7 @@ class EmployeeModel extends BaseModel{
             $this->getEntityManager()->remove($education);
             $this->getEntityManager()->flush();
             $connection->commit();
-            $this->setModelLog("deleting education with id {$education->getId()}");
+            $this->setModelLog("deleting education with id {$education->getName()}");
             return TRUE;
         }catch(\Exception $e) {
             $connection->rollback();
@@ -1134,7 +1137,7 @@ class EmployeeModel extends BaseModel{
             $this->getEntityManager()->remove($training);
             $this->getEntityManager()->flush();
             $connection->commit();
-            $this->setModelLog("deleting training with id {$training->getId()}");
+            $this->setModelLog("deleting training with id {$training->getName()}");
             return TRUE;
         }catch(\Exception $e) {
             $connection->rollback();
@@ -1157,12 +1160,35 @@ class EmployeeModel extends BaseModel{
             $this->getEntityManager()->remove($career);
             $this->getEntityManager()->flush();
             $connection->commit();
-            $this->setModelLog("deleting career with id {$career->getId()}");
+            $this->setModelLog("deleting career with id {$career->getRefno()}");
             return TRUE;
         }catch(\Exception $e) {
             $connection->rollback();
             $this->getEntityManager()->close();
             $this->setMessage("{$career->getRefno()} has been related.");
+            $this->setModelLog($this->getMessage());
+            return FALSE;
+        }
+    }
+
+    /**
+     * Untuk menghapus data shiftment
+     * @return boolean
+     **/
+    public function deleteShiftment($id){
+        $shiftment  = $this->getEntityManager()->getRepository('GatotKacaErpHumanResourcesBundle:Shiftment')->find($id);
+        $connection = $this->getEntityManager()->getConnection();
+        $connection->beginTransaction();
+        try {
+            $this->getEntityManager()->remove($shiftment);
+            $this->getEntityManager()->flush();
+            $connection->commit();
+            $this->setModelLog("deleting shiftment with id {$shiftment->getShiftDate()->format('Y-m-d')}");
+            return TRUE;
+        }catch(\Exception $e) {
+            $connection->rollback();
+            $this->getEntityManager()->close();
+            $this->setMessage("{$shiftment->getShiftDate()->format('Y-m-d')} has been related.");
             $this->setModelLog($this->getMessage());
             return FALSE;
         }

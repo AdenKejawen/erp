@@ -32,7 +32,7 @@ class SecurityModel extends BaseModel{
      * @param string $username
      * @return string|boolean
      **/
-    private function checkSalt($username){
+    public function checkSalt($username){
         $salt   = $this->getEntityManager()
                 ->createQueryBuilder()
                 ->select('u.salt AS salt')
@@ -61,7 +61,7 @@ class SecurityModel extends BaseModel{
      * @return mixed|boolean
      **/
     public function authUser($username, $password){
-        if($salt    = $this->checkSalt($username)){
+        if($salt = $this->checkSalt($username)){
             $auth   = $this->getEntityManager()
                     ->createQueryBuilder()
                     ->select('

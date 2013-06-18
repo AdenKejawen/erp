@@ -21,16 +21,20 @@ class MainController extends BaseController{
      * @Template()
      **/
     public function indexAction(){
-        $session= $this->getHelper()->getSession();
+        $session = $this->getHelper()->getSession();
         if(!$session->get('ERP_LOGGED_IN') || !$session->isValid()){
             return $this->redirect($this->generateUrl('GatotKacaErpMainBundle_Main_login'));
         }
         return array(
             'global'=> array(
-                'GATOT_KACA_USER_ID'   => $session->get('user_id'),
-                'GATOT_KACA_USER_NAME' => $session->get('user_name'),
-                'GATOT_KACA_GROUP_ID'  => $session->get('group_id'),
-                'GATOT_KACA_GROUP_NAME'=> $session->get('group_name')
+                'GATOT_KACA_USER_ID'    => $session->get('user_id'),
+                'GATOT_KACA_USER_NAME'  => $session->get('user_name'),
+                'GATOT_KACA_GROUP_ID'   => $session->get('group_id'),
+                'GATOT_KACA_GROUP_NAME' => $session->get('group_name'),
+                'DATE_FORMAT'           => $session->get('date_format'),
+                'DATE_FORMAT_TEXT'      => $session->get('date_format_text'),
+                'THOUSAND_SEPARATOR'    => $session->get('thousand_separator'),
+                'DECIMAL_SEPARATOR'     => $session->get('decimal_separator'),
             ),
         );
     }
@@ -41,11 +45,11 @@ class MainController extends BaseController{
      **/
     public function loginAction(){
         if($this->getRequest()->isXmlHttpRequest()){
-            $response= new JsonResponse();
+            $response = new JsonResponse();
             $response->setStatusCode(500);
             return $response;
         }
-        $session= $this->getHelper()->getSession();
+        $session = $this->getHelper()->getSession();
         $session->set('client_id', $this->getHelper()->getUniqueId());
         return array(
             'secret'=> $session->get('client_id')
@@ -56,20 +60,25 @@ class MainController extends BaseController{
      * @Route("/auth", name="GatotKacaErpMainBundle_Main_auth")
      **/
     public function authAction(){
-        $request= $this->getRequest();
+        $request = $this->getRequest();
         if(!($request->getMethod() == 'POST' && $request->isXmlHttpRequest())){
             return $this->goHome();
         }
-        $session= $this->getHelper()->getSession();
+        $session = $this->getHelper()->getSession();
         if($request->get('client_id') != $session->get('client_id') || !$session->isValid()){
             return $this->goHome();
         }
-        $response= array(
+        $response = array(
             'success' => FALSE,
             'redirect'=> $this->generateUrl('GatotKacaErpMainBundle_Main_index')
         );
-        $security= $this->getSecurity();
+        $security = $this->getSecurity();
         if($auth = $security->authUser(strtoupper($request->get('username')), $request->get('password'))){//User terdaftar?
+            $setting = $this->getModelManager()->getSetting();
+            $session->set('date_format', $setting->get('date_format'));
+            $session->set('date_format_text', $setting->get('date_format_text'));
+            $session->set('thousand_separator', $setting->get('thousand_separator'));
+            $session->set('decimal_separator', $setting->get('decimal_separator'));
             $session->set('user_id', $auth['user_id']);
             $session->set('user_name', $auth['user_name']);
             $session->set('ERP_LOGGED_IN', TRUE);
@@ -87,12 +96,12 @@ class MainController extends BaseController{
      * @Route("/logout", name = "GatotKacaErpMainBundle_Main_logout")
      **/
     public function logoutAction(){
-        $session = $this->getHelper()->getSession();
+        $session  = $this->getHelper()->getSession();
         if(!$session->get('ERP_LOGGED_IN') || !$session->isValid()){
             return $this->redirect($this->generateUrl('GatotKacaErpMainBundle_Main_login'));
         }
-        $request = $this->getRequest();
-        $security= $this->getSecurity();
+        $request  = $this->getRequest();
+        $security = $this->getSecurity();
         $security->setOnline($session->get('user_id'), FALSE);
         $security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), 'LOGOUT', $security->getModelLog());
         $session->clear();

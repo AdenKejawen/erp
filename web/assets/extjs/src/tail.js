@@ -1,1 +1,0 @@
-Ext._endTime=new Date().getTime();if(Ext._beforereadyhandler){Ext._beforereadyhandler()};

@@ -1,16 +1,17 @@
  Pending:
- ☐ Change Password Personal @HighPriority
- ☐ Add Setup Format Tanggal, Number, dll @HighPriority
- ☐ Delete Workshift @HighPriority
+ ☐ Modif Company, Add By Hour Based @HighPriority
  ☐ Membuat Cuti @HighPriority
  ☐ Add Gaji @Karyawan @HighPriority
  ☐ Support Setup Fingerprint Connectivity @LowPriority
- ☐ Add Workday By Hour Based @Company @LowPriority
  ☐ Membuat penghitung lembur untuk bu dina @Lemburan
  ☐ Membuat Job Description Per Jabatan @LowPriority
  ☐ Membuat Installer via DataFixtures @LowPriority
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Add Workday By Hour Based @Company @LowPriority @done (13-06-18 17:02)
+ ✔ Delete Workshift @HighPriority @done (13-06-18 14:41)
+ ✔ Add Setup Format Tanggal, Number, dll @HighPriority @done (13-06-18 14:12)
+ ✔ Change Password Personal @HighPriority @done (13-06-18 10:06)
  ✔ Membuat Mutasi Karyawan @HighPriority @done (13-06-17 15:22)
  ✔ Change Workshift Flow @HighPriority @done (13-06-15 01:16)
  ✔ Add Filter Workshift @HighPriority @done (13-06-13 21:21)

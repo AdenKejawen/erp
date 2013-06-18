@@ -936,4 +936,28 @@ class EmployeeController extends AdminController{
         $security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
         return new JsonResponse($output);
     }
+
+    /**
+     * @Route("/human_resources/employee/deleteshiftment", name="GatotKacaErpHumanResourcesBundle_Employee_deleteShiftment")
+     */
+    public function deleteShiftmentAction(){
+        $session    = $this->getHelper()->getSession();
+        $request    = $this->getRequest();
+        $security   = $this->getSecurity();
+        $output     = array('success' => FALSE, 'msg' => 'Authorization failed.');
+        //Don't have authorization
+        if(!$security->isAllowed($session->get('group_id'), EmployeeController::MODULE, 'delete')){
+            return new JsonResponse($output);
+        }
+        //Get model
+        $model  = $this->getModelManager()->getEmployee();
+        if($success = $model->deleteShiftment($request->get('id', ''))){
+            $output['success']  = TRUE;
+            $output['msg']      = 'Shiftment has been delete.';
+        }else{
+            $output['msg']      = "Operation failed. ".$model->getMessage();
+        }
+        $security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
+        return new JsonResponse($output);
+    }
 }

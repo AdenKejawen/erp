@@ -21,32 +21,32 @@ use Doctrine\ORM\Mapping as ORM;
  **/
 class Company{
 
-	/**
-	 * @ORM\Id
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $id;
+    /**
+     * @ORM\Id
+     * @ORM\Column(type = "string", length = 40)
+     **/
+    protected $id;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="Company", mappedBy="parent")
-	 **/
-	protected $child;
+    /**
+     * @ORM\OneToMany(targetEntity="Company", mappedBy="parent")
+     **/
+    protected $child;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="Company", inversedBy="child")
-	 * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
-	 */
-	protected $parent;
+    /**
+     * @ORM\ManyToOne(targetEntity="Company", inversedBy="child")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     */
+    protected $parent;
 
-	/**
-	 * @ORM\Column(type = "string", length = 7, unique = true, nullable = true)
-	 **/
-	protected $code;
+    /**
+     * @ORM\Column(type = "string", length = 7, unique = true, nullable = true)
+     **/
+    protected $code;
 
-	/**
-	 * @ORM\Column(type = "string", length = 77, nullable = true)
-	 **/
-	protected $name;
+    /**
+     * @ORM\Column(type = "string", length = 77, nullable = true)
+     **/
+    protected $name;
 
     /**
      * @ORM\Column(type = "integer", length = 1, nullable = true)
@@ -66,37 +66,47 @@ class Company{
     /**
      * @ORM\Column(type = "boolean", nullable = true)
      **/
+    protected $istimebase;
+
+     /**
+     * @ORM\Column(type = "time", nullable = true)
+     **/
+    protected $officehour;
+
+    /**
+     * @ORM\Column(type = "boolean", nullable = true)
+     **/
     protected $status;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $created;
+    /**
+     * @ORM\Column(type = "datetime")
+     **/
+    protected $created;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $createdby;
+    /**
+     * @ORM\Column(type = "string", length = 40)
+     **/
+    protected $createdby;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $updated;
+    /**
+     * @ORM\Column(type = "datetime")
+     **/
+    protected $updated;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $updatedby;
+    /**
+     * @ORM\Column(type = "string", length = 40)
+     **/
+    protected $updatedby;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="CompanyDepartment", mappedBy="company")
-	 **/
-	protected $department;
+    /**
+     * @ORM\OneToMany(targetEntity="CompanyDepartment", mappedBy="company")
+     **/
+    protected $department;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="company")
-	 **/
-	protected $employee;
+    /**
+     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="company")
+     **/
+    protected $employee;
 
     /**
      * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Career", mappedBy="old_company")
@@ -108,12 +118,12 @@ class Company{
      **/
     protected $career_new_company;
 
-	public function __construct(){
-		$this->status	= TRUE;
+    public function __construct(){
+        $this->status   = TRUE;
         $this->isfixed  = TRUE;
-		$this->created	= new \DateTime();
-		$this->updated	= new \DateTime();
-	}
+        $this->created  = new \DateTime();
+        $this->updated  = new \DateTime();
+    }
 
     /**
      * Set id
@@ -124,14 +134,14 @@ class Company{
     public function setId($id)
     {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return string 
+     * @return string
      */
     public function getId()
     {
@@ -147,14 +157,14 @@ class Company{
     public function setCode($code)
     {
         $this->code = $code;
-    
+
         return $this;
     }
 
     /**
      * Get code
      *
-     * @return string 
+     * @return string
      */
     public function getCode()
     {
@@ -170,14 +180,14 @@ class Company{
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -193,14 +203,14 @@ class Company{
     public function setWorkdayStart($workdayStart)
     {
         $this->workday_start = $workdayStart;
-    
+
         return $this;
     }
 
     /**
      * Get workday_start
      *
-     * @return integer 
+     * @return integer
      */
     public function getWorkdayStart()
     {
@@ -216,14 +226,14 @@ class Company{
     public function setWorkdayEnd($workdayEnd)
     {
         $this->workday_end = $workdayEnd;
-    
+
         return $this;
     }
 
     /**
      * Get workday_end
      *
-     * @return integer 
+     * @return integer
      */
     public function getWorkdayEnd()
     {
@@ -239,14 +249,14 @@ class Company{
     public function setIsfixed($isfixed)
     {
         $this->isfixed = $isfixed;
-    
+
         return $this;
     }
 
     /**
      * Get isfixed
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsfixed()
     {
@@ -262,14 +272,14 @@ class Company{
     public function setStatus($status)
     {
         $this->status = $status;
-    
+
         return $this;
     }
 
     /**
      * Get status
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getStatus()
     {
@@ -285,14 +295,14 @@ class Company{
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -308,14 +318,14 @@ class Company{
     public function setCreatedby($createdby)
     {
         $this->createdby = $createdby;
-    
+
         return $this;
     }
 
     /**
      * Get createdby
      *
-     * @return string 
+     * @return string
      */
     public function getCreatedby()
     {
@@ -331,14 +341,14 @@ class Company{
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-    
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -354,14 +364,14 @@ class Company{
     public function setUpdatedby($updatedby)
     {
         $this->updatedby = $updatedby;
-    
+
         return $this;
     }
 
     /**
      * Get updatedby
      *
-     * @return string 
+     * @return string
      */
     public function getUpdatedby()
     {
@@ -377,7 +387,7 @@ class Company{
     public function addChild(\GatotKaca\Erp\MainBundle\Entity\Company $child)
     {
         $this->child[] = $child;
-    
+
         return $this;
     }
 
@@ -394,7 +404,7 @@ class Company{
     /**
      * Get child
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getChild()
     {
@@ -410,14 +420,14 @@ class Company{
     public function setParent(\GatotKaca\Erp\MainBundle\Entity\Company $parent = null)
     {
         $this->parent = $parent;
-    
+
         return $this;
     }
 
     /**
      * Get parent
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\Company 
+     * @return \GatotKaca\Erp\MainBundle\Entity\Company
      */
     public function getParent()
     {
@@ -433,7 +443,7 @@ class Company{
     public function addDepartment(\GatotKaca\Erp\MainBundle\Entity\CompanyDepartment $department)
     {
         $this->department[] = $department;
-    
+
         return $this;
     }
 
@@ -450,7 +460,7 @@ class Company{
     /**
      * Get department
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getDepartment()
     {
@@ -466,7 +476,7 @@ class Company{
     public function addEmployee(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee)
     {
         $this->employee[] = $employee;
-    
+
         return $this;
     }
 
@@ -483,7 +493,7 @@ class Company{
     /**
      * Get employee
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getEmployee()
     {
@@ -499,7 +509,7 @@ class Company{
     public function addCareerOldCompany(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldCompany)
     {
         $this->career_old_company[] = $careerOldCompany;
-    
+
         return $this;
     }
 
@@ -516,7 +526,7 @@ class Company{
     /**
      * Get career_old_company
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCareerOldCompany()
     {
@@ -532,7 +542,7 @@ class Company{
     public function addCareerNewCompany(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewCompany)
     {
         $this->career_new_company[] = $careerNewCompany;
-    
+
         return $this;
     }
 
@@ -549,10 +559,56 @@ class Company{
     /**
      * Get career_new_company
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCareerNewCompany()
     {
         return $this->career_new_company;
+    }
+
+    /**
+     * Set istimebase
+     *
+     * @param boolean $istimebase
+     * @return Company
+     */
+    public function setIstimebase($istimebase)
+    {
+        $this->istimebase = $istimebase;
+    
+        return $this;
+    }
+
+    /**
+     * Get istimebase
+     *
+     * @return boolean 
+     */
+    public function getIstimebase()
+    {
+        return $this->istimebase;
+    }
+
+    /**
+     * Set officehour
+     *
+     * @param \DateTime $officehour
+     * @return Company
+     */
+    public function setOfficehour($officehour)
+    {
+        $this->officehour = $officehour;
+    
+        return $this;
+    }
+
+    /**
+     * Get officehour
+     *
+     * @return \DateTime 
+     */
+    public function getOfficehour()
+    {
+        return $this->officehour;
     }
 }

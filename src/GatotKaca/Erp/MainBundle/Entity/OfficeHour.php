@@ -11,7 +11,7 @@
  * Relation Mapping :
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Attendance
- * - GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeShiftment
+ * - GatotKaca\Erp\HumanResourcesBundle\Entity\Shiftment
  **/
 
 namespace GatotKaca\Erp\MainBundle\Entity;
@@ -24,72 +24,72 @@ use Doctrine\ORM\Mapping as ORM;
  **/
 class OfficeHour{
 
-	/**
-	 * @ORM\Id
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $id;
+    /**
+     * @ORM\Id
+     * @ORM\Column(type = "string", length = 40)
+     **/
+    protected $id;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40, nullable = true)
-	 */
-	protected $name;
+    /**
+     * @ORM\Column(type = "string", length = 40, nullable = true)
+     */
+    protected $name;
 
-	/**
-	 * @ORM\Column(type = "time", nullable = true)
-	 **/
-	protected $time_in;
+    /**
+     * @ORM\Column(type = "time", nullable = true)
+     **/
+    protected $time_in;
 
-	/**
-	 * @ORM\Column(type = "time", nullable = true)
-	 **/
-	protected $time_out;
+    /**
+     * @ORM\Column(type = "time", nullable = true)
+     **/
+    protected $time_out;
 
-	/**
-	 * @ORM\Column(type = "boolean", nullable = true)
-	 **/
-	protected $status;
+    /**
+     * @ORM\Column(type = "boolean", nullable = true)
+     **/
+    protected $status;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $created;
+    /**
+     * @ORM\Column(type = "datetime")
+     **/
+    protected $created;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $createdby;
+    /**
+     * @ORM\Column(type = "string", length = 40)
+     **/
+    protected $createdby;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $updated;
+    /**
+     * @ORM\Column(type = "datetime")
+     **/
+    protected $updated;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $updatedby;
+    /**
+     * @ORM\Column(type = "string", length = 40)
+     **/
+    protected $updatedby;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="shift")
-	 **/
-	protected $employee;
+    /**
+     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="shift")
+     **/
+    protected $employee;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Attendance", mappedBy="shift")
-	 **/
-	protected $attendance;
+    /**
+     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Attendance", mappedBy="shift")
+     **/
+    protected $attendance;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeShiftment", mappedBy="officehour")
-	 **/
-	protected $shiftment;
+    /**
+     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Shiftment", mappedBy="officehour")
+     **/
+    protected $shiftment;
 
-	public function __construct(){
-		$this->created		= new \DateTime();
-		$this->updated		= new \DateTime();
-		$this->status		= TRUE;
-	}
+    public function __construct(){
+        $this->created      = new \DateTime();
+        $this->updated      = new \DateTime();
+        $this->status       = TRUE;
+    }
 
     /**
      * Set id
@@ -100,14 +100,14 @@ class OfficeHour{
     public function setId($id)
     {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return string 
+     * @return string
      */
     public function getId()
     {
@@ -123,14 +123,14 @@ class OfficeHour{
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -146,14 +146,14 @@ class OfficeHour{
     public function setTimeIn($timeIn)
     {
         $this->time_in = $timeIn;
-    
+
         return $this;
     }
 
     /**
      * Get time_in
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getTimeIn()
     {
@@ -169,14 +169,14 @@ class OfficeHour{
     public function setTimeOut($timeOut)
     {
         $this->time_out = $timeOut;
-    
+
         return $this;
     }
 
     /**
      * Get time_out
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getTimeOut()
     {
@@ -192,14 +192,14 @@ class OfficeHour{
     public function setStatus($status)
     {
         $this->status = $status;
-    
+
         return $this;
     }
 
     /**
      * Get status
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getStatus()
     {
@@ -215,14 +215,14 @@ class OfficeHour{
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -238,14 +238,14 @@ class OfficeHour{
     public function setCreatedby($createdby)
     {
         $this->createdby = $createdby;
-    
+
         return $this;
     }
 
     /**
      * Get createdby
      *
-     * @return string 
+     * @return string
      */
     public function getCreatedby()
     {
@@ -261,14 +261,14 @@ class OfficeHour{
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-    
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -284,14 +284,14 @@ class OfficeHour{
     public function setUpdatedby($updatedby)
     {
         $this->updatedby = $updatedby;
-    
+
         return $this;
     }
 
     /**
      * Get updatedby
      *
-     * @return string 
+     * @return string
      */
     public function getUpdatedby()
     {
@@ -307,7 +307,7 @@ class OfficeHour{
     public function addEmployee(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee)
     {
         $this->employee[] = $employee;
-    
+
         return $this;
     }
 
@@ -324,7 +324,7 @@ class OfficeHour{
     /**
      * Get employee
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getEmployee()
     {
@@ -340,7 +340,7 @@ class OfficeHour{
     public function addAttendance(\GatotKaca\Erp\HumanResourcesBundle\Entity\Attendance $attendance)
     {
         $this->attendance[] = $attendance;
-    
+
         return $this;
     }
 
@@ -357,7 +357,7 @@ class OfficeHour{
     /**
      * Get attendance
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getAttendance()
     {
@@ -367,22 +367,22 @@ class OfficeHour{
     /**
      * Add shiftment
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeShiftment $shiftment
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Shiftment $shiftment
      * @return OfficeHour
      */
-    public function addShiftment(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeShiftment $shiftment)
+    public function addShiftment(\GatotKaca\Erp\HumanResourcesBundle\Entity\Shiftment $shiftment)
     {
         $this->shiftment[] = $shiftment;
-    
+
         return $this;
     }
 
     /**
      * Remove shiftment
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeShiftment $shiftment
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Shiftment $shiftment
      */
-    public function removeShiftment(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeShiftment $shiftment)
+    public function removeShiftment(\GatotKaca\Erp\HumanResourcesBundle\Entity\Shiftment $shiftment)
     {
         $this->shiftment->removeElement($shiftment);
     }
@@ -390,7 +390,7 @@ class OfficeHour{
     /**
      * Get shiftment
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getShiftment()
     {
