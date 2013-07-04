@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.model.Province",{extend:"Ext.data.Model",fields:[{name:"province_id",type:"string"},{name:"country_id",type:"string"},{name:"country_name",type:"string"},{name:"province_name",type:"string"}]});
+Ext.define("Com.GatotKaca.ERP.model.Province",{extend:"Ext.data.Model",fields:[{name:"province_id",type:"string"},{name:"country_id",type:"string"},{name:"country_name",type:"string"},{name:"province_name",type:"string"}]});

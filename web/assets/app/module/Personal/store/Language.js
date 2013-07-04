@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.Personal.store.Language",{extend:"GatotKacaErp.module.HumanResources.store.Language"});
+Ext.define("Com.GatotKaca.ERP.module.Personal.store.Language",{extend:"Com.GatotKaca.ERP.module.HumanResources.store.Language"});

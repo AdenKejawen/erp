@@ -21,98 +21,100 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name = "trs_employee_family")
  **/
-class EmployeeFamily{
-	/**
-	 * @ORM\Id
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $id;
+class EmployeeFamily
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(name = "`id`", type = "string", length = 40)
+     **/
+    protected $id;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="Employee", inversedBy="family")
-	 * @ORM\JoinColumn(name="mtr_employee_id", referencedColumnName="id")
-	 **/
-	protected $employee;
+    /**
+     * @ORM\ManyToOne(targetEntity = "Employee", inversedBy = "family")
+     * @ORM\JoinColumn(name = "mtr_employee_id", referencedColumnName = "id")
+     **/
+    protected $employee;
 
-	/**
-	 * 1 = PARENT
-	 * 2 = SPOUSE
-	 * 3 = SIBLING
-	 * 4 = CHILDREN
-	 *
-	 * @ORM\Column(type = "integer", nullable = true)
-	 **/
-	protected $relation;
+    /**
+     * 1 = PARENT
+     * 2 = SPOUSE
+     * 3 = SIBLING
+     * 4 = CHILDREN
+     *
+     * @ORM\Column(name = "`relation`", type = "integer", nullable = true)
+     **/
+    protected $relation;
 
-	/**
-	 * @ORM\Column(type = "string", length = 27, nullable = true)
-	 **/
-	protected $fname;
+    /**
+     * @ORM\Column(name = "`fname`", type = "string", length = 27, nullable = true)
+     **/
+    protected $first_name;
 
-	/**
-	 * @ORM\Column(type = "string", length = 27, nullable = true)
-	 **/
-	protected $lname;
+    /**
+     * @ORM\Column(name = "`lname`", type = "string", length = 27, nullable = true)
+     **/
+    protected $last_name;
 
-	/**
-	 * @ORM\Column(type = "date", nullable = true)
-	 **/
-	protected $born;
+    /**
+     * @ORM\Column(name = "`bod`", type = "date", nullable = true)
+     **/
+    protected $bod;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Education", inversedBy="family")
-	 * @ORM\JoinColumn(name="sys_education_id", referencedColumnName="id")
-	 **/
-	protected $education;
+    /**
+     * @ORM\ManyToOne(targetEntity = "GatotKaca\Erp\MainBundle\Entity\Education", inversedBy = "family")
+     * @ORM\JoinColumn(name = "sys_education_id", referencedColumnName = "id")
+     **/
+    protected $education;
 
-	/**
-	 * @ORM\Column(type = "string", length = 77, nullable = true)
-	 **/
-	protected $institute;
+    /**
+     * @ORM\Column(name = "`institute`", type = "string", length = 77, nullable = true)
+     **/
+    protected $institute;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $created;
+    /**
+     * @ORM\Column(name = "`created`", type = "datetime")
+     **/
+    protected $created;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $createdby;
+    /**
+     * @ORM\Column(name = "`createdby`", type = "string", length = 40)
+     **/
+    protected $created_by;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $updated;
+    /**
+     * @ORM\Column(name = "`updated`", type = "datetime")
+     **/
+    protected $updated;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $updatedby;
+    /**
+     * @ORM\Column(name = "`updatedby`", type = "string", length = 40)
+     **/
+    protected $updated_by;
 
-	public function __construct(){
-		$this->institute  = '';
-		$this->created    = new \DateTime();
-		$this->updated    = new \DateTime();
-	}
+    public function __construct()
+    {
+        $this->institute = '';
+        $this->created   = new \DateTime();
+        $this->updated   = new \DateTime();
+    }
 
     /**
      * Set id
      *
-     * @param string $id
+     * @param  string         $id
      * @return EmployeeFamily
      */
     public function setId($id)
     {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return string 
+     * @return string
      */
     public function getId()
     {
@@ -122,20 +124,20 @@ class EmployeeFamily{
     /**
      * Set relation
      *
-     * @param integer $relation
+     * @param  integer        $relation
      * @return EmployeeFamily
      */
     public function setRelation($relation)
     {
         $this->relation = $relation;
-    
+
         return $this;
     }
 
     /**
      * Get relation
      *
-     * @return integer 
+     * @return integer
      */
     public function getRelation()
     {
@@ -143,91 +145,91 @@ class EmployeeFamily{
     }
 
     /**
-     * Set fname
+     * Set first_name
      *
-     * @param string $fname
+     * @param  string         $firstName
      * @return EmployeeFamily
      */
-    public function setFname($fname)
+    public function setFirstName($firstName)
     {
-        $this->fname = $fname;
-    
+        $this->first_name = $firstName;
+
         return $this;
     }
 
     /**
-     * Get fname
+     * Get first_name
      *
-     * @return string 
+     * @return string
      */
-    public function getFname()
+    public function getFirstName()
     {
-        return $this->fname;
+        return $this->first_name;
     }
 
     /**
-     * Set lname
+     * Set last_name
      *
-     * @param string $lname
+     * @param  string         $lastName
      * @return EmployeeFamily
      */
-    public function setLname($lname)
+    public function setLastName($lastName)
     {
-        $this->lname = $lname;
-    
+        $this->last_name = $lastName;
+
         return $this;
     }
 
     /**
-     * Get lname
+     * Get last_name
      *
-     * @return string 
+     * @return string
      */
-    public function getLname()
+    public function getLastName()
     {
-        return $this->lname;
+        return $this->last_name;
     }
 
     /**
-     * Set born
+     * Set bod
      *
-     * @param \DateTime $born
+     * @param  \DateTime      $bod
      * @return EmployeeFamily
      */
-    public function setBorn($born)
+    public function setBod($bod)
     {
-        $this->born = $born;
-    
+        $this->bod = $bod;
+
         return $this;
     }
 
     /**
-     * Get born
+     * Get bod
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
-    public function getBorn()
+    public function getBod()
     {
-        return $this->born;
+        return $this->bod;
     }
 
     /**
      * Set institute
      *
-     * @param string $institute
+     * @param  string         $institute
      * @return EmployeeFamily
      */
     public function setInstitute($institute)
     {
         $this->institute = $institute;
-    
+
         return $this;
     }
 
     /**
      * Get institute
      *
-     * @return string 
+     * @return string
      */
     public function getInstitute()
     {
@@ -237,20 +239,20 @@ class EmployeeFamily{
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime      $created
      * @return EmployeeFamily
      */
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -258,45 +260,45 @@ class EmployeeFamily{
     }
 
     /**
-     * Set createdby
+     * Set created_by
      *
-     * @param string $createdby
+     * @param  string         $createdBy
      * @return EmployeeFamily
      */
-    public function setCreatedby($createdby)
+    public function setCreatedBy($createdBy)
     {
-        $this->createdby = $createdby;
-    
+        $this->created_by = $createdBy;
+
         return $this;
     }
 
     /**
-     * Get createdby
+     * Get created_by
      *
-     * @return string 
+     * @return string
      */
-    public function getCreatedby()
+    public function getCreatedBy()
     {
-        return $this->createdby;
+        return $this->created_by;
     }
 
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param  \DateTime      $updated
      * @return EmployeeFamily
      */
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-    
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -304,45 +306,45 @@ class EmployeeFamily{
     }
 
     /**
-     * Set updatedby
+     * Set updated_by
      *
-     * @param string $updatedby
+     * @param  string         $updatedBy
      * @return EmployeeFamily
      */
-    public function setUpdatedby($updatedby)
+    public function setUpdatedBy($updatedBy)
     {
-        $this->updatedby = $updatedby;
-    
+        $this->updated_by = $updatedBy;
+
         return $this;
     }
 
     /**
-     * Get updatedby
+     * Get updated_by
      *
-     * @return string 
+     * @return string
      */
-    public function getUpdatedby()
+    public function getUpdatedBy()
     {
-        return $this->updatedby;
+        return $this->updated_by;
     }
 
     /**
      * Set employee
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
      * @return EmployeeFamily
      */
     public function setEmployee(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee = null)
     {
         $this->employee = $employee;
-    
+
         return $this;
     }
 
     /**
      * Get employee
      *
-     * @return \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee 
+     * @return \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
      */
     public function getEmployee()
     {
@@ -352,20 +354,20 @@ class EmployeeFamily{
     /**
      * Set education
      *
-     * @param \GatotKaca\Erp\MainBundle\Entity\Education $education
+     * @param  \GatotKaca\Erp\MainBundle\Entity\Education $education
      * @return EmployeeFamily
      */
     public function setEducation(\GatotKaca\Erp\MainBundle\Entity\Education $education = null)
     {
         $this->education = $education;
-    
+
         return $this;
     }
 
     /**
      * Get education
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\Education 
+     * @return \GatotKaca\Erp\MainBundle\Entity\Education
      */
     public function getEducation()
     {

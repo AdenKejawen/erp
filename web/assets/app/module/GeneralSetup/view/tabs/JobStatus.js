@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.GeneralSetup.view.tabs.JobStatus",{extend:"GatotKacaErp.view.tabs.Base",alias:"widget.tabjobstatus",id:"tabjobstatus",requires:["GatotKacaErp.module.GeneralSetup.view.forms.JobStatus"],items:[{xtype:"formjobstatus"}]});
+Ext.define("Com.GatotKaca.ERP.module.GeneralSetup.view.tabs.JobStatus",{extend:"Com.GatotKaca.ERP.view.tabs.Base",alias:"widget.tabjobstatus",id:"tabjobstatus",requires:["Com.GatotKaca.ERP.module.GeneralSetup.view.forms.JobStatus"],items:[{xtype:"formjobstatus"}]});

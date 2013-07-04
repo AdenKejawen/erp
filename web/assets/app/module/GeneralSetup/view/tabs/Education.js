@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.GeneralSetup.view.tabs.Education",{extend:"GatotKacaErp.view.tabs.Base",alias:"widget.tabeducation",id:"tabeducation",requires:["GatotKacaErp.module.GeneralSetup.view.forms.Education"],items:[{xtype:"formeducation"}]});
+Ext.define("Com.GatotKaca.ERP.module.GeneralSetup.view.tabs.Education",{extend:"Com.GatotKaca.ERP.view.tabs.Base",alias:"widget.tabeducation",id:"tabeducation",requires:["Com.GatotKaca.ERP.module.GeneralSetup.view.forms.Education"],items:[{xtype:"formeducation"}]});

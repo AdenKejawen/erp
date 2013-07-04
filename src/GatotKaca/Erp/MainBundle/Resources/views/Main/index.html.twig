@@ -2,45 +2,43 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
     <head>
-        <title>{% block title %}.:: VINOTI LIVING ENTERPRISE RESOURCES PLANNING ::.{% endblock %}</title>
+        <title>{% block title %}.:: {{ global.APPLICATION_NAME }} ::.{% endblock %}</title>
         <meta Content-Type="text/html" charset="UTF-8" />
-        <link rel="shortcut icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/admin.png') }}" />
-
+        <link rel="shortcut icon" type="image/png" sizes="16x16" href="assets/img/admin.png" />
         <script type="text/javascript">
-        var BASE_URL        = '{{ path('GatotKacaErpMainBundle_Main_index') }}';
-        var PER_PAGE        = 100;
-        var LEADING         = 300;
-        var REQUIRED        = '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>';
-        var ROOTDIR         = 'assets/';
-        var APPDIR          = 'bundles/gatotkacaerpmain/';
-        var PROFILEPATH     = 'photos/';
+        var BASE_URL    = '{{ path('GatotKacaErpMainBundle_Main_index') }}';
+        var PER_PAGE    = 100;
+        var LEADING     = 300;
+        var REQUIRED    = '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>';
+        var ROOTDIR     = 'assets/';
+        var APPDIR      = 'bundles/gatotkacaerpmain/';
+        var PROFILEPATH = 'photos/';
         var DEFAULT_PROFILE = PROFILEPATH + 'default.png';
         {% for key, val in global %}
             var {{ key }} = '{{ val }}';
         {% endfor %}
         </script>
-
         <style type="text/css">
             #loading-mask {
-                position    : absolute;
-                top     : 0;
-                left        : 0;
-                width       : 100%;
-                height      : 100%;
-                background  : #000000;
-                z-index     : 1;
+                position  : absolute;
+                top       : 0;
+                left      : 0;
+                width     : 100%;
+                height    : 100%;
+                background: #000000;
+                z-index   : 1;
             }
             #loading {
-                position        : absolute;
-                top             : 40%;
-                left            : 45%;
-                z-index         : 2;
+                position: absolute;
+                top     : 40%;
+                left    : 45%;
+                z-index : 2;
             }
             #loading span {
-                background  : url('assets/img/loading.gif') no-repeat left center;
-                padding     : 5px 30px;
-                display     : block;
-                color       : #444444;
+                background: url('assets/img/loading.gif') no-repeat left center;
+                padding   : 5px 30px;
+                display   : block;
+                color     : #444444;
             }
         </style>
         <!--[if gte IE 9]>
@@ -52,25 +50,27 @@
           <![endif]-->
     </head>
     <body>
+        <div id="firework" class="firework"></div>
         <div id="loading-mask"></div>
         <div id="loading">
             <span id="loading-message">Please Wait. Loading Stylesheet</span>
         </div>
         <!--Message untuk loading stylesheet-->
-        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
-        <link rel="stylesheet" href="{{ asset('assets/extjs/resources/css/ext-all.css') }}" />
+        <link rel="stylesheet" href="assets/css/style.css" />
+        <link rel="stylesheet" href="assets/extjs/resources/css/ext-all.css" />
         <script type="text/javascript">
             document.getElementById('loading-message').innerHTML = 'Please Wait. Loading Kernel Engine';
         </script>
         <!--Message untuk loading core api-->
-        <script type="text/javascript" src="{{ asset('assets/extjs/ext-all-debug.js') }}"></script>
+        <script type="text/javascript" src="assets/extjs/ext-all-debug.js"></script>
         <script type="text/javascript">
             document.getElementById('loading-message').innerHTML = 'Please Wait. Initialing UI Component';
         </script>
         <!--Message untuk loading app core-->
         <!--Application Core-->
-        <script type="text/javascript" src="{{ asset('assets/app/bootstrap.js') }}"></script>
-
+        <script type="text/javascript" src="assets/app/lib/fireworks/fireworks.js"></script>
+        <script type="text/javascript" src="assets/app/lib/fireworks/jquery-1.3.2.min.js"></script>
+        <script type="text/javascript" src="bundles/gatotkacaerpmain/app/bootstrap.js"></script>
         <script type="text/javascript">
             document.getElementById('loading-message').innerHTML = 'Please Wait. Configuring Application';
         </script>
@@ -79,7 +79,7 @@
         //By Maximus (maximus@nsimail.com) w/ mods by DynamicDrive
         //For full source code, visit http://www.dynamicdrive.com
         function clickIE4(){
-            if (event.button==2){
+            if (event.button == 2){
                 return false;
             }
         }
@@ -97,10 +97,9 @@
             document.onmousedown    = clickIE4;
         }
         document.oncontextmenu  = new Function("return false;");
-
         //Create Time Object
         function createTime(b){
-            var a   = [];
+            var a = [];
             for(var i = 0; i <= b; i++){
                 if(i.toString().length  == 1){
                     i   = '0' + i;
@@ -109,10 +108,10 @@
             }
             return a;
         };
-      //Create Year Object
+        //Create Year Object
         function createYear(b){
-            var a       = [];
-            var date    = new Date();
+            var a    = [];
+            var date = new Date();
             a.push({year_id : date.getFullYear(), year_name : date.getFullYear()});
             for(var i = 0; i <= b; i++){
                 date.setFullYear(date.getFullYear() - 1);

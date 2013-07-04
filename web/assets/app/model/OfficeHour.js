@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.model.OfficeHour",{extend:"Ext.data.Model",fields:[{name:"officehour_id",type:"string"},{name:"officehour_name",type:"string"},{name:"officehour_in",type:"time"},{name:"officehour_out",type:"time"},{name:"officehour_status",type:"boolean"}]});
+Ext.define("Com.GatotKaca.ERP.model.OfficeHour",{extend:"Ext.data.Model",fields:[{name:"officehour_id",type:"string"},{name:"officehour_name",type:"string"},{name:"officehour_in",type:"time"},{name:"officehour_out",type:"time"},{name:"officehour_status",type:"boolean"}]});

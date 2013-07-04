@@ -1,13 +1,31 @@
  Pending:
- ☐ Modif Company, Add By Hour Based @HighPriority
+ ☐ Add Attendance Machines Setup @HighPriority
+ ☐ Add Performance Module @HighPriority
  ☐ Membuat Cuti @HighPriority
  ☐ Add Gaji @Karyawan @HighPriority
+ ☐ Add Logging Information @HighPriority
  ☐ Support Setup Fingerprint Connectivity @LowPriority
  ☐ Membuat penghitung lembur untuk bu dina @Lemburan
  ☐ Membuat Job Description Per Jabatan @LowPriority
  ☐ Membuat Installer via DataFixtures @LowPriority
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ ProgressBar @done (13-06-27 15:42)
+ ✔ Test Algo baru attendance @done (13-06-26 22:54)
+ ✔ Add Resign Module @HighPriority @done (13-06-24 22:44)
+ ✘ Add Module Birthday In Week @HighPriority @cancelled (13-06-24 11:06)
+ ✔ Add Buffered Store In Detail Grid @HighPriority #KurangByEmployee #Personal @done (13-06-24 09:34)
+ ✔ Add Buffered Store In Detail Grid @HighPriority @done (13-06-23 23:33)
+ ✔ Add firework effect pada user yang ultah @HighPriority @done (13-06-23 20:25)
+ ✔ Date hinting @Birthday notif @HighPriority @done (13-06-22 18:21)
+ ✔ Add new algoritma @deleteCareer, Rollback in jobtitle and supervisor in delete career @HighPriority @done (13-06-22 14:21)
+ ✔ Add Notifaction Jika Ada Yang Ultah @HighPriority @done (13-06-22 13:19)
+ ✔ Restructuring application to more flexibility (Store Refactoring) @HighPriority #GeneralSetup @done (13-06-21 16:49)
+ ✔ Membetulkan logic pada Employee @HighPriority @done (13-06-21 15:01)
+ ✔ Add Report Overtime Personal @HighPriority @done (13-06-20 14:36)
+ ✔ Buat Total Terlambat @HightPriority @done (13-06-20 12:54)
+ ✔ Add Setup Nama Aplikasi, Background Dashboard dan Background Login @HighPriority @done (13-06-19 11:41)
+ ✔ Modif Company, Add By Hour Based @HighPriority @done (13-06-18 23:57)
  ✔ Add Workday By Hour Based @Company @LowPriority @done (13-06-18 17:02)
  ✔ Delete Workshift @HighPriority @done (13-06-18 14:41)
  ✔ Add Setup Format Tanggal, Number, dll @HighPriority @done (13-06-18 14:12)

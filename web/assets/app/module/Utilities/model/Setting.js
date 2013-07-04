@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.Utilities.model.Setting",{extend:"Ext.data.Model",fields:[{name:"setting_id",type:"string"},{name:"setting_name",type:"string"}]});
+Ext.define("Com.GatotKaca.ERP.module.Utilities.model.Setting",{extend:"Ext.data.Model",fields:[{name:"setting_id",type:"string"},{name:"setting_name",type:"string"}]});

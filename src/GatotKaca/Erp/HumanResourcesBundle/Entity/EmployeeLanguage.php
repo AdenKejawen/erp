@@ -20,31 +20,32 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name = "trs_employee_language")
  **/
-class EmployeeLanguage{
-	/**
-	 * @ORM\Id
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $id;
+class EmployeeLanguage
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(name = "`id`", type = "string", length = 40)
+     **/
+    protected $id;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="Employee", inversedBy="language")
-	 * @ORM\JoinColumn(name="mtr_employee_id", referencedColumnName="id")
-	 **/
-	protected $employee;
+    /**
+     * @ORM\ManyToOne(targetEntity = "Employee", inversedBy = "language")
+     * @ORM\JoinColumn(name = "mtr_employee_id", referencedColumnName = "id")
+     **/
+    protected $employee;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\Language", inversedBy="employee")
-	 * @ORM\JoinColumn(name="sys_language_id", referencedColumnName="id")
-	 **/
-	protected $language;
+    /**
+     * @ORM\ManyToOne(targetEntity = "GatotKaca\Erp\MainBundle\Entity\Language", inversedBy = "employee")
+     * @ORM\JoinColumn(name = "sys_language_id", referencedColumnName = "id")
+     **/
+    protected $language;
 
     /**
      * 1 = EXCELLENT
      * 2 = GOOD
      * 3 = FAIR
      *
-     * @ORM\Column(type = "integer", nullable = true)
+     * @ORM\Column(name = "`spoken`", type = "integer", nullable = true)
      **/
     protected $spoken;
 
@@ -53,52 +54,53 @@ class EmployeeLanguage{
      * 2 = GOOD
      * 3 = FAIR
      *
-     * @ORM\Column(type = "integer", nullable = true)
+     * @ORM\Column(name = "`writen`", type = "integer", nullable = true)
      **/
     protected $writen;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $created;
+    /**
+     * @ORM\Column(name = "`created`", type = "datetime")
+     **/
+    protected $created;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $createdby;
+    /**
+     * @ORM\Column(name = "`createdby`", type = "string", length = 40)
+     **/
+    protected $created_by;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $updated;
+    /**
+     * @ORM\Column(name = "`updated`", type = "datetime")
+     **/
+    protected $updated;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $updatedby;
+    /**
+     * @ORM\Column(name = "`updatedby`", type = "string", length = 40)
+     **/
+    protected $updated_by;
 
-    public function __construct(){
-        $this->created    = new \DateTime();
-        $this->updated    = new \DateTime();
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
     }
 
     /**
      * Set id
      *
-     * @param string $id
+     * @param  string           $id
      * @return EmployeeLanguage
      */
     public function setId($id)
     {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return string 
+     * @return string
      */
     public function getId()
     {
@@ -108,20 +110,20 @@ class EmployeeLanguage{
     /**
      * Set spoken
      *
-     * @param integer $spoken
+     * @param  integer          $spoken
      * @return EmployeeLanguage
      */
     public function setSpoken($spoken)
     {
         $this->spoken = $spoken;
-    
+
         return $this;
     }
 
     /**
      * Get spoken
      *
-     * @return integer 
+     * @return integer
      */
     public function getSpoken()
     {
@@ -131,20 +133,20 @@ class EmployeeLanguage{
     /**
      * Set writen
      *
-     * @param integer $writen
+     * @param  integer          $writen
      * @return EmployeeLanguage
      */
     public function setWriten($writen)
     {
         $this->writen = $writen;
-    
+
         return $this;
     }
 
     /**
      * Get writen
      *
-     * @return integer 
+     * @return integer
      */
     public function getWriten()
     {
@@ -154,20 +156,20 @@ class EmployeeLanguage{
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime        $created
      * @return EmployeeLanguage
      */
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -175,45 +177,45 @@ class EmployeeLanguage{
     }
 
     /**
-     * Set createdby
+     * Set created_by
      *
-     * @param string $createdby
+     * @param  string           $createdBy
      * @return EmployeeLanguage
      */
-    public function setCreatedby($createdby)
+    public function setCreatedBy($createdBy)
     {
-        $this->createdby = $createdby;
-    
+        $this->created_by = $createdBy;
+
         return $this;
     }
 
     /**
-     * Get createdby
+     * Get created_by
      *
-     * @return string 
+     * @return string
      */
-    public function getCreatedby()
+    public function getCreatedBy()
     {
-        return $this->createdby;
+        return $this->created_by;
     }
 
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param  \DateTime        $updated
      * @return EmployeeLanguage
      */
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-    
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -221,45 +223,45 @@ class EmployeeLanguage{
     }
 
     /**
-     * Set updatedby
+     * Set updated_by
      *
-     * @param string $updatedby
+     * @param  string           $updatedBy
      * @return EmployeeLanguage
      */
-    public function setUpdatedby($updatedby)
+    public function setUpdatedBy($updatedBy)
     {
-        $this->updatedby = $updatedby;
-    
+        $this->updated_by = $updatedBy;
+
         return $this;
     }
 
     /**
-     * Get updatedby
+     * Get updated_by
      *
-     * @return string 
+     * @return string
      */
-    public function getUpdatedby()
+    public function getUpdatedBy()
     {
-        return $this->updatedby;
+        return $this->updated_by;
     }
 
     /**
      * Set employee
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
      * @return EmployeeLanguage
      */
     public function setEmployee(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee = null)
     {
         $this->employee = $employee;
-    
+
         return $this;
     }
 
     /**
      * Get employee
      *
-     * @return \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee 
+     * @return \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
      */
     public function getEmployee()
     {
@@ -269,20 +271,20 @@ class EmployeeLanguage{
     /**
      * Set language
      *
-     * @param \GatotKaca\Erp\MainBundle\Entity\Language $language
+     * @param  \GatotKaca\Erp\MainBundle\Entity\Language $language
      * @return EmployeeLanguage
      */
     public function setLanguage(\GatotKaca\Erp\MainBundle\Entity\Language $language = null)
     {
         $this->language = $language;
-    
+
         return $this;
     }
 
     /**
      * Get language
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\Language 
+     * @return \GatotKaca\Erp\MainBundle\Entity\Language
      */
     public function getLanguage()
     {

@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.Personal.view.grids.Qualification",{extend:"GatotKacaErp.module.HumanResources.view.grids.Qualification",alias:"widget.gridprqualification",id:"gridprqualification",title:"Educations",store:"GatotKacaErp.module.Personal.store.Qualification"});
+Ext.define("Com.GatotKaca.ERP.module.Personal.view.grids.Qualification",{extend:"Com.GatotKaca.ERP.module.HumanResources.view.grids.Qualification",alias:"widget.gridprqualification",id:"gridprqualification",title:"Educations",store:"Com.GatotKaca.ERP.module.Personal.store.Qualification"});

@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.model.Company",{extend:"Ext.data.Model",fields:[{name:"company_id",type:"string"},{name:"company_code",type:"string"},{name:"company_parent",type:"string"},{name:"company_pname",type:"string"},{name:"company_name",type:"string"}]});
+Ext.define("Com.GatotKaca.ERP.model.Company",{extend:"Ext.data.Model",fields:[{name:"company_id",type:"string"},{name:"company_code",type:"string"},{name:"company_parent",type:"string"},{name:"company_pname",type:"string"},{name:"company_name",type:"string"}]});

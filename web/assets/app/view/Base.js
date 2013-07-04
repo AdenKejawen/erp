@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.view.Base",{extend:"Ext.panel.Panel",resizeTabs:true,bodyStyle:"padding : 5px; background : transparent",layout:{type:"hbox",align:"stretch"},border:false,closable:true,autoDestroy:false,plain:true,enableTabScroll:true,defaults:{autoScroll:true}});
+Ext.define("Com.GatotKaca.ERP.view.Base",{extend:"Ext.panel.Panel",resizeTabs:true,bodyStyle:"padding : 5px; background : transparent",layout:{type:"hbox",align:"stretch"},border:false,closable:true,autoDestroy:false,plain:true,enableTabScroll:true,defaults:{autoScroll:true}});

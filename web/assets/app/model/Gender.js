@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.model.Gender",{extend:"Ext.data.Model",fields:[{name:"gender_id",type:"number"},{name:"gender_name",type:"string"}]});
+Ext.define("Com.GatotKaca.ERP.model.Gender",{extend:"Ext.data.Model",fields:[{name:"gender_id",type:"number"},{name:"gender_name",type:"string"}]});

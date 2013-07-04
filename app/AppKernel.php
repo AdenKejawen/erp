@@ -27,7 +27,6 @@ class AppKernel extends Kernel
             new GatotKaca\Erp\WarehouseBundle\GatotKacaErpWarehouseBundle(),
             new GatotKaca\Erp\MainBundle\GatotKacaErpMainBundle(),
             new GatotKaca\Erp\MaterialRequirementBundle\GatotKacaErpMaterialRequirementBundle(),
-            new GatotKaca\SetupBundle\GatotKacaSetupBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

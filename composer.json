@@ -7,7 +7,8 @@
         "psr-0": { "": "src/" }
     },
     "config": {
-        "process-timeout": 3600
+        "process-timeout": 3600,
+        "bin-dir": "bin/"
     },
     "require": {
         "php": ">=5.3.3",
@@ -25,10 +26,11 @@
         "kriswallsmith/assetic": "1.1.*@dev",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "doctrine/data-fixtures": "dev-master",
-		"CodePlex/PHPExcel": "1.7.*",
-		"knplabs/knp-snappy-bundle": "dev-master",
+        "CodePlex/PHPExcel": "1.7.*",
+        "knplabs/knp-snappy-bundle": "dev-master",
         "imagine/imagine": "dev-develop",
-        "tecnick.com/tcpdf": "dev-master"
+        "tecnick.com/tcpdf": "dev-master",
+        "mockery/mockery": "dev-master@dev"
     },
     "scripts": {
         "post-install-cmd": [
@@ -50,7 +52,7 @@
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
-		"symfony-assets-install": "symlink",
+        "symfony-assets-install": "symlink",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
         },

@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.model.MaritalStatus",{extend:"Ext.data.Model",fields:[{name:"maritalstatus_id",type:"number"},{name:"maritalstatus_name",type:"string"}]});
+Ext.define("Com.GatotKaca.ERP.model.MaritalStatus",{extend:"Ext.data.Model",fields:[{name:"maritalstatus_id",type:"number"},{name:"maritalstatus_name",type:"string"}]});

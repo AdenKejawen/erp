@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.HumanResources.view.grids.Employee",{extend:"GatotKacaErp.module.HumanResources.view.grids.EmployeeBase",store:"GatotKacaErp.module.HumanResources.store.Employee",alias:"widget.gridemployee",id:"gridemployee"});
+Ext.define("Com.GatotKaca.ERP.module.HumanResources.view.grids.Employee",{extend:"Com.GatotKaca.ERP.module.HumanResources.view.grids.EmployeeBase",store:"Com.GatotKaca.ERP.module.HumanResources.store.Employee",alias:"widget.gridemployee",id:"gridemployee"});

@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.HumanResources.view.OverTimeByDate",{extend:"GatotKacaErp.view.Base",requires:["GatotKacaErp.module.HumanResources.view.grids.OverTimeByDate"],items:[{xtype:"gridovertimebydate",flex:1}]});
+Ext.define("Com.GatotKaca.ERP.module.HumanResources.view.OverTimeByDate",{extend:"Com.GatotKaca.ERP.view.Base",requires:["Com.GatotKaca.ERP.module.HumanResources.view.grids.OverTimeByDate"],items:[{xtype:"gridovertimebydate",flex:1}]});

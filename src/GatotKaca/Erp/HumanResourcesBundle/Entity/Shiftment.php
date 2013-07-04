@@ -21,59 +21,61 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name = "trs_employee_shift")
  **/
-class Shiftment{
+class Shiftment
+{
     /**
      * @ORM\Id
-     * @ORM\Column(type = "string", length = 40)
+     * @ORM\Column(name = "`id`", type = "string", length = 40)
      **/
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Employee", inversedBy="shiftment")
-     * @ORM\JoinColumn(name="mtr_employee_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity = "Employee", inversedBy = "shiftment")
+     * @ORM\JoinColumn(name = "mtr_employee_id", referencedColumnName = "id")
      **/
     protected $employee;
 
     /**
-     * @ORM\Column(type = "date", nullable = true)
+     * @ORM\Column(name = "`shift_date`", type = "date", nullable = true)
      **/
-    protected $shift_date;
+    protected $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\OfficeHour", inversedBy="shiftment")
-     * @ORM\JoinColumn(name="sys_officehour_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity = "GatotKaca\Erp\MainBundle\Entity\OfficeHour", inversedBy = "shiftment")
+     * @ORM\JoinColumn(name = "sys_officehour_id", referencedColumnName = "id")
      **/
-    protected $officehour;
+    protected $office_hour;
 
     /**
-     * @ORM\Column(type = "datetime")
+     * @ORM\Column(name = "`created`", type = "datetime")
      **/
     protected $created;
 
     /**
-     * @ORM\Column(type = "string", length = 40)
+     * @ORM\Column(name = "`createdby`", type = "string", length = 40)
      **/
-    protected $createdby;
+    protected $created_by;
 
     /**
-     * @ORM\Column(type = "datetime")
+     * @ORM\Column(name = "`updated`", type = "datetime")
      **/
     protected $updated;
 
     /**
-     * @ORM\Column(type = "string", length = 40)
+     * @ORM\Column(name = "`updatedby`", type = "string", length = 40)
      **/
-    protected $updatedby;
+    protected $updated_by;
 
-    public function __construct(){
-        $this->created  = new \DateTime();
-        $this->updated  = new \DateTime();
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
     }
 
     /**
      * Set id
      *
-     * @param string $id
+     * @param  string    $id
      * @return Shiftment
      */
     public function setId($id)
@@ -94,32 +96,32 @@ class Shiftment{
     }
 
     /**
-     * Set shift_date
+     * Set date
      *
-     * @param \DateTime $shiftDate
+     * @param  \DateTime $date
      * @return Shiftment
      */
-    public function setShiftDate($shiftDate)
+    public function setDate($date)
     {
-        $this->shift_date = $shiftDate;
+        $this->date = $date;
 
         return $this;
     }
 
     /**
-     * Get shift_date
+     * Get date
      *
      * @return \DateTime
      */
-    public function getShiftDate()
+    public function getDate()
     {
-        return $this->shift_date;
+        return $this->date;
     }
 
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime $created
      * @return Shiftment
      */
     public function setCreated($created)
@@ -140,32 +142,32 @@ class Shiftment{
     }
 
     /**
-     * Set createdby
+     * Set created_by
      *
-     * @param string $createdby
+     * @param  string    $createdBy
      * @return Shiftment
      */
-    public function setCreatedby($createdby)
+    public function setCreatedBy($createdBy)
     {
-        $this->createdby = $createdby;
+        $this->created_by = $createdBy;
 
         return $this;
     }
 
     /**
-     * Get createdby
+     * Get created_by
      *
      * @return string
      */
-    public function getCreatedby()
+    public function getCreatedBy()
     {
-        return $this->createdby;
+        return $this->created_by;
     }
 
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param  \DateTime $updated
      * @return Shiftment
      */
     public function setUpdated($updated)
@@ -186,32 +188,32 @@ class Shiftment{
     }
 
     /**
-     * Set updatedby
+     * Set updated_by
      *
-     * @param string $updatedby
+     * @param  string    $updatedBy
      * @return Shiftment
      */
-    public function setUpdatedby($updatedby)
+    public function setUpdatedBy($updatedBy)
     {
-        $this->updatedby = $updatedby;
+        $this->updated_by = $updatedBy;
 
         return $this;
     }
 
     /**
-     * Get updatedby
+     * Get updated_by
      *
      * @return string
      */
-    public function getUpdatedby()
+    public function getUpdatedBy()
     {
-        return $this->updatedby;
+        return $this->updated_by;
     }
 
     /**
      * Set employee
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
      * @return Shiftment
      */
     public function setEmployee(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee = null)
@@ -232,25 +234,25 @@ class Shiftment{
     }
 
     /**
-     * Set officehour
+     * Set office_hour
      *
-     * @param \GatotKaca\Erp\MainBundle\Entity\OfficeHour $officehour
+     * @param  \GatotKaca\Erp\MainBundle\Entity\OfficeHour $officeHour
      * @return Shiftment
      */
-    public function setOfficehour(\GatotKaca\Erp\MainBundle\Entity\OfficeHour $officehour = null)
+    public function setOfficeHour(\GatotKaca\Erp\MainBundle\Entity\OfficeHour $officeHour = null)
     {
-        $this->officehour = $officehour;
+        $this->office_hour = $officeHour;
 
         return $this;
     }
 
     /**
-     * Get officehour
+     * Get office_hour
      *
      * @return \GatotKaca\Erp\MainBundle\Entity\OfficeHour
      */
-    public function getOfficehour()
+    public function getOfficeHour()
     {
-        return $this->officehour;
+        return $this->office_hour;
     }
 }

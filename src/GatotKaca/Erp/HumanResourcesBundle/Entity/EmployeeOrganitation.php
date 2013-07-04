@@ -20,36 +20,37 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name = "trs_employee_organitation")
  **/
-class EmployeeOrganitation{
-	/**
-	 * @ORM\Id
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $id;
-
-	/**
-	 * @ORM\ManyToOne(targetEntity="Employee", inversedBy="organitation")
-	 * @ORM\JoinColumn(name="mtr_employee_id", referencedColumnName="id")
-	 **/
-	protected $employee;
-
+class EmployeeOrganitation
+{
     /**
-     * @ORM\Column(type = "date", nullable = true)
+     * @ORM\Id
+     * @ORM\Column(name = "`id`", type = "string", length = 40)
      **/
-    protected $org_start;
+    protected $id;
 
     /**
-     * @ORM\Column(type = "date", nullable = true)
+     * @ORM\ManyToOne(targetEntity = "Employee", inversedBy = "organitation")
+     * @ORM\JoinColumn(name = "mtr_employee_id", referencedColumnName = "id")
      **/
-    protected $org_end;
+    protected $employee;
 
     /**
-     * @ORM\Column(type = "string", length = 77, nullable = true)
+     * @ORM\Column(name = "`org_start`", type = "date", nullable = true)
+     **/
+    protected $start;
+
+    /**
+     * @ORM\Column(name = "`org_end`", type = "date", nullable = true)
+     **/
+    protected $end;
+
+    /**
+     * @ORM\Column(name = "`categories`", type = "string", length = 77, nullable = true)
      **/
     protected $categories;
 
     /**
-     * @ORM\Column(type = "string", length = 77, nullable = true)
+     * @ORM\Column(name = "`position`", type = "string", length = 77, nullable = true)
      **/
     protected $position;
 
@@ -58,48 +59,49 @@ class EmployeeOrganitation{
      **/
     protected $name;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $created;
+    /**
+     * @ORM\Column(type = "datetime")
+     **/
+    protected $created;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $createdby;
+    /**
+     * @ORM\Column(type = "string", length = 40)
+     **/
+    protected $createdby;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $updated;
+    /**
+     * @ORM\Column(type = "datetime")
+     **/
+    protected $updated;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $updatedby;
+    /**
+     * @ORM\Column(type = "string", length = 40)
+     **/
+    protected $updatedby;
 
-    public function __construct(){
-        $this->created    = new \DateTime();
-        $this->updated    = new \DateTime();
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
     }
 
     /**
      * Set id
      *
-     * @param string $id
+     * @param  string               $id
      * @return EmployeeOrganitation
      */
     public function setId($id)
     {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return string 
+     * @return string
      */
     public function getId()
     {
@@ -107,68 +109,68 @@ class EmployeeOrganitation{
     }
 
     /**
-     * Set org_start
+     * Set start
      *
-     * @param \DateTime $orgStart
+     * @param  \DateTime            $start
      * @return EmployeeOrganitation
      */
-    public function setOrgStart($orgStart)
+    public function setStart($start)
     {
-        $this->org_start = $orgStart;
-    
+        $this->start = $start;
+
         return $this;
     }
 
     /**
-     * Get org_start
+     * Get start
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
-    public function getOrgStart()
+    public function getStart()
     {
-        return $this->org_start;
+        return $this->start;
     }
 
     /**
-     * Set org_end
+     * Set end
      *
-     * @param \DateTime $orgEnd
+     * @param  \DateTime            $end
      * @return EmployeeOrganitation
      */
-    public function setOrgEnd($orgEnd)
+    public function setEnd($end)
     {
-        $this->org_end = $orgEnd;
-    
+        $this->end = $end;
+
         return $this;
     }
 
     /**
-     * Get org_end
+     * Get end
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
-    public function getOrgEnd()
+    public function getEnd()
     {
-        return $this->org_end;
+        return $this->end;
     }
 
     /**
      * Set categories
      *
-     * @param string $categories
+     * @param  string               $categories
      * @return EmployeeOrganitation
      */
     public function setCategories($categories)
     {
         $this->categories = $categories;
-    
+
         return $this;
     }
 
     /**
      * Get categories
      *
-     * @return string 
+     * @return string
      */
     public function getCategories()
     {
@@ -178,20 +180,20 @@ class EmployeeOrganitation{
     /**
      * Set position
      *
-     * @param string $position
+     * @param  string               $position
      * @return EmployeeOrganitation
      */
     public function setPosition($position)
     {
         $this->position = $position;
-    
+
         return $this;
     }
 
     /**
      * Get position
      *
-     * @return string 
+     * @return string
      */
     public function getPosition()
     {
@@ -201,20 +203,20 @@ class EmployeeOrganitation{
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string               $name
      * @return EmployeeOrganitation
      */
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -224,20 +226,20 @@ class EmployeeOrganitation{
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime            $created
      * @return EmployeeOrganitation
      */
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -247,20 +249,20 @@ class EmployeeOrganitation{
     /**
      * Set createdby
      *
-     * @param string $createdby
+     * @param  string               $createdby
      * @return EmployeeOrganitation
      */
     public function setCreatedby($createdby)
     {
         $this->createdby = $createdby;
-    
+
         return $this;
     }
 
     /**
      * Get createdby
      *
-     * @return string 
+     * @return string
      */
     public function getCreatedby()
     {
@@ -270,20 +272,20 @@ class EmployeeOrganitation{
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param  \DateTime            $updated
      * @return EmployeeOrganitation
      */
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-    
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -293,20 +295,20 @@ class EmployeeOrganitation{
     /**
      * Set updatedby
      *
-     * @param string $updatedby
+     * @param  string               $updatedby
      * @return EmployeeOrganitation
      */
     public function setUpdatedby($updatedby)
     {
         $this->updatedby = $updatedby;
-    
+
         return $this;
     }
 
     /**
      * Get updatedby
      *
-     * @return string 
+     * @return string
      */
     public function getUpdatedby()
     {
@@ -316,20 +318,20 @@ class EmployeeOrganitation{
     /**
      * Set employee
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
      * @return EmployeeOrganitation
      */
     public function setEmployee(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee = null)
     {
         $this->employee = $employee;
-    
+
         return $this;
     }
 
     /**
      * Get employee
      *
-     * @return \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee 
+     * @return \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
      */
     public function getEmployee()
     {

@@ -14,59 +14,65 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use GatotKaca\Erp\MainBundle\Controller\AdminController;
 
-class SettingController extends AdminController{
+class SettingController extends AdminController
+{
     const MODULE= 'panelparameter';
     /**
      * @Route("/utilities/setting", name="GatotKacaErpUtilitiesBundle_Setting_index")
      */
-    public function indexAction(){
+    public function indexAction()
+    {
         return $this->goHome();
     }
 
     /**
      * @Route("/utilities/setting/getlist", name="GatotKacaErpUtilitiesBundle_Setting_getList")
      */
-    public function getListAction(){
+    public function getListAction()
+    {
         $session    = $this->getHelper()->getSession();
         $request    = $this->getRequest();
         $security   = $this->getSecurity();
-        $output     = array('success' => FALSE);
+        $output     = array('success' => false);
         //Don't have authorization
-        if(!$security->isAllowed($session->get('group_id'), SettingController::MODULE, 'view')){
+        if (!$security->isAllowed($session->get('group_id'), SettingController::MODULE, 'view')) {
             return new JsonResponse($output);
         }
-        $output = array('success' => TRUE);
+        $output = array('success' => true);
         //Get model
         $model  = $this->getSetting();
         $setting= $model->getAll();
         $output['total']= count($setting);
         $output['data'] = $setting;
         $security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
+
         return new JsonResponse($output);
     }
 
     /**
      * @Route("/utilities/setting/save", name="GatotKacaErpUtilitiesBundle_Setting_save")
      */
-    public function saveAction(){
+    public function saveAction()
+    {
         $session    = $this->getHelper()->getSession();
         $request    = $this->getRequest();
         $security   = $this->getSecurity();
-        $output     = array('success' => FALSE);
+        $output     = array('success' => false);
         //Don't have authorization
-        if(!$security->isAllowed($session->get('group_id'), SettingController::MODULE, 'modif')){
+        if (!$security->isAllowed($session->get('group_id'), SettingController::MODULE, 'modif')) {
             return new JsonResponse($output);
         }
         $input  = json_decode($request->get('setting', ''));
         //Get model
         $model  = $this->getSetting();
-        if($success = $model->save($input)){
-            $output['success']  = TRUE;
+        if ($success = $model->save($input)) {
+            $output['success']  = true;
             $output['msg']      = 'Setting has been saved.';
-        }else{
+        } else {
             $output['msg']      = $model->getMessage().'. Setting has not been saved.';
         }
         $security->logging($request->getClientIp(), $session->get('user_id'), $request->get('_route'), $model->getAction(), $model->getModelLog());
+
         return new JsonResponse($output);
     }
 }

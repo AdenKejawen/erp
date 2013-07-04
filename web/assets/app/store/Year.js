@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.store.Year",{extend:"Ext.data.Store",model:"GatotKacaErp.model.Year",data:createYear(100)});
+Ext.define("Com.GatotKaca.ERP.store.Year",{extend:"Ext.data.Store",model:"Com.GatotKaca.ERP.model.Year",data:createYear(100)});

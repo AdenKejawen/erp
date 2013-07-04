@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.HumanResources.view.tabs.WorkShift",{extend:"GatotKacaErp.view.tabs.Base",alias:"widget.tabworkshift",id:"tabworkshift",requires:["GatotKacaErp.module.HumanResources.view.forms.WorkShift"],items:[{xtype:"formworkshift"}]});
+Ext.define("Com.GatotKaca.ERP.module.HumanResources.view.tabs.WorkShift",{extend:"Com.GatotKaca.ERP.view.tabs.Base",alias:"widget.tabworkshift",id:"tabworkshift",requires:["Com.GatotKaca.ERP.module.HumanResources.view.forms.WorkShift"],items:[{xtype:"formworkshift"}]});

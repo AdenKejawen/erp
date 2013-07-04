@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "977ea67985247c7d187e389b099d5118",
+    "hash": "60135e0eea0cc65ca511cd038456950b",
     "packages": [
         {
             "name": "CodePlex/PHPExcel",
@@ -319,17 +319,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineFixturesBundle.git",
-                "reference": "5696cd636df7cbfaf4d1c45ed2922438968cf890"
+                "reference": "512fc0fa1d0ce7bdcc6a0a91812eb531f20e0828"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/5696cd636df7cbfaf4d1c45ed2922438968cf890",
-                "reference": "5696cd636df7cbfaf4d1c45ed2922438968cf890",
+                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/512fc0fa1d0ce7bdcc6a0a91812eb531f20e0828",
+                "reference": "512fc0fa1d0ce7bdcc6a0a91812eb531f20e0828",
                 "shasum": ""
             },
             "require": {
                 "doctrine/data-fixtures": "*",
-                "doctrine/doctrine-bundle": ">=1.0,<2.0",
+                "doctrine/doctrine-bundle": "~1.0",
                 "php": ">=5.3.2",
                 "symfony/doctrine-bridge": ">=2.1.0,<2.4-dev"
             },
@@ -368,7 +368,7 @@
                 "Fixture",
                 "persistence"
             ],
-            "time": "2013-04-27 11:57:35"
+            "time": "2013-06-21 10:31:45"
         },
         {
             "name": "doctrine/orm",
@@ -446,12 +446,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/avalanche123/Imagine.git",
-                "reference": "9c70f0d12b44e16f31fc7a4701082aa46d523761"
+                "reference": "1b3feb92fd7ce093ee2244b8dcae14ccdca52219"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/9c70f0d12b44e16f31fc7a4701082aa46d523761",
-                "reference": "9c70f0d12b44e16f31fc7a4701082aa46d523761",
+                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/1b3feb92fd7ce093ee2244b8dcae14ccdca52219",
+                "reference": "1b3feb92fd7ce093ee2244b8dcae14ccdca52219",
                 "shasum": ""
             },
             "require": {
@@ -490,7 +490,7 @@
                 "image manipulation",
                 "image processing"
             ],
-            "time": "2013-04-29 19:10:37"
+            "time": "2013-07-01 22:22:50"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -764,6 +764,60 @@
                 "minification"
             ],
             "time": "2013-06-13 16:56:43"
+        },
+        {
+            "name": "mockery/mockery",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/padraic/mockery.git",
+                "reference": "92fad368f3458c6eb43252d499f4688eec792479"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/92fad368f3458c6eb43252d499f4688eec792479",
+                "reference": "92fad368f3458c6eb43252d499f4688eec792479",
+                "shasum": ""
+            },
+            "require": {
+                "lib-pcre": ">=7.0",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "hamcrest/hamcrest": "1.1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Mockery": "library/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Pádraic Brady",
+                    "email": "padraic.brady@gmail.com",
+                    "homepage": "http://blog.astrumfutura.com"
+                }
+            ],
+            "description": "Mockery is a simple yet flexible PHP mock object framework for use in unit testing with PHPUnit, PHPSpec or any other testing framework. Its core goal is to offer a test double framework with a succint API capable of clearly defining all possible object operations and interactions using a human readable Domain Specific Language (DSL). Designed as a drop in alternative to PHPUnit's phpunit-mock-objects library, Mockery is easy to integrate with PHPUnit and can operate alongside phpunit-mock-objects without the World ending.",
+            "homepage": "http://github.com/padraic/mockery",
+            "keywords": [
+                "BDD",
+                "TDD",
+                "library",
+                "mock",
+                "mock objects",
+                "mockery",
+                "stub",
+                "test",
+                "test double",
+                "testing"
+            ],
+            "time": "2013-06-27 20:35:00"
         },
         {
             "name": "monolog/monolog",
@@ -1554,7 +1608,8 @@
         "doctrine/data-fixtures": 20,
         "knplabs/knp-snappy-bundle": 20,
         "imagine/imagine": 20,
-        "tecnick.com/tcpdf": 20
+        "tecnick.com/tcpdf": 20,
+        "mockery/mockery": 20
     },
     "platform": {
         "php": ">=5.3.3"

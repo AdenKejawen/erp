@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.HumanResources.store.OverTimeByEmployee",{extend:"GatotKacaErp.module.HumanResources.store.Employee"});
+Ext.define("Com.GatotKaca.ERP.module.HumanResources.store.OverTimeByEmployee",{extend:"Com.GatotKaca.ERP.module.HumanResources.store.Employee"});

@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.GeneralSetup.view.tabs.Language",{extend:"GatotKacaErp.view.tabs.Base",alias:"widget.tablanguage",id:"tablanguage",requires:["GatotKacaErp.module.GeneralSetup.view.forms.Language"],items:[{xtype:"formlanguage"}]});
+Ext.define("Com.GatotKaca.ERP.module.GeneralSetup.view.tabs.Language",{extend:"Com.GatotKaca.ERP.view.tabs.Base",alias:"widget.tablanguage",id:"tablanguage",requires:["Com.GatotKaca.ERP.module.GeneralSetup.view.forms.Language"],items:[{xtype:"formlanguage"}]});

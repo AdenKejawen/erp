@@ -1,9 +1,9 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/UtilitiesBundle/Entity/User.php
- * Author     : Muhammad Surya Ikhsanudin
- * License    : Protected
- * Email      : mutofiyah@gmail.com
+ * Author    : Muhammad Surya Ikhsanudin
+ * License   : Protected
+ * Email     : mutofiyah@gmail.com
  *
  * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
@@ -20,113 +20,114 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name = "utl_user")
  **/
-class User{
+class User
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(name = "`id`", type = "string", length = 40)
+     **/
+    protected $id;
 
-	/**
-	 * @ORM\Id
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $id;
+    /**
+     * @ORM\OneToMany(targetEntity = "User", mappedBy = "parent")
+     **/
+    protected $child;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="User", mappedBy="parent")
-	 **/
-	protected $child;
-
-	/**
-	 * Untuk supervisi
-	 *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="child")
-     * @ORM\JoinColumn(name="parent", referencedColumnName="id")
+    /**
+     * Untuk supervisi
+     *
+     * @ORM\ManyToOne(targetEntity = "User", inversedBy = "child")
+     * @ORM\JoinColumn(name = "parent", referencedColumnName = "id")
      */
- 	protected $parent;
+     protected $parent;
 
- 	/**
- 	 * @ORM\ManyToOne(targetEntity="UserGroup", inversedBy="user")
- 	 * @ORM\JoinColumn(name="utl_group_id", referencedColumnName="id")
- 	 **/
- 	protected $group;
+     /**
+      * @ORM\ManyToOne(targetEntity = "UserGroup", inversedBy = "user")
+      * @ORM\JoinColumn(name = "utl_group_id", referencedColumnName = "id")
+      **/
+     protected $group;
 
-	/**
-	 * @ORM\Column(type = "string", length = 17, nullable = true)
-	 **/
-	protected $name;
+    /**
+     * @ORM\Column(name = "`name`", type = "string", length = 17, nullable = true)
+     **/
+    protected $name;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40, nullable = true)
-	 **/
-	protected $salt;
+    /**
+     * @ORM\Column(name = "`salt`", type = "string", length = 40, nullable = true)
+     **/
+    protected $salt;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40, nullable = true)
-	 **/
-	protected $pass;
+    /**
+     * @ORM\Column(name = "`pass`", type = "string", length = 40, nullable = true)
+     **/
+    protected $password;
 
-	/**
-	 * @ORM\Column(type = "boolean", nullable = true)
-	 **/
-	protected $status;
+    /**
+     * @ORM\Column(name = "`status`", type = "boolean", nullable = true)
+     **/
+    protected $status;
 
-	/**
-	 * @ORM\Column(type = "boolean", nullable = true)
-	 **/
-	protected $online;
+    /**
+     * @ORM\Column(name = "`online`", type = "boolean", nullable = true)
+     **/
+    protected $online;
 
-	/**
-	 * @ORM\Column(type = "datetime", nullable = true)
-	 **/
-	protected $lastactivity;
+    /**
+     * @ORM\Column(name = "`lastactivity`", type = "datetime", nullable = true)
+     **/
+    protected $last_activity;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $created;
+    /**
+     * @ORM\Column(name = "`created`", type = "datetime")
+     **/
+    protected $created;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $createdby;
+    /**
+     * @ORM\Column(name = "`createdby`", type = "string", length = 40)
+     **/
+    protected $created_by;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $updated;
+    /**
+     * @ORM\Column(name = "`updated`", type = "datetime")
+     **/
+    protected $updated;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $updatedby;
+    /**
+     * @ORM\Column(name = "`updatedby`", type = "string", length = 40)
+     **/
+    protected $updated_by;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="username")
-	 **/
-	protected $employee;
+    /**
+     * @ORM\OneToMany(targetEntity = "GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy = "username")
+     **/
+    protected $employee;
 
-	public function __construct(){
-		$this->lastactivity   = new \DateTime();
-		$this->created        = new \DateTime();
-		$this->updated        = new \DateTime();
-		$this->status         = TRUE;
-		$this->online         = FALSE;
-	}
+    public function __construct()
+    {
+        $this->last_activity = new \DateTime();
+        $this->created   = new \DateTime();
+        $this->updated   = new \DateTime();
+        $this->status    = true;
+        $this->is_online = false;
+    }
 
     /**
      * Set id
      *
-     * @param string $id
+     * @param  string $id
      * @return User
      */
     public function setId($id)
     {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return string 
+     * @return string
      */
     public function getId()
     {
@@ -136,20 +137,20 @@ class User{
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string $name
      * @return User
      */
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -159,20 +160,20 @@ class User{
     /**
      * Set salt
      *
-     * @param string $salt
+     * @param  string $salt
      * @return User
      */
     public function setSalt($salt)
     {
         $this->salt = $salt;
-    
+
         return $this;
     }
 
     /**
      * Get salt
      *
-     * @return string 
+     * @return string
      */
     public function getSalt()
     {
@@ -180,45 +181,45 @@ class User{
     }
 
     /**
-     * Set pass
+     * Set password
      *
-     * @param string $pass
+     * @param  string $password
      * @return User
      */
-    public function setPass($pass)
+    public function setPassword($password)
     {
-        $this->pass = $pass;
-    
+        $this->password = $password;
+
         return $this;
     }
 
     /**
-     * Get pass
+     * Get password
      *
-     * @return string 
+     * @return string
      */
-    public function getPass()
+    public function getPassword()
     {
-        return $this->pass;
+        return $this->password;
     }
 
     /**
      * Set status
      *
-     * @param boolean $status
+     * @param  boolean $status
      * @return User
      */
     public function setStatus($status)
     {
         $this->status = $status;
-    
+
         return $this;
     }
 
     /**
      * Get status
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getStatus()
     {
@@ -228,20 +229,20 @@ class User{
     /**
      * Set online
      *
-     * @param boolean $online
+     * @param  boolean $online
      * @return User
      */
     public function setOnline($online)
     {
         $this->online = $online;
-    
+
         return $this;
     }
 
     /**
      * Get online
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getOnline()
     {
@@ -249,45 +250,45 @@ class User{
     }
 
     /**
-     * Set lastactivity
+     * Set last_activity
      *
-     * @param \DateTime $lastactivity
+     * @param  \DateTime $lastActivity
      * @return User
      */
-    public function setLastactivity($lastactivity)
+    public function setLastActivity($lastActivity)
     {
-        $this->lastactivity = $lastactivity;
-    
+        $this->last_activity = $lastActivity;
+
         return $this;
     }
 
     /**
-     * Get lastactivity
+     * Get last_activity
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
-    public function getLastactivity()
+    public function getLastActivity()
     {
-        return $this->lastactivity;
+        return $this->last_activity;
     }
 
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime $created
      * @return User
      */
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -295,45 +296,45 @@ class User{
     }
 
     /**
-     * Set createdby
+     * Set created_by
      *
-     * @param string $createdby
+     * @param  string $createdBy
      * @return User
      */
-    public function setCreatedby($createdby)
+    public function setCreatedBy($createdBy)
     {
-        $this->createdby = $createdby;
-    
+        $this->created_by = $createdBy;
+
         return $this;
     }
 
     /**
-     * Get createdby
+     * Get created_by
      *
-     * @return string 
+     * @return string
      */
-    public function getCreatedby()
+    public function getCreatedBy()
     {
-        return $this->createdby;
+        return $this->created_by;
     }
 
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param  \DateTime $updated
      * @return User
      */
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-    
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -341,38 +342,38 @@ class User{
     }
 
     /**
-     * Set updatedby
+     * Set updated_by
      *
-     * @param string $updatedby
+     * @param  string $updatedBy
      * @return User
      */
-    public function setUpdatedby($updatedby)
+    public function setUpdatedBy($updatedBy)
     {
-        $this->updatedby = $updatedby;
-    
+        $this->updated_by = $updatedBy;
+
         return $this;
     }
 
     /**
-     * Get updatedby
+     * Get updated_by
      *
-     * @return string 
+     * @return string
      */
-    public function getUpdatedby()
+    public function getUpdatedBy()
     {
-        return $this->updatedby;
+        return $this->updated_by;
     }
 
     /**
      * Add child
      *
-     * @param \GatotKaca\Erp\UtilitiesBundle\Entity\User $child
+     * @param  \GatotKaca\Erp\UtilitiesBundle\Entity\User $child
      * @return User
      */
     public function addChild(\GatotKaca\Erp\UtilitiesBundle\Entity\User $child)
     {
         $this->child[] = $child;
-    
+
         return $this;
     }
 
@@ -389,7 +390,7 @@ class User{
     /**
      * Get child
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getChild()
     {
@@ -399,20 +400,20 @@ class User{
     /**
      * Set parent
      *
-     * @param \GatotKaca\Erp\UtilitiesBundle\Entity\User $parent
+     * @param  \GatotKaca\Erp\UtilitiesBundle\Entity\User $parent
      * @return User
      */
     public function setParent(\GatotKaca\Erp\UtilitiesBundle\Entity\User $parent = null)
     {
         $this->parent = $parent;
-    
+
         return $this;
     }
 
     /**
      * Get parent
      *
-     * @return \GatotKaca\Erp\UtilitiesBundle\Entity\User 
+     * @return \GatotKaca\Erp\UtilitiesBundle\Entity\User
      */
     public function getParent()
     {
@@ -422,20 +423,20 @@ class User{
     /**
      * Set group
      *
-     * @param \GatotKaca\Erp\UtilitiesBundle\Entity\UserGroup $group
+     * @param  \GatotKaca\Erp\UtilitiesBundle\Entity\UserGroup $group
      * @return User
      */
     public function setGroup(\GatotKaca\Erp\UtilitiesBundle\Entity\UserGroup $group = null)
     {
         $this->group = $group;
-    
+
         return $this;
     }
 
     /**
      * Get group
      *
-     * @return \GatotKaca\Erp\UtilitiesBundle\Entity\UserGroup 
+     * @return \GatotKaca\Erp\UtilitiesBundle\Entity\UserGroup
      */
     public function getGroup()
     {
@@ -445,13 +446,13 @@ class User{
     /**
      * Add employee
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
      * @return User
      */
     public function addEmployee(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee)
     {
         $this->employee[] = $employee;
-    
+
         return $this;
     }
 
@@ -468,7 +469,7 @@ class User{
     /**
      * Get employee
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getEmployee()
     {

@@ -1,13 +1,13 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/HumanResourcesBundle/Entity/Attendance.php
- * Author     : Muhammad Surya Ikhsanudin 
- * License    : Protected 
- * Email      : mutofiyah@gmail.com 
- *  
- * Dilarang merubah, mengganti dan mendistribusikan 
+ * Author     : Muhammad Surya Ikhsanudin
+ * License    : Protected
+ * Email      : mutofiyah@gmail.com
+ *
+ * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
- * 
+ *
  * Relation Mapping :
  * - GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
  **/
@@ -20,45 +20,46 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name = "mtr_attendancemechine")
  **/
-class AttendanceFromMechine{
-	
-	/**
-	 * @ORM\Id
-	 * @ORM\Column(type = "integer")
-	 * @ORM\GeneratedValue(strategy = "AUTO")
-	 **/
-	protected $id;
-	
-	/**
-	 * @ORM\Column(type = "string", length = 17, nullable = true)
-	 **/
-	protected $employee;
-	
-	/**
-	 * @ORM\Column(type = "date", nullable = true)
-	 **/
-	protected $att_date;
-	
-	/**
-	 * @ORM\Column(type = "time", nullable = true)
-	 **/
-	protected $time;
-	
-	/**
-	 * Tidak akan pernah di update
-	 * 
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $created;
-	
-	public function __construct(){
-		$this->created	= new \DateTime();
-	}
+class AttendanceFromMechine
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(name = "`id`", type = "integer")
+     * @ORM\GeneratedValue(strategy = "AUTO")
+     **/
+    protected $id;
+
+    /**
+     * @ORM\Column(name = "`employee`", type = "string", length = 17, nullable = true)
+     **/
+    protected $employee;
+
+    /**
+     * @ORM\Column(name = "`att_date`", type = "date", nullable = true)
+     **/
+    protected $date;
+
+    /**
+     * @ORM\Column(name = "`time`", type = "time", nullable = true)
+     **/
+    protected $time;
+
+    /**
+     * Tidak akan pernah di update
+     *
+     * @ORM\Column(name = "`created`", type = "datetime")
+     **/
+    protected $created;
+
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -68,20 +69,20 @@ class AttendanceFromMechine{
     /**
      * Set employee
      *
-     * @param string $employee
+     * @param  string                $employee
      * @return AttendanceFromMechine
      */
     public function setEmployee($employee)
     {
         $this->employee = $employee;
-    
+
         return $this;
     }
 
     /**
      * Get employee
      *
-     * @return string 
+     * @return string
      */
     public function getEmployee()
     {
@@ -89,45 +90,45 @@ class AttendanceFromMechine{
     }
 
     /**
-     * Set att_date
+     * Set date
      *
-     * @param \DateTime $attDate
+     * @param  \DateTime             $date
      * @return AttendanceFromMechine
      */
-    public function setAttDate($attDate)
+    public function setDate($date)
     {
-        $this->att_date = $attDate;
-    
+        $this->date = $date;
+
         return $this;
     }
 
     /**
-     * Get att_date
+     * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
-    public function getAttDate()
+    public function getDate()
     {
-        return $this->att_date;
+        return $this->date;
     }
 
     /**
      * Set time
      *
-     * @param \DateTime $time
+     * @param  \DateTime             $time
      * @return AttendanceFromMechine
      */
     public function setTime($time)
     {
         $this->time = $time;
-    
+
         return $this;
     }
 
     /**
      * Get time
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getTime()
     {
@@ -137,20 +138,20 @@ class AttendanceFromMechine{
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime             $created
      * @return AttendanceFromMechine
      */
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {

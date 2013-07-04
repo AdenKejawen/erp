@@ -21,122 +21,123 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name = "trs_employee_attendance")
  **/
-class Attendance{
+class Attendance
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(name = "`id`", type = "string", length = 40)
+     **/
+    protected $id;
 
-	/**
-	 * @ORM\Id
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $id;
+    /**
+     * @ORM\ManyToOne(targetEntity = "Employee", inversedBy = "attendance")
+     * @ORM\JoinColumn(name = "mtr_employee_id", referencedColumnName = "id")
+     **/
+    protected $employee;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="Employee", inversedBy="attendance")
-	 * @ORM\JoinColumn(name="mtr_employee_id", referencedColumnName="id")
-	 **/
-	protected $employee;
+    /**
+     * @ORM\ManyToOne(targetEntity = "GatotKaca\Erp\MainBundle\Entity\OfficeHour", inversedBy = "attendance")
+     * @ORM\JoinColumn(name = "sys_officehour_id", referencedColumnName = "id")
+     **/
+    protected $shift;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="GatotKaca\Erp\MainBundle\Entity\OfficeHour", inversedBy="attendance")
-	 * @ORM\JoinColumn(name="sys_officehour_id", referencedColumnName="id")
-	 **/
-	protected $shift;
+    /**
+     * @ORM\Column(name = "`att_date`", type = "date", nullable = true)
+     **/
+    protected $date;
 
-	/**
-	 * @ORM\Column(type = "date", nullable = true)
-	 **/
-	protected $att_date;
+    /**
+     * @ORM\Column(name = "`time_in`", type = "time", nullable = true)
+     **/
+    protected $time_in;
 
-	/**
-	 * @ORM\Column(type = "time", nullable = true)
-	 **/
-	protected $time_in;
+    /**
+     * @ORM\Column(name = "`time_out`", type = "time", nullable = true)
+     **/
+    protected $time_out;
 
-	/**
-	 * @ORM\Column(type = "time", nullable = true)
-	 **/
-	protected $time_out;
+    /**
+     * @ORM\Column(name = "`late`", type = "time", nullable = true)
+     **/
+    protected $late;
 
-	/**
-	 * @ORM\Column(type = "time", nullable = true)
-	 **/
-	protected $late;
+    /**
+     * @ORM\Column(name = "`loyal`", type = "time", nullable = true)
+     **/
+    protected $loyal;
 
-	/**
-	 * @ORM\Column(type = "time", nullable = true)
-	 **/
-	protected $loyal;
+    /**
+     * @ORM\Column(name = "`ismiss`", type = "boolean", nullable = true)
+     **/
+    protected $is_miss;
 
-	/**
-	 * @ORM\Column(type = "boolean", nullable = true)
-	 **/
-	protected $ismiss;
+    /**
+     * @ORM\Column(name = "`miss`", type = "string", length = 7, nullable = true)
+     *
+     * - PERMIT
+     * - SICK
+     * - SKIP
+     * - IN
+     * - OFF
+     **/
+    protected $miss;
 
-	/**
-	 * @ORM\Column(type = "string", length = 7, nullable = true)
-	 *
-	 * - PERMIT
-	 * - SICK
-	 * - SKIP
-	 * - IN
-	 * - OFF
-	 **/
-	protected $miss;
+    /**
+     * @ORM\Column(name = "`description`", type = "string", length = 255, nullable = true)
+     **/
+    protected $description;
 
-	/**
-	 * @ORM\Column(type = "string", length = 255, nullable = true)
-	 **/
-	protected $description;
+    /**
+     * @ORM\Column(name = "`created`", type = "datetime")
+     **/
+    protected $created;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $created;
+    /**
+     * @ORM\Column(name = "`createdby`", type = "string", length = 40)
+     **/
+    protected $created_by;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $createdby;
+    /**
+     * @ORM\Column(name = "`updated`", type = "datetime")
+     **/
+    protected $updated;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $updated;
+    /**
+     * @ORM\Column(name = "`updatedby`", type = "string", length = 40)
+     **/
+    protected $updated_by;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $updatedby;
-
-	public function __construct(){
-		$datetime		= new \DateTime(date('Y-m-d H:i:s', strtotime(date('Y-m-d').' 00:00:00')));
-		$this->ismiss	= FALSE;
-		$this->miss		= 'SKIP';
-		$this->description	= '';
-		$this->late		= $datetime;
-		$this->loyal	= $datetime;
-		$this->time_in	= $datetime;
-		$this->time_out	= $datetime;
-		$this->created	= new \DateTime();
-		$this->updated	= new \DateTime();
-	}
+    public function __construct()
+    {
+        $datetime       = new \DateTime(date('Y-m-d H:i:s', strtotime(date('Y-m-d').' 00:00:00')));
+        $this->is_miss  = false;
+        $this->miss     = 'SKIP';
+        $this->description  = '';
+        $this->late     = $datetime;
+        $this->loyal    = $datetime;
+        $this->time_in  = $datetime;
+        $this->time_out = $datetime;
+        $this->created  = new \DateTime();
+        $this->updated  = new \DateTime();
+    }
 
     /**
      * Set id
      *
-     * @param string $id
+     * @param  string     $id
      * @return Attendance
      */
     public function setId($id)
     {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return string 
+     * @return string
      */
     public function getId()
     {
@@ -144,45 +145,45 @@ class Attendance{
     }
 
     /**
-     * Set att_date
+     * Set date
      *
-     * @param \DateTime $attDate
+     * @param  \DateTime  $date
      * @return Attendance
      */
-    public function setAttDate($attDate)
+    public function setDate($date)
     {
-        $this->att_date = $attDate;
-    
+        $this->date = $date;
+
         return $this;
     }
 
     /**
-     * Get att_date
+     * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
-    public function getAttDate()
+    public function getDate()
     {
-        return $this->att_date;
+        return $this->date;
     }
 
     /**
      * Set time_in
      *
-     * @param \DateTime $timeIn
+     * @param  \DateTime  $timeIn
      * @return Attendance
      */
     public function setTimeIn($timeIn)
     {
         $this->time_in = $timeIn;
-    
+
         return $this;
     }
 
     /**
      * Get time_in
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getTimeIn()
     {
@@ -192,20 +193,20 @@ class Attendance{
     /**
      * Set time_out
      *
-     * @param \DateTime $timeOut
+     * @param  \DateTime  $timeOut
      * @return Attendance
      */
     public function setTimeOut($timeOut)
     {
         $this->time_out = $timeOut;
-    
+
         return $this;
     }
 
     /**
      * Get time_out
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getTimeOut()
     {
@@ -215,20 +216,20 @@ class Attendance{
     /**
      * Set late
      *
-     * @param \DateTime $late
+     * @param  \DateTime  $late
      * @return Attendance
      */
     public function setLate($late)
     {
         $this->late = $late;
-    
+
         return $this;
     }
 
     /**
      * Get late
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getLate()
     {
@@ -238,20 +239,20 @@ class Attendance{
     /**
      * Set loyal
      *
-     * @param \DateTime $loyal
+     * @param  \DateTime  $loyal
      * @return Attendance
      */
     public function setLoyal($loyal)
     {
         $this->loyal = $loyal;
-    
+
         return $this;
     }
 
     /**
      * Get loyal
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getLoyal()
     {
@@ -259,45 +260,45 @@ class Attendance{
     }
 
     /**
-     * Set ismiss
+     * Set is_miss
      *
-     * @param boolean $ismiss
+     * @param  boolean    $isMiss
      * @return Attendance
      */
-    public function setIsmiss($ismiss)
+    public function setIsMiss($isMiss)
     {
-        $this->ismiss = $ismiss;
-    
+        $this->is_miss = $isMiss;
+
         return $this;
     }
 
     /**
-     * Get ismiss
+     * Get is_miss
      *
-     * @return boolean 
+     * @return boolean
      */
-    public function getIsmiss()
+    public function getIsMiss()
     {
-        return $this->ismiss;
+        return $this->is_miss;
     }
 
     /**
      * Set miss
      *
-     * @param string $miss
+     * @param  string     $miss
      * @return Attendance
      */
     public function setMiss($miss)
     {
         $this->miss = $miss;
-    
+
         return $this;
     }
 
     /**
      * Get miss
      *
-     * @return string 
+     * @return string
      */
     public function getMiss()
     {
@@ -307,20 +308,20 @@ class Attendance{
     /**
      * Set description
      *
-     * @param string $description
+     * @param  string     $description
      * @return Attendance
      */
     public function setDescription($description)
     {
         $this->description = $description;
-    
+
         return $this;
     }
 
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -330,20 +331,20 @@ class Attendance{
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime  $created
      * @return Attendance
      */
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -351,45 +352,45 @@ class Attendance{
     }
 
     /**
-     * Set createdby
+     * Set created_by
      *
-     * @param string $createdby
+     * @param  string     $createdBy
      * @return Attendance
      */
-    public function setCreatedby($createdby)
+    public function setCreatedBy($createdBy)
     {
-        $this->createdby = $createdby;
-    
+        $this->created_by = $createdBy;
+
         return $this;
     }
 
     /**
-     * Get createdby
+     * Get created_by
      *
-     * @return string 
+     * @return string
      */
-    public function getCreatedby()
+    public function getCreatedBy()
     {
-        return $this->createdby;
+        return $this->created_by;
     }
 
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param  \DateTime  $updated
      * @return Attendance
      */
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-    
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -397,45 +398,45 @@ class Attendance{
     }
 
     /**
-     * Set updatedby
+     * Set updated_by
      *
-     * @param string $updatedby
+     * @param  string     $updatedBy
      * @return Attendance
      */
-    public function setUpdatedby($updatedby)
+    public function setUpdatedBy($updatedBy)
     {
-        $this->updatedby = $updatedby;
-    
+        $this->updated_by = $updatedBy;
+
         return $this;
     }
 
     /**
-     * Get updatedby
+     * Get updated_by
      *
-     * @return string 
+     * @return string
      */
-    public function getUpdatedby()
+    public function getUpdatedBy()
     {
-        return $this->updatedby;
+        return $this->updated_by;
     }
 
     /**
      * Set employee
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
      * @return Attendance
      */
     public function setEmployee(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee = null)
     {
         $this->employee = $employee;
-    
+
         return $this;
     }
 
     /**
      * Get employee
      *
-     * @return \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee 
+     * @return \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
      */
     public function getEmployee()
     {
@@ -445,20 +446,20 @@ class Attendance{
     /**
      * Set shift
      *
-     * @param \GatotKaca\Erp\MainBundle\Entity\OfficeHour $shift
+     * @param  \GatotKaca\Erp\MainBundle\Entity\OfficeHour $shift
      * @return Attendance
      */
     public function setShift(\GatotKaca\Erp\MainBundle\Entity\OfficeHour $shift = null)
     {
         $this->shift = $shift;
-    
+
         return $this;
     }
 
     /**
      * Get shift
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\OfficeHour 
+     * @return \GatotKaca\Erp\MainBundle\Entity\OfficeHour
      */
     public function getShift()
     {

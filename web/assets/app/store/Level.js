@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.store.Level",{extend:"Ext.data.Store",model:"GatotKacaErp.model.Level",data:[{level_id:1,level_name:"EXCELLENT"},{level_id:2,level_name:"GOOD"},{level_id:3,level_name:"FAIR"}]});
+Ext.define("Com.GatotKaca.ERP.store.Level",{extend:"Ext.data.Store",model:"Com.GatotKaca.ERP.model.Level",data:[{level_id:1,level_name:"EXCELLENT"},{level_id:2,level_name:"GOOD"},{level_id:3,level_name:"FAIR"}]});

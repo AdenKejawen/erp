@@ -1,1 +1,0 @@
-Ext.define("GatotKacaErp.store.TrainingCity",{extend:"GatotKacaErp.store.BODPlace"});

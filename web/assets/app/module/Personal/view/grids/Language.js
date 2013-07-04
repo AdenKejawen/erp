@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.Personal.view.grids.Language",{extend:"GatotKacaErp.module.HumanResources.view.grids.Language",alias:"widget.gridprlanguage",id:"gridprlanguage",title:"Languages",store:"GatotKacaErp.module.Personal.store.Language"});
+Ext.define("Com.GatotKaca.ERP.module.Personal.view.grids.Language",{extend:"Com.GatotKaca.ERP.module.HumanResources.view.grids.Language",alias:"widget.gridprlanguage",id:"gridprlanguage",title:"Languages",store:"Com.GatotKaca.ERP.module.Personal.store.Language"});

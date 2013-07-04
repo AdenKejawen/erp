@@ -1,6 +1,8 @@
 services:
   kejawen.helper:
-    class: GatotKaca\Erp\MainBundle\Helper\Helper
+    class: GatotKaca\Core\Helper\Helper
+  kejawen.session:
+    class: GatotKaca\Core\Helper\Session
   kejawen.security:
     class: GatotKaca\Erp\UtilitiesBundle\Model\SecurityModel
     arguments:
@@ -12,11 +14,11 @@ services:
       entityManager: "@doctrine.orm.entity_manager"
       helper: "@kejawen.helper"
   kejawen.model.manager:
-    class: GatotKaca\Erp\MainBundle\Helper\ModelManager
+    class: GatotKaca\Core\Helper\ModelManager
     arguments:
       entityManager: "@doctrine.orm.entity_manager"
       helper: "@kejawen.helper"
   kejawen.kernel.listener:
-    class: GatotKaca\Erp\MainBundle\Listener\GatotKacaEventListener
+    class: GatotKaca\Core\Listener\GatotKacaEventListener
     tags:
       - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }

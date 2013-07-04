@@ -21,86 +21,87 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name = "sys_country")
  **/
-class Country{
+class Country
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(name = "`id`", type = "string", length = 40)
+     **/
+    protected $id;
 
-	/**
-	 * @ORM\Id
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $id;
+    /**
+     * @ORM\Column(name = "`code`", type = "string", length = 3, nullable = true)
+     **/
+    protected $code;
 
-	/**
-	 * @ORM\Column(type = "string", length = 3, nullable = true)
-	 **/
-	protected $code;
+    /**
+     * @ORM\Column(name = "`name`", type = "string", length = 99, nullable = true)
+     **/
+    protected $name;
 
-	/**
-	 * @ORM\Column(type = "string", length = 99, nullable = true)
-	 **/
-	protected $name;
+    /**
+     * @ORM\Column(name = "`phonecode`", type = "string", length = 5, nullable = true)
+     **/
+    protected $phone_code;
 
-	/**
-	 * @ORM\Column(type = "string", length = 5, nullable = true)
-	 **/
-	protected $phonecode;
+    /**
+     * @ORM\Column(name = "`created`", type = "datetime")
+     **/
+    protected $created;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $created;
+    /**
+     * @ORM\Column(name = "`createdby`", type = "string", length = 40)
+     **/
+    protected $created_by;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $createdby;
+    /**
+     * @ORM\Column(name = "`updated`", type = "datetime")
+     **/
+    protected $updated;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $updated;
+    /**
+     * @ORM\Column(name = "`updatedby`", type = "string", length = 40)
+     **/
+    protected $updated_by;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $updatedby;
+    /**
+     * @ORM\OneToMany(targetEntity = "GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy = "citizen")
+     **/
+    protected $employee_citizen;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="citizen")
-	 **/
-	protected $employee_citizen;
+    /**
+     * @ORM\OneToMany(targetEntity = "GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy = "country_address")
+     **/
+    protected $employee_country;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="country")
-	 **/
-	protected $employee_country;
+    /**
+     * @ORM\OneToMany(targetEntity = "Province", mappedBy = "country")
+     **/
+    protected $province;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="Province", mappedBy="country")
-	 **/
-	protected $province;
-
-	public function __construct(){
-		$this->created	= new \DateTime();
-		$this->updated	= new \DateTime();
-	}
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
+    }
 
     /**
      * Set id
      *
-     * @param string $id
+     * @param  string  $id
      * @return Country
      */
     public function setId($id)
     {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return string 
+     * @return string
      */
     public function getId()
     {
@@ -110,20 +111,20 @@ class Country{
     /**
      * Set code
      *
-     * @param string $code
+     * @param  string  $code
      * @return Country
      */
     public function setCode($code)
     {
         $this->code = $code;
-    
+
         return $this;
     }
 
     /**
      * Get code
      *
-     * @return string 
+     * @return string
      */
     public function getCode()
     {
@@ -133,20 +134,20 @@ class Country{
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string  $name
      * @return Country
      */
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -154,45 +155,45 @@ class Country{
     }
 
     /**
-     * Set phonecode
+     * Set phone_code
      *
-     * @param string $phonecode
+     * @param  string  $phoneCode
      * @return Country
      */
-    public function setPhonecode($phonecode)
+    public function setPhoneCode($phoneCode)
     {
-        $this->phonecode = $phonecode;
-    
+        $this->phone_code = $phoneCode;
+
         return $this;
     }
 
     /**
-     * Get phonecode
+     * Get phone_code
      *
-     * @return string 
+     * @return string
      */
-    public function getPhonecode()
+    public function getPhoneCode()
     {
-        return $this->phonecode;
+        return $this->phone_code;
     }
 
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime $created
      * @return Country
      */
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -200,45 +201,45 @@ class Country{
     }
 
     /**
-     * Set createdby
+     * Set created_by
      *
-     * @param string $createdby
+     * @param  string  $createdBy
      * @return Country
      */
-    public function setCreatedby($createdby)
+    public function setCreatedBy($createdBy)
     {
-        $this->createdby = $createdby;
-    
+        $this->created_by = $createdBy;
+
         return $this;
     }
 
     /**
-     * Get createdby
+     * Get created_by
      *
-     * @return string 
+     * @return string
      */
-    public function getCreatedby()
+    public function getCreatedBy()
     {
-        return $this->createdby;
+        return $this->created_by;
     }
 
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param  \DateTime $updated
      * @return Country
      */
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-    
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -246,38 +247,38 @@ class Country{
     }
 
     /**
-     * Set updatedby
+     * Set updated_by
      *
-     * @param string $updatedby
+     * @param  string  $updatedBy
      * @return Country
      */
-    public function setUpdatedby($updatedby)
+    public function setUpdatedBy($updatedBy)
     {
-        $this->updatedby = $updatedby;
-    
+        $this->updated_by = $updatedBy;
+
         return $this;
     }
 
     /**
-     * Get updatedby
+     * Get updated_by
      *
-     * @return string 
+     * @return string
      */
-    public function getUpdatedby()
+    public function getUpdatedBy()
     {
-        return $this->updatedby;
+        return $this->updated_by;
     }
 
     /**
      * Add employee_citizen
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeCitizen
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeCitizen
      * @return Country
      */
     public function addEmployeeCitizen(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeCitizen)
     {
         $this->employee_citizen[] = $employeeCitizen;
-    
+
         return $this;
     }
 
@@ -294,7 +295,7 @@ class Country{
     /**
      * Get employee_citizen
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getEmployeeCitizen()
     {
@@ -304,13 +305,13 @@ class Country{
     /**
      * Add employee_country
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeCountry
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeCountry
      * @return Country
      */
     public function addEmployeeCountry(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeCountry)
     {
         $this->employee_country[] = $employeeCountry;
-    
+
         return $this;
     }
 
@@ -327,7 +328,7 @@ class Country{
     /**
      * Get employee_country
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getEmployeeCountry()
     {
@@ -337,13 +338,13 @@ class Country{
     /**
      * Add province
      *
-     * @param \GatotKaca\Erp\MainBundle\Entity\Province $province
+     * @param  \GatotKaca\Erp\MainBundle\Entity\Province $province
      * @return Country
      */
     public function addProvince(\GatotKaca\Erp\MainBundle\Entity\Province $province)
     {
         $this->province[] = $province;
-    
+
         return $this;
     }
 
@@ -360,7 +361,7 @@ class Country{
     /**
      * Get province
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getProvince()
     {

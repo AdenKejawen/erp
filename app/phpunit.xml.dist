@@ -8,23 +8,24 @@
     convertErrorsToExceptions   = "true"
     convertNoticesToExceptions  = "true"
     convertWarningsToExceptions = "true"
-    processIsolation            = "false"
+    processIsolation            = "true"
     stopOnFailure               = "false"
     syntaxCheck                 = "false"
-    bootstrap                   = "bootstrap.php.cache" >
+    verbose                     = "true"
+    debug                       = "true"
+    bootstrap                   = "test.bootstrap.php" >
 
     <testsuites>
-        <testsuite name="Project Test Suite">
+        <testsuite name="Gatot Kaca ERP Test Case">
             <directory>../src/*/*Bundle/Tests</directory>
             <directory>../src/*/Bundle/*Bundle/Tests</directory>
         </testsuite>
     </testsuites>
 
-    <!--
     <php>
-        <server name="KERNEL_DIR" value="/path/to/your/app/" />
+        <server name="KERNEL_DIR" value="/var/www/Erp/app/" />
+        <env name="BOOTSTRAP_CLEAR_CACHE_ENV" value="test"/>
     </php>
-    -->
 
     <filter>
         <whitelist>

@@ -12,6 +12,7 @@ vendor
 composer.phar
 app/Resources/tools/yuicompressor.jar
 app/yui.sh
+app/test.bootstrap.php
 *.*~
 *.txt
 *.csv

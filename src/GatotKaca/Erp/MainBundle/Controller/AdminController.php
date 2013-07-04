@@ -12,7 +12,8 @@ namespace GatotKaca\Erp\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class AdminController extends BaseController{
-	const IS_POST_REQUEST    = TRUE;
-	const IS_XML_HTTP_REQUEST= TRUE;
+class AdminController extends BaseController
+{
+    const IS_POST_REQUEST     = true;
+    const IS_XML_HTTP_REQUEST = true;
 }

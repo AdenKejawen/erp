@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.Personal.view.forms.SuperviseOverTime",{extend:"GatotKacaErp.module.Personal.view.forms.OverTimeBase",alias:"widget.formspvovertime",id:"formspvovertime"});
+Ext.define("Com.GatotKaca.ERP.module.Personal.view.forms.SuperviseOverTime",{extend:"Com.GatotKaca.ERP.module.Personal.view.forms.OverTimeBase",alias:"widget.formspvovertime",id:"formspvovertime"});

@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.HumanResources.view.AttendanceByDate",{extend:"GatotKacaErp.view.Base",requires:["GatotKacaErp.module.HumanResources.view.grids.AttendanceByDate"],items:[{xtype:"gridattendancebydate",flex:1}]});
+Ext.define("Com.GatotKaca.ERP.module.HumanResources.view.AttendanceByDate",{extend:"Com.GatotKaca.ERP.view.Base",requires:["Com.GatotKaca.ERP.module.HumanResources.view.grids.AttendanceByDate"],items:[{xtype:"gridattendancebydate",flex:1}]});

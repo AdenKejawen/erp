@@ -19,11 +19,11 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name = "sys_company")
  **/
-class Company{
-
+class Company
+{
     /**
      * @ORM\Id
-     * @ORM\Column(type = "string", length = 40)
+     * @ORM\Column(name = "`id`", type = "string", length = 40)
      **/
     protected $id;
 
@@ -33,94 +33,95 @@ class Company{
     protected $child;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Company", inversedBy="child")
-     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity = "Company", inversedBy = "child")
+     * @ORM\JoinColumn(name = "parent_id", referencedColumnName = "id")
      */
     protected $parent;
 
     /**
-     * @ORM\Column(type = "string", length = 7, unique = true, nullable = true)
+     * @ORM\Column(name = "`code`", type = "string", length = 7, unique = true, nullable = true)
      **/
     protected $code;
 
     /**
-     * @ORM\Column(type = "string", length = 77, nullable = true)
+     * @ORM\Column(name = "`name`", type = "string", length = 77, nullable = true)
      **/
     protected $name;
 
     /**
-     * @ORM\Column(type = "integer", length = 1, nullable = true)
+     * @ORM\Column(name = "`workday_start`", type = "integer", length = 1, nullable = true)
      **/
-    Protected $workday_start;
+    protected $work_day_start;
 
     /**
-     * @ORM\Column(type = "integer", length = 1, nullable = true)
+     * @ORM\Column(name = "`workday_end`", type = "integer", length = 1, nullable = true)
      **/
-    protected $workday_end;
+    protected $work_day_end;
 
     /**
-     * @ORM\Column(type = "boolean", nullable = true)
+     * @ORM\Column(name = "`isfixed`", type = "boolean", nullable = true)
      **/
-    protected $isfixed;
+    protected $is_fixed;
 
     /**
-     * @ORM\Column(type = "boolean", nullable = true)
+     * @ORM\Column(name = "`istimebase`", type = "boolean", nullable = true)
      **/
-    protected $istimebase;
+    protected $is_time_base;
 
      /**
-     * @ORM\Column(type = "time", nullable = true)
+     * @ORM\Column(name = "`officehour`", type = "time", nullable = true)
      **/
-    protected $officehour;
+    protected $office_hour;
 
     /**
-     * @ORM\Column(type = "boolean", nullable = true)
+     * @ORM\Column(name = "`status`", type = "boolean", nullable = true)
      **/
     protected $status;
 
     /**
-     * @ORM\Column(type = "datetime")
+     * @ORM\Column(name = "`created`", type = "datetime")
      **/
     protected $created;
 
     /**
-     * @ORM\Column(type = "string", length = 40)
+     * @ORM\Column(name = "`createdby`", type = "string", length = 40)
      **/
-    protected $createdby;
+    protected $created_by;
 
     /**
-     * @ORM\Column(type = "datetime")
+     * @ORM\Column(name = "`updated`", type = "datetime")
      **/
     protected $updated;
 
     /**
-     * @ORM\Column(type = "string", length = 40)
+     * @ORM\Column(name = "`updatedby`", type = "string", length = 40)
      **/
-    protected $updatedby;
+    protected $updated_by;
 
     /**
-     * @ORM\OneToMany(targetEntity="CompanyDepartment", mappedBy="company")
+     * @ORM\OneToMany(targetEntity = "CompanyDepartment", mappedBy = "company")
      **/
     protected $department;
 
     /**
-     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="company")
+     * @ORM\OneToMany(targetEntity = "GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy = "company")
      **/
     protected $employee;
 
     /**
-     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Career", mappedBy="old_company")
+     * @ORM\OneToMany(targetEntity = "GatotKaca\Erp\HumanResourcesBundle\Entity\Career", mappedBy = "old_company")
      **/
     protected $career_old_company;
 
     /**
-     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Career", mappedBy="new_company")
+     * @ORM\OneToMany(targetEntity = "GatotKaca\Erp\HumanResourcesBundle\Entity\Career", mappedBy = "new_company")
      **/
     protected $career_new_company;
 
-    public function __construct(){
-        $this->status   = TRUE;
-        $this->isfixed  = TRUE;
+    public function __construct()
+    {
+        $this->status   = true;
+        $this->is_fixed = true;
         $this->created  = new \DateTime();
         $this->updated  = new \DateTime();
     }
@@ -128,7 +129,7 @@ class Company{
     /**
      * Set id
      *
-     * @param string $id
+     * @param  string  $id
      * @return Company
      */
     public function setId($id)
@@ -151,7 +152,7 @@ class Company{
     /**
      * Set code
      *
-     * @param string $code
+     * @param  string  $code
      * @return Company
      */
     public function setCode($code)
@@ -174,7 +175,7 @@ class Company{
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string  $name
      * @return Company
      */
     public function setName($name)
@@ -195,78 +196,124 @@ class Company{
     }
 
     /**
-     * Set workday_start
+     * Set work_day_start
      *
-     * @param integer $workdayStart
+     * @param  integer $workDayStart
      * @return Company
      */
-    public function setWorkdayStart($workdayStart)
+    public function setWorkDayStart($workDayStart)
     {
-        $this->workday_start = $workdayStart;
+        $this->work_day_start = $workDayStart;
 
         return $this;
     }
 
     /**
-     * Get workday_start
+     * Get work_day_start
      *
      * @return integer
      */
-    public function getWorkdayStart()
+    public function getWorkDayStart()
     {
-        return $this->workday_start;
+        return $this->work_day_start;
     }
 
     /**
-     * Set workday_end
+     * Set work_day_end
      *
-     * @param integer $workdayEnd
+     * @param  integer $workDayEnd
      * @return Company
      */
-    public function setWorkdayEnd($workdayEnd)
+    public function setWorkDayEnd($workDayEnd)
     {
-        $this->workday_end = $workdayEnd;
+        $this->work_day_end = $workDayEnd;
 
         return $this;
     }
 
     /**
-     * Get workday_end
+     * Get work_day_end
      *
      * @return integer
      */
-    public function getWorkdayEnd()
+    public function getWorkDayEnd()
     {
-        return $this->workday_end;
+        return $this->work_day_end;
     }
 
     /**
-     * Set isfixed
+     * Set is_fixed
      *
-     * @param boolean $isfixed
+     * @param  boolean $isFixed
      * @return Company
      */
-    public function setIsfixed($isfixed)
+    public function setIsFixed($isFixed)
     {
-        $this->isfixed = $isfixed;
+        $this->is_fixed = $isFixed;
 
         return $this;
     }
 
     /**
-     * Get isfixed
+     * Get is_fixed
      *
      * @return boolean
      */
-    public function getIsfixed()
+    public function getIsFixed()
     {
-        return $this->isfixed;
+        return $this->is_fixed;
+    }
+
+    /**
+     * Set is_time_base
+     *
+     * @param  boolean $isTimeBase
+     * @return Company
+     */
+    public function setIsTimeBase($isTimeBase)
+    {
+        $this->is_time_base = $isTimeBase;
+
+        return $this;
+    }
+
+    /**
+     * Get is_time_base
+     *
+     * @return boolean
+     */
+    public function getIsTimeBase()
+    {
+        return $this->is_time_base;
+    }
+
+    /**
+     * Set office_hour
+     *
+     * @param  \DateTime $officeHour
+     * @return Company
+     */
+    public function setOfficeHour($officeHour)
+    {
+        $this->office_hour = $officeHour;
+
+        return $this;
+    }
+
+    /**
+     * Get office_hour
+     *
+     * @return \DateTime
+     */
+    public function getOfficeHour()
+    {
+        return $this->office_hour;
     }
 
     /**
      * Set status
      *
-     * @param boolean $status
+     * @param  boolean $status
      * @return Company
      */
     public function setStatus($status)
@@ -289,7 +336,7 @@ class Company{
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime $created
      * @return Company
      */
     public function setCreated($created)
@@ -310,32 +357,32 @@ class Company{
     }
 
     /**
-     * Set createdby
+     * Set created_by
      *
-     * @param string $createdby
+     * @param  string  $createdBy
      * @return Company
      */
-    public function setCreatedby($createdby)
+    public function setCreatedBy($createdBy)
     {
-        $this->createdby = $createdby;
+        $this->created_by = $createdBy;
 
         return $this;
     }
 
     /**
-     * Get createdby
+     * Get created_by
      *
      * @return string
      */
-    public function getCreatedby()
+    public function getCreatedBy()
     {
-        return $this->createdby;
+        return $this->created_by;
     }
 
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param  \DateTime $updated
      * @return Company
      */
     public function setUpdated($updated)
@@ -356,32 +403,32 @@ class Company{
     }
 
     /**
-     * Set updatedby
+     * Set updated_by
      *
-     * @param string $updatedby
+     * @param  string  $updatedBy
      * @return Company
      */
-    public function setUpdatedby($updatedby)
+    public function setUpdatedBy($updatedBy)
     {
-        $this->updatedby = $updatedby;
+        $this->updated_by = $updatedBy;
 
         return $this;
     }
 
     /**
-     * Get updatedby
+     * Get updated_by
      *
      * @return string
      */
-    public function getUpdatedby()
+    public function getUpdatedBy()
     {
-        return $this->updatedby;
+        return $this->updated_by;
     }
 
     /**
      * Add child
      *
-     * @param \GatotKaca\Erp\MainBundle\Entity\Company $child
+     * @param  \GatotKaca\Erp\MainBundle\Entity\Company $child
      * @return Company
      */
     public function addChild(\GatotKaca\Erp\MainBundle\Entity\Company $child)
@@ -414,7 +461,7 @@ class Company{
     /**
      * Set parent
      *
-     * @param \GatotKaca\Erp\MainBundle\Entity\Company $parent
+     * @param  \GatotKaca\Erp\MainBundle\Entity\Company $parent
      * @return Company
      */
     public function setParent(\GatotKaca\Erp\MainBundle\Entity\Company $parent = null)
@@ -437,7 +484,7 @@ class Company{
     /**
      * Add department
      *
-     * @param \GatotKaca\Erp\MainBundle\Entity\CompanyDepartment $department
+     * @param  \GatotKaca\Erp\MainBundle\Entity\CompanyDepartment $department
      * @return Company
      */
     public function addDepartment(\GatotKaca\Erp\MainBundle\Entity\CompanyDepartment $department)
@@ -470,7 +517,7 @@ class Company{
     /**
      * Add employee
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
      * @return Company
      */
     public function addEmployee(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee)
@@ -503,7 +550,7 @@ class Company{
     /**
      * Add career_old_company
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldCompany
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldCompany
      * @return Company
      */
     public function addCareerOldCompany(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldCompany)
@@ -536,7 +583,7 @@ class Company{
     /**
      * Add career_new_company
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewCompany
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewCompany
      * @return Company
      */
     public function addCareerNewCompany(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewCompany)
@@ -564,51 +611,5 @@ class Company{
     public function getCareerNewCompany()
     {
         return $this->career_new_company;
-    }
-
-    /**
-     * Set istimebase
-     *
-     * @param boolean $istimebase
-     * @return Company
-     */
-    public function setIstimebase($istimebase)
-    {
-        $this->istimebase = $istimebase;
-    
-        return $this;
-    }
-
-    /**
-     * Get istimebase
-     *
-     * @return boolean 
-     */
-    public function getIstimebase()
-    {
-        return $this->istimebase;
-    }
-
-    /**
-     * Set officehour
-     *
-     * @param \DateTime $officehour
-     * @return Company
-     */
-    public function setOfficehour($officehour)
-    {
-        $this->officehour = $officehour;
-    
-        return $this;
-    }
-
-    /**
-     * Get officehour
-     *
-     * @return \DateTime 
-     */
-    public function getOfficehour()
-    {
-        return $this->officehour;
     }
 }

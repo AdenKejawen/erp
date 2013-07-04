@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.HumanResources.view.grids.WorkShift",{extend:"GatotKacaErp.module.HumanResources.view.grids.Employee",store:"GatotKacaErp.module.HumanResources.store.WorkShift",alias:"widget.gridworkshift",id:"gridworkshift"});
+Ext.define("Com.GatotKaca.ERP.module.HumanResources.view.grids.WorkShift",{extend:"Com.GatotKaca.ERP.module.HumanResources.view.grids.Employee",store:"Com.GatotKaca.ERP.module.HumanResources.store.WorkShift",alias:"widget.gridworkshift",id:"gridworkshift"});

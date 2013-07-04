@@ -21,79 +21,80 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name = "sys_district")
  **/
-class District{
-
-	/**
-	 * @ORM\Id
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $id;
-
-	/**
-	 * @ORM\ManyToOne(targetEntity="Province", inversedBy="district")
-	 * @ORM\JoinColumn(name="sys_province_id", referencedColumnName="id")
-	 **/
-	protected $province;
-
-	/**
-	 * @ORM\Column(type = "string", length = 7, nullable = true)
-	 **/
-	protected $code;
-
-	/**
-	 * @ORM\Column(type = "string", length = 77, nullable = true)
-	 **/
-	protected $name;
-
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $created;
-
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $createdby;
-
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $updated;
-
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $updatedby;
-
-	/**
-	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="district_address")
-	 **/
-	protected $employee;
+class District
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(name = "`id`", type = "string", length = 40)
+     **/
+    protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="bod_place")
+     * @ORM\ManyToOne(targetEntity = "Province", inversedBy = "district")
+     * @ORM\JoinColumn(name = "sys_province_id", referencedColumnName = "id")
+     **/
+    protected $province;
+
+    /**
+     * @ORM\Column(name = "`code`", type = "string", length = 7, nullable = true)
+     **/
+    protected $code;
+
+    /**
+     * @ORM\Column(name = "`name`", type = "string", length = 77, nullable = true)
+     **/
+    protected $name;
+
+    /**
+     * @ORM\Column(name = "`created`", type = "datetime")
+     **/
+    protected $created;
+
+    /**
+     * @ORM\Column(name = "`createdby`", type = "string", length = 40)
+     **/
+    protected $created_by;
+
+    /**
+     * @ORM\Column(name = "`updated`", type = "datetime")
+     **/
+    protected $updated;
+
+    /**
+     * @ORM\Column(name = "`updatedby`", type = "string", length = 40)
+     **/
+    protected $updated_by;
+
+    /**
+     * @ORM\OneToMany(targetEntity = "GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy = "district_address")
+     **/
+    protected $employee;
+
+    /**
+     * @ORM\OneToMany(targetEntity = "GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy = "bod_place")
      **/
     protected $employee_bod_place;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation", mappedBy="district")
-	 **/
-	protected $employee_education;
+    /**
+     * @ORM\OneToMany(targetEntity = "GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation", mappedBy = "district")
+     **/
+    protected $employee_education;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeTraining", mappedBy="district")
-	 **/
-	protected $training;
+    /**
+     * @ORM\OneToMany(targetEntity = "GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeTraining", mappedBy = "district")
+     **/
+    protected $training;
 
-	public function __construct(){
-		$this->created	= new \DateTime();
-		$this->updated	= new \DateTime();
-	}
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
+    }
 
     /**
      * Set id
      *
-     * @param string $id
+     * @param  string   $id
      * @return District
      */
     public function setId($id)
@@ -116,7 +117,7 @@ class District{
     /**
      * Set code
      *
-     * @param string $code
+     * @param  string   $code
      * @return District
      */
     public function setCode($code)
@@ -139,7 +140,7 @@ class District{
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string   $name
      * @return District
      */
     public function setName($name)
@@ -162,7 +163,7 @@ class District{
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime $created
      * @return District
      */
     public function setCreated($created)
@@ -183,32 +184,32 @@ class District{
     }
 
     /**
-     * Set createdby
+     * Set created_by
      *
-     * @param string $createdby
+     * @param  string   $createdBy
      * @return District
      */
-    public function setCreatedby($createdby)
+    public function setCreatedBy($createdBy)
     {
-        $this->createdby = $createdby;
+        $this->created_by = $createdBy;
 
         return $this;
     }
 
     /**
-     * Get createdby
+     * Get created_by
      *
      * @return string
      */
-    public function getCreatedby()
+    public function getCreatedBy()
     {
-        return $this->createdby;
+        return $this->created_by;
     }
 
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param  \DateTime $updated
      * @return District
      */
     public function setUpdated($updated)
@@ -229,32 +230,32 @@ class District{
     }
 
     /**
-     * Set updatedby
+     * Set updated_by
      *
-     * @param string $updatedby
+     * @param  string   $updatedBy
      * @return District
      */
-    public function setUpdatedby($updatedby)
+    public function setUpdatedBy($updatedBy)
     {
-        $this->updatedby = $updatedby;
+        $this->updated_by = $updatedBy;
 
         return $this;
     }
 
     /**
-     * Get updatedby
+     * Get updated_by
      *
      * @return string
      */
-    public function getUpdatedby()
+    public function getUpdatedBy()
     {
-        return $this->updatedby;
+        return $this->updated_by;
     }
 
     /**
      * Set province
      *
-     * @param \GatotKaca\Erp\MainBundle\Entity\Province $province
+     * @param  \GatotKaca\Erp\MainBundle\Entity\Province $province
      * @return District
      */
     public function setProvince(\GatotKaca\Erp\MainBundle\Entity\Province $province = null)
@@ -277,7 +278,7 @@ class District{
     /**
      * Add employee
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
      * @return District
      */
     public function addEmployee(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee)
@@ -310,7 +311,7 @@ class District{
     /**
      * Add employee_bod_place
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeBodPlace
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeBodPlace
      * @return District
      */
     public function addEmployeeBodPlace(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employeeBodPlace)
@@ -343,7 +344,7 @@ class District{
     /**
      * Add employee_education
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation $employeeEducation
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation $employeeEducation
      * @return District
      */
     public function addEmployeeEducation(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeEducation $employeeEducation)
@@ -376,7 +377,7 @@ class District{
     /**
      * Add training
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeTraining $training
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeTraining $training
      * @return District
      */
     public function addTraining(\GatotKaca\Erp\HumanResourcesBundle\Entity\EmployeeTraining $training)

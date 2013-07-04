@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.GeneralSetup.view.tabs.Religion",{extend:"GatotKacaErp.view.tabs.Base",alias:"widget.tabreligion",id:"tabreligion",requires:["GatotKacaErp.module.GeneralSetup.view.forms.Religion"],items:[{xtype:"formreligion"}]});
+Ext.define("Com.GatotKaca.ERP.module.GeneralSetup.view.tabs.Religion",{extend:"Com.GatotKaca.ERP.view.tabs.Base",alias:"widget.tabreligion",id:"tabreligion",requires:["Com.GatotKaca.ERP.module.GeneralSetup.view.forms.Religion"],items:[{xtype:"formreligion"}]});

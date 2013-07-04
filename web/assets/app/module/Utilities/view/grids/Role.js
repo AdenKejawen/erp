@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.Utilities.view.grids.Role",{extend:"GatotKacaErp.module.Utilities.view.grids.GroupBase",alias:"widget.gridusergroup",id:"gridusergroup",store:"GatotKacaErp.module.Utilities.store.Role"});
+Ext.define("Com.GatotKaca.ERP.module.Utilities.view.grids.Role",{extend:"Com.GatotKaca.ERP.module.Utilities.view.grids.GroupBase",alias:"widget.gridusergroup",id:"gridusergroup",store:"Com.GatotKaca.ERP.module.Utilities.store.Role"});

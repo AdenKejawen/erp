@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.GeneralSetup.view.tabs.Province",{extend:"GatotKacaErp.view.tabs.Base",alias:"widget.tabprovince",id:"tabprovince",requires:["GatotKacaErp.module.GeneralSetup.view.forms.Province"],items:[{xtype:"formprovince"}]});
+Ext.define("Com.GatotKaca.ERP.module.GeneralSetup.view.tabs.Province",{extend:"Com.GatotKaca.ERP.view.tabs.Base",alias:"widget.tabprovince",id:"tabprovince",requires:["Com.GatotKaca.ERP.module.GeneralSetup.view.forms.Province"],items:[{xtype:"formprovince"}]});

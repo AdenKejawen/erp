@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.HumanResources.model.Shiftment",{extend:"Ext.data.Model",fields:[{name:"shift_id",type:"string"},{name:"shift_ohid",type:"string"},{name:"shift_date",type:"date",dateFormat:"d-m-Y"},{name:"shift_ohin",type:"time"},{name:"shift_ohout",type:"time"}]});
+Ext.define("Com.GatotKaca.ERP.module.HumanResources.model.Shiftment",{extend:"Ext.data.Model",fields:[{name:"shift_id",type:"string"},{name:"shift_ohid",type:"string"},{name:"shift_date",type:"date",dateFormat:DATE_FORMAT},{name:"shift_ohin",type:"time"},{name:"shift_ohout",type:"time"}]});

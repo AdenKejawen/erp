@@ -20,87 +20,89 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name = "trs_employee_experience")
  **/
-class EmployeeExperience{
-	/**
-	 * @ORM\Id
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $id;
-
-	/**
-	 * @ORM\ManyToOne(targetEntity="Employee", inversedBy="experience")
-	 * @ORM\JoinColumn(name="mtr_employee_id", referencedColumnName="id")
-	 **/
-	protected $employee;
-
-	/**
-	 * @ORM\Column(type = "string", length = 77, nullable = true)
-	 **/
-	protected $company;
-
-	/**
-     * @ORM\Column(type = "string", length = 77, nullable = true)
+class EmployeeExperience
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(name = "`id`", type = "string", length = 40)
      **/
-	protected $jobtitle;
+    protected $id;
 
-	/**
-	 * @ORM\Column(type = "string", length = 77, nullable = true)
-	 **/
-	protected $reason;
+    /**
+     * @ORM\ManyToOne(targetEntity = "Employee", inversedBy = "experience")
+     * @ORM\JoinColumn(name = "mtr_employee_id", referencedColumnName = "id")
+     **/
+    protected $employee;
 
-	/**
-	 * @ORM\Column(type = "date", nullable = true)
-	 **/
-	protected $exp_start;
+    /**
+     * @ORM\Column(name = "`company`", type = "string", length = 77, nullable = true)
+     **/
+    protected $company;
 
-	/**
-	 * @ORM\Column(type = "date", nullable = true)
-	 **/
-	protected $exp_end;
+    /**
+     * @ORM\Column(name = "`jobtitle`", type = "string", length = 77, nullable = true)
+     **/
+    protected $job_title;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $created;
+    /**
+     * @ORM\Column(name = "`reason`", type = "string", length = 77, nullable = true)
+     **/
+    protected $reason;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $createdby;
+    /**
+     * @ORM\Column(name = "`exp_start`", type = "date", nullable = true)
+     **/
+    protected $start;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $updated;
+    /**
+     * @ORM\Column(name = "`exp_end`", type = "date", nullable = true)
+     **/
+    protected $end;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $updatedby;
+    /**
+     * @ORM\Column(name = "`created`", type = "datetime")
+     **/
+    protected $created;
 
-	public function __construct(){
-        $this->reason   = '';
-		$this->created	= new \DateTime();
-		$this->updated	= new \DateTime();
-	}
+    /**
+     * @ORM\Column(name = "`createdby`", type = "string", length = 40)
+     **/
+    protected $created_by;
+
+    /**
+     * @ORM\Column(name = "`updated`", type = "datetime")
+     **/
+    protected $updated;
+
+    /**
+     * @ORM\Column(name = "`updatedby`", type = "string", length = 40)
+     **/
+    protected $updated_by;
+
+    public function __construct()
+    {
+        $this->reason  = '';
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
+    }
 
     /**
      * Set id
      *
-     * @param string $id
+     * @param  string             $id
      * @return EmployeeExperience
      */
     public function setId($id)
     {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return string 
+     * @return string
      */
     public function getId()
     {
@@ -110,20 +112,20 @@ class EmployeeExperience{
     /**
      * Set company
      *
-     * @param string $company
+     * @param  string             $company
      * @return EmployeeExperience
      */
     public function setCompany($company)
     {
         $this->company = $company;
-    
+
         return $this;
     }
 
     /**
      * Get company
      *
-     * @return string 
+     * @return string
      */
     public function getCompany()
     {
@@ -131,45 +133,45 @@ class EmployeeExperience{
     }
 
     /**
-     * Set jobtitle
+     * Set job_title
      *
-     * @param string $jobtitle
+     * @param  string             $jobTitle
      * @return EmployeeExperience
      */
-    public function setJobtitle($jobtitle)
+    public function setJobTitle($jobTitle)
     {
-        $this->jobtitle = $jobtitle;
-    
+        $this->job_title = $jobTitle;
+
         return $this;
     }
 
     /**
-     * Get jobtitle
+     * Get job_title
      *
-     * @return string 
+     * @return string
      */
-    public function getJobtitle()
+    public function getJobTitle()
     {
-        return $this->jobtitle;
+        return $this->job_title;
     }
 
     /**
      * Set reason
      *
-     * @param string $reason
+     * @param  string             $reason
      * @return EmployeeExperience
      */
     public function setReason($reason)
     {
         $this->reason = $reason;
-    
+
         return $this;
     }
 
     /**
      * Get reason
      *
-     * @return string 
+     * @return string
      */
     public function getReason()
     {
@@ -177,68 +179,68 @@ class EmployeeExperience{
     }
 
     /**
-     * Set exp_start
+     * Set start
      *
-     * @param \DateTime $expStart
+     * @param  \DateTime          $start
      * @return EmployeeExperience
      */
-    public function setExpStart($expStart)
+    public function setStart($start)
     {
-        $this->exp_start = $expStart;
-    
+        $this->start = $start;
+
         return $this;
     }
 
     /**
-     * Get exp_start
+     * Get start
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
-    public function getExpStart()
+    public function getStart()
     {
-        return $this->exp_start;
+        return $this->start;
     }
 
     /**
-     * Set exp_end
+     * Set end
      *
-     * @param \DateTime $expEnd
+     * @param  \DateTime          $end
      * @return EmployeeExperience
      */
-    public function setExpEnd($expEnd)
+    public function setEnd($end)
     {
-        $this->exp_end = $expEnd;
-    
+        $this->end = $end;
+
         return $this;
     }
 
     /**
-     * Get exp_end
+     * Get end
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
-    public function getExpEnd()
+    public function getEnd()
     {
-        return $this->exp_end;
+        return $this->end;
     }
 
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime          $created
      * @return EmployeeExperience
      */
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -246,45 +248,45 @@ class EmployeeExperience{
     }
 
     /**
-     * Set createdby
+     * Set created_by
      *
-     * @param string $createdby
+     * @param  string             $createdBy
      * @return EmployeeExperience
      */
-    public function setCreatedby($createdby)
+    public function setCreatedBy($createdBy)
     {
-        $this->createdby = $createdby;
-    
+        $this->created_by = $createdBy;
+
         return $this;
     }
 
     /**
-     * Get createdby
+     * Get created_by
      *
-     * @return string 
+     * @return string
      */
-    public function getCreatedby()
+    public function getCreatedBy()
     {
-        return $this->createdby;
+        return $this->created_by;
     }
 
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param  \DateTime          $updated
      * @return EmployeeExperience
      */
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-    
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -292,45 +294,45 @@ class EmployeeExperience{
     }
 
     /**
-     * Set updatedby
+     * Set updated_by
      *
-     * @param string $updatedby
+     * @param  string             $updatedBy
      * @return EmployeeExperience
      */
-    public function setUpdatedby($updatedby)
+    public function setUpdatedBy($updatedBy)
     {
-        $this->updatedby = $updatedby;
-    
+        $this->updated_by = $updatedBy;
+
         return $this;
     }
 
     /**
-     * Get updatedby
+     * Get updated_by
      *
-     * @return string 
+     * @return string
      */
-    public function getUpdatedby()
+    public function getUpdatedBy()
     {
-        return $this->updatedby;
+        return $this->updated_by;
     }
 
     /**
      * Set employee
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
      * @return EmployeeExperience
      */
     public function setEmployee(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee = null)
     {
         $this->employee = $employee;
-    
+
         return $this;
     }
 
     /**
      * Get employee
      *
-     * @return \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee 
+     * @return \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee
      */
     public function getEmployee()
     {

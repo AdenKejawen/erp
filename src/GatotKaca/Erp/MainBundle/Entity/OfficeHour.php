@@ -22,79 +22,80 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name = "sys_officehour")
  **/
-class OfficeHour{
-
+class OfficeHour
+{
     /**
      * @ORM\Id
-     * @ORM\Column(type = "string", length = 40)
+     * @ORM\Column(name = "`id`", type = "string", length = 40)
      **/
     protected $id;
 
     /**
-     * @ORM\Column(type = "string", length = 40, nullable = true)
+     * @ORM\Column(name = "`name`", type = "string", length = 40, nullable = true)
      */
     protected $name;
 
     /**
-     * @ORM\Column(type = "time", nullable = true)
+     * @ORM\Column(name = "`time_in`", type = "time", nullable = true)
      **/
     protected $time_in;
 
     /**
-     * @ORM\Column(type = "time", nullable = true)
+     * @ORM\Column(name = "`time_out`", type = "time", nullable = true)
      **/
     protected $time_out;
 
     /**
-     * @ORM\Column(type = "boolean", nullable = true)
+     * @ORM\Column(name = "`status`", type = "boolean", nullable = true)
      **/
     protected $status;
 
     /**
-     * @ORM\Column(type = "datetime")
+     * @ORM\Column(name = "`created`", type = "datetime")
      **/
     protected $created;
 
     /**
-     * @ORM\Column(type = "string", length = 40)
+     * @ORM\Column(name = "`createdby`", type = "string", length = 40)
      **/
-    protected $createdby;
+    protected $created_by;
 
     /**
-     * @ORM\Column(type = "datetime")
+     * @ORM\Column(name = "`updated`", type = "datetime")
      **/
     protected $updated;
 
     /**
-     * @ORM\Column(type = "string", length = 40)
+     * @ORM\Column(name = "`updatedby`", type = "string", length = 40)
      **/
-    protected $updatedby;
+    protected $updated_by;
 
     /**
-     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="shift")
+     * @ORM\OneToMany(targetEntity = "GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy = "shift")
      **/
     protected $employee;
 
     /**
-     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Attendance", mappedBy="shift")
+     * @ORM\OneToMany(targetEntity = "GatotKaca\Erp\HumanResourcesBundle\Entity\Attendance", mappedBy = "shift")
      **/
     protected $attendance;
 
     /**
-     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Shiftment", mappedBy="officehour")
+     * @ORM\OneToMany(targetEntity = "GatotKaca\Erp\HumanResourcesBundle\Entity\Shiftment", mappedBy = "office_hour")
      **/
     protected $shiftment;
 
-    public function __construct(){
-        $this->created      = new \DateTime();
-        $this->updated      = new \DateTime();
-        $this->status       = TRUE;
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
+        $this->status  = true;
     }
 
     /**
      * Set id
      *
-     * @param string $id
+     * @param  string     $id
      * @return OfficeHour
      */
     public function setId($id)
@@ -117,7 +118,7 @@ class OfficeHour{
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string     $name
      * @return OfficeHour
      */
     public function setName($name)
@@ -140,7 +141,7 @@ class OfficeHour{
     /**
      * Set time_in
      *
-     * @param \DateTime $timeIn
+     * @param  \DateTime  $timeIn
      * @return OfficeHour
      */
     public function setTimeIn($timeIn)
@@ -163,7 +164,7 @@ class OfficeHour{
     /**
      * Set time_out
      *
-     * @param \DateTime $timeOut
+     * @param  \DateTime  $timeOut
      * @return OfficeHour
      */
     public function setTimeOut($timeOut)
@@ -186,7 +187,7 @@ class OfficeHour{
     /**
      * Set status
      *
-     * @param boolean $status
+     * @param  boolean    $status
      * @return OfficeHour
      */
     public function setStatus($status)
@@ -209,7 +210,7 @@ class OfficeHour{
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime  $created
      * @return OfficeHour
      */
     public function setCreated($created)
@@ -230,32 +231,32 @@ class OfficeHour{
     }
 
     /**
-     * Set createdby
+     * Set created_by
      *
-     * @param string $createdby
+     * @param  string     $createdBy
      * @return OfficeHour
      */
-    public function setCreatedby($createdby)
+    public function setCreatedBy($createdBy)
     {
-        $this->createdby = $createdby;
+        $this->created_by = $createdBy;
 
         return $this;
     }
 
     /**
-     * Get createdby
+     * Get created_by
      *
      * @return string
      */
-    public function getCreatedby()
+    public function getCreatedBy()
     {
-        return $this->createdby;
+        return $this->created_by;
     }
 
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param  \DateTime  $updated
      * @return OfficeHour
      */
     public function setUpdated($updated)
@@ -276,32 +277,32 @@ class OfficeHour{
     }
 
     /**
-     * Set updatedby
+     * Set updated_by
      *
-     * @param string $updatedby
+     * @param  string     $updatedBy
      * @return OfficeHour
      */
-    public function setUpdatedby($updatedby)
+    public function setUpdatedBy($updatedBy)
     {
-        $this->updatedby = $updatedby;
+        $this->updated_by = $updatedBy;
 
         return $this;
     }
 
     /**
-     * Get updatedby
+     * Get updated_by
      *
      * @return string
      */
-    public function getUpdatedby()
+    public function getUpdatedBy()
     {
-        return $this->updatedby;
+        return $this->updated_by;
     }
 
     /**
      * Add employee
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
      * @return OfficeHour
      */
     public function addEmployee(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee)
@@ -334,7 +335,7 @@ class OfficeHour{
     /**
      * Add attendance
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Attendance $attendance
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\Attendance $attendance
      * @return OfficeHour
      */
     public function addAttendance(\GatotKaca\Erp\HumanResourcesBundle\Entity\Attendance $attendance)
@@ -367,7 +368,7 @@ class OfficeHour{
     /**
      * Add shiftment
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Shiftment $shiftment
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\Shiftment $shiftment
      * @return OfficeHour
      */
     public function addShiftment(\GatotKaca\Erp\HumanResourcesBundle\Entity\Shiftment $shiftment)

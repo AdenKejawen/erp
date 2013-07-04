@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.Utilities.view.tabs.User",{extend:"GatotKacaErp.view.tabs.Base",alias:"widget.tabuser",id:"tabuser",requires:["GatotKacaErp.module.Utilities.view.forms.User"],items:[{xtype:"formuser"}]});
+Ext.define("Com.GatotKaca.ERP.module.Utilities.view.tabs.User",{extend:"Com.GatotKaca.ERP.view.tabs.Base",alias:"widget.tabuser",id:"tabuser",requires:["Com.GatotKaca.ERP.module.Utilities.view.forms.User"],items:[{xtype:"formuser"}]});

@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.store.Gender",{extend:"Ext.data.Store",model:"GatotKacaErp.model.Gender",data:[{gender_id:1,gender_name:"MALE"},{gender_id:2,gender_name:"FEMALE"}]});
+Ext.define("Com.GatotKaca.ERP.store.Gender",{extend:"Ext.data.Store",model:"Com.GatotKaca.ERP.model.Gender",data:[{gender_id:1,gender_name:"MALE"},{gender_id:2,gender_name:"FEMALE"}]});

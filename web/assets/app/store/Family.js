@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.store.Family",{extend:"Ext.data.Store",model:"GatotKacaErp.model.Family",data:[{family_id:1,family_name:"PARENT"},{family_id:2,family_name:"SPOUSE"},{family_id:3,family_name:"SIBLING"},{family_id:4,family_name:"CHILD"}]});
+Ext.define("Com.GatotKaca.ERP.store.Family",{extend:"Ext.data.Store",model:"Com.GatotKaca.ERP.model.Family",data:[{family_id:1,family_name:"PARENT"},{family_id:2,family_name:"SPOUSE"},{family_id:3,family_name:"SIBLING"},{family_id:4,family_name:"CHILD"}]});

@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.model.Agreement",{extend:"Ext.data.Model",fields:[{name:"agree_id",type:"number"},{name:"agree_name",type:"string"}]});
+Ext.define("Com.GatotKaca.ERP.model.Agreement",{extend:"Ext.data.Model",fields:[{name:"agree_id",type:"number"},{name:"agree_name",type:"string"}]});

@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.Utilities.view.tabs.Role",{extend:"GatotKacaErp.view.tabs.Base",alias:"widget.tabrole",id:"tabrole",requires:["GatotKacaErp.module.Utilities.view.grids.GroupRole"],items:[{xtype:"gridgrouprole"}]});
+Ext.define("Com.GatotKaca.ERP.module.Utilities.view.tabs.Role",{extend:"Com.GatotKaca.ERP.view.tabs.Base",alias:"widget.tabrole",id:"tabrole",requires:["Com.GatotKaca.ERP.module.Utilities.view.grids.GroupRole"],items:[{xtype:"gridgrouprole"}]});

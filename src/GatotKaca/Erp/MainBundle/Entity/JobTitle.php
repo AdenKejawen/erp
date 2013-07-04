@@ -21,99 +21,100 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name = "sys_jobtitle")
  **/
-class JobTitle{
-
-	/**
-	 * @ORM\Id
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $id;
-
-	/**
-	 * @ORM\OneToMany(targetEntity="JobTitle", mappedBy="parent")
-	 **/
-	protected $child;
-
-	/**
-	 * @ORM\ManyToOne(targetEntity="JobTitle", inversedBy="child")
-	 * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
-	 */
-	protected $parent;
-
-	/**
-	 * @ORM\Column(type = "string", length = 77, nullable = true)
-	 **/
-	protected $name;
-
-	/**
-	 * @ORM\Column(type = "boolean", nullable = true)
-	 **/
-	protected $status;
-
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $created;
-
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $createdby;
-
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $updated;
-
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $updatedby;
-
-	/**
-	 * @ORM\ManyToOne(targetEntity="JobLevel", inversedBy="jobtitle")
-	 * @ORM\JoinColumn(name="sys_joblevel_id", referencedColumnName="id")
-	 */
-	protected $level;
-
-	/**
-	 * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy="jobtitle")
-	 **/
-	protected $employee;
+class JobTitle
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(name = "`id`", type = "string", length = 40)
+     **/
+    protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Career", mappedBy="old_jobtitle")
+     * @ORM\OneToMany(targetEntity = "JobTitle", mappedBy = "parent")
      **/
-    protected $career_old_jobtitle;
+    protected $child;
 
     /**
-     * @ORM\OneToMany(targetEntity="GatotKaca\Erp\HumanResourcesBundle\Entity\Career", mappedBy="new_jobtitle")
-     **/
-    protected $career_new_jobtitle;
+     * @ORM\ManyToOne(targetEntity = "JobTitle", inversedBy = "child")
+     * @ORM\JoinColumn(name = "parent_id", referencedColumnName = "id")
+     */
+    protected $parent;
 
-	public function __construct(){
-		$this->status	= TRUE;
-		$this->created	= new \DateTime();
-		$this->updated	= new \DateTime();
-	}
+    /**
+     * @ORM\Column(name = "`name`", type = "string", length = 77, nullable = true)
+     **/
+    protected $name;
+
+    /**
+     * @ORM\Column(name = "`status`", type = "boolean", nullable = true)
+     **/
+    protected $status;
+
+    /**
+     * @ORM\Column(name = "`created`", type = "datetime")
+     **/
+    protected $created;
+
+    /**
+     * @ORM\Column(name = "`createdby`", type = "string", length = 40)
+     **/
+    protected $created_by;
+
+    /**
+     * @ORM\Column(name = "`updated`", type = "datetime")
+     **/
+    protected $updated;
+
+    /**
+     * @ORM\Column(name = "`updatedby`", type = "string", length = 40)
+     **/
+    protected $updated_by;
+
+    /**
+     * @ORM\ManyToOne(targetEntity ="JobLevel", inversedBy = "jobtitle")
+     * @ORM\JoinColumn(name ="sys_joblevel_id", referencedColumnName = "id")
+     */
+    protected $level;
+
+    /**
+     * @ORM\OneToMany(targetEntity = "GatotKaca\Erp\HumanResourcesBundle\Entity\Employee", mappedBy = "job_title")
+     **/
+    protected $employee;
+
+    /**
+     * @ORM\OneToMany(targetEntity = "GatotKaca\Erp\HumanResourcesBundle\Entity\Career", mappedBy = "old_job_title")
+     **/
+    protected $career_old_job_title;
+
+    /**
+     * @ORM\OneToMany(targetEntity = "GatotKaca\Erp\HumanResourcesBundle\Entity\Career", mappedBy = "new_job_title")
+     **/
+    protected $career_new_job_title;
+
+    public function __construct()
+    {
+        $this->status  = true;
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
+    }
 
     /**
      * Set id
      *
-     * @param string $id
+     * @param  string   $id
      * @return JobTitle
      */
     public function setId($id)
     {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return string 
+     * @return string
      */
     public function getId()
     {
@@ -123,20 +124,20 @@ class JobTitle{
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string   $name
      * @return JobTitle
      */
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -146,20 +147,20 @@ class JobTitle{
     /**
      * Set status
      *
-     * @param boolean $status
+     * @param  boolean  $status
      * @return JobTitle
      */
     public function setStatus($status)
     {
         $this->status = $status;
-    
+
         return $this;
     }
 
     /**
      * Get status
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getStatus()
     {
@@ -169,20 +170,20 @@ class JobTitle{
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime $created
      * @return JobTitle
      */
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -190,45 +191,45 @@ class JobTitle{
     }
 
     /**
-     * Set createdby
+     * Set created_by
      *
-     * @param string $createdby
+     * @param  string   $createdBy
      * @return JobTitle
      */
-    public function setCreatedby($createdby)
+    public function setCreatedBy($createdBy)
     {
-        $this->createdby = $createdby;
-    
+        $this->created_by = $createdBy;
+
         return $this;
     }
 
     /**
-     * Get createdby
+     * Get created_by
      *
-     * @return string 
+     * @return string
      */
-    public function getCreatedby()
+    public function getCreatedBy()
     {
-        return $this->createdby;
+        return $this->created_by;
     }
 
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param  \DateTime $updated
      * @return JobTitle
      */
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-    
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -236,38 +237,38 @@ class JobTitle{
     }
 
     /**
-     * Set updatedby
+     * Set updated_by
      *
-     * @param string $updatedby
+     * @param  string   $updatedBy
      * @return JobTitle
      */
-    public function setUpdatedby($updatedby)
+    public function setUpdatedBy($updatedBy)
     {
-        $this->updatedby = $updatedby;
-    
+        $this->updated_by = $updatedBy;
+
         return $this;
     }
 
     /**
-     * Get updatedby
+     * Get updated_by
      *
-     * @return string 
+     * @return string
      */
-    public function getUpdatedby()
+    public function getUpdatedBy()
     {
-        return $this->updatedby;
+        return $this->updated_by;
     }
 
     /**
      * Add child
      *
-     * @param \GatotKaca\Erp\MainBundle\Entity\JobTitle $child
+     * @param  \GatotKaca\Erp\MainBundle\Entity\JobTitle $child
      * @return JobTitle
      */
     public function addChild(\GatotKaca\Erp\MainBundle\Entity\JobTitle $child)
     {
         $this->child[] = $child;
-    
+
         return $this;
     }
 
@@ -284,7 +285,7 @@ class JobTitle{
     /**
      * Get child
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getChild()
     {
@@ -294,20 +295,20 @@ class JobTitle{
     /**
      * Set parent
      *
-     * @param \GatotKaca\Erp\MainBundle\Entity\JobTitle $parent
+     * @param  \GatotKaca\Erp\MainBundle\Entity\JobTitle $parent
      * @return JobTitle
      */
     public function setParent(\GatotKaca\Erp\MainBundle\Entity\JobTitle $parent = null)
     {
         $this->parent = $parent;
-    
+
         return $this;
     }
 
     /**
      * Get parent
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\JobTitle 
+     * @return \GatotKaca\Erp\MainBundle\Entity\JobTitle
      */
     public function getParent()
     {
@@ -317,20 +318,20 @@ class JobTitle{
     /**
      * Set level
      *
-     * @param \GatotKaca\Erp\MainBundle\Entity\JobLevel $level
+     * @param  \GatotKaca\Erp\MainBundle\Entity\JobLevel $level
      * @return JobTitle
      */
     public function setLevel(\GatotKaca\Erp\MainBundle\Entity\JobLevel $level = null)
     {
         $this->level = $level;
-    
+
         return $this;
     }
 
     /**
      * Get level
      *
-     * @return \GatotKaca\Erp\MainBundle\Entity\JobLevel 
+     * @return \GatotKaca\Erp\MainBundle\Entity\JobLevel
      */
     public function getLevel()
     {
@@ -340,13 +341,13 @@ class JobTitle{
     /**
      * Add employee
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee
      * @return JobTitle
      */
     public function addEmployee(\GatotKaca\Erp\HumanResourcesBundle\Entity\Employee $employee)
     {
         $this->employee[] = $employee;
-    
+
         return $this;
     }
 
@@ -363,7 +364,7 @@ class JobTitle{
     /**
      * Get employee
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getEmployee()
     {
@@ -371,68 +372,68 @@ class JobTitle{
     }
 
     /**
-     * Add career_old_jobtitle
+     * Add career_old_job_title
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldJobtitle
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldJobTitle
      * @return JobTitle
      */
-    public function addCareerOldJobtitle(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldJobtitle)
+    public function addCareerOldJobTitle(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldJobTitle)
     {
-        $this->career_old_jobtitle[] = $careerOldJobtitle;
-    
+        $this->career_old_job_title[] = $careerOldJobTitle;
+
         return $this;
     }
 
     /**
-     * Remove career_old_jobtitle
+     * Remove career_old_job_title
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldJobtitle
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldJobTitle
      */
-    public function removeCareerOldJobtitle(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldJobtitle)
+    public function removeCareerOldJobTitle(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerOldJobTitle)
     {
-        $this->career_old_jobtitle->removeElement($careerOldJobtitle);
+        $this->career_old_job_title->removeElement($careerOldJobTitle);
     }
 
     /**
-     * Get career_old_jobtitle
+     * Get career_old_job_title
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCareerOldJobtitle()
+    public function getCareerOldJobTitle()
     {
-        return $this->career_old_jobtitle;
+        return $this->career_old_job_title;
     }
 
     /**
-     * Add career_new_jobtitle
+     * Add career_new_job_title
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewJobtitle
+     * @param  \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewJobTitle
      * @return JobTitle
      */
-    public function addCareerNewJobtitle(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewJobtitle)
+    public function addCareerNewJobTitle(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewJobTitle)
     {
-        $this->career_new_jobtitle[] = $careerNewJobtitle;
-    
+        $this->career_new_job_title[] = $careerNewJobTitle;
+
         return $this;
     }
 
     /**
-     * Remove career_new_jobtitle
+     * Remove career_new_job_title
      *
-     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewJobtitle
+     * @param \GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewJobTitle
      */
-    public function removeCareerNewJobtitle(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewJobtitle)
+    public function removeCareerNewJobTitle(\GatotKaca\Erp\HumanResourcesBundle\Entity\Career $careerNewJobTitle)
     {
-        $this->career_new_jobtitle->removeElement($careerNewJobtitle);
+        $this->career_new_job_title->removeElement($careerNewJobTitle);
     }
 
     /**
-     * Get career_new_jobtitle
+     * Get career_new_job_title
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCareerNewJobtitle()
+    public function getCareerNewJobTitle()
     {
-        return $this->career_new_jobtitle;
+        return $this->career_new_job_title;
     }
 }

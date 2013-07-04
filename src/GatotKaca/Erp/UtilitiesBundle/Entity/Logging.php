@@ -1,9 +1,9 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/UtilitiesBundle/Entity/Logging.php
- * Author     : Muhammad Surya Ikhsanudin
- * License    : Protected
- * Email      : mutofiyah@gmail.com
+ * Author    : Muhammad Surya Ikhsanudin
+ * License   : Protected
+ * Email     : mutofiyah@gmail.com
  *
  * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
@@ -19,75 +19,76 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name = "utl_log")
  **/
-class Logging{
+class Logging
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(name = "`id`", type = "string", length = 40)
+     **/
+    protected $id;
 
-	/**
-	 * @ORM\Id
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $id;
+    /**
+     * @ORM\Column(name = "`agent`", type = "string", length = 17, nullable = true)
+     **/
+    protected $agent;
 
-	/**
-	 * @ORM\Column(type = "string", length = 17, nullable = true)
-	 **/
-	protected $agent;
+    /**
+     * @ORM\Column(name = "`user_id`", type = "string", length = 40, nullable = true)
+     **/
+    protected $user_id;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40, nullable = true)
-	 **/
-	protected $user_id;
+    /**
+     * @ORM\Column(name = "`route`", type = "string", length = 255, nullable = true)
+     **/
+    protected $route;
 
-	/**
-	 * @ORM\Column(type = "string", length = 255, nullable = true)
-	 **/
-	protected $route;
+    /**
+     * @ORM\Column(name = "`type`", type = "string", length = 7, nullable = true)
+     **/
+    protected $type;
 
-	/**
-	 * @ORM\Column(type = "string", length = 7, nullable = true)
-	 **/
-	protected $type;
+    /**
+     * @ORM\Column(name = "`value`", type = "string", length = 255, nullable = true)
+     **/
+    protected $value;
 
-	/**
-	 * @ORM\Column(type = "string", length = 255, nullable = true)
-	 **/
-	protected $value;
+    /**
+     * @ORM\Column(name = "`created`", type = "datetime")
+     **/
+    protected $created;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $created;
-
-	public function __construct(){
-		/**
-		 * Log Type
-		 * - ACCESS
-		 * - LOGIN
-		 * - LOGOUT
-		 * - CREATE
-		 * - MODIFY
-		 * - DELETE
-		 **/
-		$this->log_type	= 'ACCESS';
-		$this->created	= new \DateTime();
-	}
+    public function __construct()
+    {
+        /**
+         * Log Type
+         * - ACCESS
+         * - LOGIN
+         * - LOGOUT
+         * - CREATE
+         * - MODIFY
+         * - DELETE
+         **/
+        $this->type    = 'ACCESS';
+        $this->created = new \DateTime();
+    }
 
     /**
      * Set id
      *
-     * @param string $id
+     * @param  string  $id
      * @return Logging
      */
     public function setId($id)
     {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return string 
+     * @return string
      */
     public function getId()
     {
@@ -97,20 +98,20 @@ class Logging{
     /**
      * Set agent
      *
-     * @param string $agent
+     * @param  string  $agent
      * @return Logging
      */
     public function setAgent($agent)
     {
         $this->agent = $agent;
-    
+
         return $this;
     }
 
     /**
      * Get agent
      *
-     * @return string 
+     * @return string
      */
     public function getAgent()
     {
@@ -120,20 +121,20 @@ class Logging{
     /**
      * Set user_id
      *
-     * @param string $userId
+     * @param  string  $userId
      * @return Logging
      */
     public function setUserId($userId)
     {
         $this->user_id = $userId;
-    
+
         return $this;
     }
 
     /**
      * Get user_id
      *
-     * @return string 
+     * @return string
      */
     public function getUserId()
     {
@@ -143,20 +144,20 @@ class Logging{
     /**
      * Set route
      *
-     * @param string $route
+     * @param  string  $route
      * @return Logging
      */
     public function setRoute($route)
     {
         $this->route = $route;
-    
+
         return $this;
     }
 
     /**
      * Get route
      *
-     * @return string 
+     * @return string
      */
     public function getRoute()
     {
@@ -166,20 +167,20 @@ class Logging{
     /**
      * Set type
      *
-     * @param string $type
+     * @param  string  $type
      * @return Logging
      */
     public function setType($type)
     {
         $this->type = $type;
-    
+
         return $this;
     }
 
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
@@ -189,20 +190,20 @@ class Logging{
     /**
      * Set value
      *
-     * @param string $value
+     * @param  string  $value
      * @return Logging
      */
     public function setValue($value)
     {
         $this->value = $value;
-    
+
         return $this;
     }
 
     /**
      * Get value
      *
-     * @return string 
+     * @return string
      */
     public function getValue()
     {
@@ -212,20 +213,20 @@ class Logging{
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime $created
      * @return Logging
      */
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {

@@ -5,6 +5,6 @@ doctrine:
         auto_mapping: true
         dql:
           datetime_functions:
-            TO_CHAR: GatotKaca\Erp\MainBundle\Doctrine\DQL\PostgreSQL\DateTime\ToChar
+            TO_CHAR: GatotKaca\Core\Doctrine\DQL\PostgreSQL\DateTime\ToChar
           string_functions:
-            SPLIT_PART: GatotKaca\Erp\MainBundle\Doctrine\DQL\PostgreSQL\String\SplitPart
+            SPLIT_PART: GatotKaca\Core\Doctrine\DQL\PostgreSQL\String\SplitPart

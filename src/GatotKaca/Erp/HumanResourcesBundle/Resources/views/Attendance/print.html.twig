@@ -1,95 +1,113 @@
 {% spaceless %}
 <style>
 .screen{
-	font-family	: sans-serif;
-	background	: #fff !important;
-}
-.printable{
-	font-size	: 11px;
-	width		: 100%;
+    font-family: sans-serif;
+    background : #fff !important;
 }
 .title{
-	background	: #fff !important;
-}
-.header{
-	background	: #aaa !important;
-	font-weight	: bold;
-	font-color	: #333;
-	font-size	: 13px !important;
-}
-tr:nth-child(even){
-	background	: #ccc;
-}
-tr:nth-child(odd){
-	background	: #eee;
-}
-.inner{
-	padding		: 5px;
+    background: #fff !important;
 }
 h3{
-	padding			: 5px;
-	margin-bottom	: 7px;
-}
-.center{
-	text-align		: center;
+    padding: 5px;
+    margin-bottom: 7px;
 }
 .first{
-	margin-bottom	: 11px;
+    margin-bottom: 11px;
 }
 .t-title{
-	font-weight	: bold;
+    font-weight: bold;
 }
 .td-first{
-	width	: 127px;
-}
-.data{
-	border	: 1px solid;
+    width: 127px;
 }
 </style>
-<div class="screen">
-	<h3 class="center">Attendance Detail From {{ from }} To {{ to }}</h3>
-	<table class="printable first">
-		<tr class="title">
-			<td class="inner t-title td-first">Fullname</td>
-			<td class="inner t-title">:</td>
-			<td class="inner t-title">{{ employee.0.employee_fname }} {{ employee.0.employee_lname }}</td>
-		</tr>
-		<tr class="title">
-			<td class="inner t-title td-first">Company</td>
-			<td class="inner t-title">:</td>
-			<td class="inner t-title">{{ employee.0.employee_companyname }}</td>
-		</tr>
-		<tr class="title">
-			<td class="inner t-title td-first">Department</td>
-			<td class="inner t-title">:</td>
-			<td class="inner t-title">{{ employee.0.employee_departmentname }}</td>
-		</tr>
-	</table>
-	<table class="printable">
-		<tr class="header">
-			<td class="inner data center">Day</td>
-			<td class="inner data center">Date</td>
-			<td class="inner data center">Time In</td>
-			<td class="inner data center">Time Out</td>
-			<td class="inner data center">Late</td>
-			<td class="inner data center">Loyal</td>
-			<td class="inner data center">Reason</td>
-			<td class="inner data center">Description</td>
-		</tr>
-		{% if attendance | length > 0 %}
-			{% for key, val in attendance %}
-				<tr>
-					<td class="inner data">{{ val.att_day }}</td>
-					<td class="inner data">{{ val.att_date }}</td>
-					<td class="inner data">{{ val.att_in }}</td>
-					<td class="inner data">{{ val.att_out }}</td>
-					<td class="inner data">{{ val.att_late }}</td>
-					<td class="inner data">{{ val.att_loyal }}</td>
-					<td class="inner data">{{ val.miss }}</td>
-					<td class="inner data">{{ val.description }}</td>
-				</tr>
-			{% endfor %}
-		{% endif %}
-	</table>
+<div class = "screen">
+    <h3 class = "center">ATTENDANCE REPORT<br/>Period : {{ from }} - {{ to }}</h3>
+    <table class = "printable first">
+        <tr class = "title">
+            <td class = "inner t-title td-first">Fullname</td>
+            <td class = "inner t-title">:</td>
+            <td class = "inner t-title">{{ employee.0.employee_fname }} {{ employee.0.employee_lname }}</td>
+        </tr>
+        <tr class = "title">
+            <td class = "inner t-title td-first">Company</td>
+            <td class = "inner t-title">:</td>
+            <td class = "inner t-title">{{ employee.0.employee_companyname }}</td>
+        </tr>
+        <tr class = "title">
+            <td class = "inner t-title td-first">Department</td>
+            <td class = "inner t-title">:</td>
+            <td class = "inner t-title">{{ employee.0.employee_departmentname }}</td>
+        </tr>
+    </table>
+    <table class = "printable">
+        <tr class = "header">
+            <td class = "inner data center">Day</td>
+            <td class = "inner data center">Date</td>
+            <td class = "inner data center">Time In</td>
+            <td class = "inner data center">Time Out</td>
+            <td class = "inner data center">Late</td>
+            <td class = "inner data center">Loyal</td>
+            <td class = "inner data center">Reason</td>
+            <td class = "inner data center">Description</td>
+        </tr>
+        {% if attendance | length > 0 %}
+            {% set t_late  =  0 %}
+            {% set t_loyal = 0 %}
+            {% for key, val in attendance %}
+                <tr>
+                    <td class = "inner data">{{ val.att_day }}</td>
+                    <td class = "inner data">{{ val.att_date }}</td>
+                    <td class = "inner data">{{ val.att_in }}</td>
+                    <td class = "inner data">{{ val.att_out }}</td>
+                    <td class = "inner data">{{ val.att_late }}</td>
+                    <td class = "inner data">{{ val.att_loyal }}</td>
+                    <td class = "inner data">{{ val.miss }}</td>
+                    <td class = "inner data">{{ val.description }}</td>
+                </tr>
+                {% set late    = val.att_late | split(':') %}
+                {% set loyal   = val.att_loyal | split(':') %}
+                {% set h_late  = late[0] * 60 * 60 %}
+                {% set m_late  = late[1] * 60%}
+                {% set s_late  = late[2] %}
+                {% set t_late  = t_late + h_late + m_late + s_late %}
+                {% set h_loyal = loyal[0] * 60 * 60 %}
+                {% set m_loyal = loyal[1] * 60%}
+                {% set s_loyal = loyal[2] %}
+                {% set t_loyal = t_loyal + h_loyal + m_loyal + s_loyal %}
+            {% endfor %}
+            {% set h_late  = "%d" | format(t_late/(60 * 60)) %}
+            {% set m_late  = "%d" | format((t_late % (60 * 60)) / 60) %}
+            {% set s_late  = t_late - (h_late * 60 * 60) - (m_late * 60) %}
+            {% set h_loyal = "%d" | format(t_loyal/(60 * 60)) %}
+            {% set m_loyal = "%d" | format((t_loyal % (60 * 60)) / 60) %}
+            {% set s_loyal = t_loyal - (h_loyal * 60 * 60) - (m_loyal * 60) %}
+            {% if h_late | length == 1 %}
+                {% set h_late = "0%d" | format(h_late) %}
+            {% endif %}
+            {% if m_late | length == 1 %}
+                {% set m_late = "0%d" | format(m_late) %}
+            {% endif %}
+            {% if s_late | length == 1 %}
+                {% set s_late = "0%d" | format(s_late) %}
+            {% endif %}
+            {% if h_loyal | length == 1 %}
+                {% set h_loyal = "0%d" | format(h_loyal) %}
+            {% endif %}
+            {% if m_loyal | length == 1 %}
+                {% set m_loyal = "0%d" | format(m_loyal) %}
+            {% endif %}
+            {% if s_loyal | length == 1 %}
+                {% set s_loyal = "0%d" | format(s_loyal) %}
+            {% endif %}
+            <tr class = "header">
+                <td class = "inner data right" colspan = "4">Total</td>
+                <td class = "inner data">{{ h_late }}:{{ m_late }}:{{ s_late }}</td>
+                <td class = "inner data">{{ h_loyal }}:{{ m_loyal }}:{{ s_loyal }}</td>
+                <td class = "inner data">&nbsp;</td>
+                <td class = "inner data">&nbsp;</td>
+            </tr>
+        {% endif %}
+    </table>
 </div>
 {% endspaceless %}

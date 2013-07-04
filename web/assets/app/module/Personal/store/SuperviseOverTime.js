@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.Personal.store.SuperviseOverTime",{extend:"GatotKacaErp.module.Personal.store.OverTime"});
+Ext.define("Com.GatotKaca.ERP.module.Personal.store.SuperviseOverTime",{extend:"Com.GatotKaca.ERP.module.Personal.store.OverTime"});

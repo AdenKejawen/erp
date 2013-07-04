@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.GeneralSetup.view.tabs.Company",{extend:"GatotKacaErp.view.tabs.Base",alias:"widget.tabcompany",id:"tabcompany",requires:["GatotKacaErp.module.GeneralSetup.view.forms.Company"],items:[{xtype:"formcompany"}]});
+Ext.define("Com.GatotKaca.ERP.module.GeneralSetup.view.tabs.Company",{extend:"Com.GatotKaca.ERP.view.tabs.Base",alias:"widget.tabcompany",id:"tabcompany",requires:["Com.GatotKaca.ERP.module.GeneralSetup.view.forms.Company"],items:[{xtype:"formcompany"}]});

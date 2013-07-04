@@ -1,9 +1,9 @@
 <?php
 /**
  * @filenames: GatotKaca/Erp/UtilitiesBundle/Entity/Module.php
- * Author     : Muhammad Surya Ikhsanudin
- * License    : Protected
- * Email      : mutofiyah@gmail.com
+ * Author    : Muhammad Surya Ikhsanudin
+ * License   : Protected
+ * Email     : mutofiyah@gmail.com
  *
  * Dilarang merubah, mengganti dan mendistribusikan
  * ulang tanpa sepengetahuan Author
@@ -20,105 +20,106 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name = "utl_module")
  **/
-class Module{
+class Module
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(name = "`id`", type = "string", length = 40)
+     **/
+    protected $id;
 
-	/**
-	 * @ORM\Id
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $id;
+    /**
+     * @ORM\OneToMany(targetEntity = "Module", mappedBy = "parent")
+     **/
+    protected $child;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="Module", mappedBy="parent")
-	 **/
-	protected $child;
-
-	/**
-     * @ORM\ManyToOne(targetEntity="Module", inversedBy="child")
-     * @ORM\JoinColumn(name="parent", referencedColumnName="id")
+    /**
+     * @ORM\ManyToOne(targetEntity = "Module", inversedBy = "child")
+     * @ORM\JoinColumn(name = "parent", referencedColumnName = "id")
      */
- 	protected $parent;
+     protected $parent;
 
-	/**
-	 * @ORM\Column(type = "string", length = 27, nullable = true)
-	 **/
-	protected $name;
+    /**
+     * @ORM\Column(name = "`name`", type = "string", length = 27, nullable = true)
+     **/
+    protected $name;
 
-	/**
-	 * @ORM\Column(type = "string", length = 27, nullable = true)
-	 **/
-	protected $selector;
+    /**
+     * @ORM\Column(name = "`selector`", type = "string", length = 27, nullable = true)
+     **/
+    protected $selector;
 
-	/**
-	 * @ORM\Column(type = "string", length = 75, nullable = true)
-	 **/
-	protected $icon;
+    /**
+     * @ORM\Column(name = "`icon`", type = "string", length = 75, nullable = true)
+     **/
+    protected $icon;
 
-	/**
-	 * @ORM\Column(type = "string", length = 255, nullable = true)
-	 **/
-	protected $url;
+    /**
+     * @ORM\Column(name = "`url`", type = "string", length = 255, nullable = true)
+     **/
+    protected $url;
 
-	/**
-	 * @ORM\Column(type = "integer", nullable = true)
-	 **/
-	protected $menu_order;
+    /**
+     * @ORM\Column(name = "`menu_order`", type = "integer", nullable = true)
+     **/
+    protected $menu_order;
 
-	/**
-	 * @ORM\Column(type = "boolean", nullable = true)
-	 **/
-	protected $status;
+    /**
+     * @ORM\Column(name = "`status`", type = "boolean", nullable = true)
+     **/
+    protected $status;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $created;
+    /**
+     * @ORM\Column(name = "`created`", type = "datetime")
+     **/
+    protected $created;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $createdby;
+    /**
+     * @ORM\Column(name = "`createdby`", type = "string", length = 40)
+     **/
+    protected $created_by;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $updated;
+    /**
+     * @ORM\Column(name = "`updated`", type = "datetime")
+     **/
+    protected $updated;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $updatedby;
+    /**
+     * @ORM\Column(name = "`updatedby`", type = "string", length = 40)
+     **/
+    protected $updated_by;
 
-	/**
-	* @ORM\OneToMany(targetEntity="Role", mappedBy="module")
-	**/
-	protected $role;
+    /**
+    * @ORM\OneToMany(targetEntity = "Role", mappedBy = "module")
+    **/
+    protected $role;
 
-	public function __construct(){
-		$this->selector   = 'root';
-		$this->url        = 'root';
-		$this->status     = TRUE;
-		$this->created    = new \DateTime();
-		$this->updated    = new \DateTime();
-	}
+    public function __construct()
+    {
+        $this->selector = 'root';
+        $this->url      = 'root';
+        $this->status   = true;
+        $this->created  = new \DateTime();
+        $this->updated  = new \DateTime();
+    }
 
     /**
      * Set id
      *
-     * @param string $id
+     * @param  string $id
      * @return Module
      */
     public function setId($id)
     {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return string 
+     * @return string
      */
     public function getId()
     {
@@ -128,20 +129,20 @@ class Module{
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string $name
      * @return Module
      */
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -151,20 +152,20 @@ class Module{
     /**
      * Set selector
      *
-     * @param string $selector
+     * @param  string $selector
      * @return Module
      */
     public function setSelector($selector)
     {
         $this->selector = $selector;
-    
+
         return $this;
     }
 
     /**
      * Get selector
      *
-     * @return string 
+     * @return string
      */
     public function getSelector()
     {
@@ -174,20 +175,20 @@ class Module{
     /**
      * Set icon
      *
-     * @param string $icon
+     * @param  string $icon
      * @return Module
      */
     public function setIcon($icon)
     {
         $this->icon = $icon;
-    
+
         return $this;
     }
 
     /**
      * Get icon
      *
-     * @return string 
+     * @return string
      */
     public function getIcon()
     {
@@ -197,20 +198,20 @@ class Module{
     /**
      * Set url
      *
-     * @param string $url
+     * @param  string $url
      * @return Module
      */
     public function setUrl($url)
     {
         $this->url = $url;
-    
+
         return $this;
     }
 
     /**
      * Get url
      *
-     * @return string 
+     * @return string
      */
     public function getUrl()
     {
@@ -220,20 +221,20 @@ class Module{
     /**
      * Set menu_order
      *
-     * @param integer $menuOrder
+     * @param  integer $menuOrder
      * @return Module
      */
     public function setMenuOrder($menuOrder)
     {
         $this->menu_order = $menuOrder;
-    
+
         return $this;
     }
 
     /**
      * Get menu_order
      *
-     * @return integer 
+     * @return integer
      */
     public function getMenuOrder()
     {
@@ -243,20 +244,20 @@ class Module{
     /**
      * Set status
      *
-     * @param boolean $status
+     * @param  boolean $status
      * @return Module
      */
     public function setStatus($status)
     {
         $this->status = $status;
-    
+
         return $this;
     }
 
     /**
      * Get status
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getStatus()
     {
@@ -266,20 +267,20 @@ class Module{
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime $created
      * @return Module
      */
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -287,45 +288,45 @@ class Module{
     }
 
     /**
-     * Set createdby
+     * Set created_by
      *
-     * @param string $createdby
+     * @param  string $createdBy
      * @return Module
      */
-    public function setCreatedby($createdby)
+    public function setCreatedBy($createdBy)
     {
-        $this->createdby = $createdby;
-    
+        $this->created_by = $createdBy;
+
         return $this;
     }
 
     /**
-     * Get createdby
+     * Get created_by
      *
-     * @return string 
+     * @return string
      */
-    public function getCreatedby()
+    public function getCreatedBy()
     {
-        return $this->createdby;
+        return $this->created_by;
     }
 
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param  \DateTime $updated
      * @return Module
      */
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-    
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -333,38 +334,38 @@ class Module{
     }
 
     /**
-     * Set updatedby
+     * Set updated_by
      *
-     * @param string $updatedby
+     * @param  string $updatedBy
      * @return Module
      */
-    public function setUpdatedby($updatedby)
+    public function setUpdatedBy($updatedBy)
     {
-        $this->updatedby = $updatedby;
-    
+        $this->updated_by = $updatedBy;
+
         return $this;
     }
 
     /**
-     * Get updatedby
+     * Get updated_by
      *
-     * @return string 
+     * @return string
      */
-    public function getUpdatedby()
+    public function getUpdatedBy()
     {
-        return $this->updatedby;
+        return $this->updated_by;
     }
 
     /**
      * Add child
      *
-     * @param \GatotKaca\Erp\UtilitiesBundle\Entity\Module $child
+     * @param  \GatotKaca\Erp\UtilitiesBundle\Entity\Module $child
      * @return Module
      */
     public function addChild(\GatotKaca\Erp\UtilitiesBundle\Entity\Module $child)
     {
         $this->child[] = $child;
-    
+
         return $this;
     }
 
@@ -381,7 +382,7 @@ class Module{
     /**
      * Get child
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getChild()
     {
@@ -391,20 +392,20 @@ class Module{
     /**
      * Set parent
      *
-     * @param \GatotKaca\Erp\UtilitiesBundle\Entity\Module $parent
+     * @param  \GatotKaca\Erp\UtilitiesBundle\Entity\Module $parent
      * @return Module
      */
     public function setParent(\GatotKaca\Erp\UtilitiesBundle\Entity\Module $parent = null)
     {
         $this->parent = $parent;
-    
+
         return $this;
     }
 
     /**
      * Get parent
      *
-     * @return \GatotKaca\Erp\UtilitiesBundle\Entity\Module 
+     * @return \GatotKaca\Erp\UtilitiesBundle\Entity\Module
      */
     public function getParent()
     {
@@ -414,13 +415,13 @@ class Module{
     /**
      * Add role
      *
-     * @param \GatotKaca\Erp\UtilitiesBundle\Entity\Role $role
+     * @param  \GatotKaca\Erp\UtilitiesBundle\Entity\Role $role
      * @return Module
      */
     public function addRole(\GatotKaca\Erp\UtilitiesBundle\Entity\Role $role)
     {
         $this->role[] = $role;
-    
+
         return $this;
     }
 
@@ -437,7 +438,7 @@ class Module{
     /**
      * Get role
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRole()
     {

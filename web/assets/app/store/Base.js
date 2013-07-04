@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.store.Base",{extend:"Ext.data.Store",autoLoad:false,autoSync:false,buffered:true,leadingBufferZone:LEADING,pageSize:PER_PAGE});
+Ext.define("Com.GatotKaca.ERP.store.Base",{extend:"Ext.data.Store",autoLoad:false,autoSync:false,buffered:true,leadingBufferZone:LEADING,pageSize:PER_PAGE});

@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.GeneralSetup.view.tabs.OfficeHour",{extend:"GatotKacaErp.view.tabs.Base",alias:"widget.tabofficehour",id:"tabofficehour",requires:["GatotKacaErp.module.GeneralSetup.view.forms.OfficeHour"],items:[{xtype:"formofficehour"}]});
+Ext.define("Com.GatotKaca.ERP.module.GeneralSetup.view.tabs.OfficeHour",{extend:"Com.GatotKaca.ERP.view.tabs.Base",alias:"widget.tabofficehour",id:"tabofficehour",requires:["Com.GatotKaca.ERP.module.GeneralSetup.view.forms.OfficeHour"],items:[{xtype:"formofficehour"}]});

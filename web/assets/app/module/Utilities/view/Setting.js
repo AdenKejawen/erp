@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.Utilities.view.Setting",{extend:"GatotKacaErp.view.Base",requires:["GatotKacaErp.module.Utilities.view.tabs.Setting"],bodyStyle:"padding : 5px; background : transparent",layout:{type:"fit"},items:[{xtype:"tabsetting"}]});
+Ext.define("Com.GatotKaca.ERP.module.Utilities.view.Setting",{extend:"Com.GatotKaca.ERP.view.Base",requires:["Com.GatotKaca.ERP.module.Utilities.view.tabs.Setting"],bodyStyle:"padding : 5px; background : transparent",layout:{type:"fit"},items:[{xtype:"tabsetting"}]});

@@ -13,11 +13,13 @@ namespace GatotKaca\Erp\UtilitiesBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use GatotKaca\Erp\MainBundle\Controller\AdminController;
 
-class IndexController extends AdminController{
-	/**
-	 * @Route("/utilities", name="GatotKacaErpUtilitiesBundle_Index_index")
-	 */
-	public function indexAction(){
-		return $this->goHome();
-	}
+class IndexController extends AdminController
+{
+    /**
+     * @Route("/utilities", name="GatotKacaErpUtilitiesBundle_Index_index")
+     */
+    public function indexAction()
+    {
+        return $this->goHome();
+    }
 }

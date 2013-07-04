@@ -20,77 +20,78 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name = "sys_joblevel")
  **/
-class JobLevel{
+class JobLevel
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(name = "`id`", type = "string", length = 40)
+     **/
+    protected $id;
 
-	/**
-	 * @ORM\Id
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $id;
+    /**
+     * @ORM\Column(name = "`name`", type = "string", length = 77, nullable = true)
+     **/
+    protected $name;
 
-	/**
-	 * @ORM\Column(type = "string", length = 77, nullable = true)
-	 **/
-	protected $name;
+    /**
+     * @ORM\Column(name = "`level`", type = "integer", length = 2, unique = true, nullable = true)
+     **/
+    protected $level;
 
-	/**
-	 * @ORM\Column(type = "integer", length = 2, unique = true, nullable = true)
-	 **/
-	protected $level;
+    /**
+     * @ORM\Column(name = "`status`", type = "boolean", nullable = true)
+     **/
+    protected $status;
 
-	/**
-	 * @ORM\Column(type = "boolean", nullable = true)
-	 **/
-	protected $status;
+    /**
+     * @ORM\Column(name = "`created`", type = "datetime")
+     **/
+    protected $created;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $created;
+    /**
+     * @ORM\Column(name = "`createdby`", type = "string", length = 40)
+     **/
+    protected $created_by;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $createdby;
+    /**
+     * @ORM\Column(name = "`updated`", type = "datetime")
+     **/
+    protected $updated;
 
-	/**
-	 * @ORM\Column(type = "datetime")
-	 **/
-	protected $updated;
+    /**
+     * @ORM\Column(name = "`updatedby`", type = "string", length = 40)
+     **/
+    protected $updated_by;
 
-	/**
-	 * @ORM\Column(type = "string", length = 40)
-	 **/
-	protected $updatedby;
+    /**
+     * @ORM\OneToMany(targetEntity = "JobTitle", mappedBy = "level")
+     **/
+    protected $jobtitle;
 
-	/**
-	 * @ORM\OneToMany(targetEntity="JobTitle", mappedBy="level")
-	 **/
-	protected $jobtitle;
-
-	public function __construct(){
-		$this->status	= TRUE;
-		$this->created	= new \DateTime();
-		$this->updated	= new \DateTime();
-	}
+    public function __construct()
+    {
+        $this->status   = true;
+        $this->created  = new \DateTime();
+        $this->updated  = new \DateTime();
+    }
 
     /**
      * Set id
      *
-     * @param string $id
+     * @param  string   $id
      * @return JobLevel
      */
     public function setId($id)
     {
         $this->id = $id;
-    
+
         return $this;
     }
 
     /**
      * Get id
      *
-     * @return string 
+     * @return string
      */
     public function getId()
     {
@@ -100,20 +101,20 @@ class JobLevel{
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string   $name
      * @return JobLevel
      */
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -123,20 +124,20 @@ class JobLevel{
     /**
      * Set level
      *
-     * @param integer $level
+     * @param  integer  $level
      * @return JobLevel
      */
     public function setLevel($level)
     {
         $this->level = $level;
-    
+
         return $this;
     }
 
     /**
      * Get level
      *
-     * @return integer 
+     * @return integer
      */
     public function getLevel()
     {
@@ -146,20 +147,20 @@ class JobLevel{
     /**
      * Set status
      *
-     * @param boolean $status
+     * @param  boolean  $status
      * @return JobLevel
      */
     public function setStatus($status)
     {
         $this->status = $status;
-    
+
         return $this;
     }
 
     /**
      * Get status
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getStatus()
     {
@@ -169,20 +170,20 @@ class JobLevel{
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime $created
      * @return JobLevel
      */
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -190,45 +191,45 @@ class JobLevel{
     }
 
     /**
-     * Set createdby
+     * Set created_by
      *
-     * @param string $createdby
+     * @param  string   $createdBy
      * @return JobLevel
      */
-    public function setCreatedby($createdby)
+    public function setCreatedBy($createdBy)
     {
-        $this->createdby = $createdby;
-    
+        $this->created_by = $createdBy;
+
         return $this;
     }
 
     /**
-     * Get createdby
+     * Get created_by
      *
-     * @return string 
+     * @return string
      */
-    public function getCreatedby()
+    public function getCreatedBy()
     {
-        return $this->createdby;
+        return $this->created_by;
     }
 
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param  \DateTime $updated
      * @return JobLevel
      */
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-    
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -236,38 +237,38 @@ class JobLevel{
     }
 
     /**
-     * Set updatedby
+     * Set updated_by
      *
-     * @param string $updatedby
+     * @param  string   $updatedBy
      * @return JobLevel
      */
-    public function setUpdatedby($updatedby)
+    public function setUpdatedBy($updatedBy)
     {
-        $this->updatedby = $updatedby;
-    
+        $this->updated_by = $updatedBy;
+
         return $this;
     }
 
     /**
-     * Get updatedby
+     * Get updated_by
      *
-     * @return string 
+     * @return string
      */
-    public function getUpdatedby()
+    public function getUpdatedBy()
     {
-        return $this->updatedby;
+        return $this->updated_by;
     }
 
     /**
      * Add jobtitle
      *
-     * @param \GatotKaca\Erp\MainBundle\Entity\JobTitle $jobtitle
+     * @param  \GatotKaca\Erp\MainBundle\Entity\JobTitle $jobtitle
      * @return JobLevel
      */
     public function addJobtitle(\GatotKaca\Erp\MainBundle\Entity\JobTitle $jobtitle)
     {
         $this->jobtitle[] = $jobtitle;
-    
+
         return $this;
     }
 
@@ -284,7 +285,7 @@ class JobLevel{
     /**
      * Get jobtitle
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getJobtitle()
     {

@@ -1,1 +1,1 @@
-Ext.define("GatotKacaErp.module.Utilities.model.Group",{extend:"Ext.data.Model",fields:[{name:"group_id",type:"string"},{name:"group_name",type:"string"},{name:"group_relation",type:"string"},{name:"group_status",type:"boolean"}]});
+Ext.define("Com.GatotKaca.ERP.module.Utilities.model.Group",{extend:"Ext.data.Model",fields:[{name:"group_id",type:"string"},{name:"group_name",type:"string"},{name:"group_relation",type:"string"},{name:"group_status",type:"boolean"}]});
